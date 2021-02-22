@@ -1,13 +1,10 @@
 
-/* 功能選單 */
+/* 功能選單 
 .administrator{
             
     display: flex;
 }
 aside{
-    /* border: 1px solid #ccc; */
-    /* width: 500px; */
-    /* height: 1050px; */
     text-align: center;
 }
 aside .function{
@@ -20,7 +17,7 @@ aside .function{
     font-weight:bolder;
 }
 .function img{
-    vertical-align: bottom;   /*解決圖片底下留白問題*/
+    vertical-align: bottom;   解決圖片底下留白問題
 }
 .function .item img:hover{
     opacity: 0.5;
@@ -43,6 +40,8 @@ aside .function{
 .function .item:last-child{
     margin-top:125px;          
 }
+
+*/
 
 /*按鈕動畫*/
 .function button:focus{
