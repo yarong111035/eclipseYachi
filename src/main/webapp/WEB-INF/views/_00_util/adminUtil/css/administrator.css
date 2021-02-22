@@ -1,0 +1,473 @@
+@charset "UTF-8";
+/* 全域border box  使padding內縮  */
+/* 含偽元素*/
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+    /* height: 1500px; */
+    margin-top: 13rem;
+    font-family: "微軟正黑體";
+    background-image: url(../images_2/background_shop.png);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+
+}
+
+/* 回到上方的按鈕 */
+/* .toTop {
+  position: fixed;
+  font-size: 3rem;
+  right: 1rem;
+  bottom: 1rem;
+} */
+#go-top {
+	position: fixed;  /* 畫面滾動時一直出現 */
+    right: 20px;
+    bottom: 35px;
+    width: 40px;
+    height: 40px;
+    background:rgba(123,136,111,0.3);
+    color:#fff;
+    text-align: center;  /* 左右置中 */
+    line-height: 40px;   /* 上下置中 */
+    text-decoration: none;
+    border-radius: 50%;
+}
+#go-top:hover{
+    background:rgba(123,136,111,1);
+}
+
+header {
+  /* background: #ccc; */
+  width: 100%;
+  /* 使頁首定在body上方 */
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+header nav {
+  background-color: black;
+}
+
+header nav .navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.25rem 0.5rem;
+  margin: 0 1rem;
+}
+
+header nav .navbar .ig-links {
+  font-size: 0.875rem;
+}
+
+header nav .navbar .ig-links a {
+  padding: 0 0.15rem;
+  color: white;
+}
+
+header nav .navbar .ig-links a:first-child {
+  border-right: 1px solid #ccc;
+  padding-right: 0.5rem;
+}
+
+header nav .navbar .ig-links a img {
+  vertical-align: text-bottom;
+}
+
+header nav .navbar .ig-links a:hover {
+  color: orange;
+}
+
+header nav .navbar .space {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+}
+
+header nav .navbar .links {
+  font-size: 0.875rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header nav .navbar .links a {
+  color: white;
+  margin: 0 0.3rem;
+}
+
+header nav .navbar .links a i {
+  margin-right: 0.25rem;
+}
+
+header nav .navbar .links a:hover {
+  color: orange;
+}
+
+header .search {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+header .search .search-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header .search .search-wrap .logo-wrap {
+  max-width: 200px;
+}
+
+header .search .search-wrap .logo-wrap img {
+  width: 90%;
+  vertical-align: bottom;
+  cursor: pointer;
+}
+
+header .search .search-wrap .search-food {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .search .search-wrap .search-food .search-input {
+  border: 2px solid #aaa;
+  border-radius: 100px;   
+  padding-left: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+header .search .search-wrap .search-food .search-input input, header .search .search-wrap .search-food .search-input button {
+  background-color: transparent;
+  color: #aaad;
+  border: none;
+  height: 2rem;
+}
+
+header .search .search-wrap .search-food .search-input input {
+  width: 40rem;
+}
+
+header .search .search-wrap .search-food .search-input input:focus {
+  outline: none;
+}
+
+header .search .search-wrap .search-food .search-input button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+header .search .search-wrap .search-food .food-trending a {
+  color: black;
+  font-size: 0.875rem;
+  padding: 0 1rem;
+}
+
+header .search .search-wrap .search-food .food-trending a:hover {
+  color: orange;
+}
+
+header .search .search-wrap .search-ticket {
+  max-width: 200px;
+  position: relative;
+  margin-left: 0.5rem;
+  /* 父層被hover 子層做事情*/
+}
+
+header .search .search-wrap .search-ticket img {
+  width: 100%;
+  vertical-align: bottom;
+  opacity: 0.2;
+  
+  
+}
+
+header .search .search-wrap .search-ticket .txt {
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  font-size: 0.8rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  /* 使文字垂直居中 */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /* x軸居中對齊 */
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  /* y軸居中對齊 */
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .search .search-wrap .search-ticket .txt h2 {
+  color: #555555;
+}
+/* 鼠標一上去出現優惠券專區背景 */
+/* header .search .search-wrap .search-ticket:hover .txt {
+  background-color: #ccc;
+  opacity: 0.7;
+} */
+
+header .search .search-wrap .search-ticket:hover .txt h2 {
+  color: black;
+}
+
+header .search .search-wrap .member {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .search .search-wrap .member a {
+  padding: 0 1rem;
+  color: black;
+}
+
+header .search .search-wrap .member a:first-child {
+  border-right: 1px solid black;
+}
+
+header .search .search-wrap .member a:last-child {
+  display: block;
+  padding: 0;
+}
+
+header .search .search-wrap .member a:last-child i {
+  
+  font-size: 1.8rem;
+  color: #555;
+}
+
+header .search .search-wrap .member a:hover {
+  color: orange;
+}
+/*夜市簡介 背景 */
+/* header .tab {
+  background-color: black; 
+} */
+
+header .tab .tab-warp {
+  position: relative;
+}
+
+header .tab .tab-warp .tab-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .tab .tab-warp .tab-list a {
+  font-size: 1rem;
+  text-align: center;
+  color: #444444;
+  width: 11rem;
+  padding: 1rem 0rem;
+}
+
+header .tab .tab-warp .tab-content {
+  background-color: white;
+  position: absolute;
+  /* 調整左邊 border線 與導覽列同X軸 */
+  left: 15%;
+  /* 控制右邊 border線 */
+  width: 55rem;
+}
+
+header .tab .tab-warp .tab-content .tab-panel {
+  border: 2px solid #ccc;
+  padding: 0 1rem;
+  display: none;
+}
+
+/*** addClass 類別使用 ****/
+.liColor {
+  background-color: rgba(206, 16, 16, 0.5);
+}
+
+/* iPhone XS Max Viewport RWD 414*896 */
+@media (max-width: 415px) {
+  header nav .navbar {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  header nav .navbar .ig-links a {
+    padding: 0 0.2em;
+  }
+  header nav .navbar .space {
+    color: white;
+  }
+  header nav .navbar .links li {
+    padding: 0 1em;
+  }
+}
+
+/*---------------------header 結束--------------------------------*/
+
+
+
+.administrator{
+            
+    display: flex;
+}
+aside{
+    border: 1px solid #ccc;
+    width: 500px;
+    height: 1050px;
+    text-align: center;
+}
+aside .function{
+    display: flex;
+    flex-direction: column; 
+}
+.function h3{
+    font-size: 24px;
+    padding: 20px 0;
+    font-weight:bolder;
+}
+.function img{
+    vertical-align: bottom;   /*解決圖片底下留白問題*/
+}
+.function .item img:hover{
+    opacity: 0.5;
+    transition: 0.5s;
+}
+.function label{
+    padding: 10px 0;
+    font-size: 13px;
+    font-weight:bolder;
+    
+}
+.function button{
+    border: 1px solid #ccc;
+    width: 200px;
+    margin: 5px auto;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight:bolder;          
+}
+.function .item:last-child{
+    margin-top:125px;          
+}
+
+/*按鈕動畫*/
+.function button:focus{
+    outline: none;
+}
+.function button:hover{
+    
+    background-color: rgb(170, 192, 207);
+}
+
+.function button span{
+   
+    position: relative;
+}
+.function button:hover span{
+    padding-right: 25px;
+    transition: 0.5s;
+}
+.function button span:after{
+    content: '➜';
+    opacity: 0;
+    transition: 0.5s;
+    position: absolute;
+    
+    right: -10px;
+    font-weight: bold;
+}
+.function button:hover span:after{
+    opacity: 1;
+}
+
+/* status */
+.status {
+    width: 700px;
+    height: 150px;
+    border: 2px solid #aaa;
+    border-radius: 20px;
+    margin-left: 100px;
+    margin-bottom: 2rem;
+}
+.status-nav {
+    /* border: 1px solid #fff; */
+    /* justify-content: flex-end; */
+    display: flex;
+}
+.status-nav a {
+    /* border: 1px solid #333; */
+    padding-right: 10px;
+    margin-top: 5px;
+    transition: .5s;
+}
+.status-nav a:hover {
+    color: red;
+    font-weight: bold;
+}
+.status-nav .space{
+   flex-grow: 1;
+   /* flex: 1; */
+}
+.status hr {
+    margin: 1px;
+}
+.status h3 {
+    border: 1px solid #fff;
+    margin: 5px;
+    padding-left: 20px;
+}
+.status a {
+    color: #333;
+    padding-left: 20px;
+}
