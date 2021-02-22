@@ -1,0 +1,315 @@
+* {
+	webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+    box-sizing:border-box;
+    margin: 0px;
+    padding: 0px;
+}
+body{
+	font-family:"Source Sans Pro",sans-serif;
+	font-size:15px;
+	font-weight:400;
+	-webkit-font-smoothing:antialiased;
+    -moz-font-smoothing:antialiased;  /* 可以讓字體看起來更特別 */
+
+    /* margin-top: 100px; */
+    
+}
+ul{
+	margin:0;
+	padding-left:0;  
+}
+li{
+	list-style-type:none;
+}
+i{
+    cursor: pointer;
+    /* color:#7b886f; */
+}
+i:hover{
+    opacity: 0.5;
+}
+a{
+	color:#333;
+	/* text-transform:uppercase; */
+	text-decoration:none;
+    font-size:13px;
+}
+
+
+/* header */
+
+
+.container{
+    display: flex;
+    width: 100%;
+    /* height: 150px; */
+    padding: 10px 0;
+    margin: 0 auto;
+    align-items: center;
+    background-color: rgba(213,87,49,0.2)
+    
+}
+
+#header_name{
+    padding-left: 20px;
+}
+
+#header_name ul{
+    display: flex;
+    
+}
+#header_name ul li{
+    padding: 10px;
+}
+#header_name a{
+    font-size: 25px;
+    font-weight: bolder;
+    position: relative;
+}
+#header_name a:after{
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0px;
+    width: 0%;
+    border-bottom: 2px solid #d5573b;
+    transition: 0.3s;
+}
+#header_name a:hover:after {
+    width: 100%;
+}
+
+
+
+#header_logo{
+    flex-grow: 1;
+    height: 100px;
+    box-sizing: border-box;
+    text-align: center;
+
+    position: relative;
+
+
+}
+#header_logo a img{
+    width: 150px;
+    height: 70px;
+    position: absolute;
+    left: 300px;
+    top: 10px;
+}
+#header_logo a img:hover{
+    opacity: 0.6;
+}
+
+#header_nav{
+    flex-grow: 1;
+    display: flex;
+    justify-content:flex-end;
+
+    
+}
+#header_nav div{
+    width: 55px;
+    text-align: center;
+}
+#header_nav i{
+    font-size: 30px;
+}
+
+
+
+/* slider */
+#sliderContainer{
+    background: #f3f8f2;
+}
+.image{
+    width: 100%;
+    height: 500px;
+    /* border: 1px solid #cccccc; */
+}
+#sliderBoard{       /*div*/
+    /* border: 1px solid red; */
+    width: 75%;
+    height: 500px;
+    margin: 0px auto;
+    overflow: hidden;
+    position: relative;
+    /* display: flex; */
+}
+#content{           /*ul*/
+    width: 100%;
+    position: relative;
+    border: none;
+}
+#content img{
+    /* opacity: 0.8; */
+}
+#content li{        /*li*/
+    float: left;
+}
+
+/* button */
+#contentButton{    
+    /* border: 1px solid red; */
+    width: 100%;  
+    /* 相對於div的100% */
+    height: 50px;
+    text-align: center;
+}
+#contentButton li{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #cccccc;
+    margin: 5px;
+
+    display: inline-block;
+}
+#contentButton li.clickMe{
+    background: #666666;
+}
+#buttonContent{
+    /* margin-top: -50px; */
+}
+#sliderLeft{
+    position: absolute;
+    /* border: 1px solid red; */
+    left: 7%;
+    top: 300px;
+}
+#sliderLeft:hover{
+    opacity: 0.6;
+}
+#sliderRight{
+    position: absolute;
+    /* border: 1px solid red; */
+    /* display: flex; */
+    right: 7%;
+    top: 300px;
+}
+#sliderRight:hover{
+    opacity: 0.6;
+}
+
+/* sessionLeft */
+#secondContainer{
+    position: relative;
+    /* width: 100%; */
+    /* padding-left: 142px; */
+    /* float: left; */
+}
+#sectionLeft{
+    width: 70%;
+    margin-left: 145px;
+}
+.addCoupon{
+    display: flex;
+}
+.addCoupon div{
+    padding: 10px;
+}
+.couponInfo h3{
+    color:#F26419 ;
+}
+.couponInfo h4{
+    color: #F6AE2D;
+}
+.couponInfo{
+    width: 60%;
+    border: 1px solid #cccccc;
+    margin: 5px 0px;
+    /* color: #d5573b; */
+}
+#shopInfo{
+    /* border: 3px solid #cccccc; */
+    width: 70%;
+    margin-left: 12px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    /* text-align: center; */
+}
+.fa-star{
+    color:#F6AE2D;
+}
+#comment{
+    margin-top: 20px;
+}
+
+/* fixedRight */
+#RightBorder{
+    position: absolute;
+    height: 1500px;
+    right: 158px;
+    top: 0px;
+    /* background: rgb(207, 255, 207); */
+
+}
+#shopPhone{
+    /* position: sticky;
+    position: -webkit-sticky;
+    right: 60px;
+    top:0px;
+    background: pink;
+    width: 230px;
+    padding: 10px; */
+    position: sticky;
+    position: -webkit-sticky;
+    /* border: 1px solid #cccccc; */
+    background: rgba(123,136,111,0.1);
+    top: 0px;
+    width: 300px;
+    height: 350px;
+    padding: 30px;
+    
+}
+
+#shopPhone .item{
+    /* background: green; */
+    margin-bottom: 10px;
+    display: flex;
+    text-align: left;
+}
+
+#shopPhone .item .item-left{
+    /* height: 30px; */
+    /* background: green; */
+    width: 20%;
+    padding: 10px 0;
+    /* color: #7b886f; */
+    font-size: 20px;
+}
+#shopPhone .item .item-right{
+    /* height: 30px; */
+    width: 80%;
+    /* background: red; */
+    padding: 10px 0;
+    text-align: left;
+    font-size: 16px;
+    color: #d5573b;
+}
+#shopPhone .item .item-right a{
+    font-size: 16px;
+    color: #d5573b;
+
+}
+#shopPhone .item .item-right a:hover{
+    opacity: 0.5;
+}
+
+
+#go-top {
+	position: fixed;  /* 畫面滾動時一直出現 */
+    right: 20px;
+    bottom: 35px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0,0,0,0.6);
+    color:#fff;
+    text-align: center;  /* 左右置中 */
+    line-height: 40px;   /* 上下置中 */
+    text-decoration: none;
+}
+

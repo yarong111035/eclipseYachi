@@ -1,0 +1,547 @@
+
+@charset "UTF-8";
+/* 全域border box  使padding內縮  */
+/* 含偽元素*/
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+    height: 1500px;
+    margin-top: 13rem;
+    font-family: "微軟正黑體";
+    background-image: url(../images_2/background_shop.png);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+
+}
+
+/* 回到上方的按鈕 */
+.toTop {
+  position: fixed;
+  font-size: 3rem;
+  right: 1rem;
+  bottom: 1rem;
+}
+
+header {
+  background: #ccc;
+  width: 100%;
+  /* 使頁首定在body上方 */
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+header nav {
+  background-color: black;
+}
+
+header nav .navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.25rem 0.5rem;
+  margin: 0 1rem;
+}
+
+header nav .navbar .ig-links {
+  font-size: 0.875rem;
+}
+
+header nav .navbar .ig-links a {
+  padding: 0 0.15rem;
+  color: white;
+}
+
+header nav .navbar .ig-links a:first-child {
+  border-right: 1px solid #ccc;
+  padding-right: 0.5rem;
+}
+
+header nav .navbar .ig-links a img {
+  vertical-align: text-bottom;
+}
+
+header nav .navbar .ig-links a:hover {
+  color: orange;
+}
+
+header nav .navbar .space {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+}
+
+header nav .navbar .links {
+  font-size: 0.875rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header nav .navbar .links a {
+  color: white;
+  margin: 0 0.3rem;
+}
+
+header nav .navbar .links a i {
+  margin-right: 0.25rem;
+}
+
+header nav .navbar .links a:hover {
+  color: orange;
+}
+
+header .search {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+header .search .search-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header .search .search-wrap .logo-wrap {
+  max-width: 200px;
+}
+
+header .search .search-wrap .logo-wrap img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+header .search .search-wrap .search-food {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .search .search-wrap .search-food .search-input {
+  border: 2px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header .search .search-wrap .search-food .search-input input, header .search .search-wrap .search-food .search-input button {
+  background-color: white;
+  border: none;
+  height: 2rem;
+}
+
+header .search .search-wrap .search-food .search-input input {
+  width: 40rem;
+}
+
+header .search .search-wrap .search-food .search-input input:focus {
+  outline: none;
+}
+
+header .search .search-wrap .search-food .search-input button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+header .search .search-wrap .search-food .food-trending a {
+  color: black;
+  font-size: 0.875rem;
+  padding: 0 1rem;
+}
+
+header .search .search-wrap .search-food .food-trending a:hover {
+  color: orange;
+}
+
+header .search .search-wrap .search-ticket {
+  max-width: 200px;
+  position: relative;
+  margin-left: 0.5rem;
+  /* 父層被hover 子層做事情*/
+}
+
+header .search .search-wrap .search-ticket img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+header .search .search-wrap .search-ticket .txt {
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 1rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  /* 使文字垂直居中 */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /* x軸居中對齊 */
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  /* y軸居中對齊 */
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .search .search-wrap .search-ticket .txt h2 {
+  color: white;
+}
+
+header .search .search-wrap .search-ticket:hover .txt {
+  background-color: #ccc;
+  opacity: 0.7;
+}
+
+header .search .search-wrap .search-ticket:hover .txt h2 {
+  color: black;
+}
+
+header .search .search-wrap .member {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .search .search-wrap .member a {
+  padding: 0 1rem;
+  color: black;
+}
+
+header .search .search-wrap .member a:first-child {
+  border-right: 1px solid black;
+}
+
+header .search .search-wrap .member a:last-child {
+  display: block;
+}
+
+header .search .search-wrap .member a:last-child i {
+  font-size: 4rem;
+}
+
+header .search .search-wrap .member a:hover {
+  color: orange;
+}
+
+header .tab {
+  background-color: black;
+}
+
+header .tab .tab-warp {
+  position: relative;
+}
+
+header .tab .tab-warp .tab-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .tab .tab-warp .tab-list a {
+  font-size: 1rem;
+  text-align: center;
+  color: white;
+  width: 11rem;
+  padding: 1rem 0rem;
+}
+
+header .tab .tab-warp .tab-content {
+  background-color: white;
+  position: absolute;
+  /* 調整左邊 border線 與導覽列同X軸 */
+  left: 15%;
+  /* 控制右邊 border線 */
+  width: 55rem;
+}
+
+header .tab .tab-warp .tab-content .tab-panel {
+  border: 2px solid #ccc;
+  padding: 0 1rem;
+  display: none;
+}
+
+/*** addClass 類別使用 ****/
+.liColor {
+  background-color: rgba(206, 16, 16, 0.5);
+}
+
+/* iPhone XS Max Viewport RWD 414*896 */
+@media (max-width: 415px) {
+  header nav .navbar {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  header nav .navbar .ig-links a {
+    padding: 0 0.2em;
+  }
+  header nav .navbar .space {
+    color: white;
+  }
+  header nav .navbar .links li {
+    padding: 0 1em;
+  }
+}
+
+/*---------------------header 結束--------------------------------*/
+
+
+/* .clearfix{
+    clear: both;
+} */
+#header_container{
+    max-width: 100%;
+    height: 100px;
+    background: purple;
+}
+.header_image>img{
+    max-width: 100%;
+}
+
+/* 商品標頭 */
+.new_container{
+    /* background: #aaaaaa; */
+    margin: 50px 0;
+    padding: 10px 0;
+}
+.new_product{
+    padding: 10px 0;
+    text-align: center;
+    /* background: #cccccc; */
+}
+.new_product h1{
+    position: relative;
+    display: inline-block;
+    letter-spacing: 8px;
+    color: #777777;
+}
+.new_product h1::before{
+    content: "";
+    position: absolute;
+    background: url(../images_2/左邊中括號.png) no-repeat;
+    width: 30px;
+    height: 45px;
+    top: -5px;
+    left: -40px;
+    background-size: contain;
+    opacity: 0.5;
+}
+.new_product h1::after{
+    content: "";
+    position: absolute;
+    background: url(../images_2/右邊中括號.png) no-repeat;
+    width: 30px;
+    height: 45px;
+    top: -5px;
+    right: -40px;
+    background-size: contain;
+    opacity: 0.5;
+}
+
+#main{
+    /* margin-top: 500px; */
+    width: 80%;
+    margin: 0 auto;
+}
+/* 商品大區塊 */
+.shoppingArea{
+    position: relative;
+    display: flex;
+}
+
+/* 左半邊 */
+aside{
+    /* background: green; */
+    position: absolute;
+    left: 0;
+    width: 20%;
+    /* float: left; */
+   
+}
+.left_container{
+    background: #EDD9D9;
+    padding-top: 15px;
+    height: auto;
+    border-radius: 5px;
+    
+}
+.onlineShop{
+    text-align: center;
+    background: #C39C9C;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 5px;
+    color: #ffffff;
+}
+.items{
+    padding: 30px 0;
+    margin-left: 20px;
+}
+.items a{
+    color: #333333;
+    text-decoration: none;
+    letter-spacing: 6px;
+    transition: .5s;
+}
+.items a:hover{
+    border-radius: 5px;
+    background: #ffffff;
+    opacity: 0.6;
+}
+.hr{
+    width: 80%;
+    margin: 0 auto;
+    border-top: 1px solid rgba(255,255,255,.6);
+}
+
+/* 右半邊 */
+.right_container{
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    right: 0;
+    width: 73%;
+    padding-top: 30px;
+    background: #EDD9D9;
+    border-radius: 5px;
+}
+.product_contianer{
+    display: flex;
+    /* float: left; */
+    height: 480px;
+    padding-left:34px;
+}
+.product_image{
+    width: 200px;
+    /* height: 150px; */
+
+}
+.product_image img{
+	display:block ;
+	width:100% ;  /* 寬度跟容器一樣 */
+	height:auto ;  /* 因每個瀏覽器可能都不太一樣，所以高度也需要設定 */
+}
+.product_items{
+    position: relative;
+}
+.product_items img:hover{
+    transition: 0.7s ease;
+    opacity: 0.8;
+}
+.product_items div.product_image:nth-child(2){
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+.product_items div.product_image:nth-child(2) a{
+    height: 100%;
+    opacity: 1;
+    transition: opacity 1.35s ease-in-out 0s;
+    width: 100%;
+    z-index: 100;
+    background-color: #EDD9D9;
+    display: block;
+}
+.product_items div.product_image:nth-child(2) a:hover{
+    opacity: 0;
+}
+.product_name{
+    height: 40px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.product_name a{
+    color: #444444;
+    letter-spacing: 3px;
+    font-size: 18px;
+}
+.product_price{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.product_price span{
+    letter-spacing: 2px;
+    color: #BE5555;
+}
+.product_count{
+    text-align: center;
+    padding-bottom: 10px;
+}
+.product_count span{
+    letter-spacing: 3px;
+    color: #555555;
+    font-size: 15px;
+}
+.product_count select{  
+    color: #aaaaaa;
+    border: 1px solid #e2e2e2;
+    border-radius: 5px;
+    width: 154px;
+    padding: 2px 0;
+}
+.product_count select option{
+    color: #aaa;
+}
+.cartBtn{
+    width: 200px;
+    text-align: center;
+    background:rgba(210,179,179,0.6);
+    margin: 0 auto;
+    border-radius: 3px;
+    cursor: pointer;
+    color: #ffffff;
+    letter-spacing: 2px;
+    padding: 5px;
+    transition: .8s;
+}
+.cartBtn:hover{
+    background: #d2b3b3;
+    color: #555555;
+}
+
