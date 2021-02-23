@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<aside class="col-4">
+<aside class="col-4" style="border:none;">
 	<div class="function ">
 		<!-- <h3>管理員</h3> -->
 		<div class="item">
