@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
-
+<html>
+<head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/normalize.css">
-<link rel="stylesheet"
-href="${pageContext.request.contextPath}/css/funAdmin.css">
+<link rel="stylesheet" href="<c:url value='/_00_util/adminUtil/css/normalize.css'/>">
+<link rel="stylesheet" href="<c:url value='/_00_util/adminUtil/css/funAdmin.css'/>">
 <title>admin</title>
+</head>
 
-
+<body>
 <aside class="col-4">
 	<div class="function ">
 		<!-- <h3>管理員</h3> -->
@@ -105,3 +107,5 @@ href="${pageContext.request.contextPath}/css/funAdmin.css">
 
 
 </aside>
+</body>
+</html>
