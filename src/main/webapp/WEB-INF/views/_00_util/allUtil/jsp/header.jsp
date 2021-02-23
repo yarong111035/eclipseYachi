@@ -47,7 +47,7 @@
 			<div class="search-wrap">
 
 				<div class="logo-wrap">
-						<img src="${pageContext.request.contextPath}/images_2/yachiLogo50.png" alt="">
+						<img src="<c:url value='/data/images/smallPic/yachiLogo50.png'/>">
 				</div>
 
 				<form class="search-food" action="https://www.google.com/">
@@ -114,6 +114,7 @@
 					</div>
 					<div class="tab-panel">
 						 <a href="<c:url value='/administrator' />">管理員首頁</a><br>
+						 <a href="<c:url value='/products/add' />">商品維護</a><br>
 						 <a href="<c:url value='/admin_coupon' />">平台優惠券</a><br>
 						 <a href="<c:url value='/admin_chatroom' />">客服回應</a><br>
 						 <a href="<c:url value='/admin_announcement' />">公告</a><br>

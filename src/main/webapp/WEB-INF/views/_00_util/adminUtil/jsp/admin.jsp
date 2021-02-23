@@ -25,42 +25,42 @@
 		</label>
 
 		<div class="item">
-			<a href="#">
+			<a href="<c:url value='/administrator' />">
 				<button>
 					<span>管理員首頁</span>
 				</button>
 			</a>
 		</div>
 		<div class="item">
-			<a href="#">
-				<button style="background: rgb(170, 192, 207);">
+			<a href="<c:url value='/products/add' />">
+				<button>
 					<span>商品維護</span>
 				</button>
 			</a>
 		</div>
 		<div class="item">
-			<a href="#">
+			<a href="<c:url value='/admin_activity' />">
 				<button>
 					<span>平台優惠活動</span>
 				</button>
 			</a>
 		</div>
 		<div class="item">
-			<a href="#">
+			<a href="<c:url value='/admin_coupon' />">
 				<button>
 					<span>平台優惠券</span>
 				</button>
 			</a>
 		</div>
 		<div class="item">
-			<a href="#">
+			<a href="<c:url value='/admin_adinfo' />">
 				<button>
 					<span>廣告資訊</span>
 				</button>
 			</a>
 		</div>
 		<div class="item">
-			<a href="#">
+			<a href="<c:url value='/admin_chatroom' />">
 				<button>
 					<span>客服回應</span>
 				</button>
@@ -74,7 +74,7 @@
 			</a>
 		</div>
 		<div class="item">
-			<a href="#">
+			<a href="<c:url value='/admin_announcement' />">
 				<button>
 					<span>公告</span>
 				</button>

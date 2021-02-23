@@ -55,6 +55,11 @@ public class HomeController {
 
 		return "_16_admin/admin_activity"; 
 	}
+//	@RequestMapping("/admin_product")
+//	public String admin(Model model) {  //有東西要交給view 就放model
+//
+//		return "_16_admin/insertProduct"; 
+//	}
 	//請求路徑是/welcome ，可以多個請求路徑(陣列語法)
 //	@RequestMapping({"/welcome", "/welcome2", "/welcome3"})
 //	public String welcome(Model model) {  //有東西要交給view 就放model
