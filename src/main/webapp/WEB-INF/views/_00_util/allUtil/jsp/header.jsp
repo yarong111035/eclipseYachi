@@ -113,7 +113,12 @@
 						<a href="<c:url value='products/add' />">上架產品</a><br>
 					</div>
 					<div class="tab-panel">
-						 <img src="https://picsum.photos/450/200" alt="">
+						 <a href="<c:url value='/administrator' />">管理員首頁</a><br>
+						 <a href="<c:url value='/admin_coupon' />">平台優惠券</a><br>
+						 <a href="<c:url value='/admin_chatroom' />">客服回應</a><br>
+						 <a href="<c:url value='/admin_announcement' />">公告</a><br>
+						 <a href="<c:url value='/admin_adinfo' />">廣告資訊</a><br>
+						 <a href="<c:url value='/admin_activity' />">平台優惠活動</a><br>
 					</div>
 				</div>
 

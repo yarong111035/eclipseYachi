@@ -25,6 +25,36 @@ public class HomeController {
 	@Autowired
 	ProductService service;
 	
+	@RequestMapping("/administrator")
+	public String administrator(Model model) {  //有東西要交給view 就放model
+
+		return "_16_admin/administrator"; 
+	}
+	@RequestMapping("/admin_coupon")
+	public String admin_coupon(Model model) {  //有東西要交給view 就放model
+
+		return "_16_admin/admin_coupon"; 
+	}
+	@RequestMapping("/admin_chatroom")
+	public String admin_chatroom(Model model) {  //有東西要交給view 就放model
+
+		return "_16_admin/admin_chatroom"; 
+	}
+	@RequestMapping("/admin_announcement")
+	public String admin_announcement(Model model) {  //有東西要交給view 就放model
+
+		return "_16_admin/admin_announcement"; 
+	}
+	@RequestMapping("/admin_adinfo")
+	public String admin_adinfo(Model model) {  //有東西要交給view 就放model
+
+		return "_16_admin/admin_adinfo"; 
+	}
+	@RequestMapping("/admin_activity")
+	public String admin_activity(Model model) {  //有東西要交給view 就放model
+
+		return "_16_admin/admin_activity"; 
+	}
 	//請求路徑是/welcome ，可以多個請求路徑(陣列語法)
 //	@RequestMapping({"/welcome", "/welcome2", "/welcome3"})
 //	public String welcome(Model model) {  //有東西要交給view 就放model
