@@ -132,7 +132,7 @@
 <!-- 				</div> -->
 
 <!-- 			</aside> -->
-				<jsp:include page="/WEB-INF/views/_00_util/adminUtil/jsp/admin.jsp" />
+				<jsp:include page="function/admin.jsp" />
 			<!-- 功能選單結束 -->
 		
 			<!-- 表單區域開始 -->

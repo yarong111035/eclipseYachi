@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
     <link rel="stylesheet" href="<c:url value='/_00_util/shoppingMallUtil/css/4_shopping_cart.css'/>">
     <link rel="stylesheet" href="<c:url value='/_00_util/shoppingMallUtil/css/2_mix.css'/>">
@@ -125,11 +126,12 @@
                     		<div class="product_contianer col col-md-6 col-lg-3 " >
                             <div class="product_items">
                                 <div class="product_image image2">
-                                    <img src="${pageContext.request.contextPath}/images_2/product3-2.jpg">
+                                
+                                    <img src="<c:url value='/data/images/mediumPic/product4-2.jpg'/>">
                                 </div>
                                 <div class="product_image image1">
                                 								 
-                                    <a href="<spring:url value='singleProduct?id=${product.product_id}'/>"><img src="${pageContext.request.contextPath}/images_2/product3.jpg"></a>
+                                    <a href="<spring:url value='singleProduct?id=${product.product_id}'/>"><img src="<c:url value='/data/images/mediumPic/product4-1.jpg'/>"></a>
                                 </div>
                                 <div class="itemBody">
                                     <div class="product_name">

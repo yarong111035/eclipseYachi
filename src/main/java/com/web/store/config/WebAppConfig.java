@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -44,35 +45,35 @@ public class WebAppConfig implements WebMvcConfigurer {
 	 * /css/開頭的任何請求，都轉到/WEB-INF/views/css/去尋找
 	 */
 	@Override
-		public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 //			讀取css檔案
-			registry.addResourceHandler("/_00_util/adminUtil/css/**")
-					.addResourceLocations("/WEB-INF/views/_00_util/adminUtil/css/");
-			registry.addResourceHandler("/_00_util/allUtil/css/**")
-			.addResourceLocations("/WEB-INF/views/_00_util/allUtil/css/");
+		registry.addResourceHandler("/_00_util/adminUtil/css/**")
+				.addResourceLocations("/WEB-INF/views/_00_util/adminUtil/css/");
+		registry.addResourceHandler("/_00_util/allUtil/css/**")
+				.addResourceLocations("/WEB-INF/views/_00_util/allUtil/css/");
 //			registry.addResourceHandler("/_00_util/couponUtil/css/**")
 //			.addResourceLocations("/WEB-INF/views/_00_util/couponUtil/css/");
 //			registry.addResourceHandler("/_00_util/memberUtil/css/**")
 //			.addResourceLocations("/WEB-INF/views/_00_util/memberUtil/css/");
 //			registry.addResourceHandler("/_00_util/nightMarketUtil/css/**")
 //			.addResourceLocations("/WEB-INF/views/_00_util/nightMarketUtil/css/");
-			registry.addResourceHandler("/_00_util/nightShopUtil/css/**")
-			.addResourceLocations("/WEB-INF/views/_00_util/nightShopUtil/css/");
-			registry.addResourceHandler("/_00_util/shoppingMallUtil/css/**")
-			.addResourceLocations("/WEB-INF/views/_00_util/shoppingMallUtil/css/");
-			
+		registry.addResourceHandler("/_00_util/nightShopUtil/css/**")
+				.addResourceLocations("/WEB-INF/views/_00_util/nightShopUtil/css/");
+		registry.addResourceHandler("/_00_util/shoppingMallUtil/css/**")
+				.addResourceLocations("/WEB-INF/views/_00_util/shoppingMallUtil/css/");
+
 //			讀取照片檔案
 //			registry.addResourceHandler("/images/**")
 //					.addResourceLocations("/images/smallPic/");
 //			registry.addResourceHandler("/images_2/**")
 //					.addResourceLocations("/WEB-INF/views/_00_util/allUtil/images_2/");
-			
+
 //			讀取javascript檔案
 //			registry.addResourceHandler("/_00_util/adminUtil/javascript/**")
 //			.addResourceLocations("/WEB-INF/views/_00_util/adminUtil/javascript/");
-			
-			registry.addResourceHandler("/_00_util/allUtil/javascript/**")
-			.addResourceLocations("/WEB-INF/views/_00_util/allUtil/javascript/");
+
+		registry.addResourceHandler("/_00_util/allUtil/javascript/**")
+				.addResourceLocations("/WEB-INF/views/_00_util/allUtil/javascript/");
 //			
 //			registry.addResourceHandler("/_00_util/couponUtil/javascript/**")
 //			.addResourceLocations("/WEB-INF/views/_00_util/couponUtil/javascript/");
@@ -83,13 +84,24 @@ public class WebAppConfig implements WebMvcConfigurer {
 //			registry.addResourceHandler("/_00_util/nightMarketUtil/javascript/**")
 //			.addResourceLocations("/WEB-INF/views/_00_util/nightMarketUtil/javascript/");
 //			
-			registry.addResourceHandler("/_00_util/nightShopUtil/javascript/**")
-			.addResourceLocations("/WEB-INF/views/_00_util/nightShopUtil/javascript/");
-			
-			registry.addResourceHandler("/_00_util/shoppingMallUtil/javascript/**")
-			.addResourceLocations("/WEB-INF/views/_00_util/shoppingMallUtil/javascript/");
+		registry.addResourceHandler("/_00_util/nightShopUtil/javascript/**")
+				.addResourceLocations("/WEB-INF/views/_00_util/nightShopUtil/javascript/");
+
+		registry.addResourceHandler("/_00_util/shoppingMallUtil/javascript/**")
+				.addResourceLocations("/WEB-INF/views/_00_util/shoppingMallUtil/javascript/");
 //			registry.addResourceHandler("/header/**")
 //					.addResourceLocations("WEB-INF/views/header/");
+	}
+
+	
+	
+		/**
+		 * 右鍵=> source=> override=> configureDefaultServletHandling
+		 * 當找不到靜態資源，不要丟出404，啟動tomcat的 defaultservlet 尋找
+		 */
+		@Override
+		public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+			configurer.enable();
 		}
 
 }

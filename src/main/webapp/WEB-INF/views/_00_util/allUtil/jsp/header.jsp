@@ -28,10 +28,9 @@
 			<div class="navbar">
 				<div class="ig-links">
 					<a href="#">快速登入</a> 
-					<a href="#"><img src="${pageContext.request.contextPath}/images/smallPic/facebook.png" alt=""></a>
-<%-- 					 <a href="#"><img src="<c:url value='/images/smallPic/facebook.png'/>" alt=""></a> --%>
-<%--                      <a href="#"><img src="${pageContext.request.contextPath}/images/smallPic/search.png" alt=""></a> --%>
-<%--                      <a href="#"><img src="${pageContext.request.contextPath}/images/smallPic/instagram.png" alt=""></a> --%>
+					 <a href="#"><img src="<c:url value='/data/images/smallPic/facebook.png'/>" alt=""></a>
+                     <a href="#"><img src="<c:url value='/data/images/smallPic/instagram.png'/>" alt=""></a>
+                     <a href="#"><img src="<c:url value='/data/images/smallPic/search.png'/>" alt=""></a>
 				</div>
 				<div class="space"></div>
 				<div class="links">
@@ -48,7 +47,7 @@
 			<div class="search-wrap">
 
 				<div class="logo-wrap">
-					<%--                       <img src="${pageContext.request.contextPath}/images_2/yachiLogo50.png" alt=""> --%>
+						<img src="${pageContext.request.contextPath}/images_2/yachiLogo50.png" alt="">
 				</div>
 
 				<form class="search-food" action="https://www.google.com/">
@@ -66,7 +65,7 @@
 				</form>
 
 				<div class="search-ticket">
-					<%--                       <img src="${pageContext.request.contextPath}/images_2/yachiLogo50.png"> --%>
+					    <img src="<c:url value='/data/images/smallPic/yachiLogo50.png'/>">
 					<div class="txt">
 						<a href="#"><h2>優惠券專區</h2></a>
 					</div>
@@ -103,19 +102,18 @@
 					<div class="tab-panel">
 
 						<a href="<c:url value='/welcome' />">方家雞肉飯</a>
-						<!--                           <img src="https://picsum.photos/500/200" alt=""> -->
+						<img src="https://picsum.photos/500/200" alt="">
 					</div>
 					<div class="tab-panel">
-						<!--                           <img src="https://picsum.photos/600/200" alt=""> -->
+						<img src="https://picsum.photos/600/200" alt="">
 					</div>
 					<div class="tab-panel">
 						<a href="<c:url value='/' />">購物商城</a><br> <a
 							href="<c:url value='update/price' />">點我更新價格(+50元)</a><br>
-						<%--                           	<a href="<c:url value='queryBySort' />">分類查詢</a><br> --%>
 						<a href="<c:url value='products/add' />">上架產品</a><br>
 					</div>
 					<div class="tab-panel">
-						<!--                           <img src="https://picsum.photos/450/200" alt=""> -->
+						 <img src="https://picsum.photos/450/200" alt="">
 					</div>
 				</div>
 
