@@ -66,7 +66,8 @@
                         <div class="productUpBox">
                             <!-- big photo start -->
                             <div class="productImage">
-                            <img src="images_2/1_product.jpg" alt="product">
+                            
+                            <img src="<c:url value='/data/images/mediumPic/1_product.jpg'/>" alt="product">
                             </div>
                             <!-- big photo end -->
                             <div class="productIntro">

@@ -139,7 +139,7 @@ public class HomeController {
 		pb.setProduct_info("因為不知道要賣什麼所以商品資訊也不知道要填什麼");
 		pb.setProduct_price(111);
 		model.addAttribute("productBean", pb); //將pb 加入model中
-		return "insertProduct";
+		return "_16_admin/insertProduct";
 	}
 	
 	

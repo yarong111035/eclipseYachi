@@ -69,8 +69,8 @@ public class WebAppConfig implements WebMvcConfigurer {
 //					.addResourceLocations("/WEB-INF/views/_00_util/allUtil/images_2/");
 
 //			讀取javascript檔案
-//			registry.addResourceHandler("/_00_util/adminUtil/javascript/**")
-//			.addResourceLocations("/WEB-INF/views/_00_util/adminUtil/javascript/");
+			registry.addResourceHandler("/_00_util/adminUtil/javascript/**")
+			.addResourceLocations("/WEB-INF/views/_00_util/adminUtil/javascript/");
 
 		registry.addResourceHandler("/_00_util/allUtil/javascript/**")
 				.addResourceLocations("/WEB-INF/views/_00_util/allUtil/javascript/");
