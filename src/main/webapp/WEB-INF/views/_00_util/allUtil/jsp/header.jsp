@@ -28,7 +28,7 @@
 			<div class="navbar">
 				<div class="ig-links">
 					<a href="#">快速登入</a> 
-<%-- 					<a href="#"><img src="${pageContext.request.contextPath}/images/smallPic/facebook.png" alt=""></a> --%>
+					<a href="#"><img src="${pageContext.request.contextPath}/images/smallPic/facebook.png" alt=""></a>
 <%-- 					 <a href="#"><img src="<c:url value='/images/smallPic/facebook.png'/>" alt=""></a> --%>
 <%--                      <a href="#"><img src="${pageContext.request.contextPath}/images/smallPic/search.png" alt=""></a> --%>
 <%--                      <a href="#"><img src="${pageContext.request.contextPath}/images/smallPic/instagram.png" alt=""></a> --%>

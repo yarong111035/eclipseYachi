@@ -44,7 +44,7 @@ public class HomeController {
 	@RequestMapping("/welcome")
 	public String nightShop(Model model) {  //有東西要交給view 就放model
 		model.addAttribute("store", "方家雞肉飯"); // 底層是 forward()
-		return "1_shop"; 
+		return "_14_nightShop/1_shop"; 
 	}
 	
 	//商品主頁(找出所有產品)
@@ -52,7 +52,7 @@ public class HomeController {
 	public String store(Model model) {
 		List<ProductBean> list = service.getAllProducts();
 		model.addAttribute("products", list);
-		return "2_shopping";
+		return "_12_shoppingmall/2_shopping";
 	}
 
 	
@@ -82,7 +82,7 @@ public class HomeController {
 		Product_sort ps = service.getSortById(sortId);
 		model.addAttribute("products", products);
 		model.addAttribute("sort", ps); // 依據產品種類顯示title
-		return "2_shopping";
+		return "_12_shoppingmall/2_shopping";
 	}
 	
 	
@@ -91,7 +91,7 @@ public class HomeController {
 	@RequestMapping("/singleProduct")
 	public String getProductById(@RequestParam("id") Integer id,Model model) {
 		model.addAttribute("product", service.getProductById(id));
-		return "3_productDetail";
+		return "_12_shoppingmall/3_productDetail";
 	}
 	
 	
@@ -102,7 +102,6 @@ public class HomeController {
 	 */
 	
 //	表單頁面控制器方法
-//	@RequestMapping(value = "/product/add", method = RequestMethod.GET)
 	@GetMapping("/products/add")
 	public String getAddNewProductFormString(Model model) {
 		ProductBean pb = new ProductBean();
@@ -114,10 +113,12 @@ public class HomeController {
 	}
 	
 	
+	/**
+	 * action 屬性的預設值，原本頁面的路徑
+	 */
 	
 	
 //	新增表單成功
-//	@RequestMapping(value = "products/add", method = RequestMethod.POST)
 	@PostMapping("/products/add")  // 路徑與上一支方法一樣，但是此處請求方法是Post 所以會來找這一支控制器
 	public String processAddNewProductForm(@ModelAttribute("productBean") ProductBean pb) {
 //		新增產品需傳入ProductBean參數(從上model取出)
@@ -164,12 +165,12 @@ public class HomeController {
 	
 	@RequestMapping("/carContent.html")
 	public String showCarContent() {
-		return "5_cartContent";
+		return "_12_shoppingmall/5_cartContent";
 	}
 	
 	@RequestMapping("/orderDetail.html")
 	public String showOrderDetail() {
-		return "6_orderDetail";
+		return "_12_shoppingmall/6_orderDetail";
 	}
 	
 	

@@ -64,55 +64,7 @@
     display: flex;
 }
 
-/* 左半邊 */
-aside{
-    /* background: green; */
-    position: absolute;
-    left: 0;
-    width: 20%;
-    /* float: left; */      
-   
-}
-.left_container{
-    background: #EDD9D9;
-    padding-top: 15px;
-    height: auto;
-    border-radius: 5px;
-    
-}
-.onlineShop{
-    display: flex;
-    justify-content: center;
-    background: #C39C9C;
-    width: 80%;
-    height: auto;
-    margin: 0 auto;
-    margin-top: 5px;
-    color: #ffffff;
-}
-.onlineShop h3{
-  margin: 5px;
-}
-.items{
-    padding: 30px 0;
-    margin-left: 20px;
-}
-.items a{
-    color: #333333;
-    text-decoration: none;
-    letter-spacing: 6px;
-    transition: .5s;
-}
-.items a:hover{
-    border-radius: 5px;
-    background: #ffffff;
-    opacity: 0.6;
-}
-.hr{
-    width: 80%;
-    margin: 0 auto;
-    border-top: 1px solid rgba(255,255,255,.6);
-}
+
 
 /* 右半邊區塊  使用頁面： 2_shopping.html  3_商品頁面 */   
 .right_container{

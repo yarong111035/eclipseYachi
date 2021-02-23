@@ -8,14 +8,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cart content</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/5_cart_content.css">
+    <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
+    <link rel="stylesheet" href="<c:url value='/_00_util/shoppingMallUtil/css/5_cart_content.css'/>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">   
-    <script src="js/jquery-3.5.1.js"></script>
-    <script src="js/jquery-ui.js"></script>
+    <script src="<c:url value='/_00_util/allUtil/javascript/jquery-3.5.1.js'/>"></script>
+    <script src="<c:url value='/_00_util/allUtil/javascript/jquery-ui.js'/>"></script>
 </head>
 <body>
-	<jsp:include page="header/header.jsp" />
+	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
 
 	<div class="container">
         <!--Start c -->

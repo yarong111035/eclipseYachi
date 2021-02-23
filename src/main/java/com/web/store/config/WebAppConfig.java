@@ -46,8 +46,8 @@ public class WebAppConfig implements WebMvcConfigurer {
 	@Override
 		public void addResourceHandlers(ResourceHandlerRegistry registry) {
 //			讀取css檔案
-//			registry.addResourceHandler("/_00_util/adminUtil/css/**")
-//					.addResourceLocations("/WEB-INF/views/_00_util/adminUtil/css/");
+			registry.addResourceHandler("/_00_util/adminUtil/css/**")
+					.addResourceLocations("/WEB-INF/views/_00_util/adminUtil/css/");
 			registry.addResourceHandler("/_00_util/allUtil/css/**")
 			.addResourceLocations("/WEB-INF/views/_00_util/allUtil/css/");
 //			registry.addResourceHandler("/_00_util/couponUtil/css/**")
@@ -56,10 +56,10 @@ public class WebAppConfig implements WebMvcConfigurer {
 //			.addResourceLocations("/WEB-INF/views/_00_util/memberUtil/css/");
 //			registry.addResourceHandler("/_00_util/nightMarketUtil/css/**")
 //			.addResourceLocations("/WEB-INF/views/_00_util/nightMarketUtil/css/");
-//			registry.addResourceHandler("/_00_util/nightShopUtil/css/**")
-//			.addResourceLocations("/WEB-INF/views/_00_util/nightShopUtil/css/");
-//			registry.addResourceHandler("/_00_util/shoppingMallUtil/css/**")
-//			.addResourceLocations("/WEB-INF/views/_00_util/shoppingMallUtil/css/");
+			registry.addResourceHandler("/_00_util/nightShopUtil/css/**")
+			.addResourceLocations("/WEB-INF/views/_00_util/nightShopUtil/css/");
+			registry.addResourceHandler("/_00_util/shoppingMallUtil/css/**")
+			.addResourceLocations("/WEB-INF/views/_00_util/shoppingMallUtil/css/");
 			
 //			讀取照片檔案
 //			registry.addResourceHandler("/images/**")
@@ -83,11 +83,11 @@ public class WebAppConfig implements WebMvcConfigurer {
 //			registry.addResourceHandler("/_00_util/nightMarketUtil/javascript/**")
 //			.addResourceLocations("/WEB-INF/views/_00_util/nightMarketUtil/javascript/");
 //			
-//			registry.addResourceHandler("/_00_util/nightShopUtil/javascript/**")
-//			.addResourceLocations("/WEB-INF/views/_00_util/nightShopUtil/javascript/");
-//			
-//			registry.addResourceHandler("/_00_util/shoppingMallUtil/javascript/**")
-//			.addResourceLocations("/WEB-INF/views/_00_util/shoppingMallUtil/javascript/");
+			registry.addResourceHandler("/_00_util/nightShopUtil/javascript/**")
+			.addResourceLocations("/WEB-INF/views/_00_util/nightShopUtil/javascript/");
+			
+			registry.addResourceHandler("/_00_util/shoppingMallUtil/javascript/**")
+			.addResourceLocations("/WEB-INF/views/_00_util/shoppingMallUtil/javascript/");
 //			registry.addResourceHandler("/header/**")
 //					.addResourceLocations("WEB-INF/views/header/");
 		}

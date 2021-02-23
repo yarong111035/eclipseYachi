@@ -34,7 +34,7 @@
 </head>
 <body>
 	<!-- 引入共同的頁首 -->
-	<jsp:include page="header/header.jsp" />
+	<jsp:include page="_00_util/allUtil/jsp/header.jsp" />
 
 	<div class="container">
 		<div class="row box">
@@ -132,7 +132,7 @@
 <!-- 				</div> -->
 
 <!-- 			</aside> -->
-				<jsp:include page="function/admin.jsp" />
+				<jsp:include page="/WEB-INF/views/_00_util/adminUtil/jsp/admin.jsp" />
 			<!-- 功能選單結束 -->
 		
 			<!-- 表單區域開始 -->

@@ -8,19 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-<%--     <link rel="stylesheet" href="<c:url value='/css/normalize.css'/>"> --%>
-<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/4_shopping_cart.css"> --%>
-<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/2_mix.css"> --%>
-<!--     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
-<!--     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
-<!--     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script> -->
-<%--     <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script> --%>
-<%--     <script src="${pageContext.request.contextPath}/js/jquery-ui.js"></script> --%>
-<%--     <script src="${pageContext.request.contextPath}/js/enscroll-0.6.2.min.js"></script> --%>
+    <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
+    <link rel="stylesheet" href="<c:url value='/_00_util/shoppingMallUtil/css/4_shopping_cart.css'/>">
+    <link rel="stylesheet" href="<c:url value='/_00_util/shoppingMallUtil/css/2_mix.css'/>">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script src="<c:url value='/_00_util/allUtil/javascript/jquery-3.5.1.js'/>"></script>
+    <script src="<c:url value='/_00_util/allUtil/javascript/jquery-ui.js'/>"></script>
+    <script src="<c:url value='/_00_util/allUtil/javascript/enscroll-0.6.2.min.js'/>"></script>
 </head>
 <body>
 	<!-- 引入共同的頁首 -->
-	<jsp:include page="_00_util/allUtil/jsp/header.jsp" />
+	
+	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
     <!-- ps: 需要優化的地方： 2/10 
         1. 會用bootstrap 優化商品排列(已完成)
         2. 點選商品分類 上方中括號的字會變成點選的商品分類名稱
@@ -111,33 +112,9 @@
 
         <!-- 商品部分 -->
         <div class="shoppingArea">
-            <!-- leftSide start -->
-            <aside>
-                <div class="left_container">
-                    <div class="onlineShop">
-                        <h3>線上商城</h3>
-                    </div>
-                    <div class="items">
-                            <a href='<c:url value='/'/>'><span>最新商品</span></a>
-                    </div>
-                	<c:forEach var='sort' items='${sortList}'>
-                    	<hr class="hr">
-	                    <div class="items">         
-	                    										
-	                           <a href='<c:url value='/sort=${sort.sortId}'/>'><span>${sort.sortName}</span></a>
-	                    </div>
-					</c:forEach>
-<!-- 	                    <hr class="hr"> -->
-<!--                     <div class="items"> -->
-<!--                             <span>商品分類二</span> -->
-<!--                     </div> -->
-<!--                     <hr class="hr"> -->
-
-<!--                     <div class="items"> -->
-<!--                             <span>商品分類三</span> -->
-<!--                     </div> -->
-                </div>
-            </aside>
+        
+            <!-- leftSide start  引入共同商品種類功能列 -->
+            <jsp:include page="/WEB-INF/views/_00_util/shoppingMallUtil/jsp/shop_sort.jsp" />
             <!-- leftSide over -->
 
             <!-- Start:rightSide -->
