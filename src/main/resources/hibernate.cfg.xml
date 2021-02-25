@@ -18,7 +18,7 @@
 		<!-- 將顯示的SQL排版，方便觀看 -->
 		<property name="format_sql">true</property>
 
-		<property name="hibernate.current_session_context_class">thread</property>
+<!-- 	<property name="hibernate.current_session_context_class">thread</property> -->
 		<!-- 定義程式交易管理的類型，本範例使用JDBC Transaction -->
 <!-- 		<property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property> -->
         <property name="hibernate.transaction.coordinator_class">jdbc</property>
