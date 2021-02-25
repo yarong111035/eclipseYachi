@@ -1,50 +1,4 @@
-
-$(function(){       
-    
-    // 鼠標下滾，header消失(還有bug，當f5 無法判斷header是否top=0)
-    // $(document).on('mousewheel DOMMouseScroll',function(e){
-    //    //判斷鼠標是向下還是向上(藉由e.originalEvent.wheelDelta)，正值向上負值向下
-    //     let delta = (e.originalEvent.wheelDelta &&
-    //                      (e.originalEvent.wheelDelta > 0 ? 1 : -1)) ||  // chrome & ie &其它
-    //     (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1));  // firefox
-    //     // console.log(e);
-    //     // console.log(delta);
-    //     //向上滾
-    //     if(delta > 0){
-    //         //當向上滾時，必須把.tab 的設定值恢復成預設值，否則會無法呈現原本樣子
-    //         if($('header').offset().top === 0){
-    //             $('.tab').css({
-    //                 position:'static',
-    //                 backgroundColor:'transparent',
-    //                 boxShadow:'none',
-    //             })
-    //             //因為是針對nav, .search變透明
-    //             //所以往上滾時，對象也要針對它們，而不是header標籤 
-    //             $('nav, .search').css({   
-    //             transition:'.5s',
-    //             opacity:'1',
-    //             });
-    //         }
-    //     //向下滾
-    //     }else if(delta < 0){
-    //         $('nav, .search').css({
-    //             opacity:'0',
-    //             transition:'.2s'
-    //         });
-    //         $('.tab').css({
-    //             width:'100%',
-    //             position:'absolute', //須為absolute 才能top=0 
-    //             top:'0',
-    //             backgroundColor:'rgba(255,255,255,0.9)',
-    //             boxShadow:'2px 2px 2px 1px rgba(0, 0, 0, 0.1)',
-    //         })
-            
-    //     }
-    // })
-
-    // // jQ入口函數會自動觸發
-    // $('html').scrollTop(0);
-
+$(function(){   
 
     //可以把css包成class 寫在css檔裡面，利用addClass 與 removerClass 有效縮減程式碼
     //考慮之後還會更改，目前先暫時寫在這邊 2/10 
@@ -96,12 +50,23 @@ $(function(){
         
         /* 拿到當前(this) a 的索引號 */
         index = $(this).index();
+        
+        
+        // 取得元素在網頁的位置(x與y座標)
+        let offestX = $(this).offset().left;
+        // console.log("x = " + offestX);
+        // let offestY = $(this).offset().top;
+        // console.log("y = " + offestY);
 
         /* 讓上面和下面相應的索引號 eq() 顯示內容 
             其餘siblings() 隱藏起來 */
             // stop()  沒有加好像效果一樣???
         $('.tab-panel').eq(index).stop().fadeIn('slow').show().siblings().hide();
-
+		 // 讓context可以在摸到的元素正下方
+        $('.tab-content').css({
+            left:`${offestX}px`,
+        })
+	
     },function(){
         /* 第二個方法處理滑鼠移開事件 */
         $(this).removeClass('liColor');
