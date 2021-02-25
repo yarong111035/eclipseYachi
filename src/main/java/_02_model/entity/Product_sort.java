@@ -40,9 +40,7 @@ public class Product_sort implements Serializable{
 		this.product = product;
 	}
 
-	public Product_sort() {
-		super();
-	}
+
 
 	public Integer getSortId() {
 		return sortId;
