@@ -14,6 +14,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/adminUtil/css/normalize.css'/>">
+ <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/background.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/adminUtil/css/administrator.css'/>">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

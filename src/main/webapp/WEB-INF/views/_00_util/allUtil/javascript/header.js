@@ -2,7 +2,7 @@ $(function(){
 
     //可以把css包成class 寫在css檔裡面，利用addClass 與 removerClass 有效縮減程式碼
     //考慮之後還會更改，目前先暫時寫在這邊 2/10 
-    //使用此方式，還是會出現上述程式的問題(重整後卷軸不在上方卻還是跑出全部hearder)
+    //使用此方式，還是會出現上述程式的問題(重整後卷軸不在上方卻還是跑出全部hearder，後來發現是瀏覽器問題)
 
     $(window).scroll(function(){
         //卷軸在頂部時scroll會=0 ，故只要判斷是否為0即可，做出header一捲動就變化的效果

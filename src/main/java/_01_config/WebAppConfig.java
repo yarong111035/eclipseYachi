@@ -63,8 +63,8 @@ public class WebAppConfig implements WebMvcConfigurer {
 				.addResourceLocations("/WEB-INF/views/_00_util/shoppingMallUtil/css/");
 
 //			讀取照片檔案
-//			registry.addResourceHandler("/images/**")
-//					.addResourceLocations("/images/smallPic/");
+//			registry.addResourceHandler("/data/images/**")
+//					.addResourceLocations("/data/images/bigPic/");
 //			registry.addResourceHandler("/images_2/**")
 //					.addResourceLocations("/WEB-INF/views/_00_util/allUtil/images_2/");
 
