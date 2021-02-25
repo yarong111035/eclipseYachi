@@ -1,5 +1,4 @@
 package _02_model.entity;
-
 import java.io.Serializable;
 import java.sql.Blob;
 import java.util.LinkedHashSet;
@@ -11,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -42,13 +42,10 @@ public class ShopBean implements Serializable{
 	
 	private String shop_hyperlink;
 	
-	@OneToOne
-	@JoinColumn(name = "FK_coupon_list_id")
-	private CouponListBean couponListBean;
+	
 	
 	private Double shop_score;
 	
-	private Integer market_id;
 	
 	private String shop_memo;
 	
@@ -64,17 +61,40 @@ public class ShopBean implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "shopBean")
 	private Set<ShopMenuBean> shopMenus = new LinkedHashSet<ShopMenuBean>();
 	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "shopBean")
+	private Set<CouponBean> coupons = new LinkedHashSet<CouponBean>();
+	
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "shops")
+	private Set<FavoriteShopListBean> shoplist = new LinkedHashSet<FavoriteShopListBean>();
 	
 	
+	public ShopBean() {
+		
+	}
 	
 
-	public CouponListBean getCouponListBean() {
-		return couponListBean;
+	public ShopBean(MemberBean memberBean, String shop_name, Blob shop_media, String shop_info, String shop_addr,
+			String shop_phone, String shop_hours, String shop_hyperlink,
+			Double shop_score, String shop_memo, ShopTypeBean shopTypeBean,
+			NightMarketBean nightMarketBean, Set<ShopMenuBean> shopMenus) {
+		super();
+		this.memberBean = memberBean;
+		this.shop_name = shop_name;
+		this.shop_media = shop_media;
+		this.shop_info = shop_info;
+		this.shop_addr = shop_addr;
+		this.shop_phone = shop_phone;
+		this.shop_hours = shop_hours;
+		this.shop_hyperlink = shop_hyperlink;
+
+		this.shop_score = shop_score;  //不設置欄位，應該是平價統計後的結果
+		this.shop_memo = shop_memo;
+		this.shopTypeBean = shopTypeBean;
+		this.nightMarketBean = nightMarketBean;
+		this.shopMenus = shopMenus;
 	}
 
-	public void setCouponListBean(CouponListBean couponListBean) {
-		this.couponListBean = couponListBean;
-	}
+	
 
 	public Set<ShopMenuBean> getShopMenus() {
 		return shopMenus;
@@ -188,13 +208,7 @@ public class ShopBean implements Serializable{
 		this.shop_score = shop_score;
 	}
 
-	public Integer getMarket_id() {
-		return market_id;
-	}
-
-	public void setMarket_id(Integer market_id) {
-		this.market_id = market_id;
-	}
+	
 
 	public String getShop_memo() {
 		return shop_memo;
@@ -203,6 +217,38 @@ public class ShopBean implements Serializable{
 	public void setShop_memo(String shop_memo) {
 		this.shop_memo = shop_memo;
 	}
+
+
+	public Set<CouponBean> getCoupons() {
+		return coupons;
+	}
+
+
+	public void setCoupons(Set<CouponBean> coupons) {
+		this.coupons = coupons;
+	}
+
+
+	public Set<FavoriteShopListBean> getShoplist() {
+		return shoplist;
+	}
+
+
+	public void setShoplist(Set<FavoriteShopListBean> shoplist) {
+		this.shoplist = shoplist;
+	}
+
+
+	@Override
+	public String toString() {
+		return "ShopBean [shop_id=" + shop_id + ", memberBean=" + memberBean + ", shop_name=" + shop_name
+				+ ", shop_media=" + shop_media + ", shop_info=" + shop_info + ", shop_addr=" + shop_addr
+				+ ", shop_phone=" + shop_phone + ", shop_hours=" + shop_hours + ", shop_hyperlink=" + shop_hyperlink
+				+ ", shop_score=" + shop_score + ", shop_memo=" + shop_memo + ", shopTypeBean=" + shopTypeBean
+				+ ", nightMarketBean=" + nightMarketBean + ", shopMenus=" + shopMenus + ", coupons=" + coupons
+				+ ", shoplist=" + shoplist + "]";
+	}
+	
 	
 	
 

@@ -106,7 +106,7 @@
         <div class="new_container">
             <div class="new_product">
 	        
-	                <h1>${sort.sortName}</h1>
+	                <h1>${sort.product_type_name}</h1>
               
             </div>
         </div>

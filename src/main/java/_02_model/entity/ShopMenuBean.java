@@ -78,6 +78,29 @@ public class ShopMenuBean implements Serializable{
 	public void setMenu_price(Double menu_price) {
 		this.menu_price = menu_price;
 	}
+
+	public ShopMenuBean(Integer menu_id, ShopBean shopBean, Blob menu_photo, String menu_name, String menu_detail,
+			Double menu_price) {
+		super();
+		this.menu_id = menu_id;
+		this.shopBean = shopBean;
+		this.menu_photo = menu_photo;
+		this.menu_name = menu_name;
+		this.menu_detail = menu_detail;
+		this.menu_price = menu_price;
+	}
+
+	public ShopMenuBean() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "ShopMenuBean [menu_id=" + menu_id + ", shopBean=" + shopBean + ", menu_photo=" + menu_photo
+				+ ", menu_name=" + menu_name + ", menu_detail=" + menu_detail + ", menu_price=" + menu_price + "]";
+	}
+	
+	
 	
 	
 }

@@ -3,7 +3,7 @@ package _20_shoppingMall._21_product.service;
 import java.util.List;
 
 import _02_model.entity.ProductBean;
-import _02_model.entity.Product_sort;
+import _02_model.entity.ProductTypeBean;
 
 
 public interface ProductService {
@@ -15,7 +15,7 @@ public interface ProductService {
 	void updateAllPrice();
 	
 	//依據種類找產品(lab5)
-	public List<Product_sort> getAllSorts();
+	public List<ProductTypeBean> getAllSorts();
 	public List<ProductBean> getProductBySort(int sortId);
 	
 	//查詢單筆產品資料(lab6)
@@ -23,6 +23,6 @@ public interface ProductService {
 	
 	//新增產品(lab8)
 	public void addProduct(ProductBean product);
-	public Product_sort getSortById(int sortId);
-	public List<Product_sort> getSortList();
+	public ProductTypeBean getSortById(int sortId);
+	public List<ProductTypeBean> getSortList();
 }

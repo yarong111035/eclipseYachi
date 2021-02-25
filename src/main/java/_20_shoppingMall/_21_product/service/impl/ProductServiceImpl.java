@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import _02_model.entity.ProductBean;
-import _02_model.entity.Product_sort;
+import _02_model.entity.ProductTypeBean;
 import _20_shoppingMall._21_product.dao.ProductDao;
 import _20_shoppingMall._21_product.service.ProductService;
 
@@ -38,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Transactional
 	@Override
-	public List<Product_sort> getAllSorts() {
+	public List<ProductTypeBean> getAllSorts() {
 		return dao.getAllSorts();
 	}
 
@@ -65,13 +65,13 @@ public class ProductServiceImpl implements ProductService {
 	//存入種類到產品
 	@Transactional
 	@Override
-	public Product_sort getSortById(int sortId) {
+	public ProductTypeBean getSortById(int sortId) {
 		return dao.getSortById(sortId);
 	}
 	
 	@Transactional
 	@Override
-	public List<Product_sort> getSortList() {
+	public List<ProductTypeBean> getSortList() {
 		return dao.getSortList();
 	}
 

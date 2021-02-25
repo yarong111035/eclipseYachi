@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 
 
 import _02_model.entity.ProductBean;
-import _02_model.entity.Product_sort;
+import _02_model.entity.ProductTypeBean;
 import _20_shoppingMall._21_product.dao.ProductDao;
 
 
@@ -42,7 +42,7 @@ public class ProductDaoImpl implements ProductDao {
 	
 	//更新產品價格
 	@Override
-	public void updatePrice(int productId, int newPrice) {
+	public void updatePrice(int productId, double newPrice) {
 		String hql = "UPDATE ProductBean SET product_price = :newPrice WHERE product_id = :id";
 		Session session = factory.getCurrentSession();		
 		session.createQuery(hql)
@@ -54,10 +54,10 @@ public class ProductDaoImpl implements ProductDao {
 	//得到所有產品種類id(適用於直接在table裡的資料)
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product_sort> getAllSorts() {
-		String hql = "SELECT DISTINCT p.sort FROM ProductBean p";
+	public List<ProductTypeBean> getAllSorts() {
+		String hql = "SELECT DISTINCT p.productTypeBean FROM ProductBean p";
 		Session session = factory.getCurrentSession();
-		List<Product_sort> list = new ArrayList<>();
+		List<ProductTypeBean> list = new ArrayList<>();
 		list = session.createQuery(hql).getResultList();
 		return list;
 	}
@@ -68,7 +68,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<ProductBean> getProductBySort(int sortId) {
 //		pb.sort 的型態是 Product_sort，故還要.sortId，才能查詢 
-		String hql = "FROM ProductBean pb WHERE pb.sort.sortId = :sortId";
+		String hql = "FROM ProductBean pb WHERE pb.productTypeBean.product_type_id = :sortId";
 		List<ProductBean> list = new ArrayList<>();
 		Session session = factory.getCurrentSession();
 		list = session.createQuery(hql).setParameter("sortId", sortId).getResultList();
@@ -91,27 +91,28 @@ public class ProductDaoImpl implements ProductDao {
 		Session session = factory.getCurrentSession();
 		//透過id找到對應的種類，因目前的sort是null(Debug模式可看出)
 		//fk 不可以null 否則找不到對方(此處必須注意，否則會造成種類table的種類id=null)???
-		Product_sort ps = getSortById((product.getSortId())); 
-		product.setSort(ps);; 
+		ProductTypeBean ps = getSortById(product.getProduct_type_id());
+//		Product_sort ps = getSortById((product.getSortId())); 
+		product.setProductTypeBean(ps);; 
 		session.save(product);
 	}
 
 //	依據sortId取得種類紀錄
 	@Override
-	public Product_sort getSortById(int sortId) {
-		Product_sort ps = null;
+	public ProductTypeBean getSortById(int sortId) {
+		ProductTypeBean ps = null;
 		Session session = factory.getCurrentSession();
-		ps = session.get(Product_sort.class, sortId);
+		ps = session.get(ProductTypeBean.class, sortId);
 		return ps;
 	}
 
 // 取得所有種類
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product_sort> getSortList() {
-		String hql = "From Product_sort";
+	public List<ProductTypeBean> getSortList() {
+		String hql = "From ProductTypeBean";
 		Session session = factory.getCurrentSession();
-		List<Product_sort> list = session.createQuery(hql).getResultList();
+		List<ProductTypeBean> list = session.createQuery(hql).getResultList();
 		return list;
 	}
 

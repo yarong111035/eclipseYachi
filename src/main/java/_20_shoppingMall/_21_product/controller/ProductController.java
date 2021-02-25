@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import _02_model.entity.ProductBean;
-import _02_model.entity.Product_sort;
+import _02_model.entity.ProductTypeBean;
 import _20_shoppingMall._21_product.service.ProductService;
  
 
@@ -70,7 +70,7 @@ public class ProductController {
 	@RequestMapping("/sort={sortId}")
 	public String getProductsBySort(Model model, @PathVariable("sortId") int sortId) {
 		List<ProductBean> products = service.getProductBySort(sortId);
-		Product_sort ps = service.getSortById(sortId);
+		ProductTypeBean ps = service.getSortById(sortId);
 		model.addAttribute("products", products);
 		model.addAttribute("sort", ps); // 依據產品種類顯示title
 		return "_12_shoppingmall/2_shopping";
@@ -98,7 +98,7 @@ public class ProductController {
 		ProductBean pb = new ProductBean();
 		pb.setProduct_name("商品名稱不知道要取什麼-1");  
 		pb.setProduct_info("因為不知道要賣什麼所以商品資訊也不知道要填什麼");
-		pb.setProduct_price(111);
+		pb.setProduct_price(111.0);
 		model.addAttribute("productBean", pb); //將pb 加入model中
 		return "_16_admin/insertProduct";
 	}
@@ -130,15 +130,15 @@ public class ProductController {
 	@ModelAttribute("sortMap") 
 	public Map<Integer, String> getSortList() {
 		Map<Integer, String> sortMap = new HashMap<>();
-		List<Product_sort> list = service.getSortList();
-		for(Product_sort ps : list) {  //取出每一個種類物件的(id,name) 放入map物件
-			sortMap.put(ps.getSortId(), ps.getSortName());
+		List<ProductTypeBean> list = service.getSortList();
+		for(ProductTypeBean ps : list) {  //取出每一個種類物件的(id,name) 放入map物件
+			sortMap.put(ps.getProduct_type_id(), ps.getProduct_type_name());
 		}
 		return sortMap; 
 	}
 	
 	@ModelAttribute("sortList")   
-	public List<Product_sort> getSorList() {
+	public List<ProductTypeBean> getSorList() {
 	    return service.getSortList();
 	}
 	

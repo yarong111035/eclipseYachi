@@ -4,12 +4,16 @@ import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Clob;
 import java.sql.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -42,6 +46,11 @@ public class MemberBean implements Serializable{
 	
 	
 	
+	
+	
+	public MemberBean() {
+		
+	}
 	
 	
 	
@@ -163,6 +172,12 @@ public class MemberBean implements Serializable{
 	public void setMemo(Clob memo) {
 		this.memo = memo;
 	}
+
+
+
+	
+	
+	
 	
 	
 	

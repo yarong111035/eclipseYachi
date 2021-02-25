@@ -148,6 +148,28 @@ public class OrderBean implements Serializable{
 	public void setOrder_memo(String order_memo) {
 		this.order_memo = order_memo;
 	}
+
+	public OrderBean(Integer order_id, MemberBean memberBean, String order_address, Set<OrderItemBean> items,
+			String company_id, String company_title, String invoice_num, Timestamp order_datetime, Date shipping_date,
+			Integer pay_me, Integer order_status_id, String order_memo) {
+		super();
+		this.order_id = order_id;
+		this.memberBean = memberBean;
+		this.order_address = order_address;
+		this.items = items;
+		this.company_id = company_id;
+		this.company_title = company_title;
+		this.invoice_num = invoice_num;
+		this.order_datetime = order_datetime;
+		this.shipping_date = shipping_date;
+		this.pay_me = pay_me;
+		this.order_status_id = order_status_id;
+		this.order_memo = order_memo;
+	}
+
+	public OrderBean() {
+		super();
+	}
 	
 	
 }

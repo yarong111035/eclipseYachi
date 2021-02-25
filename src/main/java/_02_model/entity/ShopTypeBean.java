@@ -27,6 +27,20 @@ public class ShopTypeBean implements Serializable{
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "shopTypeBean")  //告訴外鍵後就不會有中介表格
 	private Set<ShopBean> shops = new LinkedHashSet<ShopBean>();
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "shopTypeBean")  //告訴外鍵後就不會有中介表格
+	private Set<CouponBean> coupons = new LinkedHashSet<CouponBean>();
+	
+	public ShopTypeBean() {
+		
+	}
+
+	public ShopTypeBean(String shop_type_memo, String shop_type_name, Set<ShopBean> shops) {
+		super();
+		this.shop_type_memo = shop_type_memo;
+		this.shop_type_name = shop_type_name;
+		this.shops = shops;
+	}
 
 	public Integer getShop_type_id() {
 		return shop_type_id;
@@ -59,6 +73,15 @@ public class ShopTypeBean implements Serializable{
 	public void setShops(Set<ShopBean> shops) {
 		this.shops = shops;
 	}
+
+	public Set<CouponBean> getCoupons() {
+		return coupons;
+	}
+
+	public void setCoupons(Set<CouponBean> coupons) {
+		this.coupons = coupons;
+	}
+	
 	
 	
 	
