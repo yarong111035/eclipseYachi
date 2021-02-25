@@ -41,34 +41,12 @@ public class ProductBean implements Serializable {
 	@Transient  //忽略Entity屬性映射至資料表
 	private Integer sortId;
 	
-	//未放入產品評價
+	//未放入產品評價75
 	
 	@ManyToOne
 	@JoinColumn(name = "fk_sort_id")
 	private Product_sort sort; // fk 商品種類
 
-	public ProductBean(Integer product_id, String product_no, String product_name, Integer product_price,
-			Integer product_stock, String product_info, Blob product_pic, Date product_expire, String filename,
-			String product_memo, String product_spec, Integer sortId, Product_sort sort) {
-		super();
-		this.product_id = product_id;
-		this.product_no = product_no;
-		this.product_name = product_name;
-		this.product_price = product_price;
-		this.product_stock = product_stock;
-		this.product_info = product_info;
-		this.product_pic = product_pic;
-		this.product_expire = product_expire;
-		this.filename = filename;
-		this.product_memo = product_memo;
-		this.product_spec = product_spec;
-		this.sortId = sortId;
-		this.sort = sort;
-	}
-
-	public ProductBean() {
-		super();
-	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
