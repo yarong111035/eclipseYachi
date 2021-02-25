@@ -23,7 +23,7 @@ Step3(@ComponentScan): 請Spring掃描有定義註釋的套件(含有Annotation
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"_01_config,_22_Product"})
+@ComponentScan({"_01_config,_20_shoppingMall,_91_admin"})
 public class WebAppConfig implements WebMvcConfigurer {
 
 	@Bean
