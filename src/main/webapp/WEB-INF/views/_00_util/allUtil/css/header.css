@@ -7,17 +7,10 @@
           box-sizing: border-box;
   text-decoration: none;
 }
-
 body {
     /* height: 1500px; */
     margin-top: 13rem;
     font-family: "微軟正黑體";
-    background-image: url(../images_2/background_shop.png);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    
-
 }
 
 /* 回到上方的按鈕 */
@@ -316,19 +309,40 @@ header .tab .tab-warp .tab-list a {
 }
 
 header .tab .tab-warp .tab-content {
-  background-color: white;
+  background-color: #eee;
   position: absolute;
+  
   /* 調整左邊 border線 與導覽列同X軸 */
-  left: 15%;
+/*   left: 15%; */
   /* 控制右邊 border線 */
-  width: 55rem;
+  width: 11rem;
 }
 
 header .tab .tab-warp .tab-content .tab-panel {
-  border: 2px solid #ccc;
+  box-shadow:1px 1px 2px 2px #fff;	
+  text-align: center;
+  /* border: 2px solid #ccc; */
   padding: 0 1rem;
   display: none;
 }
+
+/* 下拉選單字型設定 */
+header .tab .tab-warp .tab-content .tab-panel a{
+  letter-spacing: 1px;
+  display: inline-block;
+  margin: 3px 0;
+  color: #444444;
+  transition: .1s;
+}
+
+header .tab .tab-warp .tab-content .tab-panel a:hover{
+  font-size: 1.1rem;
+  background-color: #e2e2e2;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+
 
 /*** addClass 類別使用 ****/
 .liColor {

@@ -13,70 +13,41 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-
-@Data //等同於 以下@Getter/@Setter @ToString @EqualsAndHashCode @RequiredArgsConstructor
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Table(name = "product")
-public class ProductBean implements Serializable {
-	private static long serialVersionUID = 1L;
+@Table(name = "Product")
+public class ProductBean implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer product_id;
-	private String product_no;
+	
 	private String product_name;
-	private Integer product_price;
+	
+	private Double product_price;
+	
 	private Integer product_stock;
+	
 	private String product_info;
+	
 	private Blob product_pic;
+	
 	private Date product_expire;
+	
 	private String filename;
-	private String product_memo;
-	private String product_spec;
-	@Transient  //忽略Entity屬性映射至資料表
-	private Integer sortId;
 	
-	//未放入產品評價
-	
+    private String product_spec;
+    
+    @Transient
+    private Integer product_type_id;
+    
+
+    
 	@ManyToOne
-	@JoinColumn(name = "fk_sort_id")
-	private Product_sort sort; // fk 商品種類
-
-	public ProductBean(Integer product_id, String product_no, String product_name, Integer product_price,
-			Integer product_stock, String product_info, Blob product_pic, Date product_expire, String filename,
-			String product_memo, String product_spec, Integer sortId, Product_sort sort) {
-		super();
-		this.product_id = product_id;
-		this.product_no = product_no;
-		this.product_name = product_name;
-		this.product_price = product_price;
-		this.product_stock = product_stock;
-		this.product_info = product_info;
-		this.product_pic = product_pic;
-		this.product_expire = product_expire;
-		this.filename = filename;
-		this.product_memo = product_memo;
-		this.product_spec = product_spec;
-		this.sortId = sortId;
-		this.sort = sort;
-	}
-
-	public ProductBean() {
-		super();
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public static void setSerialversionuid(long serialversionuid) {
-		serialVersionUID = serialversionuid;
-	}
+	@JoinColumn(name = "FK_product_type_id")
+	private ProductTypeBean productTypeBean;
+	
+	private String product_memo;
 
 	public Integer getProduct_id() {
 		return product_id;
@@ -84,14 +55,6 @@ public class ProductBean implements Serializable {
 
 	public void setProduct_id(Integer product_id) {
 		this.product_id = product_id;
-	}
-
-	public String getProduct_no() {
-		return product_no;
-	}
-
-	public void setProduct_no(String product_no) {
-		this.product_no = product_no;
 	}
 
 	public String getProduct_name() {
@@ -102,11 +65,11 @@ public class ProductBean implements Serializable {
 		this.product_name = product_name;
 	}
 
-	public Integer getProduct_price() {
+	public Double getProduct_price() {
 		return product_price;
 	}
 
-	public void setProduct_price(Integer product_price) {
+	public void setProduct_price(Double product_price) {
 		this.product_price = product_price;
 	}
 
@@ -150,6 +113,14 @@ public class ProductBean implements Serializable {
 		this.filename = filename;
 	}
 
+	public ProductTypeBean getProductTypeBean() {
+		return productTypeBean;
+	}
+
+	public void setProductTypeBean(ProductTypeBean productTypeBean) {
+		this.productTypeBean = productTypeBean;
+	}
+
 	public String getProduct_memo() {
 		return product_memo;
 	}
@@ -157,6 +128,7 @@ public class ProductBean implements Serializable {
 	public void setProduct_memo(String product_memo) {
 		this.product_memo = product_memo;
 	}
+	
 
 	public String getProduct_spec() {
 		return product_spec;
@@ -166,22 +138,35 @@ public class ProductBean implements Serializable {
 		this.product_spec = product_spec;
 	}
 
-	public Integer getSortId() {
-		return sortId;
+	public ProductBean(Integer product_id, String product_name, Double product_price, Integer product_stock,
+			String product_info, Blob product_pic, Date product_expire, String filename,
+			ProductTypeBean productTypeBean, String product_memo) {
+		super();
+		this.product_id = product_id;
+		this.product_name = product_name;
+		this.product_price = product_price;
+		this.product_stock = product_stock;
+		this.product_info = product_info;
+		this.product_pic = product_pic;
+		this.product_expire = product_expire;
+		this.filename = filename;
+		this.productTypeBean = productTypeBean;
+		this.product_memo = product_memo;
 	}
 
-	public void setSortId(Integer sortId) {
-		this.sortId = sortId;
+	public ProductBean() {
+		super();
 	}
 
-	public Product_sort getSort() {
-		return sort;
+	public Integer getProduct_type_id() {
+		return product_type_id;
 	}
 
-	public void setSort(Product_sort sort) {
-		this.sort = sort;
+	public void setProduct_type_id(Integer product_type_id) {
+		this.product_type_id = product_type_id;
 	}
-	
+
+
 	
 	
 }

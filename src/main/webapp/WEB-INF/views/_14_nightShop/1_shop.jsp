@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
+     <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/background.css'/>">
 <!--     <link rel="stylesheet" href="slick/slick.css"/> -->
 <!-- 		Add the new slick-theme.css if you want the default styling -->
 <!--     <link rel="stylesheet" href="slick/slick-theme.css"/> -->
@@ -33,13 +34,13 @@
 		  </ol>
 		  <div class="carousel-inner">
 		    <div class="carousel-item active">
-		      <img src="images_2/寧夏方家雞肉飯1.jpg" class="d-block w-100" alt="...">
+		      <img src="<c:url value='/data/images/slidePic/寧夏方家雞肉飯1.jpg'/>" class="d-block w-100" alt="...">
 		    </div>
 		    <div class="carousel-item">
-		      <img src="images_2/寧夏方家雞肉飯2.jpg" class="d-block w-100" alt="...">
+		      <img src="<c:url value='/data/images/slidePic/寧夏方家雞肉飯2.jpg'/>" class="d-block w-100" alt="...">
 		    </div>
 		    <div class="carousel-item">
-		      <img src="images_2/寧夏方家雞肉飯3jpg.jpg" class="d-block w-100" alt="...">
+		      <img src="<c:url value='/data/images/slidePic/寧夏方家雞肉飯3.jpg'/>" class="d-block w-100" alt="...">
 		    </div>
 		  </div>
 		  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -87,7 +88,7 @@
                 <!-- 商家優惠券 -->
                 <div class="addCoupon">
                     <div><i class="far fa-plus-square fa-2x"></i></div>
-                    <div><img src="images_2/coupon2.png" style="width: 50px;"></div>
+                    <div><img src="<c:url value='/data/images/smallPic/coupon2.png'/>" style="width: 50px;"></div>
                     <div class="couponInfo" >
                         <h3>優惠券簡介</h3>
                        消費滿100元，即可折價40元喔!!!<br>
@@ -97,7 +98,7 @@
                 </div>
                 <div class="addCoupon">
                     <div><i class="far fa-plus-square fa-2x"></i></div>
-                    <div><img src="images_2/coupon2.png" style="width: 50px;"></div>
+                    <div><img src="<c:url value='/data/images/smallPic/coupon2.png'/>" style="width: 50px;"></div>
                     <div class="couponInfo" >
                         <h3>優惠券簡介</h3>
                         消費滿200元，即可折價90元喔!!!<br>
@@ -154,7 +155,8 @@
                     <div class="memberInfo">
                         <div class="putLeft">
                             <div class="memberImage">
-                                <img src="images_2/noPeople.png">
+                            
+                                <img src="<c:url value='/data/images/mediumPic/noPeople.png'/>">
                             </div>
                             <span class="memberId">vickychen0087</span>
                             <span class="nickname">Vicky</span>
@@ -187,7 +189,7 @@
                     <div class="memberInfo">
                         <div class="putLeft">
                             <div class="memberImage">
-                                <img src="images_2/noPeople.png">
+                                <img src="<c:url value='/data/images/mediumPic/noPeople.png'/>">
                             </div>
                             <span class="memberId">vickychen0087</span>
                             <span class="nickname">Vicky</span>

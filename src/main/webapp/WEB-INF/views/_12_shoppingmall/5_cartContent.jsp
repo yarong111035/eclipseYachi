@@ -10,6 +10,7 @@
     <title>cart content</title>
     <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
     <link rel="stylesheet" href="<c:url value='/_00_util/shoppingMallUtil/css/5_cart_content.css'/>">
+    <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/background.css'/>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">   
     <script src="<c:url value='/_00_util/allUtil/javascript/jquery-3.5.1.js'/>"></script>
     <script src="<c:url value='/_00_util/allUtil/javascript/jquery-ui.js'/>"></script>
@@ -46,7 +47,7 @@
                     <div class="tbody">
                         <div class="tr">
                             <div class="td pic">
-                                <img src="images_2/1_product.jpg">
+                                <img src="<c:url value='/data/images/productPic/1_product.jpg'/>">
                             </div>
                             <div class="td name">
                                 <a href="#">超好用收納購物袋</a>
