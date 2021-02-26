@@ -1,4 +1,4 @@
-package _20_shoppingMall._21_product.controller;
+package _80_home.controllere;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
