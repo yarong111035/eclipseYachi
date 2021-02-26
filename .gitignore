@@ -2,6 +2,6 @@
 **/target/**
 **/Servers/**
 **/.settings/**
-.project
-.classpath
-.MF
+**/.project
+**/.classpath
+**/.MF
