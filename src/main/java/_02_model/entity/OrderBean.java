@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import _10_member.entity.Member;
+
 
 @Entity
 @Table(name = "Orders")
@@ -28,7 +30,7 @@ public class OrderBean implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="FK_member_id")
-	private MemberBean memberBean;  //fk member 多對一
+	private Member memberBean;  //fk member 多對一
 	
 	private String order_address;
 	
@@ -59,11 +61,11 @@ public class OrderBean implements Serializable{
 		this.order_id = order_id;
 	}
 
-	public MemberBean getMemberBean() {
+	public Member getMemberBean() {
 		return memberBean;
 	}
 
-	public void setMemberBean(MemberBean memberBean) {
+	public void setMemberBean(Member memberBean) {
 		this.memberBean = memberBean;
 	}
 
@@ -149,7 +151,7 @@ public class OrderBean implements Serializable{
 		this.order_memo = order_memo;
 	}
 
-	public OrderBean(Integer order_id, MemberBean memberBean, String order_address, Set<OrderItemBean> items,
+	public OrderBean(Integer order_id, Member memberBean, String order_address, Set<OrderItemBean> items,
 			String company_id, String company_title, String invoice_num, Timestamp order_datetime, Date shipping_date,
 			Integer pay_me, Integer order_status_id, String order_memo) {
 		super();
