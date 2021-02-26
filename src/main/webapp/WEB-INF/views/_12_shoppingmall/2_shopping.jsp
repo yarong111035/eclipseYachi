@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     
     <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
+    <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/background.css'/>">
     <link rel="stylesheet" href="<c:url value='/_00_util/shoppingMallUtil/css/4_shopping_cart.css'/>">
     <link rel="stylesheet" href="<c:url value='/_00_util/shoppingMallUtil/css/2_mix.css'/>">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -21,7 +22,6 @@
 </head>
 <body>
 	<!-- 引入共同的頁首 -->
-	
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
     <!-- ps: 需要優化的地方： 2/10 
         1. 會用bootstrap 優化商品排列(已完成)
@@ -106,7 +106,7 @@
         <div class="new_container">
             <div class="new_product">
 	        
-	                <h1>${sort.sortName}</h1>
+	                <h1>${sort.product_type_name}</h1>
               
             </div>
         </div>
@@ -127,11 +127,11 @@
                             <div class="product_items">
                                 <div class="product_image image2">
                                 
-                                    <img src="<c:url value='/data/images/mediumPic/product4-2.jpg'/>">
+                                    <img src="<c:url value='/data/images/productPic/product2-1.jpg'/>">
                                 </div>
                                 <div class="product_image image1">
                                 								 
-                                    <a href="<spring:url value='singleProduct?id=${product.product_id}'/>"><img src="<c:url value='/data/images/mediumPic/product4-1.jpg'/>"></a>
+                                    <a href="<spring:url value='singleProduct?id=${product.product_id}'/>"><img src="<c:url value='/data/images/productPic/product2-2.jpg'/>"></a>
                                 </div>
                                 <div class="itemBody">
                                     <div class="product_name">

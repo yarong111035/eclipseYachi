@@ -1,0 +1,96 @@
+package _02_model.entity;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Favorite_ShopList")
+public class FavoriteShopListBean implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer shop_list_id;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="FK_member_id")
+	private MemberBean memberBean;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "Shop_ShopList",  //這個才有外鍵
+			joinColumns = {
+				@JoinColumn(name = "FK_ShopList_id",referencedColumnName = "shop_list_id")
+			},inverseJoinColumns = {
+				@JoinColumn(name = "FK_Shop_id")
+			}
+			)
+	private Set<ShopBean> shops = new LinkedHashSet<ShopBean>();
+	
+	private Timestamp subscribe_time;
+
+	public Integer getShop_list_id() {
+		return shop_list_id;
+	}
+
+	public void setShop_list_id(Integer shop_list_id) {
+		this.shop_list_id = shop_list_id;
+	}
+
+	public MemberBean getMemberBean() {
+		return memberBean;
+	}
+
+	public void setMemberBean(MemberBean memberBean) {
+		this.memberBean = memberBean;
+	}
+
+	
+
+	public Set<ShopBean> getShops() {
+		return shops;
+	}
+
+	public void setShops(Set<ShopBean> shops) {
+		this.shops = shops;
+	}
+
+	public Timestamp getSubscribe_time() {
+		return subscribe_time;
+	}
+
+	public void setSubscribe_time(Timestamp subscribe_time) {
+		this.subscribe_time = subscribe_time;
+	}
+
+	public FavoriteShopListBean(Integer shop_list_id, MemberBean memberBean, Set<ShopBean> shops,
+			Timestamp subscribe_time) {
+		super();
+		this.shop_list_id = shop_list_id;
+		this.memberBean = memberBean;
+		this.shops = shops;
+		this.subscribe_time = subscribe_time;
+	}
+
+	public FavoriteShopListBean() {
+		super();
+	}
+	
+	
+	
+	
+}

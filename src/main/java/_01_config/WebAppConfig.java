@@ -23,7 +23,7 @@ Step3(@ComponentScan): 請Spring掃描有定義註釋的套件(含有Annotation
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"_01_config,_22_Product"})
+@ComponentScan({"_01_config,_20_shoppingMall,_91_admin"})
 public class WebAppConfig implements WebMvcConfigurer {
 
 	@Bean
@@ -66,8 +66,8 @@ public class WebAppConfig implements WebMvcConfigurer {
 				.addResourceLocations("/WEB-INF/views/_00_util/homeUtil/css/");
 	
 //			讀取照片檔案
-//			registry.addResourceHandler("/images/**")
-//					.addResourceLocations("/images/smallPic/");
+//			registry.addResourceHandler("/data/images/**")
+//					.addResourceLocations("/data/images/bigPic/");
 //			registry.addResourceHandler("/images_2/**")
 //					.addResourceLocations("/WEB-INF/views/_00_util/allUtil/images_2/");
 

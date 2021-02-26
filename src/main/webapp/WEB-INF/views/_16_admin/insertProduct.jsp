@@ -15,6 +15,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
+ <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/background.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/adminUtil/css/8_insertProduct.css'/>">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -33,6 +34,7 @@
 <body>
 	<!-- 引入共同的頁首 -->
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
+	<!-- 頁首結束 -->
 
 	<div class="container">
 		<div class="row box">
@@ -83,9 +85,9 @@
 						</div>
 
 						<div class="form-group row">
-							<label for="sortId" class="col-sm-2 col-form-label">商品種類</label>
+							<label for="product_type_id" class="col-sm-2 col-form-label">商品種類</label>
 							<div class="mb-3 col-10">
-								<form:select path="sortId" class="custom-select">
+								<form:select path="product_type_id" class="custom-select">
 									<form:option value="-1" label="請選擇"/>
 									<form:options items="${sortMap}"/>
 								</form:select>
