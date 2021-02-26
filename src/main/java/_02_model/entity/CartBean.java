@@ -14,6 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import _10_member.entity.Member;
+
+
 @Entity
 @Table(name = "Cart")
 public class CartBean implements Serializable{
@@ -29,7 +32,7 @@ public class CartBean implements Serializable{
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="FK_member_id")
-	private MemberBean memberBean;
+	private Member memberBean;
 	
 	private Integer cart_status;  //用數字表示購物車存在狀況
 
@@ -51,11 +54,11 @@ public class CartBean implements Serializable{
 		this.itemBeans = itemBeans;
 	}
 
-	public MemberBean getMemberBean() {
+	public Member getMemberBean() {
 		return memberBean;
 	}
 
-	public void setMemberBean(MemberBean memberBean) {
+	public void setMemberBean(Member memberBean) {
 		this.memberBean = memberBean;
 	}
 
@@ -67,7 +70,7 @@ public class CartBean implements Serializable{
 		this.cart_status = cart_status;
 	}
 
-	public CartBean(Integer cart_id, Set<CartItemBean> itemBeans, MemberBean memberBean,
+	public CartBean(Integer cart_id, Set<CartItemBean> itemBeans, Member memberBean,
 			Integer cart_status) {
 		super();
 		this.cart_id = cart_id;

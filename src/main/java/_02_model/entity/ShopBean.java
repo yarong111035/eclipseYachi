@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import _10_member.entity.Member;
+
 @Entity
 @Table(name = "Shop")
 public class ShopBean implements Serializable{
@@ -26,7 +28,7 @@ public class ShopBean implements Serializable{
 	private Integer shop_id;
 	
 	@OneToOne(mappedBy = "shopBean")
-	private MemberBean memberBean;
+	private Member memberBean;
 	
 	private String shop_name;
 	
@@ -73,7 +75,7 @@ public class ShopBean implements Serializable{
 	}
 	
 
-	public ShopBean(MemberBean memberBean, String shop_name, Blob shop_media, String shop_info, String shop_addr,
+	public ShopBean(Member memberBean, String shop_name, Blob shop_media, String shop_info, String shop_addr,
 			String shop_phone, String shop_hours, String shop_hyperlink,
 			Double shop_score, String shop_memo, ShopTypeBean shopTypeBean,
 			NightMarketBean nightMarketBean, Set<ShopMenuBean> shopMenus) {
@@ -132,11 +134,11 @@ public class ShopBean implements Serializable{
 
 	
 
-	public MemberBean getMemberBean() {
+	public Member getMemberBean() {
 		return memberBean;
 	}
 
-	public void setMemberBean(MemberBean memberBean) {
+	public void setMemberBean(Member memberBean) {
 		this.memberBean = memberBean;
 	}
 
