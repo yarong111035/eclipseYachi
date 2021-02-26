@@ -8,12 +8,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shopping</title>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-<link rel="stylesheet"
-	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
-<link rel="stylesheet"
-	href="<c:url value='/_00_util/allUtil/css/header.css'/>">
+<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+<link rel="stylesheet"href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
+<link rel="stylesheet"href="<c:url value='/_00_util/allUtil/css/header.css'/>">
 </head>
 
 <body>
@@ -72,9 +69,19 @@
 
 				</div>
 
-				<div class="member">
-					<a href="#">免費註冊</a> <a href="#">登入</a> <a href="#"><i
-						class="fas fa-shopping-cart"></i></a>
+				<<div class="member">
+					<c:if test="${!empty LoginOK}">
+					<a href="#"><font>你好 ! </font></a>
+				    <a href="#"><font>${LoginOK}</font></a>
+				</c:if>
+				
+			    <c:if test="${empty LoginOK}">
+			    	<a href="<c:url value='/LoginAndRegister'/>"><font>免費註冊</font></a>
+			    	<a href="<c:url value='/LoginAndRegister'/>"><font>登入</font></a>
+			    </c:if>
+			    
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+
 				</div>
 
 			</div>

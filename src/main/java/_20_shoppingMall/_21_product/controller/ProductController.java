@@ -39,7 +39,7 @@ public class ProductController {
 	
 	
 	//商品主頁(找出所有產品)
-	@RequestMapping({"/","/shopping.store"})
+	@RequestMapping({"/shopping.store"})
 	public String store(Model model) {
 		List<ProductBean> list = service.getAllProducts();
 		model.addAttribute("products", list);

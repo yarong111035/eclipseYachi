@@ -23,7 +23,7 @@ Step3(@ComponentScan): 請Spring掃描有定義註釋的套件(含有Annotation
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"_01_config,_20_shoppingMall,_91_admin"})
+@ComponentScan({"_01_config,_20_shoppingMall,_91_admin,_10_member"})
 public class WebAppConfig implements WebMvcConfigurer {
 
 	@Bean
@@ -53,8 +53,8 @@ public class WebAppConfig implements WebMvcConfigurer {
 				.addResourceLocations("/WEB-INF/views/_00_util/allUtil/css/");
 //			registry.addResourceHandler("/_00_util/couponUtil/css/**")
 //			.addResourceLocations("/WEB-INF/views/_00_util/couponUtil/css/");
-//			registry.addResourceHandler("/_00_util/memberUtil/css/**")
-//			.addResourceLocations("/WEB-INF/views/_00_util/memberUtil/css/");
+			registry.addResourceHandler("/_00_util/memberUtil/css/**")
+			.addResourceLocations("/WEB-INF/views/_00_util/memberUtil/css/");
 //			registry.addResourceHandler("/_00_util/nightMarketUtil/css/**")
 //			.addResourceLocations("/WEB-INF/views/_00_util/nightMarketUtil/css/");
 		registry.addResourceHandler("/_00_util/nightShopUtil/css/**")

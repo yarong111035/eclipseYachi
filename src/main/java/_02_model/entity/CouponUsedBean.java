@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import _10_member.entity.Member;
+
+
 @Entity
 @Table(name = "Coupon_Used")
 public class CouponUsedBean implements Serializable{
@@ -33,7 +36,7 @@ public class CouponUsedBean implements Serializable{
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="FK_member_id")
-	private MemberBean memberBean;
+	private Member memberBean;
 	
 	private String coupon_used_memo;
 	
@@ -71,11 +74,11 @@ public class CouponUsedBean implements Serializable{
 		this.coupon_used_or_not = coupon_used_or_not;
 	}
 
-	public MemberBean getMemberBean() {
+	public Member getMemberBean() {
 		return memberBean;
 	}
 
-	public void setMemberBean(MemberBean memberBean) {
+	public void setMemberBean(Member memberBean) {
 		this.memberBean = memberBean;
 	}
 

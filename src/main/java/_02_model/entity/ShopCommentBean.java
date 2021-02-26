@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import _10_member.entity.Member;
+
 @Entity
 @Table(name = "Shop_Comment")
 public class ShopCommentBean implements Serializable{
@@ -29,7 +31,7 @@ public class ShopCommentBean implements Serializable{
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="FK_member_id")
-	private MemberBean memberBean;
+	private Member memberBean;
 	
 	private Timestamp shop_comment_time;
 	
@@ -59,11 +61,11 @@ public class ShopCommentBean implements Serializable{
 		this.shopBean = shopBean;
 	}
 
-	public MemberBean getMemberBean() {
+	public Member getMemberBean() {
 		return memberBean;
 	}
 
-	public void setMemberBean(MemberBean memberBean) {
+	public void setMemberBean(Member memberBean) {
 		this.memberBean = memberBean;
 	}
 

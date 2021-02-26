@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import _10_member.entity.Member;
+
 @Entity
 @Table(name = "Favorite_ShopList")
 public class FavoriteShopListBean implements Serializable{
@@ -28,7 +30,7 @@ public class FavoriteShopListBean implements Serializable{
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="FK_member_id")
-	private MemberBean memberBean;
+	private Member memberBean;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(
@@ -51,11 +53,11 @@ public class FavoriteShopListBean implements Serializable{
 		this.shop_list_id = shop_list_id;
 	}
 
-	public MemberBean getMemberBean() {
+	public Member getMemberBean() {
 		return memberBean;
 	}
 
-	public void setMemberBean(MemberBean memberBean) {
+	public void setMemberBean(Member memberBean) {
 		this.memberBean = memberBean;
 	}
 
@@ -77,7 +79,7 @@ public class FavoriteShopListBean implements Serializable{
 		this.subscribe_time = subscribe_time;
 	}
 
-	public FavoriteShopListBean(Integer shop_list_id, MemberBean memberBean, Set<ShopBean> shops,
+	public FavoriteShopListBean(Integer shop_list_id, Member memberBean, Set<ShopBean> shops,
 			Timestamp subscribe_time) {
 		super();
 		this.shop_list_id = shop_list_id;

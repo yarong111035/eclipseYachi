@@ -15,6 +15,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import _10_member.entity.Member;
+
+
 @Entity
 @Table(name = "Favorite_CouponList")
 public class FavoriteCouponListBean implements Serializable{
@@ -26,7 +29,7 @@ public class FavoriteCouponListBean implements Serializable{
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="FK_member_id")
-	private MemberBean memberBean;
+	private Member memberBean;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(
@@ -47,11 +50,11 @@ public class FavoriteCouponListBean implements Serializable{
 		this.coupon_list_id = coupon_list_id;
 	}
 
-	public MemberBean getMemberBean() {
+	public Member getMemberBean() {
 		return memberBean;
 	}
 
-	public void setMemberBean(MemberBean memberBean) {
+	public void setMemberBean(Member memberBean) {
 		this.memberBean = memberBean;
 	}
 
@@ -63,7 +66,7 @@ public class FavoriteCouponListBean implements Serializable{
 		this.coupons = coupons;
 	}
 
-	public FavoriteCouponListBean(Integer coupon_list_id, MemberBean memberBean, Set<CouponBean> coupons) {
+	public FavoriteCouponListBean(Integer coupon_list_id, Member memberBean, Set<CouponBean> coupons) {
 		super();
 		this.coupon_list_id = coupon_list_id;
 		this.memberBean = memberBean;
