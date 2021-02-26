@@ -16,6 +16,40 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`yachidb00` /*!40100 DEFAULT CHARACTER S
 
 USE `yachidb00`;
 
+/*Table structure for table `cart` */
+
+DROP TABLE IF EXISTS `cart`;
+
+CREATE TABLE `cart` (
+  `cart_id` int NOT NULL AUTO_INCREMENT,
+  `cart_status` int DEFAULT NULL,
+  `FK_member_id` int DEFAULT NULL,
+  PRIMARY KEY (`cart_id`),
+  KEY `FKg206pc5701k71nidcuv666edl` (`FK_member_id`),
+  CONSTRAINT `FKg206pc5701k71nidcuv666edl` FOREIGN KEY (`FK_member_id`) REFERENCES `member` (`member_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `cart` */
+
+/*Table structure for table `cart_item` */
+
+DROP TABLE IF EXISTS `cart_item`;
+
+CREATE TABLE `cart_item` (
+  `cart_item_id` int NOT NULL AUTO_INCREMENT,
+  `cart_item_amount` int DEFAULT NULL,
+  `cart_item_memo` varchar(255) DEFAULT NULL,
+  `FK_cart_id` int DEFAULT NULL,
+  `FK_product_id` int DEFAULT NULL,
+  PRIMARY KEY (`cart_item_id`),
+  KEY `FKbcp7ja7odensfmk2fpknmcfx0` (`FK_cart_id`),
+  KEY `FKq9hgx0we4tbb0euh7r8cy0v7r` (`FK_product_id`),
+  CONSTRAINT `FKbcp7ja7odensfmk2fpknmcfx0` FOREIGN KEY (`FK_cart_id`) REFERENCES `cart` (`cart_id`),
+  CONSTRAINT `FKq9hgx0we4tbb0euh7r8cy0v7r` FOREIGN KEY (`FK_product_id`) REFERENCES `product` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `cart_item` */
+
 /*Table structure for table `coupon` */
 
 DROP TABLE IF EXISTS `coupon`;
@@ -29,13 +63,31 @@ CREATE TABLE `coupon` (
   `coupon_memo` varchar(255) DEFAULT NULL,
   `coupon_name` varchar(255) DEFAULT NULL,
   `coupon_rule` varchar(255) DEFAULT NULL,
-  `FK_shop_list` int DEFAULT NULL,
+  `FK_shop_id` int DEFAULT NULL,
+  `FK_shop_type_id` int DEFAULT NULL,
   PRIMARY KEY (`coupon_id`),
-  KEY `FK67p0a01ju97bw8cdegucn5w7f` (`FK_shop_list`),
-  CONSTRAINT `FK67p0a01ju97bw8cdegucn5w7f` FOREIGN KEY (`FK_shop_list`) REFERENCES `coupon_list` (`coupon_list_id`)
+  KEY `FK9sw6p875pu0gy1vb3l3aojyc5` (`FK_shop_id`),
+  KEY `FKa3qk3ucb5tedg3w6kkovxo0aw` (`FK_shop_type_id`),
+  CONSTRAINT `FK9sw6p875pu0gy1vb3l3aojyc5` FOREIGN KEY (`FK_shop_id`) REFERENCES `shop` (`shop_id`),
+  CONSTRAINT `FKa3qk3ucb5tedg3w6kkovxo0aw` FOREIGN KEY (`FK_shop_type_id`) REFERENCES `shop_type` (`shop_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `coupon` */
+
+/*Table structure for table `coupon_couponlist` */
+
+DROP TABLE IF EXISTS `coupon_couponlist`;
+
+CREATE TABLE `coupon_couponlist` (
+  `FK_couponlist_id` int NOT NULL,
+  `FK_coupon_id` int NOT NULL,
+  PRIMARY KEY (`FK_couponlist_id`,`FK_coupon_id`),
+  KEY `FKqgvh47unp4a7w0sj8d99gr30t` (`FK_coupon_id`),
+  CONSTRAINT `FK6tp37rr7h6hpvycxyv1pi2b05` FOREIGN KEY (`FK_couponlist_id`) REFERENCES `favorite_couponlist` (`coupon_list_id`),
+  CONSTRAINT `FKqgvh47unp4a7w0sj8d99gr30t` FOREIGN KEY (`FK_coupon_id`) REFERENCES `coupon` (`coupon_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `coupon_couponlist` */
 
 /*Table structure for table `coupon_list` */
 
@@ -69,12 +121,28 @@ CREATE TABLE `coupon_used` (
   `FK_shop_id` int DEFAULT NULL,
   PRIMARY KEY (`coupon_used_id`),
   KEY `FKmmv648yklf0fa50sfjjvlkskd` (`FK_coupon_id`),
+  KEY `FKn2f7i70wcm6sufry5nu9jvcn4` (`FK_member_id`),
   KEY `FKcldks8ol9myx4warn8f5wh1d8` (`FK_shop_id`),
   CONSTRAINT `FKcldks8ol9myx4warn8f5wh1d8` FOREIGN KEY (`FK_shop_id`) REFERENCES `shop` (`shop_id`),
-  CONSTRAINT `FKmmv648yklf0fa50sfjjvlkskd` FOREIGN KEY (`FK_coupon_id`) REFERENCES `coupon` (`coupon_id`)
+  CONSTRAINT `FKmmv648yklf0fa50sfjjvlkskd` FOREIGN KEY (`FK_coupon_id`) REFERENCES `coupon` (`coupon_id`),
+  CONSTRAINT `FKn2f7i70wcm6sufry5nu9jvcn4` FOREIGN KEY (`FK_member_id`) REFERENCES `member` (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `coupon_used` */
+
+/*Table structure for table `favorite_couponlist` */
+
+DROP TABLE IF EXISTS `favorite_couponlist`;
+
+CREATE TABLE `favorite_couponlist` (
+  `coupon_list_id` int NOT NULL AUTO_INCREMENT,
+  `FK_member_id` int DEFAULT NULL,
+  PRIMARY KEY (`coupon_list_id`),
+  KEY `FKnywaf6p8225n8pifylm0jh0xj` (`FK_member_id`),
+  CONSTRAINT `FKnywaf6p8225n8pifylm0jh0xj` FOREIGN KEY (`FK_member_id`) REFERENCES `member` (`member_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `favorite_couponlist` */
 
 /*Table structure for table `favorite_shoplist` */
 
@@ -84,7 +152,9 @@ CREATE TABLE `favorite_shoplist` (
   `shop_list_id` int NOT NULL AUTO_INCREMENT,
   `subscribe_time` datetime(6) DEFAULT NULL,
   `FK_member_id` int DEFAULT NULL,
-  PRIMARY KEY (`shop_list_id`)
+  PRIMARY KEY (`shop_list_id`),
+  KEY `FKq9wvqkf7fv9rjut2n47sohves` (`FK_member_id`),
+  CONSTRAINT `FKq9wvqkf7fv9rjut2n47sohves` FOREIGN KEY (`FK_member_id`) REFERENCES `member` (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `favorite_shoplist` */
@@ -94,33 +164,23 @@ CREATE TABLE `favorite_shoplist` (
 DROP TABLE IF EXISTS `member`;
 
 CREATE TABLE `member` (
-  `seqNo` int NOT NULL AUTO_INCREMENT,
-  `address` varchar(255) DEFAULT NULL,
-  `comment` longtext,
-  `email` varchar(255) DEFAULT NULL,
-  `fileName` varchar(255) DEFAULT NULL,
-  `memberId` varchar(255) DEFAULT NULL,
-  `memberImage` longblob,
-  `name` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `registerTime` datetime(6) DEFAULT NULL,
-  `tel` varchar(255) DEFAULT NULL,
-  `totalAmt` double DEFAULT NULL,
-  `unpaid_amount` double DEFAULT NULL,
-  `userType` varchar(255) DEFAULT NULL,
-  `member_id` int NOT NULL,
+  `member_id` int NOT NULL AUTO_INCREMENT,
   `account` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
   `birthday` date DEFAULT NULL,
   `code` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `image` longblob,
   `member_type` varchar(255) DEFAULT NULL,
   `memo` longtext,
+  `name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `register_time` date DEFAULT NULL,
   `sex` varchar(255) DEFAULT NULL,
   `status` int DEFAULT NULL,
   `FK_shop_id` int DEFAULT NULL,
-  PRIMARY KEY (`seqNo`),
+  PRIMARY KEY (`member_id`),
   KEY `FK4mce76fcm5c3dyutgr7vx4y3s` (`FK_shop_id`),
   CONSTRAINT `FK4mce76fcm5c3dyutgr7vx4y3s` FOREIGN KEY (`FK_shop_id`) REFERENCES `shop` (`shop_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -156,8 +216,8 @@ CREATE TABLE `order_item` (
   `FK_product_id` int DEFAULT NULL,
   PRIMARY KEY (`order_item_id`),
   KEY `FKefmdrrdch72f081b69vrumj7k` (`FK_order_id`),
-  KEY `FK5r0072s3y5cgy8uoux9r6urmg` (`FK_product_id`),
-  CONSTRAINT `FK5r0072s3y5cgy8uoux9r6urmg` FOREIGN KEY (`FK_product_id`) REFERENCES `product` (`product_id`),
+  KEY `FKdn5wfkvhmvp1rja2x2t3eaym1` (`FK_product_id`),
+  CONSTRAINT `FKdn5wfkvhmvp1rja2x2t3eaym1` FOREIGN KEY (`FK_product_id`) REFERENCES `product` (`product_id`),
   CONSTRAINT `FKefmdrrdch72f081b69vrumj7k` FOREIGN KEY (`FK_order_id`) REFERENCES `orders` (`order_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -179,7 +239,9 @@ CREATE TABLE `orders` (
   `pay_me` int DEFAULT NULL,
   `shipping_date` date DEFAULT NULL,
   `FK_member_id` int DEFAULT NULL,
-  PRIMARY KEY (`order_id`)
+  PRIMARY KEY (`order_id`),
+  KEY `FK6r5sbky9djgfljnjyrs37yacl` (`FK_member_id`),
+  CONSTRAINT `FK6r5sbky9djgfljnjyrs37yacl` FOREIGN KEY (`FK_member_id`) REFERENCES `member` (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `orders` */
@@ -195,45 +257,38 @@ CREATE TABLE `product` (
   `product_info` varchar(255) DEFAULT NULL,
   `product_memo` varchar(255) DEFAULT NULL,
   `product_name` varchar(255) DEFAULT NULL,
-  `product_no` varchar(255) DEFAULT NULL,
   `product_pic` longblob,
-  `product_price` int DEFAULT NULL,
+  `product_price` double DEFAULT NULL,
   `product_stock` int DEFAULT NULL,
-  `fk_sort_id` int DEFAULT NULL,
-  `product_spec` varchar(30) DEFAULT NULL,
+  `FK_product_type_id` int DEFAULT NULL,
+  `product_spec` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`product_id`),
-  KEY `FK9jnt2p81rgvo6w2w1112ct3x4` (`fk_sort_id`),
-  CONSTRAINT `FK9jnt2p81rgvo6w2w1112ct3x4` FOREIGN KEY (`fk_sort_id`) REFERENCES `product_sort` (`sortId`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `FKc9sqrle3uny7sdork7a91qbph` (`FK_product_type_id`),
+  CONSTRAINT `FKc9sqrle3uny7sdork7a91qbph` FOREIGN KEY (`FK_product_type_id`) REFERENCES `product_type` (`product_type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `product` */
 
-insert  into `product`(`product_id`,`filename`,`product_expire`,`product_info`,`product_memo`,`product_name`,`product_no`,`product_pic`,`product_price`,`product_stock`,`fk_sort_id`,`product_spec`) values 
-(1,'product3-1.jpg',NULL,'產品資訊目前沒有資料-1',NULL,'超好用收納購物袋','A001',NULL,310,20,1,NULL),
-(2,'product2-2.jpg',NULL,'產品資訊目前沒有資料-2',NULL,'好好看黑色帆布袋-2','A002',NULL,320,10,2,NULL),
-(3,'product4-2.jpg',NULL,'產品資訊目前沒有資料-3',NULL,'實用蠟黃時尚包','A003',NULL,399,70,2,NULL),
-(4,'product5-1.jpg',NULL,'產品資訊目前沒有資料-4',NULL,'實用貴族灰後背包','A004',NULL,303,5,3,NULL),
-(5,'商品照片1.jpg',NULL,'產品資訊目前沒有資料-5',NULL,'測試產品1','A005',NULL,599,30,1,NULL),
-(6,'product2-2.jpg',NULL,NULL,NULL,'測試產品2','A006',NULL,699,34,2,NULL),
-(21,NULL,NULL,'因為不知道要賣什麼所以商品資訊也不知道要填什麼',NULL,'商品名稱不知道要取什麼888888',NULL,NULL,111,NULL,3,'魔鬼的顏色'),
-(22,NULL,NULL,'因為不知道要賣什麼所以商品資訊也不知道要填什麼',NULL,'商品名稱不知道要取什麼-1',NULL,NULL,111,NULL,NULL,'');
+insert  into `product`(`product_id`,`filename`,`product_expire`,`product_info`,`product_memo`,`product_name`,`product_pic`,`product_price`,`product_stock`,`FK_product_type_id`,`product_spec`) values 
+(1,'product3-1',NULL,'產品資訊目前沒有資料',NULL,'好好看黑色帆布袋-2',NULL,320,20,1,NULL),
+(2,NULL,NULL,'因為不知道要賣什麼所以商品資訊也不知道要填什麼',NULL,'商品名稱不知道要取什麼-1',NULL,161,55,3,'魔鬼的顏色');
 
-/*Table structure for table `product_sort` */
+/*Table structure for table `product_type` */
 
-DROP TABLE IF EXISTS `product_sort`;
+DROP TABLE IF EXISTS `product_type`;
 
-CREATE TABLE `product_sort` (
-  `sortId` int NOT NULL AUTO_INCREMENT,
-  `sortName` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`sortId`)
+CREATE TABLE `product_type` (
+  `product_type_id` int NOT NULL AUTO_INCREMENT,
+  `product_type_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`product_type_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-/*Data for the table `product_sort` */
+/*Data for the table `product_type` */
 
-insert  into `product_sort`(`sortId`,`sortName`) values 
+insert  into `product_type`(`product_type_id`,`product_type_name`) values 
 (1,'超好用'),
 (2,'普通好用'),
-(3,'超難用');
+(3,'超級難用');
 
 /*Table structure for table `shop` */
 
@@ -241,7 +296,6 @@ DROP TABLE IF EXISTS `shop`;
 
 CREATE TABLE `shop` (
   `shop_id` int NOT NULL AUTO_INCREMENT,
-  `market_id` int DEFAULT NULL,
   `shop_addr` varchar(255) DEFAULT NULL,
   `shop_hours` varchar(255) DEFAULT NULL,
   `shop_hyperlink` varchar(255) DEFAULT NULL,
@@ -251,19 +305,13 @@ CREATE TABLE `shop` (
   `shop_name` varchar(255) DEFAULT NULL,
   `shop_phone` varchar(255) DEFAULT NULL,
   `shop_score` double DEFAULT NULL,
-  `FK_coupon_list_id` int DEFAULT NULL,
   `FK_nightmarket_id` int DEFAULT NULL,
   `FK_shop_type_id` int DEFAULT NULL,
-  `FK_shop_id` int DEFAULT NULL,
   PRIMARY KEY (`shop_id`),
-  KEY `FKhgh6f7lwd5vsr4ik33i2wepk8` (`FK_coupon_list_id`),
   KEY `FKayhr6w5yps12nfh7t4ftywapw` (`FK_nightmarket_id`),
   KEY `FK3ucxfej4ev4agj9b5q2rt4w0m` (`FK_shop_type_id`),
-  KEY `FK3t47bdba2g3wtddgvk08r83gu` (`FK_shop_id`),
-  CONSTRAINT `FK3t47bdba2g3wtddgvk08r83gu` FOREIGN KEY (`FK_shop_id`) REFERENCES `favorite_shoplist` (`shop_list_id`),
   CONSTRAINT `FK3ucxfej4ev4agj9b5q2rt4w0m` FOREIGN KEY (`FK_shop_type_id`) REFERENCES `shop_type` (`shop_type_id`),
-  CONSTRAINT `FKayhr6w5yps12nfh7t4ftywapw` FOREIGN KEY (`FK_nightmarket_id`) REFERENCES `nightmarket` (`market_id`),
-  CONSTRAINT `FKhgh6f7lwd5vsr4ik33i2wepk8` FOREIGN KEY (`FK_coupon_list_id`) REFERENCES `coupon_list` (`coupon_list_id`)
+  CONSTRAINT `FKayhr6w5yps12nfh7t4ftywapw` FOREIGN KEY (`FK_nightmarket_id`) REFERENCES `nightmarket` (`market_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `shop` */
@@ -283,7 +331,9 @@ CREATE TABLE `shop_comment` (
   `FK_member_id` int DEFAULT NULL,
   `FK_shop_id` int DEFAULT NULL,
   PRIMARY KEY (`shop_comment_id`),
+  KEY `FK9iejanwkfi7i9ecyvh55bamih` (`FK_member_id`),
   KEY `FKgx9dxp39pm4uwkl78gwpfkb2b` (`FK_shop_id`),
+  CONSTRAINT `FK9iejanwkfi7i9ecyvh55bamih` FOREIGN KEY (`FK_member_id`) REFERENCES `member` (`member_id`),
   CONSTRAINT `FKgx9dxp39pm4uwkl78gwpfkb2b` FOREIGN KEY (`FK_shop_id`) REFERENCES `shop` (`shop_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -306,6 +356,21 @@ CREATE TABLE `shop_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `shop_menu` */
+
+/*Table structure for table `shop_shoplist` */
+
+DROP TABLE IF EXISTS `shop_shoplist`;
+
+CREATE TABLE `shop_shoplist` (
+  `FK_ShopList_id` int NOT NULL,
+  `FK_Shop_id` int NOT NULL,
+  PRIMARY KEY (`FK_ShopList_id`,`FK_Shop_id`),
+  KEY `FKmm2suasksuig3iy7xsok9dhan` (`FK_Shop_id`),
+  CONSTRAINT `FKllblb7lymn6lycstw7dp79uur` FOREIGN KEY (`FK_ShopList_id`) REFERENCES `favorite_shoplist` (`shop_list_id`),
+  CONSTRAINT `FKmm2suasksuig3iy7xsok9dhan` FOREIGN KEY (`FK_Shop_id`) REFERENCES `shop` (`shop_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `shop_shoplist` */
 
 /*Table structure for table `shop_type` */
 
