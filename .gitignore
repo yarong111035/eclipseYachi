@@ -1,7 +1,8 @@
 **/.metadata/*
 **/target/**
 **/Servers/**
+**/m2e-wtp/**
 **/.settings/**
-**/.project
-**/.classpath
-**/.MF
+**/MANIFEST.MF
+.classpath
+.project
