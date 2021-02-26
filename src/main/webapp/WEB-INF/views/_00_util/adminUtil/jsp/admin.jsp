@@ -67,7 +67,7 @@
 			</a>
 		</div>
 		<div class="item">
-			<a href="#">
+			<a href="<c:url value='/admin_checkShop' />">
 				<button>
 					<span>審核商家</span>
 				</button>

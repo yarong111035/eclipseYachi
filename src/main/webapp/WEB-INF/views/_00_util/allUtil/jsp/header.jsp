@@ -134,6 +134,7 @@
 						 <a href="<c:url value='/admin_announcement' />">公告</a><br>
 						 <a href="<c:url value='/admin_adinfo' />">廣告資訊</a><br>
 						 <a href="<c:url value='/admin_activity' />">平台優惠活動</a><br>
+						 <a href="<c:url value='/admin_checkShop' />">審核商家</a><br>
 					</div>
 				</div>
 

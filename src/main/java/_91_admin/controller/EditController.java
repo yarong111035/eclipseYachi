@@ -36,6 +36,11 @@ public class EditController {
 
 		return "_16_admin/admin_activity"; 
 	}
+	@RequestMapping("/admin_checkShop")
+	public String admin_checkoutShop(Model model) {  
+
+		return "_16_admin/admin_checkShop"; 
+	}
 	
 //	新增產品頁面
 //	@RequestMapping("/admin_product")
