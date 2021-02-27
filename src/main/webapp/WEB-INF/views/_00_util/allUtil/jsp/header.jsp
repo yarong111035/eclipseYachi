@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shopping</title>
+<title></title>
 <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 <link rel="stylesheet"href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
 <link rel="stylesheet"href="<c:url value='/_00_util/allUtil/css/header.css'/>">
@@ -129,7 +129,7 @@
                           <a href="#">方家雞肉飯5方家雞肉飯5</a><br>
 					</div>
 					<div class="tab-panel">
-						<a href="<c:url value='/' />">購物商城</a><br> <a
+						<a href="<c:url value='/shopping.store' />">購物商城</a><br> <a
 							href="<c:url value='update/price' />">點我更新價格(+50元)</a><br>
 						<a href="<c:url value='products/add' />">上架產品</a><br>
 					</div>
