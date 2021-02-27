@@ -127,11 +127,11 @@
                             <div class="product_items">
                                 <div class="product_image image2">
                                 
-                                    <img src="<c:url value='/data/images/productPic/product2-1.jpg'/>">
+                                    <img src="<c:url value='/getPicture2/${product.product_id}'/>">
                                 </div>
                                 <div class="product_image image1">
                                 								 
-                                    <a href="<spring:url value='singleProduct?id=${product.product_id}'/>"><img src="<c:url value='/data/images/productPic/product2-2.jpg'/>"></a>
+                                    <a href="<spring:url value='singleProduct?id=${product.product_id}'/>"><img src="<c:url value='/getPicture/${product.product_id}'/>"></a>
                                 </div>
                                 <div class="itemBody">
                                     <div class="product_name">

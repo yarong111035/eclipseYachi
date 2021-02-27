@@ -32,9 +32,13 @@ public class ProductBean implements Serializable{
 	
 	private Blob product_pic;
 	
+	private Blob product_pic2;
+	
 	private Date product_expire;
 	
 	private String filename;
+	
+	private String filename2;
 	
     private String product_spec;
     
@@ -95,6 +99,15 @@ public class ProductBean implements Serializable{
 
 	public void setProduct_pic(Blob product_pic) {
 		this.product_pic = product_pic;
+	}
+	
+	
+	public Blob getProduct_pic2() {
+		return product_pic2;
+	}
+
+	public void setProduct_pic2(Blob product_pic2) {
+		this.product_pic2 = product_pic2;
 	}
 
 	public Date getProduct_expire() {
@@ -164,6 +177,14 @@ public class ProductBean implements Serializable{
 
 	public void setProduct_type_id(Integer product_type_id) {
 		this.product_type_id = product_type_id;
+	}
+
+	public String getFilename2() {
+		return filename2;
+	}
+
+	public void setFilename2(String filename2) {
+		this.filename2 = filename2;
 	}
 
 

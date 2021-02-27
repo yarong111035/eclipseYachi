@@ -1,13 +1,32 @@
 package _20_shoppingMall._21_product.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.BeanNotOfRequiredTypeException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +46,8 @@ public class ProductController {
 	
 	@Autowired
 	ProductService service;
-	
+	@Autowired
+	ServletContext context;
 	
 	
 //	控制器方法
@@ -111,13 +131,133 @@ public class ProductController {
 	
 //	新增表單成功
 	@PostMapping("/products/add")  // 路徑與上一支方法一樣，但是此處請求方法是Post 所以會來找這一支控制器
-	public String processAddNewProductForm(@ModelAttribute("productBean") ProductBean pb) {
+	public String processAddNewProductForm(@ModelAttribute("productBean") ProductBean pb, BindingResult result) {
 //		新增產品需傳入ProductBean參數(從上model取出)
 //		@ModelAttribute用在方法參數內：可直接從參數取值(又稱數據綁定)
 //		資料檢查條件寫在這...
+		String[] suppressedFields = result.getSuppressedFields();
+		if(suppressedFields.length > 0) {
+			throw new RuntimeException("嘗試傳入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
+		}
 		service.addProduct(pb);  
 		return "redirect:/shopping.store";
 	}
+	
+	/**
+	 * 當控制器方法傳回此種型別的物件時，分派器會將它的內容依照Http協定的格式，送回給提出請求的前端裝置。
+	 * ResponseEntity 類別內含三種資訊
+	 * 1. 回應本體
+	 * 2. 回應標頭
+	 * 3. 狀態碼
+	 */
+	
+	
+//	從資料庫撈Blob型態，讓商品頁出現產品
+//	ResponseEntity<Byte[]> => 回應本體的資料型態(blob 需轉成 位元組型態才可讀取)
+	@RequestMapping(value = "/getPicture/{product_id}")
+	public ResponseEntity<byte[]> getPicture(
+			HttpServletResponse resp, 
+			@PathVariable Integer product_id){
+		String filePath = "/data/images/mediumPic/noImage1.PNG"; //預設圖片路徑
+		byte[] pic = null;
+		String filename = "";
+		int len = 0;
+		HttpHeaders headers = new HttpHeaders();
+		ProductBean productBean = service.getProductById(product_id); 
+		if(productBean != null) {
+			Blob blob = productBean.getProduct_pic();
+			filename = productBean.getFilename();
+			if(blob != null) {
+				try {
+					len = (int) blob.length();  //取得照片大小
+					pic = blob.getBytes(1, len); //???   jdbc相關類別都是1開頭
+				} catch (SQLException e) {
+					throw new RuntimeException("ProductController的getPicture()發生SQLException: " + e.getMessage());
+				}
+			}else { //如果沒有照片
+				pic = toByteArray(filePath);
+				filename = filePath;
+			}
+		}else {
+			pic = toByteArray(filePath);
+			filename = filePath;
+		}
+		headers.setCacheControl(CacheControl.noCache().getHeaderValue()); //請瀏覽器不要快取圖片內容
+		String mimeType = context.getMimeType(filename);
+		MediaType mediaType = MediaType.valueOf(mimeType); //把字串轉成 mediaType 型別的物件
+		System.out.println("mediatype = " + mediaType);
+		headers.setContentType(mediaType);
+		ResponseEntity<byte[]> responoEntity = new ResponseEntity<>(pic, headers, HttpStatus.OK); 
+		return responoEntity;
+	}
+	
+//	取得第二張照片，呼叫前一個方法
+	@RequestMapping(value = "/getPicture2/{product_id}")
+	public ResponseEntity<byte[]> getPicture2(
+			HttpServletResponse resp, 
+			@PathVariable Integer product_id){
+		
+		String filePath = "/data/images/mediumPic/noImage1.PNG"; //預設圖片路徑
+		byte[] pic = null;
+		String filename = "";
+		int len = 0;
+		HttpHeaders headers = new HttpHeaders();
+		ProductBean productBean = service.getProductById(product_id); 
+		if(productBean != null) {
+			Blob blob = productBean.getProduct_pic2();
+			filename = productBean.getFilename2();
+			if(blob != null) {
+				try {
+					len = (int) blob.length();  //取得照片大小
+					pic = blob.getBytes(1, len); //???   jdbc相關類別都是1開頭
+				} catch (SQLException e) {
+					throw new RuntimeException("ProductController的getPicture()發生SQLException: " + e.getMessage());
+				}
+			}else { //如果沒有照片
+				pic = toByteArray(filePath);
+				filename = filePath;
+			}
+		}else {
+			pic = toByteArray(filePath);
+			filename = filePath;
+		}
+		headers.setCacheControl(CacheControl.noCache().getHeaderValue()); //請瀏覽器不要快取圖片內容
+		String mimeType = context.getMimeType(filename);
+		MediaType mediaType = MediaType.valueOf(mimeType); //把字串轉成 mediaType 型別的物件
+		System.out.println("mediatype = " + mediaType);
+		headers.setContentType(mediaType);
+		ResponseEntity<byte[]> responoEntity = new ResponseEntity<>(pic, headers, HttpStatus.OK); 
+		return responoEntity;
+		
+	} 
+	
+	
+	
+	private byte[] toByteArray(String filepath) {
+		byte[] b = null;
+		String realPath = context.getRealPath(filepath);
+		try {
+			File file = new File(realPath);
+			long size = file.length();
+			b = new byte[(int)size];
+			InputStream fis = context.getResourceAsStream(filepath);
+			fis.read(b);
+		}catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		return b;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -141,6 +281,22 @@ public class ProductController {
 	public List<ProductTypeBean> getSorList() {
 	    return service.getSortList();
 	}
+	
+//	說明前端瀏覽器只能傳送的欄位(必須現在前端送來的欄位)
+	@InitBinder
+	public void whiteListing(WebDataBinder binder) {
+		binder.setAllowedFields(
+			"product_name",
+			"product_price",
+			"product_stock",
+			"product_info"	,
+			"product_spec",
+			"product_type_id"
+		);
+	}
+	
+	
+	
 	
 	
 //	@RequestMapping("sortList")

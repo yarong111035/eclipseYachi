@@ -68,7 +68,7 @@
                             <!-- big photo start -->
                             <div class="productImage">
                             
-                            <img src="<c:url value='/data/images/productPic/1_product.jpg'/>" alt="product">
+                            <img src="<c:url value='/getPicture/${product.product_id }'/>" alt="product">
                             </div>
                             <!-- big photo end -->
                             <div class="productIntro">

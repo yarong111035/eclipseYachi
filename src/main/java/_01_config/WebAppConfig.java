@@ -27,7 +27,8 @@ Step3(@ComponentScan): 請Spring掃描有定義註釋的套件(含有Annotation
 public class WebAppConfig implements WebMvcConfigurer {
 
 	@Bean
-	// 通知Sping 框架到哪尋找jsp網頁
+//	 通知Sping 框架到哪尋找jsp網頁
+//	配置視圖解析器: 把handler方法傳回值解析為實際物理視圖
 	public ViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 //		resolver.setViewClass(JstlView.class); //新版spring框架不需此行
