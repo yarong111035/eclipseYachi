@@ -67,7 +67,7 @@
                         <div class="itemsList">
                             <div class="table">
                                 <div class="thead">
-                                    <div class="tr">
+                                	    <div class="tr">
                                         <div class="th checkBox">
                                             <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
                                             <label for="vehicle1"></label><br>
@@ -76,103 +76,46 @@
                                         <div class="th name">商品名稱</div>
                                         <div class="th price">價格</div>
                                         <div class="th count">數量</div>
-                                        <div class="th upDate">上架時間</div>
+                                        <div class="th upDate">上架順序</div>
                                         <div class="th edit">修改</div>
                                         <!-- <div class="th delete">刪除</div> -->
                                     </div>
                                 </div>
                                 <div class="tbody">
-                                    <div class="tr">
-                                        <div class="td checkBox">
-                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                            <label for="vehicle1"></label>
-                                        </div>
-                                        <div class="td pic">
-                                            <img src="/images_2/1_product.jpg">
-                                        </div>
-                                        <div class="td name">
-                                            <a href="#">超好用收納購物袋</a>
-                                            <div>
-                                                <span>白色</span>
-                                            </div>
-                                        </div>
-                                        <div class="td price">
-                                            <span>NT$ 199</span>
-                                        </div>
-                                        <div class="td count">
-                                            <span>30</span>
-                                        </div>
-                                        <div class="td upDate">
-                                            <span>2021-02-28</span>
-                                        </div>
-                                        <div class="td edit">
-                                            <a href="#"><i class="fas fa-pen"></i></a>
-                                        </div>
-                                        <!-- <div class="td delete">
-                                            <a href="#"><i class="fas fa-trash"></i></i></a>
-                                        </div> -->
-                                    </div>
-                                    <div class="tr">
-                                        <div class="td checkBox">
-                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                            <label for="vehicle1"></label>
-                                        </div>
-                                        <div class="td pic">
-                                            <img src="/images_2/1_product.jpg">
-                                        </div>
-                                        <div class="td name">
-                                            <a href="#">超好用收納購物袋</a>
-                                            <div>
-                                                <span>白色</span>
-                                            </div>
-                                        </div>
-                                        <div class="td price">
-                                            <span>NT$ 199</span>
-                                        </div>
-                                        <div class="td count">
-                                            <span>30</span>
-                                        </div>
-                                        <div class="td upDate">
-                                            <span>2021-02-28</span>
-                                        </div>
-                                        <div class="td edit">
-                                            <a href="#"><i class="fas fa-pen"></i></a>
-                                        </div>
-                                        <!-- <div class="td delete">
-                                            <a href="#"><i class="fas fa-trash"></i></i></a>
-                                        </div> -->
-                                    </div>
-                                    <div class="tr">
-                                        <div class="td checkBox">
-                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                            <label for="vehicle1"></label>
-                                        </div>
-                                        <div class="td pic">
-                                            <img src="/images_2/1_product.jpg">
-                                        </div>
-                                        <div class="td name">
-                                            <a href="#">超好用收納購物袋</a>
-                                            <div>
-                                                <span>白色</span>
-                                            </div>
-                                        </div>
-                                        <div class="td price">
-                                            <span>NT$ 199</span>
-                                        </div>
-                                        <div class="td count">
-                                            <span>30</span>
-                                        </div>
-                                        <div class="td upDate">
-                                            <span>2021-02-28</span>
-                                        </div>
-                                        <div class="td edit">
-                                            <a href="#"><i class="fas fa-pen"></i></a>
-                                        </div>
-                                        <!-- <div class="td delete">
-                                            <a href="#"><i class="fas fa-trash"></i></i></a>
-                                        </div> -->
-                                    </div>
-             
+                                
+                                	<c:forEach var='product' items='${editProducts}'>
+	                                    <div class="tr">
+	                                        <div class="td checkBox">
+	                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+	                                            <label for="vehicle1"></label>
+	                                        </div>
+	                                        <div class="td pic">
+	                                            <img src="<c:url value='/getPicture/${product.product_id}'/>">
+	                                        </div>
+	                                        <div class="td name">
+	                                            <a href="#">${product.product_name}</a>
+	                                            <div>
+	                                                <span>${product.product_spec}</span>
+	                                            </div>
+	                                        </div>
+	                                        <div class="td price">
+	                                            <span>NT$ ${product.product_price }</span>
+	                                        </div>
+	                                        <div class="td count">
+	                                            <span>${product.product_stock }</span>
+	                                        </div>
+	                                        <div class="td upDate">
+	                                            <span>${product.product_id }</span>
+	                                        </div>
+	                                        <div class="td edit">
+	                                            <a href="#"><i class="fas fa-pen"></i></a>
+	                                        </div>
+	                                        <!-- <div class="td delete">
+	                                            <a href="#"><i class="fas fa-trash"></i></i></a>
+	                                        </div> -->
+	                                    </div>
+                         			</c:forEach>
+                              
                                 </div>
                             </div>
                         </div>

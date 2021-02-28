@@ -51,7 +51,7 @@
   }
  
   .table .tbody .tr .td{
-    border-bottom: 3px solid #ddd;
+    border-bottom: 5px solid #ddd;
     margin-bottom: 10px;
 }
   /* .table .pic{
@@ -69,6 +69,7 @@
   }
   .tbody .pic img{
     width: 100%;
+    height:50px;
   }
   .tbody .name a{
     /* display是block才可以給margin屬性 */

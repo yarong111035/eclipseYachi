@@ -3,6 +3,9 @@ package _20_shoppingMall._21_product.dao.impl;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -29,9 +32,11 @@ public class ProductDaoImpl implements ProductDao {
 	public List<ProductBean> getAllProducts() {
 		String hql = "FROM ProductBean";
 		Session session = null;
-		List<ProductBean> list = new ArrayList<>();
+//		List<ProductBean> list = new ArrayList<>();
+		List<ProductBean> list = new LinkedList<>();
 		session = factory.getCurrentSession();
 		list = session.createQuery(hql).getResultList();
+		Collections.reverse(list);  //反轉新增順序，不知道效能好不好?
 		return list;
 		
 //		可簡化:
