@@ -1,15 +1,22 @@
 package _01_config;
 
+import java.util.ArrayList;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.accept.ContentNegotiationManager;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 //原本繼承的 WebMvcConfigurerAdapter類別已作廢，改實作 WebMvcConfigurer介面
 /*
@@ -107,5 +114,33 @@ public class WebAppConfig implements WebMvcConfigurer {
 		public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 			configurer.enable();
 		}
-
+		
+//		定義上傳檔案的配置
+		@Bean
+		public CommonsMultipartResolver multipartResolver() {
+			CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+			resolver.setDefaultEncoding("UTF-8");
+			resolver.setMaxUploadSize(81920000);
+			return resolver;
+		}
+		
+//		@Bean
+		public MappingJackson2JsonView jsonView() {
+			MappingJackson2JsonView view = new MappingJackson2JsonView();
+			view.setPrettyPrint(true);
+			return view;
+		}
+		
+		/**
+		 *contentNegotiatingViewResolver 缺點: 會把所有放在Model裡的東西都轉成json 
+		 */
+		@Bean
+		public ViewResolver contentNegotiatingViewResolver(ContentNegotiationManager manager) {
+		    ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
+		    resolver.setContentNegotiationManager(manager);
+		    ArrayList<View> views = new ArrayList<>();
+		    views.add(jsonView());  //把視圖加上視圖解析器，可加不只一個
+		    resolver.setDefaultViews(views);
+		    return resolver;
+		}
 }
