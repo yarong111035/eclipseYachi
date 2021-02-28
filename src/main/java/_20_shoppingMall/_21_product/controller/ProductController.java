@@ -57,12 +57,12 @@ public class ProductController {
 	
 	
 	//撈出資料庫所有產品
-	@RequestMapping({"/shopping.store"})
-	public String store(Model model) {
-		List<ProductBean> list = service.getAllProducts();
-		model.addAttribute("products", list);
-		return "_12_shoppingmall/2_shopping";
-	}
+//	@RequestMapping({"/shopping.store"})
+//	public String store(Model model) {
+//		List<ProductBean> list = service.getAllProducts();
+//		model.addAttribute("products", list);
+//		return "_12_shoppingmall/2_shopping";
+//	}
 
 	
 	//更新產品價格
@@ -110,6 +110,25 @@ public class ProductController {
 	}
 	
 	
+//	分頁的控制器方法
+//	 讀取查詢字串，可能沒有帶查詢字串(required = false)
+	@GetMapping("/DisplayPageProducts")
+	public String getPageProduct(
+			Model model,
+			HttpServletRequest req,
+			HttpServletResponse res,
+			@RequestParam(value = "pageNo", required = false) Integer pageNo)
+	{
+		if(pageNo == null) {
+			pageNo = 1;
+		}
+		model.addAttribute("bean", service);
+		Map<Integer, ProductBean> productMap = service.getPageProducts(pageNo);
+		model.addAttribute("pageNo", String.valueOf(pageNo));
+		model.addAttribute("totalPages", service.getTotalPages());
+		model.addAttribute("products_DPP", productMap);
+		return "_12_shoppingmall/2_shopping";	
+	}
 	
 //	@RequestMapping("sortList")
 //	public List<String> getSortList(){

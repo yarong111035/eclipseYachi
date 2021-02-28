@@ -5,16 +5,17 @@ package _20_shoppingMall._21_product.dao.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
-
+import _00_util.util.GlobalService;
 import _02_model.entity.ProductBean;
 import _02_model.entity.ProductTypeBean;
 import _20_shoppingMall._21_product.dao.ProductDao;
@@ -27,6 +28,17 @@ public class ProductDaoImpl implements ProductDao {
 	@Autowired  //從RootAppConfig LocalSessionFactoryBean() 注入 factory
 	SessionFactory factory;
 	
+	private int recordsPerPage = GlobalService.RECORDS_PER_PAGE; // 預設值：每頁五筆
+	private int totalPages = -1;
+	
+	String selected = "";
+	
+	
+	
+	public ProductDaoImpl() {
+		super();
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ProductBean> getAllProducts() {
@@ -123,5 +135,57 @@ public class ProductDaoImpl implements ProductDao {
 		List<ProductTypeBean> list = session.createQuery(hql).getResultList();
 		return list;
 	}
+
+//	取得資料庫裡產品表格裡的產品數量
+	@Override
+	public long getRecordCounts() {
+		long count = 0; // 必須使用 long 型態
+		String hql = "SELECT count(*) FROM ProductBean";
+		Session session = factory.getCurrentSession();
+		count = (Long)session.createQuery(hql).getSingleResult();
+		return count;
+	}
+
+	@Override
+	public int getTotalPages() {
+		// 注意下一列敘述的每一個型態轉換
+		totalPages = (int) (Math.ceil(getRecordCounts() / (double) recordsPerPage));
+		return totalPages;
+	}
+	
+	@Override
+	public int getRecordsPerPage() {
+		return recordsPerPage;
+	}
+
+	public void setRecordsPerPage(int recordsPerPage) {
+		this.recordsPerPage = recordsPerPage;
+	}
+
+//	設定每一頁出現的產品
+	@SuppressWarnings("unchecked")
+	@Override
+	public Map<Integer, ProductBean> getPageProducts(int pageNo) {
+		Map<Integer, ProductBean> map = new LinkedHashMap<>(); //有排序(last in last out)
+		String hql = "FROM ProductBean";
+		Session session = factory.getCurrentSession();
+		int startRecordNo = (pageNo - 1) * recordsPerPage; //得到每一頁開始的產品索引
+		List<ProductBean> list = session.createQuery(hql)  //只要從資料庫撈此頁需要的紀錄即可，index從0開始
+										.setFirstResult(startRecordNo) // 從第n筆開始
+										.setMaxResults(recordsPerPage) // 取五筆資料
+										.getResultList();
+//      將 list 轉成 Map 物件
+		for(ProductBean productBean : list) {
+			map.put(productBean.getProduct_id(), productBean);
+		}
+		return map;
+	}
+	
+	@Override
+	public void setSelected(String selected) {
+		this.selected = selected;
+	}
+
+
 
 }

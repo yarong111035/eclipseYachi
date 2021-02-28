@@ -21,7 +21,7 @@
 	<a href="#" id="go-top"><i class="fas fa-arrow-up"></i></a>
 	
 	<header>
-		<nav>
+		<nav class="myNav">
 			<div class="navbar">
 				<div class="ig-links">
 					<a href="#">快速登入</a> 
@@ -129,7 +129,7 @@
                           <a href="#">方家雞肉飯5方家雞肉飯5</a><br>
 					</div>
 					<div class="tab-panel">
-						<a href="<c:url value='/shopping.store' />">購物商城</a><br> <a
+						<a href="<c:url value='/DisplayPageProducts' />">購物商城</a><br> <a
 							href="<c:url value='update/price' />">點我更新價格(+50元)</a><br>
 					</div>
 					<div class="tab-panel">

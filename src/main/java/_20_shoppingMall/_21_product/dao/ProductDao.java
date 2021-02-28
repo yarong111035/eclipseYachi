@@ -1,6 +1,7 @@
 package _20_shoppingMall._21_product.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import _02_model.entity.ProductBean;
 import _02_model.entity.ProductTypeBean;
@@ -22,9 +23,20 @@ public interface ProductDao {
 	//查詢單筆產品資料(lab6)
 	public ProductBean getProductById(int productId);
 	
-	//新增產品資料(lab8)
+	//新增一筆產品資料(lab8)
 	public void addProduct(ProductBean product);
 	public ProductTypeBean getSortById(int sortId); 
 	List<ProductTypeBean> getSortList();
 	
+	
+	
+	//產品分頁功能
+	Map<Integer, ProductBean> getPageProducts(int pageNo);
+	long getRecordCounts();
+	int getRecordsPerPage();
+	int getTotalPages();
+	void setRecordsPerPage(int recordsPerPage);
+	void setSelected(String selected);
+//	void setPageNo(int pageNo);
+//	int getPageNo();
 }

@@ -1,6 +1,7 @@
 package _20_shoppingMall._21_product.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -73,6 +74,48 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ProductTypeBean> getSortList() {
 		return dao.getSortList();
+	}
+
+	
+	//每一分頁顯示的產品
+	@Transactional
+	@Override
+	public Map<Integer, ProductBean> getPageProducts(int pageNo) {
+		Map<Integer, ProductBean> map = null;
+		map = dao.getPageProducts(pageNo);
+		return map;
+	}
+
+//	得所有記錄總數
+	@Override
+	public long getRecordCounts() {
+		return dao.getRecordCounts();
+	}
+
+//	得每一頁產品數量
+	@Override
+	public int getRecordsPerPage() {
+		return dao.getRecordsPerPage();
+	}
+
+//	得所有頁數數量
+	@Transactional
+	@Override
+	public int getTotalPages() {
+		int allPagesCount = 0;
+		allPagesCount = dao.getTotalPages();
+		return allPagesCount;
+	}
+
+//	設定每一頁的產品數量
+	@Override
+	public void setRecordsPerPage(int recordsPerPage) {
+		dao.setRecordsPerPage(recordsPerPage);
+	}
+
+	@Override
+	public void setSelected(String selected) {
+		dao.setSelected(selected);
 	}
 
 }

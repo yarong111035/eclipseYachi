@@ -1,6 +1,7 @@
 package _20_shoppingMall._21_product.service;
 
 import java.util.List;
+import java.util.Map;
 
 import _02_model.entity.ProductBean;
 import _02_model.entity.ProductTypeBean;
@@ -25,4 +26,16 @@ public interface ProductService {
 	public void addProduct(ProductBean product);
 	public ProductTypeBean getSortById(int sortId);
 	public List<ProductTypeBean> getSortList();
+	
+	
+	
+	//產品分頁功能
+	Map<Integer, ProductBean> getPageProducts(int pageNo);
+	long getRecordCounts();
+	int getRecordsPerPage();
+	int getTotalPages();
+	void setRecordsPerPage(int recordsPerPage);
+	void setSelected(String selected);
+//	void setPageNo(int pageNo);
+//	int getPageNo();
 }
