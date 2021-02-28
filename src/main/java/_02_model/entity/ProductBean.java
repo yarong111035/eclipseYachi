@@ -13,6 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "Product")
 public class ProductBean implements Serializable{
@@ -30,28 +35,38 @@ public class ProductBean implements Serializable{
 	
 	private String product_info;
 	
+	@JsonIgnore
 	private Blob product_pic;
 	
-	private Blob product_pic2;
 	
 	private Date product_expire;
 	
 	private String filename;
 	
-	private String filename2;
 	
     private String product_spec;
     
     @Transient
     private Integer product_type_id;
     
-
-    
+    @JsonIgnoreProperties("products")
 	@ManyToOne
 	@JoinColumn(name = "FK_product_type_id")
 	private ProductTypeBean productTypeBean;
 	
 	private String product_memo;
+
+	@JsonIgnore
+	@Transient
+	private MultipartFile productImage; //上傳照片用
+	
+	public MultipartFile getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(MultipartFile productImage) {
+		this.productImage = productImage;
+	}
 
 	public Integer getProduct_id() {
 		return product_id;
@@ -102,13 +117,6 @@ public class ProductBean implements Serializable{
 	}
 	
 	
-	public Blob getProduct_pic2() {
-		return product_pic2;
-	}
-
-	public void setProduct_pic2(Blob product_pic2) {
-		this.product_pic2 = product_pic2;
-	}
 
 	public Date getProduct_expire() {
 		return product_expire;
@@ -179,13 +187,6 @@ public class ProductBean implements Serializable{
 		this.product_type_id = product_type_id;
 	}
 
-	public String getFilename2() {
-		return filename2;
-	}
-
-	public void setFilename2(String filename2) {
-		this.filename2 = filename2;
-	}
 
 
 	
