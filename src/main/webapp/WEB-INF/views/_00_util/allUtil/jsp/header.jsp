@@ -131,11 +131,10 @@
 					<div class="tab-panel">
 						<a href="<c:url value='/shopping.store' />">購物商城</a><br> <a
 							href="<c:url value='update/price' />">點我更新價格(+50元)</a><br>
-						<a href="<c:url value='products/add' />">上架產品</a><br>
 					</div>
 					<div class="tab-panel">
 						 <a href="<c:url value='/administrator' />">管理員首頁</a><br>
-						 <a href="<c:url value='/products/add' />">商品維護</a><br>
+						 <a href="<c:url value='/admin_editProduct' />">商品維護</a><br>
 						 <a href="<c:url value='/admin_coupon' />">平台優惠券</a><br>
 						 <a href="<c:url value='/admin_chatroom' />">客服回應</a><br>
 						 <a href="<c:url value='/admin_announcement' />">公告</a><br>

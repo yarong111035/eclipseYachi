@@ -32,7 +32,7 @@
 			</a>
 		</div>
 		<div class="item">
-			<a href="<c:url value='/products/add' />">
+			<a href="<c:url value='/admin_editProduct' />">
 				<button>
 					<span>商品維護</span>
 				</button>

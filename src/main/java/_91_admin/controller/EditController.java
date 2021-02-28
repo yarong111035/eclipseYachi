@@ -42,10 +42,10 @@ public class EditController {
 		return "_16_admin/admin_checkShop"; 
 	}
 	
-//	新增產品頁面
-//	@RequestMapping("/admin_product")
-//	public String admin(Model model) {  
-//
-//		return "_16_admin/insertProduct"; 
-//	}
+//	產品維護頁面
+	@RequestMapping("/admin_editProduct")
+	public String admin(Model model) {  
+
+		return "_16_admin/admin_editProduct"; 
+	}
 }
