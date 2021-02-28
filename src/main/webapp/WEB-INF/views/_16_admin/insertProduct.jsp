@@ -47,40 +47,41 @@
 			<main class="col-8">
 				<div class="formBox pt-3 pb-2 px-5">
 					<div class="title">新增產品資料</div>
-
-					<form:form method='POST' modelAttribute='productBean'>
+						<!-- 須加上此屬性form-data'，表單才具有檔案上傳能力 -->
+															
+					<form:form method="POST" modelAttribute="productBean" enctype="multipart/form-data" >
 						<div class="form-group row">
-							<label for="productName" class="col-sm-2 col-form-label">商品名稱</label>
+							<label for="product_name" class="col-sm-2 col-form-label">商品名稱</label>
 							<div class="col-sm-10">
 <!-- 						path="product_name" => 呼叫ProductBean 的 getProduct_name()-->
-								<form:input type="text" path="product_name" class="form-control" id="productName"/>
+								<form:input type="text" path="product_name" class="form-control" id="product_name"/>
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="productInfo" class="col-sm-2 col-form-label">商品資訊</label>
+							<label for="product_info" class="col-sm-2 col-form-label">商品資訊</label>
 							<div class="col-sm-10">
 <!-- 							path="product_info" => 呼叫ProductBean 的 getProduct_info() -->
-								<form:input type="text" path="product_info" class="form-control" id="productInfo"/>
+								<form:input type="text" path="product_info" class="form-control" id="product_info"/>
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="productPrice" class="col-sm-2 col-form-label">商品價格</label>
+							<label for="product_price" class="col-sm-2 col-form-label">商品價格</label>
 							<div class="col-sm-10">
 								<form:input type="number" path="product_price" min="0" class="form-control"
-									id="productPrice"/>
+									id="product_price"/>
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="productStock" class="col-sm-2 col-form-label">商品庫存</label>
+							<label for="product_stock" class="col-sm-2 col-form-label">商品庫存</label>
 							<div class="col-sm-10">
 								<form:input type="number" path="product_stock" min="0" class="form-control"
-									id="productStock"/>
+									id="product_stock"/>
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="productSpec" class="col-sm-2 col-form-label">商品規格</label>
+							<label for="product_spec" class="col-sm-2 col-form-label">商品規格</label>
 							<div class="col-sm-10">
-								<form:input type="text" path="product_spec" min="0" class="form-control" id="productSpec"/>
+								<form:input type="text" path="product_spec" min="0" class="form-control" id="product_spec"/>
 							</div>
 						</div>
 
@@ -96,14 +97,13 @@
 						
 						<!-- 選擇照片 -->
 						<div class="custom-file">
-							<input type="file" class="custom-file-input" id="customFile">
-							<label class="custom-file-label" for="customFile">Choose
-								file</label>
+							<form:input type="file" path="productImage" class="custom-file-input form:input-large" id="productImage"/>
+							<label class="custom-file-label" for="productImage">choose file</label>
 						</div>
 
 						<div class="imageBox d-flex justify-content-between pt-4">
 							<div class="image">
-								<img src="${pageContext.request.contextPath}/images_2/dog1.jpg" alt="">
+								<img src="<c:url value='/getPicture/${product.product_id}'/>" alt="">
 							</div>
 							<div class="image">
 								<img src="${pageContext.request.contextPath}/images_2/product3-2.jpg" alt="">
