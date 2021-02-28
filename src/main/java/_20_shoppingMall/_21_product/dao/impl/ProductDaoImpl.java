@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import _02_model.entity.ProductBean;
 import _02_model.entity.ProductTypeBean;
 import _20_shoppingMall._21_product.dao.ProductDao;
+import _20_shoppingMall._21_product.exception.ProductNotFoundException;
 
 
 
@@ -82,6 +83,8 @@ public class ProductDaoImpl implements ProductDao {
 	public ProductBean getProductById(int productId) {
 		Session session = factory.getCurrentSession();
 		ProductBean pb = session.get(ProductBean.class, productId);
+		if(pb == null) 
+			throw new ProductNotFoundException("產品編號" + productId + " 查無此產品編號");
 		return pb;
 	}
 

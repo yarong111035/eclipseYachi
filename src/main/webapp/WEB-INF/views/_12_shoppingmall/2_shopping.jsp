@@ -127,7 +127,7 @@
                             <div class="product_items">
                                 <div class="product_image image2">
                                 
-                                    <img src="<c:url value='/getPicture2/${product.product_id}'/>">
+                                    <img src="<c:url value='/data/images/mediumPic/noImage1.PNG'/>">
                                 </div>
                                 <div class="product_image image1">
                                 								 
