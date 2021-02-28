@@ -112,10 +112,10 @@
 					
 					<div class="tab-panel">
 
-						<a href="<c:url value='/welcome' />">方家雞肉飯</a><br>
-						<a href="<c:url value='/welcome' />">測試1超好吃店家</a><br>
-						<a href="<c:url value='/welcome' />">測試2世界第一好吃</a><br>
-						<a href="<c:url value='/welcome' />">測試3</a><br>
+						<a href="<c:url value='nightMarketShop' />">方家雞肉飯</a><br>
+						<a href="<c:url value='/' />">測試1超好吃店家</a><br>
+						<a href="<c:url value='/' />">測試2世界第一好吃</a><br>
+						<a href="<c:url value='/' />">測試3</a><br>
 						
 					</div>
 					<div class="tab-panel">
