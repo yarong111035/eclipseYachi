@@ -126,7 +126,7 @@
                                 </div>
                                 <div class="tabs_content">
                                     <div class="tabs_panel product_info" style="display: block;">
-                                        測試1
+                                        ${product.product_info }
                                     </div>
 
                                     
