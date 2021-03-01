@@ -69,7 +69,7 @@ public class ProductController {
 	@RequestMapping("/update/price")
 	public String updatePrice(Model model) {
 		service.updateAllPrice();
-		return "redirect:/shopping.store";  
+		return "redirect:/DisplayPageProducts";  
 		//此處的導向是要寫控制器名稱(RequestMapping的名稱)
 		//而不是 真正的視圖名稱
 	} 
@@ -91,7 +91,7 @@ public class ProductController {
 		ProductTypeBean ps = service.getSortById(sortId);
 		model.addAttribute("products", products);
 		model.addAttribute("sort", ps); // 依據產品種類顯示title
-		return "_12_shoppingmall/2_shopping";
+		return "_12_shoppingmall/2_sortProduct";
 	}
 	
 	
