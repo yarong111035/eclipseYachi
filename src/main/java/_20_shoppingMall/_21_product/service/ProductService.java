@@ -27,7 +27,8 @@ public interface ProductService {
 	public ProductTypeBean getSortById(int sortId);
 	public List<ProductTypeBean> getSortList();
 	
-	
+	//刪除產品
+	public void deleteProduct(Integer product_id);
 	
 	//產品分頁功能
 	Map<Integer, ProductBean> getPageProducts(int pageNo);

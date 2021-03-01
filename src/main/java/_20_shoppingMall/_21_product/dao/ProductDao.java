@@ -28,6 +28,10 @@ public interface ProductDao {
 	public ProductTypeBean getSortById(int sortId); 
 	List<ProductTypeBean> getSortList();
 	
+	//刪除產品資料
+	public void deleteProduct(Integer product_id);
+	
+	
 	
 	
 	//產品分頁功能

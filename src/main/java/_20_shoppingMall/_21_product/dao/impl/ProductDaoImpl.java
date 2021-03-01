@@ -186,6 +186,16 @@ public class ProductDaoImpl implements ProductDao {
 		this.selected = selected;
 	}
 
+	@Override
+	public void deleteProduct(Integer product_id) {
+		Session session = factory.getCurrentSession();
+		ProductBean productBean = session.get(ProductBean.class, product_id);
+		if(productBean != null) {
+			productBean.setProduct_type_id(null);//要把外鍵卸掉才可以刪除此筆紀錄
+			session.delete(productBean);
+		}
+	}
+
 
 
 }

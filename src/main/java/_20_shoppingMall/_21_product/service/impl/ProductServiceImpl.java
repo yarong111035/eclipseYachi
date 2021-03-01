@@ -118,4 +118,10 @@ public class ProductServiceImpl implements ProductService {
 		dao.setSelected(selected);
 	}
 
+	@Transactional
+	@Override
+	public void deleteProduct(Integer product_id) {
+		dao.deleteProduct(product_id);
+	}
+
 }
