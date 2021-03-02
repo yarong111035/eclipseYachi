@@ -37,27 +37,30 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import _02_model.entity.ProductBean;
 import _02_model.entity.ProductTypeBean;
 import _20_shoppingMall._21_product.exception.ProductNotFoundException;
 import _20_shoppingMall._21_product.service.ProductService;
+import _20_shoppingMall._21_product.service.ProductTypeService;
 
 @Controller
-@Scope("prototype")
 public class EditController {
 	@Autowired
-	ProductService service;
+	ProductTypeService productTypeService;
+	@Autowired
+	ProductService productService;
 	@Autowired
 	ServletContext context;
 	
 //	產品維護頁面
 	@RequestMapping("/admin_editProduct")
 	public String admin(Model model) {  
-		List<ProductBean> list = service.getAllProducts();
+		List<ProductBean> list = productService.getAllProducts();
 //		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		//預設值setLenient(true)(鬆散之意，1995-19-48 27:90:100)也會過，所以要改成falses
 //		dateFormat.setLenient(false);
@@ -123,7 +126,7 @@ public class EditController {
 				throw new RuntimeException("檔案上傳時發生異常: " + e.getMessage());
 			}
 		}
-		service.addProduct(pb);  //必須先存到資料庫
+		productService.addProduct(pb);  //必須先存到資料庫
 		
 //		step3: 把檔案上傳到server端
 //		取得副檔名，因為不需要使用者上傳的檔名
@@ -164,7 +167,7 @@ public class EditController {
 		String filename = "";
 		int len = 0;
 		HttpHeaders headers = new HttpHeaders();
-		ProductBean productBean = service.getProductById(product_id); 
+		ProductBean productBean = productService.getProductById(product_id); 
 		if(productBean != null) {
 			Blob blob = productBean.getProduct_pic();
 			filename = productBean.getFilename();
@@ -216,7 +219,7 @@ public class EditController {
 	//刪除一筆紀錄
 	@DeleteMapping("/productDelete/{product_id}") 
 	public String deleteProduct(@PathVariable("product_id") Integer product_id) {
-		service.deleteProduct(product_id);
+		productService.deleteProduct(product_id);
 		return "redirect:/admin_editProduct";
 	}
 	
@@ -232,7 +235,7 @@ public class EditController {
 	@ModelAttribute("sortMap") 
 	public Map<Integer, String> getSortList() {
 		Map<Integer, String> sortMap = new HashMap<>();
-		List<ProductTypeBean> list = service.getSortList();
+		List<ProductTypeBean> list = productTypeService.getSortList();
 		for(ProductTypeBean ps : list) {  //取出每一個種類物件的(id,name) 放入map物件
 			sortMap.put(ps.getProduct_type_id(), ps.getProduct_type_name());
 		}

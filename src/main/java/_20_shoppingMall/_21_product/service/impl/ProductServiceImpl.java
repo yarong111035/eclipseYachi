@@ -19,6 +19,10 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired //透過容器自動注入，不需要自己new
 	ProductDao dao;
 	
+	public ProductServiceImpl() {
+		super();
+	}
+
 	@Transactional
 	@Override
 	public List<ProductBean> getAllProducts() {
@@ -37,11 +41,11 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 
-	@Transactional
-	@Override
-	public List<ProductTypeBean> getAllSorts() {
-		return dao.getAllSorts();
-	}
+//	@Transactional
+//	@Override
+//	public List<ProductTypeBean> getAllSorts() {
+//		return dao.getAllSorts();
+//	}
 
 	@Transactional
 	@Override
@@ -63,18 +67,18 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 	
-	//存入種類到產品
-	@Transactional
-	@Override
-	public ProductTypeBean getSortById(int sortId) {
-		return dao.getSortById(sortId);
-	}
+//	//存入種類到產品
+//	@Transactional
+//	@Override
+//	public ProductTypeBean getSortById(int sortId) {
+//		return dao.getSortById(sortId);
+//	}
 	
-	@Transactional
-	@Override
-	public List<ProductTypeBean> getSortList() {
-		return dao.getSortList();
-	}
+//	@Transactional
+//	@Override
+//	public List<ProductTypeBean> getSortList() {
+//		return dao.getSortList();
+//	}
 
 	
 	//每一分頁顯示的產品
@@ -118,10 +122,18 @@ public class ProductServiceImpl implements ProductService {
 		dao.setSelected(selected);
 	}
 
+	//刪除產品
 	@Transactional
 	@Override
 	public void deleteProduct(Integer product_id) {
 		dao.deleteProduct(product_id);
+	}
+	
+	//更新產品
+	@Transactional
+	@Override
+	public void updateProduct(ProductBean productBean) {
+		dao.updateProduct(productBean);
 	}
 
 }

@@ -43,15 +43,17 @@ import _02_model.entity.ProductBean;
 import _02_model.entity.ProductTypeBean;
 import _20_shoppingMall._21_product.exception.ProductNotFoundException;
 import _20_shoppingMall._21_product.service.ProductService;
+import _20_shoppingMall._21_product.service.ProductTypeService;
  
 
 //此controller 目的為 列出商城的產品與產品種類並可以連結至商品明細頁
 //POJO類別 不須繼承任何類別
 @Controller  //spring mvc 控制器
 public class ProductController {
-	
 	@Autowired
-	ProductService service;
+	ProductTypeService productTypeService;
+	@Autowired
+	ProductService productService;
 	@Autowired
 	ServletContext context;
 	
@@ -68,7 +70,7 @@ public class ProductController {
 	//更新產品價格
 	@RequestMapping("/update/price")
 	public String updatePrice(Model model) {
-		service.updateAllPrice();
+		productService.updateAllPrice();
 		return "redirect:/DisplayPageProducts";  
 		//此處的導向是要寫控制器名稱(RequestMapping的名稱)
 		//而不是 真正的視圖名稱
@@ -87,8 +89,8 @@ public class ProductController {
 	//依種類顯示(請求路徑會變動)
 	@RequestMapping("/sort={sortId}")
 	public String getProductsBySort(Model model, @PathVariable("sortId") int sortId) {
-		List<ProductBean> products = service.getProductBySort(sortId);
-		ProductTypeBean ps = service.getSortById(sortId);
+		List<ProductBean> products = productService.getProductBySort(sortId);
+		ProductTypeBean ps = productTypeService.getSortById(sortId);
 		model.addAttribute("products", products);
 		model.addAttribute("sort", ps); // 依據產品種類顯示title
 		return "_12_shoppingmall/2_sortProduct";
@@ -99,14 +101,14 @@ public class ProductController {
 //	查詢單筆產品資料
 	@RequestMapping("/singleProduct")
 	public String getProductById(@RequestParam("id") Integer id,Model model) {
-		model.addAttribute("product", service.getProductById(id));
+		model.addAttribute("product", productService.getProductById(id));
 		return "_12_shoppingmall/3_productDetail";
 	}
 	
 //	server一啟動就會撈出資料庫所有商品種類(目的列出商城主頁旁的分類目錄)
 	@ModelAttribute("sortList")   
 	public List<ProductTypeBean> getSorList() {
-	    return service.getSortList();
+	    return productTypeService.getSortList();
 	}
 	
 	
@@ -122,10 +124,10 @@ public class ProductController {
 		if(pageNo == null) {
 			pageNo = 1;
 		}
-		model.addAttribute("bean", service);
-		Map<Integer, ProductBean> productMap = service.getPageProducts(pageNo);
+		model.addAttribute("bean", productService);
+		Map<Integer, ProductBean> productMap = productService.getPageProducts(pageNo);
 		model.addAttribute("pageNo", String.valueOf(pageNo));
-		model.addAttribute("totalPages", service.getTotalPages());
+		model.addAttribute("totalPages", productService.getTotalPages());
 		model.addAttribute("products_DPP", productMap);
 		return "_12_shoppingmall/2_shopping";	
 	}

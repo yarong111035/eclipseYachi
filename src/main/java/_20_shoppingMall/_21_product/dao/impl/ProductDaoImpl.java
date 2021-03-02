@@ -2,6 +2,7 @@ package _20_shoppingMall._21_product.dao.impl;
 
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -19,14 +20,20 @@ import _00_util.util.GlobalService;
 import _02_model.entity.ProductBean;
 import _02_model.entity.ProductTypeBean;
 import _20_shoppingMall._21_product.dao.ProductDao;
+import _20_shoppingMall._21_product.dao.ProductTypeDao;
 import _20_shoppingMall._21_product.exception.ProductNotFoundException;
 
 
 
 @Repository
-public class ProductDaoImpl implements ProductDao {
+public class ProductDaoImpl implements Serializable,ProductDao {
+	private static final long serialVersionUID = 1L;
+
 	@Autowired  //從RootAppConfig LocalSessionFactoryBean() 注入 factory
 	SessionFactory factory;
+	
+	@Autowired
+	ProductTypeDao productTypeDao;
 	
 	private int recordsPerPage = GlobalService.RECORDS_PER_PAGE; // 預設值：每頁五筆
 	private int totalPages = -1;
@@ -70,15 +77,15 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	//得到所有產品種類id(適用於直接在table裡的資料)
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<ProductTypeBean> getAllSorts() {
-		String hql = "SELECT DISTINCT p.productTypeBean FROM ProductBean p";
-		Session session = factory.getCurrentSession();
-		List<ProductTypeBean> list = new ArrayList<>();
-		list = session.createQuery(hql).getResultList();
-		return list;
-	}
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public List<ProductTypeBean> getAllSorts() {
+//		String hql = "SELECT DISTINCT p.productTypeBean FROM ProductBean p";
+//		Session session = factory.getCurrentSession();
+//		List<ProductTypeBean> list = new ArrayList<>();
+//		list = session.createQuery(hql).getResultList();
+//		return list;
+//	}
 
 
 	//依據種類找到多筆產品
@@ -111,30 +118,30 @@ public class ProductDaoImpl implements ProductDao {
 		Session session = factory.getCurrentSession();
 		//透過id找到對應的種類，因目前的sort是null(Debug模式可看出)
 		//fk 不可以null 否則找不到對方(此處必須注意，否則會造成種類table的種類id=null)???
-		ProductTypeBean ps = getSortById(product.getProduct_type_id());
+		ProductTypeBean ps = productTypeDao.getSortById(product.getProduct_type_id());
 //		Product_sort ps = getSortById((product.getSortId())); 
 		product.setProductTypeBean(ps);; 
 		session.save(product);
 	}
 
 //	依據sortId取得種類紀錄
-	@Override
-	public ProductTypeBean getSortById(int sortId) {
-		ProductTypeBean ps = null;
-		Session session = factory.getCurrentSession();
-		ps = session.get(ProductTypeBean.class, sortId);
-		return ps;
-	}
+//	@Override
+//	public ProductTypeBean getSortById(int sortId) {
+//		ProductTypeBean ps = null;
+//		Session session = factory.getCurrentSession();
+//		ps = session.get(ProductTypeBean.class, sortId);
+//		return ps;
+//	}
 
 // 取得所有種類
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<ProductTypeBean> getSortList() {
-		String hql = "From ProductTypeBean";
-		Session session = factory.getCurrentSession();
-		List<ProductTypeBean> list = session.createQuery(hql).getResultList();
-		return list;
-	}
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public List<ProductTypeBean> getSortList() {
+//		String hql = "From ProductTypeBean";
+//		Session session = factory.getCurrentSession();
+//		List<ProductTypeBean> list = session.createQuery(hql).getResultList();
+//		return list;
+//	}
 
 //	取得資料庫裡產品表格裡的產品數量
 	@Override
@@ -193,6 +200,19 @@ public class ProductDaoImpl implements ProductDao {
 		if(productBean != null) {
 			productBean.setProduct_type_id(null);//要把外鍵卸掉才可以刪除此筆紀錄
 			session.delete(productBean);
+		}
+	}
+
+	@Override
+	public void updateProduct(ProductBean productBean) {
+		if(productBean != null && productBean.getProduct_id() != null) {
+			Session session = factory.getCurrentSession();
+			//fk 不可以null 否則找不到對方(此處必須注意，否則會造成種類table的種類id=null)???
+//			ProductTypeBean ps = productBean.getProductTypeBean();
+//			productBean.setProductTypeBean(ps);
+			ProductTypeBean ps = productBean.getProductTypeBean();
+			productBean.setProduct_type_id(ps.getProduct_type_id());
+			session.saveOrUpdate(productBean);
 		}
 	}
 

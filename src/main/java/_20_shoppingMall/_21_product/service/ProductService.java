@@ -16,7 +16,7 @@ public interface ProductService {
 	void updateAllPrice();
 	
 	//依據種類找產品(lab5)
-	public List<ProductTypeBean> getAllSorts();
+//	public List<ProductTypeBean> getAllSorts();
 	public List<ProductBean> getProductBySort(int sortId);
 	
 	//查詢單筆產品資料(lab6)
@@ -24,11 +24,14 @@ public interface ProductService {
 	
 	//新增產品(lab8)
 	public void addProduct(ProductBean product);
-	public ProductTypeBean getSortById(int sortId);
-	public List<ProductTypeBean> getSortList();
+//	public ProductTypeBean getSortById(int sortId);
+//	public List<ProductTypeBean> getSortList();
 	
 	//刪除產品
 	public void deleteProduct(Integer product_id);
+	
+	//更新產品
+	public void updateProduct(ProductBean productBean);
 	
 	//產品分頁功能
 	Map<Integer, ProductBean> getPageProducts(int pageNo);

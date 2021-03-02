@@ -1,0 +1,16 @@
+package _20_shoppingMall._21_product.dao;
+
+import java.util.List;
+
+import _02_model.entity.ProductTypeBean;
+
+public interface ProductTypeDao {
+
+	//得所有種類(從產品table撈種類)
+	List<ProductTypeBean> getAllSorts();
+	
+	//依種類id找種類
+	public ProductTypeBean getSortById(int sortId); 
+	
+	List<ProductTypeBean> getSortList();
+}
