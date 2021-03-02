@@ -91,7 +91,7 @@
 						<div class="form-group row">
 							<label for="productTypeBean.product_type_id" class="col-sm-2 col-form-label">商品種類</label>
 							<div class="mb-3 col-10">
-								<form:select path="product_type_id" class="custom-select">
+								<form:select path="productTypeBean.product_type_id" class="custom-select">
 									<form:option value="-1" label="請選擇"/>
 									<form:options items="${sortMap}" />
 								</form:select>

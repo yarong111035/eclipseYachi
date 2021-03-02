@@ -343,7 +343,7 @@ public class EditController {
 			"product_stock",
 			"product_info"	,
 			"product_spec",
-			"product_type_id",
+			"productTypeBean.product_type_id",
 			"productImage"
 		);
 	}
