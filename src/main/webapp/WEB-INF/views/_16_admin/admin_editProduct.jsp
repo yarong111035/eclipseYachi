@@ -106,7 +106,7 @@
 			                                            <img src="<c:url value='/getPicture/${product.product_id}'/>">
 			                                        </div>
 			                                        <div class="td name">
-			                                            <a href="#">${product.product_name}</a>
+			                                            <a href="<c:url value='/productUpdate/${product.product_id}'/>">${product.product_name}</a>
 			                                            <div>
 			                                                <span>${product.product_spec}</span>
 			                                            </div>
@@ -121,7 +121,7 @@
 			                                            <span>${product.product_id }</span>
 			                                        </div>
 			                                        <div class="td edit">
-			                                            <a href="#"><i class="fas fa-pen"></i></a>
+			                                            <a href="<c:url value='/productUpdate/${product.product_id}'/>"><i class="fas fa-pen"></i></a>
 			                                        </div>
 			                                        <div class="td delete">
 			                                        

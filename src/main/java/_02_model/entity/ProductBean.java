@@ -187,8 +187,17 @@ public class ProductBean implements Serializable{
 		this.product_type_id = product_type_id;
 	}
 
+	@Override
+	public String toString() {
+		return "ProductBean [product_id=" + product_id + ", product_name=" + product_name + ", product_price="
+				+ product_price + ", product_stock=" + product_stock + ", product_info=" + product_info
+				+ ", product_pic=" + product_pic + ", product_expire=" + product_expire + ", filename=" + filename
+				+ ", product_spec=" + product_spec + ", product_type_id=" + product_type_id + ", productTypeBean="
+				+ productTypeBean + ", product_memo=" + product_memo + ", productImage=" + productImage + "]";
+	}
 
-
+	
+	
 	
 	
 }

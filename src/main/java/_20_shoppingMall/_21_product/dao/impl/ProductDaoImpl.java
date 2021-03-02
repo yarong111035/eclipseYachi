@@ -208,10 +208,11 @@ public class ProductDaoImpl implements Serializable,ProductDao {
 		if(productBean != null && productBean.getProduct_id() != null) {
 			Session session = factory.getCurrentSession();
 			//fk 不可以null 否則找不到對方(此處必須注意，否則會造成種類table的種類id=null)???
-//			ProductTypeBean ps = productBean.getProductTypeBean();
 //			productBean.setProductTypeBean(ps);
-			ProductTypeBean ps = productBean.getProductTypeBean();
-			productBean.setProduct_type_id(ps.getProduct_type_id());
+//			ProductTypeBean ps = productBean.getProductTypeBean();
+			productBean.setProductTypeBean(session.get(ProductTypeBean.class, productBean.getProduct_type_id()));
+//			productBean.setProductTypeBean(ps);
+//			System.out.println("=========" + productBean.getProduct_type_id());
 			session.saveOrUpdate(productBean);
 		}
 	}

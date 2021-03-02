@@ -77,6 +77,11 @@
     display: block;
     margin-bottom: 10px;
     color: #555;
+    font-weight:600;
+    transition:.2s;
+  }
+  .tbody .name a:hover{
+  font-size:1.1rem;
   }
   .tbody .count select{
     padding-right: 20px;
@@ -85,8 +90,14 @@
   }
   .tbody .edit i, .tbody .delete i{
     color: #555;
+    transition:.2s;
   }
-
+	.tbody .edit i:hover{
+	color:black;
+ }
+ 	.tbody .delete i:hover{
+ 	color:black;
+ }
 
 
 

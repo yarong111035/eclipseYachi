@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.http.HttpRequest;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -95,7 +96,7 @@ public class EditController {
 	 */
 	
 	
-//	新增表單成功
+//	按表單提交鈕送出會來這支控制器處理
 	@PostMapping("/products/add")  // 路徑與上一支方法一樣，但是此處請求方法是Post 所以會來找這一支控制器
 	public String processAddNewProductForm(@ModelAttribute("productBean") ProductBean pb, BindingResult result) {
 //		新增產品需傳入ProductBean參數(從上model取出)
@@ -108,6 +109,16 @@ public class EditController {
 		if(pb.getProduct_stock() == null) {
 			pb.setProduct_stock(0);
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 //		圖片上傳
 //		step1: 從前端取得使用者上傳圖片的路徑
@@ -224,12 +235,92 @@ public class EditController {
 	}
 	
 	
+	// 當使用者需要修改時，本方法送回含有會員資料的表單，讓使用者進行修改(GET)
+	// 由這個方法送回修改記錄的表單
+	@GetMapping(value = "/productUpdate/{product_id}")
+	public String showDataForm(@PathVariable("product_id") Integer product_id, Model model) {
+		ProductBean productBean = productService.getProductById(product_id);
+		model.addAttribute(productBean); //預設識別字串==>"productBean"
+		return"_16_admin/updateProduct";
+	}
+	
+	// 當將瀏覽器送來修改過的會員資料時，由本方法負責檢核，若無誤則寫入資料庫
+	@PostMapping(value = "/productUpdate/{product_id}")
+	public String updateProduct(
+			@ModelAttribute("productBean") ProductBean productBean,
+			Model model,
+			@PathVariable("product_id") Integer product_id,
+			RedirectAttributes redirectAttributes,
+			HttpServletRequest request
+			) {
+		long sizeInBytes = -1;
+		System.out.println("===============================111==============================");
+		
+		
+		//找到對應的種類
+		ProductTypeBean ps = productBean.getProductTypeBean();
+//		productBean.setProduct_type_id(ps.getProduct_type_id());
+		ProductTypeBean productTypeBean = productTypeService.getSortById(productBean.getProductTypeBean().getProduct_type_id());
+//		productBean.setProductTypeBean(productTypeBean);
+		System.out.println("=============" + productBean.toString() + "========================");
+		
+		//照片
+		MultipartFile picture = productBean.getProductImage();
+		//表示使用者未挑選圖片
+		if(picture.getSize() == 0) {
+			sizeInBytes = -1;
+		}else {
+			sizeInBytes = picture.getSize();
+			String originalFilename = picture.getOriginalFilename();
+			if(originalFilename.length() > 0 && originalFilename.lastIndexOf(".") > -1) {
+				productBean.setFilename(originalFilename);
+			}
+			// 建立Blob物件
+			if (picture != null && !picture.isEmpty()) {
+				try {
+					byte[] b = picture.getBytes();
+					Blob blob = new SerialBlob(b);
+					productBean.setProduct_pic(blob);
+				} catch (Exception e) {
+					e.printStackTrace();
+					throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+				}
+			}
+		}
+		productService.updateProduct(productBean);
+		System.out.println("===============================222============================");
+		return "redirect:/admin_editProduct";
+	}
+	
 	
 	
 	/**
 	 * 會先執行加@ModelAttribute註釋的控制器方法
 	 * 並將結果添加到model中
 	 */
+	
+	
+	@ModelAttribute("productBean")
+	public ProductBean getProductBean(
+			@PathVariable(value="product_id", required = false) Integer product_id
+			) {
+		
+		ProductBean productBean = null;
+		if (product_id == null) {
+			productBean = new ProductBean();
+			productBean.setProduct_stock(-99);
+			System.out.println("==========================bean是null=======================");
+			//...
+			//...
+		} else {
+			System.out.println("product_id=" + product_id);
+			productBean = productService.getProductById(product_id);
+		}
+		return productBean;
+	}
+	
+	
+	
 	
 //	得到種類id與對應的name
 	@ModelAttribute("sortMap") 
@@ -270,14 +361,14 @@ public class EditController {
 	
 	
 // 未處理的例外都由此方法handle
-	@ExceptionHandler({Throwable.class})
-	public String handleError2
-	(Model model, HttpServletRequest request, Throwable exception ) {
-		model.addAttribute("exception",  exception);
-		model.addAttribute("message", exception.getMessage() + "(處理大多數例外)");
-		model.addAttribute("url", request.getRequestURL() + "?" + request.getQueryString());
-		return "_00_util/allUtil/jsp/DisplaySystemException";
-	}
+//	@ExceptionHandler({Throwable.class})
+//	public String handleError2
+//	(Model model, HttpServletRequest request, Throwable exception ) {
+//		model.addAttribute("exception",  exception);
+//		model.addAttribute("message", exception.getMessage() + "(處理大多數例外)");
+//		model.addAttribute("url", request.getRequestURL() + "?" + request.getQueryString());
+//		return "_00_util/allUtil/jsp/DisplaySystemException";
+//	}
 	
 	
 	
