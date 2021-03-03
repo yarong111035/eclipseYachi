@@ -150,9 +150,10 @@ public class LoginAndRegisterController {
 		}
 	    
 		// 登入成功
-//	    model.addAttribute("member",member);
+	    
 		session.setAttribute("member", member);	
 		
+		// 需要再次請求首頁資源
 		return "redirect:/index";
 
 	}
