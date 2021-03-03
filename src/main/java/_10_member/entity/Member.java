@@ -20,6 +20,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import _02_model.entity.ShopBean;
 import lombok.Getter;
@@ -38,37 +46,51 @@ public class Member implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer memberId;
 	
+	@NotBlank(message = "帳號不能為空")
 	private String username;
 	
-
+	// 不允許特殊符號、數字、英文字母以外的字元輸入
+	// 密碼長度4到10個字元
+	// 至少要有一個特殊符號
+	// 至少要有一個大寫或小寫的英文字母
+	// 至少要有一個0-9的數字
+	@Pattern(regexp = "^(?!.*[^\\x21-\\x7e])(?=.{4,10})(?=.*[\\W])(?=.*[a-zA-Z])(?=.*\\d).*$" 
+	,message = "大小寫英文加數字長度最低為4且要有特殊符號")
 	private String password;
 	
+	@NotBlank(message = "你沒有名子?")
 	private String fullname;
 	
-	@Column(length = 1)
 	private String sex;
 	
 	@Temporal(TemporalType.DATE)
-
+	@Past(message = "你來自未來?") @NotNull 
 	private Date birthday;
 	
+	@NotNull
+	@Pattern(regexp = "^09(?=\\d{8}).{8}$",message = "必須是09XX-XXX-XXX")
 	private String phone;
 	
-
+	@Email
+	@Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$",
+	message = "請輸入正確格式的信箱")
 	private String email;
 	
 	private String address;
-	private String memberType; 
 	
 	@Temporal(TemporalType.TIMESTAMP) 
 	private Date registerTime;
 	
+	@Column(columnDefinition = "mediumblob")
 	private Blob image;
-	private Clob memo;
+	private String fileName;
+	@Transient
+	MultipartFile memberMultipartFile;
 	
-	@OneToOne
-	@JoinColumn(name = "FK_shop_id")
-	private ShopBean shopBean;
+	 @OneToOne
+		@JoinColumn(name = "FK_shop_id")
+		private ShopBean shopBean;
+
 	
 	// ‎Member 表存儲認證，Role 儲存權限（許可權）。 
 	// 使用者和角色之間是多對多關係，因為使用者可以有一個或多個角色，角色也可以分配給一個或多個使用者。 
@@ -160,13 +182,6 @@ public class Member implements Serializable{
 		this.address = address;
 	}
 
-	public String getMemberType() {
-		return memberType;
-	}
-
-	public void setMemberType(String memberType) {
-		this.memberType = memberType;
-	}
 
 	public Date getRegisterTime() {
 		return registerTime;
@@ -184,13 +199,6 @@ public class Member implements Serializable{
 		this.image = image;
 	}
 
-	public Clob getMemo() {
-		return memo;
-	}
-
-	public void setMemo(Clob memo) {
-		this.memo = memo;
-	}
 
 	public ShopBean getShopBean() {
 		return shopBean;
