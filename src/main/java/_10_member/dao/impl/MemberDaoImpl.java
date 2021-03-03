@@ -5,6 +5,8 @@ package _10_member.dao.impl;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +29,13 @@ public class MemberDaoImpl implements MemberDao{
 		Member mBean = null;
 		Session session = factory.getCurrentSession();
 		String hql  = "FROM Member m WHERE m.username = :username";
-
-		mBean = (Member)session.createQuery(hql)
-				.setParameter("username", username)
-				.getSingleResult();
+		try {
+			mBean = (Member)session.createQuery(hql)
+					.setParameter("username", username)
+					.getSingleResult();		
+		} catch (NoResultException e) {
+			return mBean;
+		}
 		
 		return mBean;
 	}
@@ -41,18 +46,23 @@ public class MemberDaoImpl implements MemberDao{
 		Session session = factory.getCurrentSession();
 		String hql  = "FROM Member m WHERE m.memberId = :memberId";
 
-		mBean = (Member)session.createQuery(hql)
-				.setParameter("memberId", memberId)
-				.getSingleResult();
+		try {
+			mBean = (Member)session.createQuery(hql)
+					.setParameter("memberId", memberId)
+					.getSingleResult();
+			
+		} catch (NoResultException e) {
+			return mBean;
+		}
 		
 		return mBean;
 	}
 
 	@Override
-	public Member insertMember(Member member) {
+	public Object insertMember(Member member) {
 		Session session = factory.getCurrentSession();
 		
-		return (Member) session.save(member);
+		return session.save(member);
 	}
 	
 }

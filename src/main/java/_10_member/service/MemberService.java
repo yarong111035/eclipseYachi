@@ -8,5 +8,5 @@ public interface MemberService {
 	
 	public Member findByMemberId(Integer memberId);
 	
-	public Member insertMember(Member member);
+	public Object insertMember(Member member);
 }

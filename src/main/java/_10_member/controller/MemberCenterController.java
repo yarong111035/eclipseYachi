@@ -15,12 +15,12 @@ import _10_member.service.MemberService;
 
 
 @Controller
+@RequestMapping("/member")
 public class MemberCenterController {
 	
 	@Autowired
 	MemberService memberService;
 		
-	
 	// 會員修改資料
 	@GetMapping("/update/{memberId}")
 	public String update(@PathVariable Integer memberId,Model model) {

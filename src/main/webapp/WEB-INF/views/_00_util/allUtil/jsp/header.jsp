@@ -69,13 +69,13 @@
 
 				</div>
 
-				<<div class="member">
-					<c:if test="${!empty LoginOK}">
+				<div class="member">
+					<c:if test="${!empty member}">
 					<a href="#"><font>你好 ! </font></a>
-				    <a href="#"><font>${LoginOK}</font></a>
+				    <a href="#"><font>${member.fullname}</font></a>
 				</c:if>
 				
-			    <c:if test="${empty LoginOK}">
+			    <c:if test="${empty member}">
 			    	<a href="<c:url value='/LoginAndRegister'/>"><font>免費註冊</font></a>
 			    	<a href="<c:url value='/LoginAndRegister'/>"><font>登入</font></a>
 			    </c:if>
@@ -141,6 +141,14 @@
 						 <a href="<c:url value='/admin_adinfo' />">廣告資訊</a><br>
 						 <a href="<c:url value='/admin_activity' />">平台優惠活動</a><br>
 						 <a href="<c:url value='/admin_checkShop' />">審核商家</a><br>
+						 
+						 <c:if test="${!empty member}">
+						 	<a href="<c:url value='/member/update/${member.memberId}'/>">修改會員資料</a>
+                         </c:if>
+                         <c:if test="${!empty member}">
+							<a href="<c:url value='/doLogout'/>"><font>登 出</font></a>
+						 </c:if>
+						 
 					</div>
 				</div>
 
