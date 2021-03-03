@@ -105,20 +105,20 @@
 							<form:input type="file" path="productImage" class="custom-file-input form:input-large" id="productImage"/>
 							<label class="custom-file-label" for="productImage">choose file</label>
 						</div>
+						<!-- 選擇照片 -->
 
 						<div class="imageBox d-flex justify-content-between pt-4">
 							<div class="image">
-								<img src="<c:url value='/getPicture/${product.product_id}'/>" alt="">
-							</div>
-							<div class="image">
+								<img id="image1" src=""/>
+							 </div>
+							<!--<div class="image">
 								<img src="${pageContext.request.contextPath}/images_2/product3-2.jpg" alt="">
 							</div>
 							<div class="image">
 								<img src="${pageContext.request.contextPath}/images/Shinnosuke/Shinnosuke2.jpg" alt="">
-							</div>
+							</div> -->
+						
 						</div>
-						<!-- 選擇照片 -->
-
 
 						<div class="form-group row  d-flex justify-content-end mt-5">
 							<div>
@@ -138,6 +138,24 @@
 		</div>
 		
 	</div>
+	<script>
+		//STEP1 : 先跟畫面的input標籤產生關聯
+		const inputFile = document.getElementById('productImage');
 
+		//STEP2 : 取得單一個檔案
+		// inputFile.files; // File List
+		const oneFile = inputFile.files.item(0); // File of File List
+
+		//STEP3 : 準備放圖片的容器
+		const img = document.querySelector("#image1");
+
+		//STEP4 : 產生BLOB的URL
+		blob_url = URL.createObjectURL(oneFile);  //取出Blob url
+
+		//STEP5 : 把Bolb url 的路徑放入 img 的 src 屬性內
+		img.src = blob_url; 
+
+
+	</script>
 </body>
 </html>
