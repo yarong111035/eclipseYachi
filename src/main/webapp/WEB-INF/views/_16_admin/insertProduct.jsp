@@ -49,12 +49,13 @@
 					<div class="title">新增產品資料</div>
 						<!-- 須加上此屬性form-data'，表單才具有檔案上傳能力 -->
 															
-					<form:form method="POST" modelAttribute="productBean" enctype="multipart/form-data" >
+					<form:form method="POST" modelAttribute="productBean" enctype="multipart/form-data" name="myForm">
 						<div class="form-group row">
 							<label for="product_name" class="col-sm-2 col-form-label">商品名稱</label>
 							<div class="col-sm-10">
 <!-- 						path="product_name" => 呼叫ProductBean 的 getProduct_name()-->
 								<form:input type="text" path="product_name" class="form-control" id="product_name"/>
+								<form:errors path="product_name" cssClass="error"/>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -62,6 +63,7 @@
 							<div class="col-sm-10">
 <!-- 							path="product_info" => 呼叫ProductBean 的 getProduct_info() -->
 								<form:input type="text" path="product_info" class="form-control" id="product_info"/>
+								<form:errors path="product_info" cssClass="error"/>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -69,6 +71,7 @@
 							<div class="col-sm-10">
 								<form:input type="number" path="product_price" min="0" class="form-control"
 									id="product_price"/>
+								<form:errors path="product_price" cssClass="error"/>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -76,6 +79,7 @@
 							<div class="col-sm-10">
 								<form:input type="number" path="product_stock" min="0" class="form-control"
 									id="product_stock"/>
+								<form:errors path="product_stock" cssClass="error"/>		
 							</div>
 						</div>
 						<div class="form-group row">
@@ -86,12 +90,13 @@
 						</div>
 
 						<div class="form-group row">
-							<label for="product_type_id" class="col-sm-2 col-form-label">商品種類</label>
+							<label for="productTypeBean.product_type_id" class="col-sm-2 col-form-label">商品種類</label>
 							<div class="mb-3 col-10">
-								<form:select path="product_type_id" class="custom-select">
+								<form:select path="productTypeBean.product_type_id" class="custom-select">
 									<form:option value="-1" label="請選擇"/>
 									<form:options items="${sortMap}"/>
 								</form:select>
+								<form:errors path="productTypeBean" cssClass="error"/>
 							</div>
 						</div>
 						

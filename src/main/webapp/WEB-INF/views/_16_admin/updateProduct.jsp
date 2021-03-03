@@ -57,6 +57,7 @@
 								<div class="col-sm-10">
 	<!-- 						path="product_name" => 呼叫ProductBean 的 getProduct_name()-->
 									<form:input path="product_name" class="form-control" id="product_name"/>
+									<form:errors path="product_name" cssClass="error"/>
 								</div>
 <%-- 							</c:if> --%>
 						</div>
@@ -65,6 +66,7 @@
 							<div class="col-sm-10">
 <!-- 							path="product_info" => 呼叫ProductBean 的 getProduct_info() -->
 								<form:input type="text" path="product_info" class="form-control" id="product_info"/>
+								<form:errors path="product_info" cssClass="error"/>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -72,6 +74,7 @@
 							<div class="col-sm-10">
 								<form:input type="number" path="product_price" min="0" class="form-control"
 									id="product_price"/>
+								<form:errors path="product_price" cssClass="error"/>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -79,6 +82,7 @@
 							<div class="col-sm-10">
 								<form:input type="number" path="product_stock" min="0" class="form-control"
 									id="product_stock"/>
+								<form:errors path="product_stock" cssClass="error"/>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -95,6 +99,7 @@
 									<form:option value="-1" label="請選擇"/>
 									<form:options items="${sortMap}" />
 								</form:select>
+								<form:errors path="productTypeBean" cssClass="error"/>
 							</div>
 						</div>
 						

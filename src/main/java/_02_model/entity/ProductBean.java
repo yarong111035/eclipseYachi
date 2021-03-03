@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Min;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,6 +30,7 @@ public class ProductBean implements Serializable{
 	
 	private String product_name;
 	
+	@Min(value=0, message="數值必須大於0")
 	private Double product_price;
 	
 	private Integer product_stock;

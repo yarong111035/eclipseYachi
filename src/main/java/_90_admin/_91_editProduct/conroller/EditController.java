@@ -18,6 +18,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.serial.SerialBlob;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -30,6 +31,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -48,6 +50,7 @@ import _02_model.entity.ProductTypeBean;
 import _20_shoppingMall._21_product.exception.ProductNotFoundException;
 import _20_shoppingMall._21_product.service.ProductService;
 import _20_shoppingMall._21_product.service.ProductTypeService;
+import _90_admin._91_editProduct.validator.ProductValidator;
 
 @Controller
 public class EditController {
@@ -98,33 +101,38 @@ public class EditController {
 	
 //	按表單提交鈕送出會來這支控制器處理
 	@PostMapping("/products/add")  // 路徑與上一支方法一樣，但是此處請求方法是Post 所以會來找這一支控制器
-	public String processAddNewProductForm(@ModelAttribute("productBean") ProductBean pb, BindingResult result) {
+	public String processAddNewProductForm(
+			Model model,
+			@Valid @ModelAttribute("productBean") ProductBean productBean,
+			BindingResult result,
+			RedirectAttributes redirectAttributes) {
 //		新增產品需傳入ProductBean參數(從上model取出)
 //		@ModelAttribute用在方法參數內：可直接從參數取值(又稱數據綁定)
-//		資料檢查條件寫在這...
+
+//		資料檢查條件(使用validator)
+		ProductValidator validator = new ProductValidator();
+		validator.validate(productBean, result);		
+		if(result.hasErrors()) {
+			List<ObjectError> list =  result.getAllErrors();//把所有錯誤裝在list裡面
+			for(ObjectError error : list) {
+				System.out.println("====>有錯誤:" + error);
+			}
+			return "_16_admin/insertProduct";
+		}
 		String[] suppressedFields = result.getSuppressedFields();
 		if(suppressedFields.length > 0) {
 			throw new RuntimeException("嘗試傳入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
-		if(pb.getProduct_stock() == null) {
-			pb.setProduct_stock(0);
+		if(productBean.getProduct_stock() == null) {
+			productBean.setProduct_stock(0);
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 //		圖片上傳
 //		step1: 從前端取得使用者上傳圖片的路徑
-		MultipartFile productImage = pb.getProductImage();
+		MultipartFile productImage = productBean.getProductImage();
 		String originalFilename = productImage.getOriginalFilename();
-		pb.setFilename(originalFilename);
+		productBean.setFilename(originalFilename);
 		
 //		step2: 建立Blob物件，交由 Hibernate寫入資料庫
 		if(productImage != null && !productImage.isEmpty()) {
@@ -132,29 +140,32 @@ public class EditController {
 //				需要先得到byte[]，才能透過SerialBlob(byte[] b) 得到Blob的物件
 				byte[] b = productImage.getBytes();
 				Blob blob = new SerialBlob(b);
-				pb.setProduct_pic(blob);
+				productBean.setProduct_pic(blob);
 			}catch (Exception e) {
-				throw new RuntimeException("檔案上傳時發生異常: " + e.getMessage());
+				throw new RuntimeException("照片上傳時發生異常: " + e.getMessage());
 			}
 		}
-		productService.addProduct(pb);  //必須先存到資料庫
+		productService.addProduct(productBean);  //必須先存到資料庫
 		
 //		step3: 把檔案上傳到server端
 //		取得副檔名，因為不需要使用者上傳的檔名
-		String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+//		判斷使用者是否有上傳照片，若有照片才執行以下
+		if(originalFilename != "") {
+			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+			
 //		存在應用系統的更目錄"/"(C:/_JSP/tomcat9/webapps/mvcExercise)
-		String rootDirectory = context.getRealPath("/");
-		try {
-			File imageFolder = new File(rootDirectory,"userUploads"); //存在應用系統更目錄下的userUploads資料夾
-			if(!imageFolder.exists())
-				imageFolder.mkdirs();
-			File file = new File(imageFolder, "Product_" + pb.getProduct_id() + ext); //將檔案變成 File物件，
-			productImage.transferTo(file);// 把照片轉到指定位置(需要傳入File物件)
-		}catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException("檔案上傳時發生異常: " + e.getMessage());
+			String rootDirectory = context.getRealPath("/");
+			try {
+				File imageFolder = new File(rootDirectory,"userUploads"); //存在應用系統更目錄下的userUploads資料夾
+				if(!imageFolder.exists())
+					imageFolder.mkdirs();
+				File file = new File(imageFolder, "Product_" + productBean.getProduct_id() + ext); //將檔案變成 File物件，
+				productImage.transferTo(file);// 把照片轉到指定位置(需要傳入File物件)
+			}catch (Exception e) {
+				e.printStackTrace();
+				throw new RuntimeException("檔案上傳時發生異常: " + e.getMessage());
+			}
 		}
-		
 		return "redirect:/admin_editProduct";
 	}
 	
@@ -250,17 +261,29 @@ public class EditController {
 			@ModelAttribute("productBean") ProductBean productBean,
 			Model model,
 			@PathVariable("product_id") Integer product_id,
-			RedirectAttributes redirectAttributes,
-			HttpServletRequest request
+			BindingResult result,
+			RedirectAttributes redirectAttributes
+//			HttpServletRequest request
 			) {
+		
+//		資料檢查條件(使用validator)
+		ProductValidator validator = new ProductValidator();
+		validator.validate(productBean, result);
+		if(result.hasErrors()) {
+			List<ObjectError> list =  result.getAllErrors(); //把所有錯誤裝在list裡面
+			for(ObjectError error : list) {
+				System.out.println("====>有錯誤:" + error);
+			}
+			return "_16_admin/updateProduct";
+		}
+		
 		long sizeInBytes = -1;
 		System.out.println("===============================111==============================");
-		
 		
 		//找到對應的種類
 		ProductTypeBean ps = productBean.getProductTypeBean();
 //		productBean.setProduct_type_id(ps.getProduct_type_id());
-		ProductTypeBean productTypeBean = productTypeService.getSortById(productBean.getProductTypeBean().getProduct_type_id());
+		ProductTypeBean productTypeBean = productTypeService.getTypeById(productBean.getProductTypeBean().getProduct_type_id());
 //		productBean.setProductTypeBean(productTypeBean);
 		System.out.println("=============" + productBean.toString() + "========================");
 		
@@ -422,6 +445,7 @@ public class EditController {
 
 		return "_16_admin/admin_activity"; 
 	}
+	
 	@RequestMapping("/admin_checkShop")
 	public String admin_checkoutShop(Model model) {  
 
