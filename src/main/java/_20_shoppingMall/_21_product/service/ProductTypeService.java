@@ -10,7 +10,7 @@ public interface ProductTypeService {
 	public List<ProductTypeBean> getAllSorts();
 	
 	//依種類id找種類
-	public ProductTypeBean getSortById(int sortId);
+	public ProductTypeBean getTypeById(int typeId); 
 	
 	public List<ProductTypeBean> getSortList();
 }

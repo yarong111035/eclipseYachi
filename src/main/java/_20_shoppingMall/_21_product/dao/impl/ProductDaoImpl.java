@@ -118,20 +118,13 @@ public class ProductDaoImpl implements Serializable,ProductDao {
 		Session session = factory.getCurrentSession();
 		//透過id找到對應的種類，因目前的sort是null(Debug模式可看出)
 		//fk 不可以null 否則找不到對方(此處必須注意，否則會造成種類table的種類id=null)???
-		ProductTypeBean ps = productTypeDao.getSortById(product.getProductTypeBean().getProduct_type_id());
 //		Product_sort ps = getSortById((product.getSortId())); 
-		product.setProductTypeBean(ps);; 
+//		ProductTypeBean ps = productTypeDao.getSortById(product.getProduct_type_id());
+//		product.setProductTypeBean(ps);
+//		product.setProduct_type_id(ps.getProduct_type_id());
 		session.save(product);
 	}
 
-//	依據sortId取得種類紀錄
-//	@Override
-//	public ProductTypeBean getSortById(int sortId) {
-//		ProductTypeBean ps = null;
-//		Session session = factory.getCurrentSession();
-//		ps = session.get(ProductTypeBean.class, sortId);
-//		return ps;
-//	}
 
 // 取得所有種類
 //	@SuppressWarnings("unchecked")
@@ -210,9 +203,9 @@ public class ProductDaoImpl implements Serializable,ProductDao {
 			//fk 不可以null 否則找不到對方(此處必須注意，否則會造成種類table的種類id=null)???
 //			productBean.setProductTypeBean(ps);
 //			ProductTypeBean ps = productBean.getProductTypeBean();
-			ProductTypeBean ps = productTypeDao.getSortById(productBean.getProductTypeBean().getProduct_type_id());
 //			productBean.setProductTypeBean(session.get(ProductTypeBean.class, productBean.getProductTypeBean().getProduct_type_id()));
-			productBean.setProductTypeBean(ps);
+//			ProductTypeBean ps = productTypeDao.getSortById(productBean.getProductTypeBean().getProduct_type_id());
+//			productBean.setProductTypeBean(ps);
 //			System.out.println("=========" + productBean.getProduct_type_id());
 			session.saveOrUpdate(productBean);
 		}

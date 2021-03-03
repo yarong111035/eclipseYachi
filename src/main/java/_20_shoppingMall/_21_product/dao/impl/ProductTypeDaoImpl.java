@@ -30,13 +30,13 @@ public class ProductTypeDaoImpl implements Serializable,ProductTypeDao {
 		return list;
 	}
 
-//	依據sortId取得種類紀錄
+//	依據typeId取得種類紀錄
 	@Override
-	public ProductTypeBean getSortById(int sortId) {
-		ProductTypeBean ps = null;
+	public ProductTypeBean getTypeById(int typeId) {
+		ProductTypeBean productTypeBean = null;
 		Session session = factory.getCurrentSession();
-		ps = session.get(ProductTypeBean.class, sortId);
-		return ps;
+		productTypeBean = session.get(ProductTypeBean.class, typeId);
+		return productTypeBean;
 	}
 
 	// 取得所有種類

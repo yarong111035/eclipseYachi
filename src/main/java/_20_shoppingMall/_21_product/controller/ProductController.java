@@ -90,7 +90,7 @@ public class ProductController {
 	@RequestMapping("/sort={sortId}")
 	public String getProductsBySort(Model model, @PathVariable("sortId") int sortId) {
 		List<ProductBean> products = productService.getProductBySort(sortId);
-		ProductTypeBean ps = productTypeService.getSortById(sortId);
+		ProductTypeBean ps = productTypeService.getTypeById(sortId);
 		model.addAttribute("products", products);
 		model.addAttribute("sort", ps); // 依據產品種類顯示title
 		return "_12_shoppingmall/2_sortProduct";

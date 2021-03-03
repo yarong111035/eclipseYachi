@@ -24,16 +24,18 @@ public class ProductTypeServiceImpl implements Serializable, ProductTypeService 
 		return producTypeDao.getAllSorts();
 	}
 
-	@Transactional
-	@Override
-	public ProductTypeBean getSortById(int sortId) {
-		return producTypeDao.getSortById(sortId);
-	}
+
 
 	@Transactional
 	@Override
 	public List<ProductTypeBean> getSortList() {
 		return producTypeDao.getSortList();
+	}
+
+	@Transactional
+	@Override
+	public ProductTypeBean getTypeById(int typeId) {
+		return producTypeDao.getTypeById(typeId);
 	}
 
 }
