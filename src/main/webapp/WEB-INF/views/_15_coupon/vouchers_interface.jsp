@@ -184,6 +184,7 @@
 /* ----------- End -----------------*/
 </style>
 </head>
+<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
 
 <body style="background-color: #F3F8F2;">
 	<!-- 回到上方的按鈕 -->
