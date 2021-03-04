@@ -1,7 +1,5 @@
 package _30_coupon._31_keepCoupon.dao.impl;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,13 +8,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
-
 import _02_model.entity.ProductBean;
 import _02_model.entity.ProductTypeBean;
-import _20_shoppingMall._21_product.dao.ProductDao;
-
-
+import _30_coupon._31_keepCoupon.dao.ProductDao;
 
 @Repository
 public class ProductDaoImpl implements ProductDao {

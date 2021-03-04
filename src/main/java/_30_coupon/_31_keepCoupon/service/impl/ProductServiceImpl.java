@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service;
 
 import _02_model.entity.ProductBean;
 import _02_model.entity.ProductTypeBean;
-import _20_shoppingMall._21_product.dao.ProductDao;
-import _20_shoppingMall._21_product.service.ProductService;
+import _30_coupon._31_keepCoupon.dao.ProductDao;
+import _30_coupon._31_keepCoupon.service.ProductService;
+
 
 
 @Service

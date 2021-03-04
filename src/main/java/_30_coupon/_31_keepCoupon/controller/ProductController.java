@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import _02_model.entity.ProductBean;
 import _02_model.entity.ProductTypeBean;
 import _20_shoppingMall._21_product.service.ProductService;
@@ -67,14 +66,14 @@ public class ProductController {
 
 	
 	//依種類顯示(請求路徑會變動)
-	@RequestMapping("/sort={sortId}")
-	public String getProductsBySort(Model model, @PathVariable("sortId") int sortId) {
-		List<ProductBean> products = service.getProductBySort(sortId);
-		ProductTypeBean ps = service.getSortById(sortId);
-		model.addAttribute("products", products);
-		model.addAttribute("sort", ps); // 依據產品種類顯示title
-		return "_12_shoppingmall/2_shopping";
-	}
+//	@RequestMapping("/sort={sortId}")
+//	public String getProductsBySort(Model model, @PathVariable("sortId") int sortId) {
+//		List<ProductBean> products = service.getProductBySort(sortId);
+//		ProductTypeBean ps = service.getSortById(sortId);
+//		model.addAttribute("products", products);
+//		model.addAttribute("sort", ps); // 依據產品種類顯示title
+//		return "_12_shoppingmall/2_shopping";
+//	}
 	
 	
 	
@@ -127,20 +126,20 @@ public class ProductController {
 	 */
 	
 //	得到種類id與對應的name
-	@ModelAttribute("sortMap") 
-	public Map<Integer, String> getSortList() {
-		Map<Integer, String> sortMap = new HashMap<>();
-		List<ProductTypeBean> list = service.getSortList();
-		for(ProductTypeBean ps : list) {  //取出每一個種類物件的(id,name) 放入map物件
-			sortMap.put(ps.getProduct_type_id(), ps.getProduct_type_name());
-		}
-		return sortMap; 
-	}
-	
-	@ModelAttribute("sortList")   
-	public List<ProductTypeBean> getSorList() {
-	    return service.getSortList();
-	}
+//	@ModelAttribute("sortMap") 
+//	public Map<Integer, String> getSortList() {
+//		Map<Integer, String> sortMap = new HashMap<>();
+//		List<ProductTypeBean> list = service.getSortList();
+//		for(ProductTypeBean ps : list) {  //取出每一個種類物件的(id,name) 放入map物件
+//			sortMap.put(ps.getProduct_type_id(), ps.getProduct_type_name());
+//		}
+//		return sortMap; 
+//	}
+//	
+//	@ModelAttribute("sortList")   
+//	public List<ProductTypeBean> getSorList() {
+//	    return service.getSortList();
+//	}
 	
 	
 //	@RequestMapping("sortList")
