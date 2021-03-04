@@ -105,20 +105,20 @@
 						
 						<!-- 選擇照片 -->
 						<div class="custom-file">
-							<form:input type="file" path="productImage" class="custom-file-input form:input-large" id="productImage"/>
+							<form:input type="file" path="productImage" class="custom-file-input" id="productImage"/>
 							<label class="custom-file-label" for="productImage">choose file</label>
 						</div>
 
 						<div class="imageBox d-flex justify-content-between pt-4">
 							<div class="image">
-								<img src="<c:url value='/getPicture/${product.product_id}'/>" alt="">
+								<img id="image1">
 							</div>
-							<div class="image">
-								<img src="${pageContext.request.contextPath}/images_2/product3-2.jpg" alt="">
-							</div>
-							<div class="image">
-								<img src="${pageContext.request.contextPath}/images/Shinnosuke/Shinnosuke2.jpg" alt="">
-							</div>
+<!-- 							<div class="image"> -->
+<%-- 								<img src="${pageContext.request.contextPath}/images_2/product3-2.jpg" alt=""> --%>
+<!-- 							</div> -->
+<!-- 							<div class="image"> -->
+<%-- 								<img src="${pageContext.request.contextPath}/images/Shinnosuke/Shinnosuke2.jpg" alt=""> --%>
+<!-- 							</div> -->
 						</div>
 						<!-- 選擇照片 -->
 
@@ -141,14 +141,30 @@
 	</div>
 	
 	<script>
+	//選擇圖片時會出現檔名(因bootstrap4.6此用法必須這樣寫才會出現)
+	$(document).ready(function(){
+	  $(".custom-file-input").change(function () {
+	    $(this).next(".custom-file-label").html($(this).val().split("\\").pop());
+	  });
+	//因為單選的關係，所以有檔案一定是在第0個。
+	  function readURL(input){
+		  if(input.files && input.files[0]){
+		    let reader = new FileReader();
+		    reader.onload = function (e) { //讀出來是二進位檔案
+		       $('#image1').attr('src', e.target.result);
+		    }
+		    reader.readAsDataURL(input.files[0]); 
+		  }
+		}
+	});
+	
+	
 	function updateProduct() {
-		
 	    var hiddenField = document.getElementById("update");
-// 	     hiddenField.value='PUT';
-	    document.forms[0].method="POST";
+	     hiddenField.value='PUT';
+// 	    document.forms[0].method="POST";
 		document.forms[0].submit();
-		
-
+	
 	}
 	</script>
 
