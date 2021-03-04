@@ -102,14 +102,14 @@
 						
 						<!-- 選擇照片 -->
 						<div class="custom-file">
-							<form:input type="file" path="productImage" class="custom-file-input form:input-large" id="productImage"/>
-							<label class="custom-file-label" for="productImage">choose file</label>
+							<form:input type="file" path="productImage" class="custom-file-input" id="productImage"  accept="image/gif, image/jpeg, image/png"/>
+							<label class="custom-file-label" for="productImage">圖片一</label>
 						</div>
 						<!-- 選擇照片 -->
 
 						<div class="imageBox d-flex justify-content-between pt-4">
 							<div class="image">
-								<img id="image1" src=""/>
+								<img id="image1"/>
 							 </div>
 							<!--<div class="image">
 								<img src="${pageContext.request.contextPath}/images_2/product3-2.jpg" alt="">
@@ -139,21 +139,27 @@
 		
 	</div>
 	<script>
-		//STEP1 : 先跟畫面的input標籤產生關聯
-		const inputFile = document.getElementById('productImage');
-
-		//STEP2 : 取得單一個檔案
-		// inputFile.files; // File List
-		const oneFile = inputFile.files.item(0); // File of File List
-
-		//STEP3 : 準備放圖片的容器
-		const img = document.querySelector("#image1");
-
-		//STEP4 : 產生BLOB的URL
-		blob_url = URL.createObjectURL(oneFile);  //取出Blob url
-
-		//STEP5 : 把Bolb url 的路徑放入 img 的 src 屬性內
-		img.src = blob_url; 
+		$(document).ready(function(){
+			//選擇圖片時會出現檔名(因bootstrap4.6此用法必須這樣寫才會出現)
+		  $(".custom-file-input").change(function () {
+		    $(this).next(".custom-file-label").html($(this).val().split("\\").pop());
+		  });
+		  
+		  $('#productImage').change(function(){
+			  readURL(this);
+		  })
+		  //因為單選的關係，所以有檔案一定是在第0個。
+		  function readURL(input){
+			  if(input.files && input.files[0]){
+			    let reader = new FileReader();
+			    reader.onload = function (e) { //讀出來是二進位檔案
+			       $('#image1').attr('src', e.target.result);
+			    }
+			    reader.readAsDataURL(input.files[0]); 
+			  }
+			}
+		});
+		
 
 
 	</script>
