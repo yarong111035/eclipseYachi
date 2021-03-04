@@ -2,8 +2,8 @@ package _10_member.entity;
 
 import java.io.Serializable;
 import java.sql.Blob;
-import java.sql.Clob;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -18,17 +18,19 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import _02_model.entity.ShopBean;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@ToString
 @Entity
 @Table
 public class Member implements Serializable{
@@ -36,35 +38,23 @@ public class Member implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer memberId;
-	
-	private String username;
-	
-
+	private Integer memberId;	
+	private String username;	
 	private String password;
-	
 	private String fullname;
-	
-	@Column(length = 1)
 	private String sex;
-	
-	@Temporal(TemporalType.DATE)
-
 	private Date birthday;
-	
 	private String phone;
-	
-
 	private String email;
+	private String address;	
+	private Timestamp registerTime;
 	
-	private String address;
-	private String memberType; 
-	
-	@Temporal(TemporalType.TIMESTAMP) 
-	private Date registerTime;
-	
+	@Column(columnDefinition = "mediumblob")
 	private Blob image;
-	private Clob memo;
+	private String fileName;
+	
+	@Transient
+	MultipartFile memberMultipartFile;
 	
 	@OneToOne
 	@JoinColumn(name = "FK_shop_id")
@@ -73,7 +63,6 @@ public class Member implements Serializable{
 	// ‎Member 表存儲認證，Role 儲存權限（許可權）。 
 	// 使用者和角色之間是多對多關係，因為使用者可以有一個或多個角色，角色也可以分配給一個或多個使用者。 
 	// 所以需要中間表 member_role 來實現多對多關聯。‎
-
 	 @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	    @JoinTable(                              				   //配置中介表的訊息
 	        name = "Member_Role",								
@@ -160,21 +149,8 @@ public class Member implements Serializable{
 		this.address = address;
 	}
 
-	public String getMemberType() {
-		return memberType;
-	}
+	
 
-	public void setMemberType(String memberType) {
-		this.memberType = memberType;
-	}
-
-	public Date getRegisterTime() {
-		return registerTime;
-	}
-
-	public void setRegisterTime(Date registerTime) {
-		this.registerTime = registerTime;
-	}
 
 	public Blob getImage() {
 		return image;
@@ -184,13 +160,7 @@ public class Member implements Serializable{
 		this.image = image;
 	}
 
-	public Clob getMemo() {
-		return memo;
-	}
-
-	public void setMemo(Clob memo) {
-		this.memo = memo;
-	}
+	
 
 	public ShopBean getShopBean() {
 		return shopBean;
@@ -206,6 +176,30 @@ public class Member implements Serializable{
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public Timestamp getRegisterTime() {
+		return registerTime;
+	}
+
+	public void setRegisterTime(Timestamp registerTime) {
+		this.registerTime = registerTime;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public MultipartFile getMemberMultipartFile() {
+		return memberMultipartFile;
+	}
+
+	public void setMemberMultipartFile(MultipartFile memberMultipartFile) {
+		this.memberMultipartFile = memberMultipartFile;
 	}
 
 

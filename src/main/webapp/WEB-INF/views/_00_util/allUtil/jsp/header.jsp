@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shopping</title>
+<title></title>
 <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 <link rel="stylesheet"href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
 <link rel="stylesheet"href="<c:url value='/_00_util/allUtil/css/header.css'/>">
@@ -21,7 +21,7 @@
 	<a href="#" id="go-top"><i class="fas fa-arrow-up"></i></a>
 	
 	<header>
-		<nav>
+		<nav class="myNav">
 			<div class="navbar">
 				<div class="ig-links">
 					<a href="#">快速登入</a> 
@@ -69,13 +69,13 @@
 
 				</div>
 
-				<<div class="member">
-					<c:if test="${!empty LoginOK}">
+				<div class="member">
+					<c:if test="${!empty member}">
 					<a href="#"><font>你好 ! </font></a>
-				    <a href="#"><font>${LoginOK}</font></a>
+				    <a href="#"><font>${member.fullname}</font></a>
 				</c:if>
 				
-			    <c:if test="${empty LoginOK}">
+			    <c:if test="${empty member}">
 			    	<a href="<c:url value='/LoginAndRegister'/>"><font>免費註冊</font></a>
 			    	<a href="<c:url value='/LoginAndRegister'/>"><font>登入</font></a>
 			    </c:if>
@@ -112,10 +112,10 @@
 					
 					<div class="tab-panel">
 
-						<a href="<c:url value='/welcome' />">方家雞肉飯</a><br>
-						<a href="<c:url value='/welcome' />">測試1超好吃店家</a><br>
-						<a href="<c:url value='/welcome' />">測試2世界第一好吃</a><br>
-						<a href="<c:url value='/welcome' />">測試3</a><br>
+						<a href="<c:url value='nightMarketShop' />">方家雞肉飯</a><br>
+						<a href="<c:url value='/' />">測試1超好吃店家</a><br>
+						<a href="<c:url value='/' />">測試2世界第一好吃</a><br>
+						<a href="<c:url value='/' />">測試3</a><br>
 						
 					</div>
 					<div class="tab-panel">
@@ -129,19 +129,26 @@
                           <a href="#">方家雞肉飯5方家雞肉飯5</a><br>
 					</div>
 					<div class="tab-panel">
-						<a href="<c:url value='/' />">購物商城</a><br> <a
+						<a href="<c:url value='/DisplayPageProducts' />">購物商城</a><br> <a
 							href="<c:url value='update/price' />">點我更新價格(+50元)</a><br>
-						<a href="<c:url value='products/add' />">上架產品</a><br>
 					</div>
 					<div class="tab-panel">
 						 <a href="<c:url value='/administrator' />">管理員首頁</a><br>
-						 <a href="<c:url value='/products/add' />">商品維護</a><br>
+						 <a href="<c:url value='/admin_editProduct' />">商品維護</a><br>
 						 <a href="<c:url value='/admin_coupon' />">平台優惠券</a><br>
 						 <a href="<c:url value='/admin_chatroom' />">客服回應</a><br>
 						 <a href="<c:url value='/admin_announcement' />">公告</a><br>
 						 <a href="<c:url value='/admin_adinfo' />">廣告資訊</a><br>
 						 <a href="<c:url value='/admin_activity' />">平台優惠活動</a><br>
 						 <a href="<c:url value='/admin_checkShop' />">審核商家</a><br>
+						 
+						 <c:if test="${!empty member}">
+						 	<a href="<c:url value='/member/update/${member.memberId}'/>">修改會員資料</a>
+                         </c:if>
+                         <c:if test="${!empty member}">
+							<a href="<c:url value='/doLogout'/>"><font>登 出</font></a>
+						 </c:if>
+						 
 					</div>
 				</div>
 

@@ -9,7 +9,7 @@ $(function(){
         let scroll = $(window).scrollTop();
 //        console.log(scroll);
         if(scroll >= 1){
-            $('nav, .search').css({
+            $('.myNav, .search').css({
                 opacity:'0',
                 transition:'.2s'
                 });
@@ -28,7 +28,7 @@ $(function(){
             })
             //因為是針對nav, .search變透明
             //所以往上滾時，對象也要針對它們，而不是header標籤 
-            $('nav, .search').css({   
+            $('.myNav, .search').css({   
                 transition:'.5s',
                 opacity:'1',
             });

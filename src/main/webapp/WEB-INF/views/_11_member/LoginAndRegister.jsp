@@ -130,6 +130,7 @@
           <div class="input-div">
             <form:label path="password">密碼</form:label>
             <form:input path="password" name="password" type="password"/>
+            <span Class="error">${passwordError}</span>
          </div>
   
           <a href="#">忘記密碼 ?</a>

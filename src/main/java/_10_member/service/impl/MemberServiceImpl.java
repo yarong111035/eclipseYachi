@@ -29,7 +29,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public Member insertMember(Member member) {
+	public Object insertMember(Member member) {
 		
 		return memberDao.insertMember(member);
 	}

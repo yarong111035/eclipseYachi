@@ -26,3 +26,11 @@
 input{
     margin-top: 10px;
 }
+
+/*錯誤訊息樣式*/
+span.error{
+	letter-spacing: 1px;
+    margin-top: 5px;
+    display: inline-block;
+    color: rgb(0 117 197);
+}

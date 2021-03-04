@@ -1,7 +1,7 @@
 **/.metadata/*
 **/target/**
 **/Servers/**
+**/m2e-wtp/**
 **/.settings/**
-.project
 .classpath
-.MF
+.project

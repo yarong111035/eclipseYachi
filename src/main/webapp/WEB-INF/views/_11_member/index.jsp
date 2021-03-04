@@ -24,5 +24,23 @@
 	<!-- 引入共同的頁首 -->
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
 
+
+	<p>首頁測試用會員屬性表</p>
+	<br> member requestScope:${requestScope.member}
+    <br> 
+    <br> member sessionScope:${sessionScope.member}
+
+	
+	
+	<c:if test="${!empty member.fullname}">
+		<a href="#"><font>登入成功 ! </font></a><br>
+	    <a href="#"><font>${member.fullname} 歡迎回來 !</font></a>
+	</c:if>
+	
+	<c:if test="${!empty errorInfo}">
+		<p>這個帳號 : ${errorInfo} 已經有人註冊了</p>
+		<p>${msg}</p>
+	</c:if>
+		
 </body>
 </html>

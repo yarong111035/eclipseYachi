@@ -19,12 +19,14 @@
 	<!-- 引入共同的頁首 -->
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
 	
-	<c:if test="${!empty pageContext.request.userPrincipal.name}">
+	<!-- 	下面是測試用的參數 -->
+	
+	<c:if test="${!empty member.fullname}">
 		<a href="#"><font>登入成功 ! </font></a><br>
-	    <a href="#"><font>${pageContext.request.userPrincipal.name} 歡迎回來 !</font></a>
+	    <a href="#"><font>${member.fullname} 歡迎回來 !</font></a>
 	</c:if>
-
-	<p>${member.birthday}</p>
+	<p>${msg}</p>
+	<p>${member}</p>
 	<c:if test="${!empty errorInfo}"><p>這個帳號 : ${errorInfo} 已經有人註冊了</p></c:if>
 	<p>${LoginOK}</p>
 	

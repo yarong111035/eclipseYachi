@@ -60,6 +60,13 @@ public class ProductTypeBean implements Serializable{
 	public ProductTypeBean() {
 		super();
 	}
+
+	@Override
+	public String toString() {
+		return "ProductTypeBean [product_type_id=" + product_type_id + ", product_type_name=" + product_type_name
+				+  "]";
+	}
+	
 	
 	
 }

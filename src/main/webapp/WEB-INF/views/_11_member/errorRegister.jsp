@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/reset.css" type="text/css">
-    <link rel="stylesheet" href="/css/LoginAndRegister.css" type="text/css">
+    <link rel="stylesheet" href="<c:url value='/_00_util/memberUtil/css/reset.css'/>" type="text/css">
+    <link rel="stylesheet" href="<c:url value='/_00_util/memberUtil/css/LoginAndRegister.css'/>" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Document</title>
     
@@ -116,9 +117,9 @@
           <h2>登入</h2>
 
           <div class="social-container">
-            <a href="#" class="social"><img src="/images/facebook.png" alt=""/></a>
-            <a href="#" class="social"><img src="/images/instagram.png" /></a>
-            <a href="#" class="social"><img src="/images/search.png" /></a>
+            <a href="#" class="social"><img src="<c:url value='/data/images/smallPic/facebook.png'/>"/></a>
+            <a href="#" class="social"><img src="<c:url value='/data/images/smallPic/instagram.png'/>" /></a>
+            <a href="#" class="social"><img src="<c:url value='/data/images/smallPic/search.png'/>" /></a>
           </div>
 
           <span>選擇其他登錄方式或使用你的帳號</span>
@@ -147,7 +148,7 @@
           <div class="over-item over-left">
 
             <div class="img-box">
-              <img src="/images/yachiLogo50.png" alt="">
+              <img src="<c:url value='/data/images/smallPic/yachiLogo50.png'/>" alt="">
             </div>
 
             <h2>已有帳號?</h2>
@@ -158,7 +159,7 @@
           <div class="over-item over-right">
 
             <div class="img-box">
-              <img src="/images/yachiLogo50.png" alt="">
+              <img src="<c:url value='/data/images/smallPic/yachiLogo50.png'/>" alt="">
             </div>
 
             <h2>沒有帳號?</h2>

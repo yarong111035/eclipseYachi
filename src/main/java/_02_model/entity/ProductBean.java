@@ -12,6 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "Product")
@@ -24,30 +30,45 @@ public class ProductBean implements Serializable{
 	
 	private String product_name;
 	
+	@Min(value=0, message="數值必須大於0")
 	private Double product_price;
 	
 	private Integer product_stock;
 	
 	private String product_info;
 	
+	@JsonIgnore
 	private Blob product_pic;
+	
 	
 	private Date product_expire;
 	
 	private String filename;
+	
 	
     private String product_spec;
     
     @Transient
     private Integer product_type_id;
     
-
-    
+    @JsonIgnoreProperties("products")
 	@ManyToOne
 	@JoinColumn(name = "FK_product_type_id")
 	private ProductTypeBean productTypeBean;
 	
 	private String product_memo;
+
+	@JsonIgnore
+	@Transient
+	private MultipartFile productImage; //上傳照片用
+	
+	public MultipartFile getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(MultipartFile productImage) {
+		this.productImage = productImage;
+	}
 
 	public Integer getProduct_id() {
 		return product_id;
@@ -96,6 +117,8 @@ public class ProductBean implements Serializable{
 	public void setProduct_pic(Blob product_pic) {
 		this.product_pic = product_pic;
 	}
+	
+	
 
 	public Date getProduct_expire() {
 		return product_expire;
@@ -166,7 +189,17 @@ public class ProductBean implements Serializable{
 		this.product_type_id = product_type_id;
 	}
 
+	@Override
+	public String toString() {
+		return "ProductBean [product_id=" + product_id + ", product_name=" + product_name + ", product_price="
+				+ product_price + ", product_stock=" + product_stock + ", product_info=" + product_info
+				+ ", product_pic=" + product_pic + ", product_expire=" + product_expire + ", filename=" + filename
+				+ ", product_spec=" + product_spec + ", product_type_id=" + product_type_id + ", productTypeBean="
+				+ productTypeBean + ", product_memo=" + product_memo + ", productImage=" + productImage + "]";
+	}
 
+	
+	
 	
 	
 }

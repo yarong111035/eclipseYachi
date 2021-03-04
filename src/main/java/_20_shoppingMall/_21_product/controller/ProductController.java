@@ -1,57 +1,77 @@
 package _20_shoppingMall._21_product.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.http.HttpRequest;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.sql.rowset.serial.SerialBlob;
+
+import org.springframework.beans.factory.BeanNotOfRequiredTypeException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import _02_model.entity.ProductBean;
 import _02_model.entity.ProductTypeBean;
+import _20_shoppingMall._21_product.exception.ProductNotFoundException;
 import _20_shoppingMall._21_product.service.ProductService;
+import _20_shoppingMall._21_product.service.ProductTypeService;
  
 
-
+//此controller 目的為 列出商城的產品與產品種類並可以連結至商品明細頁
 //POJO類別 不須繼承任何類別
 @Controller  //spring mvc 控制器
 public class ProductController {
-	
 	@Autowired
-	ProductService service;
+	ProductTypeService productTypeService;
+	@Autowired
+	ProductService productService;
+	@Autowired
+	ServletContext context;
 	
 	
-	
-//	控制器方法
-	@RequestMapping("/welcome")
-	public String nightShop(Model model) {  //有東西要交給view 就放model
-//		model.addAttribute("store", "方家雞肉飯"); // 底層是 forward()
-		return "_14_nightShop/1_shop"; 
-	}
-	
-	
-	//商品主頁(找出所有產品)
-	@RequestMapping({"/shopping.store"})
-	public String store(Model model) {
-		List<ProductBean> list = service.getAllProducts();
-		model.addAttribute("products", list);
-		return "_12_shoppingmall/2_shopping";
-	}
+	//撈出資料庫所有產品
+//	@RequestMapping({"/shopping.store"})
+//	public String store(Model model) {
+//		List<ProductBean> list = service.getAllProducts();
+//		model.addAttribute("products", list);
+//		return "_12_shoppingmall/2_shopping";
+//	}
 
 	
 	//更新產品價格
 	@RequestMapping("/update/price")
 	public String updatePrice(Model model) {
-		service.updateAllPrice();
-		return "redirect:/shopping.store";  
+		productService.updateAllPrice();
+		return "redirect:/DisplayPageProducts";  
 		//此處的導向是要寫控制器名稱(RequestMapping的名稱)
 		//而不是 真正的視圖名稱
 	} 
@@ -69,11 +89,11 @@ public class ProductController {
 	//依種類顯示(請求路徑會變動)
 	@RequestMapping("/sort={sortId}")
 	public String getProductsBySort(Model model, @PathVariable("sortId") int sortId) {
-		List<ProductBean> products = service.getProductBySort(sortId);
-		ProductTypeBean ps = service.getSortById(sortId);
+		List<ProductBean> products = productService.getProductBySort(sortId);
+		ProductTypeBean ps = productTypeService.getTypeById(sortId);
 		model.addAttribute("products", products);
 		model.addAttribute("sort", ps); // 依據產品種類顯示title
-		return "_12_shoppingmall/2_shopping";
+		return "_12_shoppingmall/2_sortProduct";
 	}
 	
 	
@@ -81,67 +101,36 @@ public class ProductController {
 //	查詢單筆產品資料
 	@RequestMapping("/singleProduct")
 	public String getProductById(@RequestParam("id") Integer id,Model model) {
-		model.addAttribute("product", service.getProductById(id));
+		model.addAttribute("product", productService.getProductById(id));
 		return "_12_shoppingmall/3_productDetail";
 	}
 	
-	
-	/**
-	 * step1.抵達表單頁面的路徑是：@GetMapping("/products/add") 
-	 * step2.此表單預設action為"/products/add"
-	 * step3.表單送出使用post方法，故再加上路徑則會走標註@PostMapping("/products/add") 的控制器方法
-	 */
-	
-//	表單頁面控制器方法
-	@GetMapping("/products/add")
-	public String getAddNewProductFormString(Model model) {
-		ProductBean pb = new ProductBean();
-		pb.setProduct_name("商品名稱不知道要取什麼-1");  
-		pb.setProduct_info("因為不知道要賣什麼所以商品資訊也不知道要填什麼");
-		pb.setProduct_price(111.0);
-		model.addAttribute("productBean", pb); //將pb 加入model中
-		return "_16_admin/insertProduct";
-	}
-	
-	
-	/**
-	 * action 屬性的預設值，原本頁面的路徑
-	 */
-	
-	
-//	新增表單成功
-	@PostMapping("/products/add")  // 路徑與上一支方法一樣，但是此處請求方法是Post 所以會來找這一支控制器
-	public String processAddNewProductForm(@ModelAttribute("productBean") ProductBean pb) {
-//		新增產品需傳入ProductBean參數(從上model取出)
-//		@ModelAttribute用在方法參數內：可直接從參數取值(又稱數據綁定)
-//		資料檢查條件寫在這...
-		service.addProduct(pb);  
-		return "redirect:/shopping.store";
-	}
-	
-	
-	
-	/**
-	 * 會先執行加@ModelAttribute註釋的控制器方法
-	 * 並將結果添加到model中
-	 */
-	
-//	得到種類id與對應的name
-	@ModelAttribute("sortMap") 
-	public Map<Integer, String> getSortList() {
-		Map<Integer, String> sortMap = new HashMap<>();
-		List<ProductTypeBean> list = service.getSortList();
-		for(ProductTypeBean ps : list) {  //取出每一個種類物件的(id,name) 放入map物件
-			sortMap.put(ps.getProduct_type_id(), ps.getProduct_type_name());
-		}
-		return sortMap; 
-	}
-	
+//	server一啟動就會撈出資料庫所有商品種類(目的列出商城主頁旁的分類目錄)
 	@ModelAttribute("sortList")   
 	public List<ProductTypeBean> getSorList() {
-	    return service.getSortList();
+	    return productTypeService.getSortList();
 	}
 	
+	
+//	分頁的控制器方法
+//	 讀取查詢字串，可能沒有帶查詢字串(required = false)
+	@GetMapping("/DisplayPageProducts")
+	public String getPageProduct(
+			Model model,
+			HttpServletRequest req,
+			HttpServletResponse res,
+			@RequestParam(value = "pageNo", required = false) Integer pageNo)
+	{
+		if(pageNo == null) {
+			pageNo = 1;
+		}
+		model.addAttribute("bean", productService);
+		Map<Integer, ProductBean> productMap = productService.getPageProducts(pageNo);
+		model.addAttribute("pageNo", String.valueOf(pageNo));
+		model.addAttribute("totalPages", productService.getTotalPages());
+		model.addAttribute("products_DPP", productMap);
+		return "_12_shoppingmall/2_shopping";	
+	}
 	
 //	@RequestMapping("sortList")
 //	public List<String> getSortList(){

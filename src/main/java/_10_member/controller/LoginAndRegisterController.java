@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +16,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
 import _10_member.entity.Member;
 import _10_member.entity.Role;
 import _10_member.service.MemberService;
+import _10_member.validate.MemberValidator;
 
 
 
@@ -34,27 +38,21 @@ public class LoginAndRegisterController {
 	@Autowired
 	MemberService memberService;
 	
-	
+	@Autowired
+	MemberValidator mValidator;
 	
 	@RequestMapping("/LoginAndRegister")
 	public String LoginAndRegister(@ModelAttribute("member") Member member) {
 		
 		return "/_11_member/LoginAndRegister"; 
 	}
-	
-	
-	@RequestMapping("/login-view")
-	public String login_register(@ModelAttribute("member") Member member ,Model model) {
 			
-		model.addAttribute("accountError", "帳號或密碼有錯誤 ! ");
-		
-		return "/_11_member/LoginAndRegister"; 
-	}
-		
 	
 	@PostMapping("doRegister")
-	public String doRegist(@Validated @ModelAttribute("member") Member member,
+	public String doRegist(@ModelAttribute("member") Member member,
 			BindingResult bindingResult,Model model) {
+		
+		mValidator.validate(member, bindingResult);
 		
 		if (bindingResult.hasErrors()) {
 			
@@ -62,17 +60,16 @@ public class LoginAndRegisterController {
 		}
 			
 		// 獲取來自輸入表單的帳號和密碼
-		String username = member.getUsername();
-		String password = member.getPassword();
+		String username = member.getUsername();  //aa
 		// 從資料庫找尋帳號是否有和輸入表單帳號重複的 
-		Member getUsername = memberService.findByUsername(username);
-		
-		if(getUsername != null) {
+		Member getUsername = memberService.findByUsername(username);  //aa
+				
+		if(getUsername != null ) {
 			
 			model.addAttribute("msg","註冊失敗");
-			model.addAttribute("errorInfo",username);
+			model.addAttribute("errorInfo",getUsername);
 			
-			return "/_11_member/success";
+			return "/_11_member/errorRegister";
 			
 		}else {
 			
@@ -84,38 +81,32 @@ public class LoginAndRegisterController {
 			roles.add(roleA);			
 			member.setRoles(roles);
 			
-			// 生日日期轉換
-			
 			// 註冊時間戳記
-			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			Timestamp timestampNow = Timestamp.valueOf(dateFormat.format(timestamp));
-			member.setRegisterTime(timestampNow);
+			member.setRegisterTime(new Timestamp(System.currentTimeMillis()));
 			
 			memberService.insertMember(member);
 			model.addAttribute("msg","註冊成功");
 			System.out.println(member);
 			
-			return "/_11_member/success";
+			return "/_11_member/index";
 		}
 		
 	}
 	
 	// 登入成功後的畫面 	
-	@RequestMapping("/success")
-	public String success(HttpSession session,Model model,Member member) {
-		
-		String name = member.getFullname();
-		
-		member = memberService.findByUsername(name);	
-		
-		model.addAttribute(member);
-		session.setAttribute("LoginOK",member.getFullname());
-		
-		return "/_11_member//success";
-		
-		//return "redirect:/";
-	}
+//	@RequestMapping("/success")
+//	public String success(HttpSession session,Model model,Member member) {
+//		
+//		String name = member.getFullname();
+//		
+//		member = memberService.findByUsername(name);	
+//		
+//		model.addAttribute(member);
+//		session.setAttribute("LoginOK",member.getFullname());
+//		
+//		return "/_11_member//success";
+//		
+//	}
 	
 	 // 會員登出
 	@RequestMapping("/doLogout")
@@ -123,7 +114,7 @@ public class LoginAndRegisterController {
 		
 		session.invalidate();
 		
-		return "redirect:/";
+		return "redirect:/index";
 	}
 	
 	
@@ -140,16 +131,17 @@ public class LoginAndRegisterController {
 		// Member memberValidation = memberServiceImpl.getMember(account,password);
 		
 		// 依輸入表單的帳號獲取來自資料庫會員的全部資料
-		Member memberInfo = memberService.findByUsername(username);
+		member = memberService.findByUsername(username);
 		
-		if (memberInfo == null) {
+		
+		if (member == null) {
 
 			model.addAttribute("accountError", "查無帳號，請先去註冊");
 			
 			return "/_11_member/LoginAndRegister";			
 		}
 		
-		String sqlPassword = memberInfo.getPassword();		
+		String sqlPassword = member.getPassword();		
 	    if (!password.equals(sqlPassword)){
 
 			model.addAttribute("passwordError", "密碼錯誤");
@@ -157,13 +149,15 @@ public class LoginAndRegisterController {
 			return "/_11_member/LoginAndRegister";
 		}
 	    
-		// 登入成功 	
-		session.setAttribute("LoginOK", memberInfo.getFullname());	
-		System.out.println(memberInfo);
+		// 登入成功
+	    
+		session.setAttribute("member", member);	
 		
-		return "redirect:/";
+		// 需要再次請求首頁資源
+		return "redirect:/index";
 
 	}
+	
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder, WebRequest request) {
@@ -178,7 +172,8 @@ public class LoginAndRegisterController {
 		CustomDateEditor ce2 = new CustomDateEditor(dateFormat2, true);
 		binder.registerCustomEditor(java.sql.Date.class, ce2);
 	}
-	
+
+
 	
 }
 
