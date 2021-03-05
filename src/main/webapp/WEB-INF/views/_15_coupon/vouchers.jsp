@@ -315,16 +315,6 @@
     </div>
     <div class="col mb-4">
       <div class="card h-100">
-        <a href="#"><img	src="<c:url value='/data/images/voucher/noodle1.jpg'/>" class="card-img-top" alt="..."></a>
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-            content. This content is a little bit longer.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col mb-4">
-      <div class="card h-100">
         <a href="#"><img	src="<c:url value='/data/images/voucher/日式紅豆餅.webp.jpg'/>" class="card-img-top" alt="...">
         </a>
         <div class="card-body">
