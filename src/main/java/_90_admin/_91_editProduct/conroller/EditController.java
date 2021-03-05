@@ -86,7 +86,7 @@ public class EditController {
 	@GetMapping("/products/add")
 	public String getAddNewProductFormString(Model model) {
 		ProductBean pb = new ProductBean();
-//		pb.setProduct_name("商品名稱不知道要取什麼-1");  
+		pb.setProduct_name("商品名稱不知道要取什麼-1");  
 //		pb.setProduct_info("因為不知道要賣什麼所以商品資訊也不知道要填什麼");
 //		pb.setProduct_price(111.0);
 		model.addAttribute("productBean", pb); //將pb 加入model中
@@ -420,11 +420,11 @@ public class EditController {
 
 		return "_16_admin/administrator"; 
 	}
-	@RequestMapping("/admin_coupon")
-	public String admin_coupon(Model model) { 
-
-		return "_16_admin/admin_coupon"; 
-	}
+//	@RequestMapping("/admin_coupon")
+//	public String admin_coupon(Model model) { 
+//
+//		return "_16_admin/admin_coupon"; 
+//	}
 	@RequestMapping("/admin_chatroom")
 	public String admin_chatroom(Model model) {  
 

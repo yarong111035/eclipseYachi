@@ -275,7 +275,7 @@ fieldset {
 							<div class="card-body">
 								<h5 class="card-title">饒河夜市</h5>
 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p>
-								<a href="<c:url value='/Raohe_Street'/>" class="btn btn-primary ml-5 mt-2">前進夜市</a>
+								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a>
 							</div>
 						</div>
 					</div>

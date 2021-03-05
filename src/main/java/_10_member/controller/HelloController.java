@@ -11,12 +11,11 @@ public class HelloController {
 	
 	
 	// 首頁的映射
-//	@RequestMapping({"/","/index"}) 
-//	public String jspHome(Model model) {
-//		
-//		return "/_11_member/index";  //視圖指定向index.jsp
-//		return "_17_home/home";  //視圖指定向_17_home/home
-//	}
+	@RequestMapping({"/","/index"}) 
+	public String jspHome(Model model) {
+		
+		return "/_11_member/index";  //視圖指定向index.jsp
+	}
 	
 	
 	
