@@ -33,7 +33,7 @@
   <div class="row row-cols-1 row-cols-md-3 " style="padding:0px 100px 100px 100px">
     <div class="col mb-4">
       <div class="card h-100">
-         <a href="home">
+         <a href=" <c:url value='/vouchers_interface'/>">
         <img	src="<c:url value='/data/images/voucher/beefNoodle.jpg'/>" class="card-img-top" alt="...">
    	  </a>  
         <div class="card-body">

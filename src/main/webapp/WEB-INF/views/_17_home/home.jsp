@@ -198,7 +198,7 @@ fieldset {
       margin-top: -0.25rem !important;
     } -->
 	<!-- <div class="slider"> -->
-	<div class="slider ">
+	<div class="slider " style="margin:0px 150px;">
 		<div id="carouselExampleIndicators" class="carousel slide"
 			data-ride="carousel">
 			<ol class="carousel-indicators">
