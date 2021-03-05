@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HelloController {
 	
 	
-	// 首頁的映射
-	@RequestMapping({"/","/index"}) 
-	public String jspHome(Model model) {
-		
-		return "/_11_member/index";  //視圖指定向index.jsp
-	}
+//	// 首頁的映射
+//	@RequestMapping({"/","/index"}) 
+//	public String jspHome(Model model) {
+//		
+//		return "/_11_member/index";  //視圖指定向index.jsp
+//	}
 	
 	
 	
