@@ -56,43 +56,61 @@
 				<i class="fa fa-arrow-left"></i>
 			</div>
 			<div class="title">
-				購物清單 <span class="shopNum">4</span>
+				<c:if test='${empty cartList}'>
+					購物清單 <span class="shopNum">0</span>
+				</c:if>
+				<c:set value='0' var='sum'/>
+				<c:if test='${!empty cartList}'>
+            		購物清單 <span class="shopNum">${cartList.size()}</span>
+            	</c:if>
 				<!-- 存放購物數量-->
 			</div>
+			<c:if test='${empty cartList}'>
+           		<div class="emptyCart">
+           			<a href="<c:url value='/DisplayPageProducts' />" 
+           			style="display: block;color: #444;font-size: 1.1rem; height: 100px;line-height: 100px;margin-left: 50px;">
+           				購物車空空如也! 趕快去選購吧
+           			</a>
+       			</div>
+           	</c:if>
+			
+			
 			<ul id="item_box">
 				<!-- id 可以存放產品編號-->
-				<!-- <li id="car_productId" class="carItem">      
-                    <div class="pic">
-                        <a href="javascript:;">
-                            <img src="/images_2/1_product.jpg">
-                        </a>
-                    </div>
-                    <div class="text_box">
-                        <div class="name">
-                            <a href="javascript:;">超好用收納購物袋</a>
-                        </div>
-                        <div class="size">S</div>
-                        <div class="count">
-                            <select name="" id="car_productId">
-                                <option value="1" selected>1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        </div>
-                        <div class="price">NT$ 199</div>
-                    </div>
-                    <div class="cancelBtn">
-                        <i class="fa fa-trash"></i>
-                    </div>
-                </li>   -->
-
+				<c:forEach var='cart' items='${cartList }'>
+	                <li id="car_productId" class="carItem">      
+	                    <div class="pic">
+	                        <a href="javascript:;">
+	                            <img src="<c:url value='/getPicture/${cart.productBean.product_id}'/>">
+	                        </a>
+	                    </div>
+	                    <div class="text_box">
+	                        <div class="name">
+	                            <a href="javascript:;">${cart.productBean.product_name }</a>
+	                        </div>
+	                        <div class="size">${cart.productBean.product_spec }</div>
+	                        <div class="count">
+	                            <select name="" id="car_productId">
+	                                <option value="1" selected>1</option>
+	                                <option value="2">2</option>
+	                                <option value="3">3</option>
+	                                <option value="4">4</option>
+	                                <option value="5">5</option>
+	                                <option value="6">6</option>
+	                                <option value="7">7</option>
+	                                <option value="8">8</option>
+	                                <option value="9">9</option>
+	                                <option value="10">10</option>
+	                            </select>
+	                        </div>
+	                        <div class="price">NT$ ${cart.productBean.product_price }</div>
+	                    </div>
+	                    <div class="cancelBtn">
+	                        <i class="fa fa-trash"></i>
+	                    </div>
+	                </li> 
+	                <c:set var='sum' value='${sum + cart.cart_total}'/>
+				</c:forEach>
 
 			</ul>
 			<!-- 卷軸部分 -->
@@ -122,8 +140,13 @@
 
 		<div class="new_container">
 			<div class="new_product">
-
-				<h1>${sort.product_type_name}</h1>
+				<c:if test="${empty sort.product_type_name}">
+					<h1>最新商品</h1>
+				</c:if>
+				<c:if test="${!empty sort.product_type_name}">
+					<h1>${sort.product_type_name}</h1>
+				</c:if>
+				
 
 			</div>
 		</div>

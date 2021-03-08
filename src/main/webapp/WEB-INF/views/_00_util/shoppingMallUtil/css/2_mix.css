@@ -161,6 +161,7 @@
     width: 200px;
     text-align: center;
     background:rgba(210,179,179,0.6);
+    border:none;
     margin: 0 auto;
     border-radius: 3px;
     cursor: pointer;
