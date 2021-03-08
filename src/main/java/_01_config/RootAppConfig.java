@@ -43,7 +43,7 @@ public class RootAppConfig {
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 		factory.setDataSource(dataSource()); 
 		//掃描永續類別(有加@Entity註釋的類別)
-		factory.setPackagesToScan(new String[] {"_02_model.entity"});
+		factory.setPackagesToScan(new String[] {"_02_model.entity" , "_10_member\\entity"});
 		factory.setHibernateProperties(additionalProperties());  //自訂方法
 		return factory;
 	}

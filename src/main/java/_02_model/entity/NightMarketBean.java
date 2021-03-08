@@ -32,6 +32,21 @@ public class NightMarketBean implements Serializable{
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "nightMarketBean")  //告訴外鍵後就不會有中介表格
 	private Set<ShopBean> shops = new LinkedHashSet<ShopBean>();
+	
+	
+	public NightMarketBean() {
+		
+	}
+
+	public NightMarketBean(String market_name, Double market_score, String market_comment, String market_memo,
+			Set<ShopBean> shops) {
+		super();
+		this.market_name = market_name;
+		this.market_score = market_score;
+		this.market_comment = market_comment;
+		this.market_memo = market_memo;
+		this.shops = shops;
+	}
 
 	public Integer getMarket_id() {
 		return market_id;

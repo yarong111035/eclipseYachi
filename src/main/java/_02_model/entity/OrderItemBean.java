@@ -92,6 +92,23 @@ public class OrderItemBean implements Serializable{
 	public void setOrder_memo(String order_memo) {
 		this.order_memo = order_memo;
 	}
+
+	public OrderItemBean(Integer order_item_id, OrderBean orderBean, ProductBean productBean, Double unitPrice,
+			Integer amount, Double discount, String order_memo) {
+		super();
+		this.order_item_id = order_item_id;
+		this.orderBean = orderBean;
+		this.productBean = productBean;
+		this.unitPrice = unitPrice;
+		this.amount = amount;
+		this.discount = discount;
+		this.order_memo = order_memo;
+	}
+
+	public OrderItemBean() {
+		super();
+	}
+	
 	
 	
 }

@@ -3,6 +3,7 @@ package _01_config;
 import javax.servlet.Filter;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 
@@ -25,11 +26,24 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 		return new String[] {"/"};  // "/" 表示分派器要處理的所有請求都要交由分派器處理
 	}
 	
+	// 配置POST 轉為 DELETE 或 PUT 請求的設定
 	@Override
 	protected Filter[] getServletFilters() {
-		CharacterEncodingFilter cef = new CharacterEncodingFilter();
+		HiddenHttpMethodFilter hhmf = new HiddenHttpMethodFilter();
+		CharacterEncodingFilter  cef = new CharacterEncodingFilter();
 		cef.setEncoding("UTF-8");
-		return new Filter[] {cef};
+		return new Filter[] {cef, hhmf};
+		
+//		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+//		characterEncodingFilter.setEncoding("UTF-8");
+//		return new Filter[] {characterEncodingFilter, new HiddenHttpMethodFilter()};
 	}
+	
+//	@Override
+//	protected Filter[] getServletFilters() {
+//		CharacterEncodingFilter cef = new CharacterEncodingFilter();
+//		cef.setEncoding("UTF-8");
+//		return new Filter[] {cef};
+//	}
 	
 }
