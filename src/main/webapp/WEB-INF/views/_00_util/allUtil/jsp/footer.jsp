@@ -13,11 +13,24 @@
 	copyright{
 		margin-top: 100px;
 	}
+	.logo img{
+		max-width: 100px;
+	}
+	hr{
+		border-color: #aaa;
+		margin-top: 10px;
+	}
 </style>
 <body>
 	<footer>
-		<div class="copyright bg-dark text-white text-center p-3">
+		<hr class="col-11">
+		<div class="copyright text-dark text-center p-1">
+			<div class="logo">
+				<a href="<c:url value='/home' />"> 
+				<img src="<c:url value='/data/images/smallPic/yachiLogo50.png'/>">
+			</a>
 			Copyright © 2021 Yachi . All rights reserved.
+		</div>
 		</div>
 	</footer>
 </body>
