@@ -19,6 +19,8 @@
 	href="<c:url value='/_00_util/shoppingMallUtil/css/4_shopping_cart.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/shoppingMallUtil/css/2_mix.css'/>">
+	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 	crossorigin="anonymous"></script>
@@ -40,55 +42,6 @@
 	href="<c:url value='/WEB-INF/views/_00_util/homeUtil/css/home.css'/>">
 <link rel="stylesheet" href="<c:url value='/test/reset.css'/>">
 <link rel="stylesheet" href="<c:url value='/test/header.css'/>">
-<script>
-        $(function () {
-
-            //     // /* hover事件切換 如果只寫一個方法  
-            //     //    那鼠標經過和離開都會觸發這個方法 slideToggle
-            //     // */
-            //     // // $('.menu-box').hover(function(){
-            //     // //     $(this).children('ul').slideToggle();
-            //     // // })
-
-            $('.tab-list a').hover(function () {
-                /* 為匹配的當前元素切換 class css類別 */
-                $(this).toggleClass('liColor');
-
-                /* 拿到當前(this) a 的索引號 */
-                index = $(this).index();
-
-                /* 讓上面和下面相應的索引號 eq() 顯示內容 
-                    其餘siblings() 隱藏起來 */
-                $('.tab-panel').eq(index).stop().fadeIn('slow').show().siblings().hide();
-
-            }, function () {
-                /* 第二個方法處理滑鼠移開事件 */
-                $(this).removeClass('liColor');
-                $('.tab-panel').hide();
-            })
-
-            $('.tab-panel').hover(function () {
-                index = $(this).index();
-                $(this).css('background-color', 'white').show();
-                $('.tab-list a').eq(index).addClass('liColor');
-            }, function () {
-                $(this).hide();
-                $('.tab-list a').eq(index).removeClass('liColor');
-            })
-
-         
-            const collect = document.getElementById('collect');
-            collect.addEventListener('click', function (e) {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: '成功收藏優惠卷',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            });
-        });
-    </script>
 
 <style>
 * {
@@ -103,7 +56,7 @@
 			height: 300px;
 			/* border: 1px solid #ccc; */
 /* } */
-#Boardwrap {
+#Board_wrap {
 	/* border: 1px solid rgb(34, 34, 201); */
 	border-radius: 5px;
 	width: 800px;
@@ -130,7 +83,7 @@
 	max-width: 800px;
 }
 
-#foodnamewrap {
+#foodname_wrap {
 	/* background:grey; */
 	border: 1px solid grey;
 	border-radius: 3px;
@@ -141,13 +94,13 @@
 	display: flex;
 }
 
-#foodname {
+#food_name {
 	/* border: 1px solid red; */
 	margin: auto;
 	font-size: 35px;
 }
 
-#Numberwrap {
+#Number_wrap {
 	/* border: 1px solid rgb(17, 13, 233); */
 	border-radius: 3px;
 	margin: 20px auto;
@@ -157,7 +110,7 @@
 	font-size: 30px;
 }
 
-#btnwrap {
+#btn_wrap {
 	/* border: 1px solid rgb(17, 13, 233); */
 	border-radius: 3px;
 	width: 300px;
@@ -193,29 +146,30 @@
 
 	<!------------------------- End ------------------------------->
 	<!------------------------- Start ------------------------------->
-	<content>
-	<div id="Boardwrap">
-		<div id="Board">
-			<ul>
-				<li><img
-					src="<c:url value='/data/images/voucher/Taiwanese hamburger.jpg'/>" class="card-img-top" alt="..."></li>
+	
+        <div id="Board_wrap">
+            <div id="Board">
+                <ul>
+                    <img src="<c:url value='/data/images/voucher/beefNoodle.jpg'/>" class="card-img-top" alt="..."></li>
+
+<!--                     <li><img src="img/Taiwanese hamburger.jpg"></li> -->
                 </ul>
             </div>
         </div>
 
-        <div id="foodnamewrap">
-            <div id="foodname">
+        <div id="foodname_wrap">
+            <div id="food_name">
                 招牌刈包
             </div>
         </div>
 
-        <div id="Numberwrap">
+        <div id="Number_wrap">
             <div id="Number">
                 <label>使用張數</label>
                 <input type="number" name="num" id="num">
             </div>
         </div>
-        <div id="btnwrap">
+        <div id="btn_wrap">
             <div class="btn">
                 <button id="collect">收藏</button>
             </div>
@@ -224,9 +178,78 @@
             </div>
         </div>
 
-    </content>
+ 
     <!-------------------------  End  ------------------------------->
 
+ <script>
+        $(function () {
+
+            //     // /* hover事件切換 如果只寫一個方法  
+            //     //    那鼠標經過和離開都會觸發這個方法 slideToggle
+            //     // */
+            //     // // $('.menu-box').hover(function(){
+            //     // //     $(this).children('ul').slideToggle();
+            //     // // })
+
+            $('.tab-list a').hover(function () {
+                /* 為匹配的當前元素切換 class css類別 */
+                $(this).toggleClass('liColor');
+
+                /* 拿到當前(this) a 的索引號 */
+                index = $(this).index();
+
+                /* 讓上面和下面相應的索引號 eq() 顯示內容 
+                    其餘siblings() 隱藏起來 */
+                $('.tab-panel').eq(index).stop().fadeIn('slow').show().siblings().hide();
+
+            }, function () {
+                /* 第二個方法處理滑鼠移開事件 */
+                $(this).removeClass('liColor');
+                $('.tab-panel').hide();
+            })
+
+            $('.tab-panel').hover(function () {
+                index = $(this).index();
+                $(this).css('background-color', 'white').show();
+                $('.tab-list a').eq(index).addClass('liColor');
+            }, function () {
+                $(this).hide();
+                $('.tab-list a').eq(index).removeClass('liColor');
+            })
+
+            const using = document.getElementById('using');
+            using.addEventListener('click', function (e) {
+                Swal.fire({
+                    title: '確定要使用優惠劵嗎?',
+                    text: "",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '確定兌換',
+                    cancelButtonText: '取消'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            '兌換成功!',
+                            '',
+                            'success'
+                        )
+                    }
+                })
+            });
+            const collect = document.getElementById('collect');
+            collect.addEventListener('click', function (e) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: '成功收藏優惠卷',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            });
+        });
+    </script>
 
 </body>
 

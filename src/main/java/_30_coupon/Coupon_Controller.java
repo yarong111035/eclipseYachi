@@ -10,5 +10,9 @@ public class Coupon_Controller {
 	public String vouchers_interface(Model model) {
 		return "_15_coupon/vouchers_interface"; 
 	}
+	@RequestMapping("/vouchers")
+	public String vouchers(Model model) {
+		return "_15_coupon/vouchers"; 
+	}
 	
 }

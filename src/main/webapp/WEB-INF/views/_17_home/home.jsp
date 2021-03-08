@@ -198,7 +198,7 @@ fieldset {
       margin-top: -0.25rem !important;
     } -->
 	<!-- <div class="slider"> -->
-	<div class="slider ">
+	<div class="slider " style="margin:0px 150px;">
 		<div id="carouselExampleIndicators" class="carousel slide"
 			data-ride="carousel">
 			<ol class="carousel-indicators">
@@ -239,14 +239,14 @@ fieldset {
 	<!-- <div class="night-market-bg-first" style="background: url(./Night_Market/nightMarket-bg.jpg);"> -->
 
 	<div class="night-market-bg-second">
-		<div class="jobs">
+		<div class="jobs "  > 
 			<div class="container">
 				<div class="focus text-black text-center text-shadow ">
 
 					<h1>夜市推薦</h1>
 					<hr>
 				</div>
-				<div class="row">
+				<div class="row" style="margin:0px -70px">
 					<div class="col-sm-6 col-lg-3 mt-4">
 						<div class="card">
 							<img
@@ -338,13 +338,13 @@ fieldset {
 		<!-- Voucher  =================================== -->
 		<!-- <div class="Voucher-bg-first" style="background: url(./Night_Market/bg-4.jpg);">
           <div class="Voucher-bg-second"> -->
-		<div class="jobs mt-5">
+		<div class="jobs " >
 			<div class="container">
 				<div class="focus text-black text-center text-shadow ">
 					<h1>優惠劵推薦</h1>
 					<hr>
 				</div>
-				<div class="row">
+				<div class="row" style="margin:0px -70px" >
 					<div class="col-sm-6 col-lg-3 mt-4 ">
 						<div class="card">
 							<img

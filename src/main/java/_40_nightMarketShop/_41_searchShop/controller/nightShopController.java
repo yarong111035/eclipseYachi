@@ -13,4 +13,10 @@ public class nightShopController {
 		return "_14_nightShop/1_shop"; 
 	}
 
+	
+	@RequestMapping("/Raohe_Street")		// 饒河夜市
+	public String Raohe_Street(Model model) {  //有東西要交給view 就放model
+		return "_13_nightMarket/Raohe_Street"; 
+	}
+	
 }
