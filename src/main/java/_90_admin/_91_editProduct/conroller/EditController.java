@@ -50,6 +50,7 @@ import _02_model.entity.ProductTypeBean;
 import _20_shoppingMall._21_product.exception.ProductNotFoundException;
 import _20_shoppingMall._21_product.service.ProductService;
 import _20_shoppingMall._21_product.service.ProductTypeService;
+import _20_shoppingMall._22_shoppingCart.service.CartBeanService;
 import _90_admin._91_editProduct.validator.ProductValidator;
 
 @Controller
@@ -58,6 +59,8 @@ public class EditController {
 	ProductTypeService productTypeService;
 	@Autowired
 	ProductService productService;
+	@Autowired
+	CartBeanService cartBeanService;
 	@Autowired
 	ServletContext context;
 	
@@ -311,6 +314,8 @@ public class EditController {
 			}
 		}
 		productService.updateProduct(productBean);
+		//更新購物車的total(當產品價格改變須同步更新購物車表格的total)
+		cartBeanService.updateCartTotal();
 		System.out.println("===============================222============================");
 		return "redirect:/admin_editProduct";
 	}
