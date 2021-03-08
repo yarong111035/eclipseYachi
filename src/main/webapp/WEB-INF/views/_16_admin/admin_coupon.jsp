@@ -90,6 +90,7 @@
                 </div>
             </main>
         </div>
-    </div>
+    </div>						
+    <jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />					
 </body>
 </html>
