@@ -45,6 +45,10 @@ public class ProductBean implements Serializable{
 	
 	private String filename;
 	
+<<<<<<< HEAD
+	//未放入產品評價75
+=======
+>>>>>>> main
 	
     private String product_spec;
     
@@ -53,10 +57,16 @@ public class ProductBean implements Serializable{
     
     @JsonIgnoreProperties("products")
 	@ManyToOne
+<<<<<<< HEAD
+	@JoinColumn(name = "fk_sort_id")
+	private Product_sort sort; // fk 商品種類
+
+=======
 	@JoinColumn(name = "FK_product_type_id")
 	private ProductTypeBean productTypeBean;
 	
 	private String product_memo;
+>>>>>>> main
 
 	@JsonIgnore
 	@Transient
