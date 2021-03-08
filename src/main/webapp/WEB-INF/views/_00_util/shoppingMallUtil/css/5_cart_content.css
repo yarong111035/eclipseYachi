@@ -42,10 +42,11 @@
   vertical-align: middle;
 }
 .table .thead .tr .th{
-  border-bottom: 1px solid rgb(248, 245, 245);
+  font-weight:600;
+  border-bottom: 2px solid #ccc;
 }
 .table .td{
-  padding: 2rem 1.5rem;
+  padding: 1.3rem 1.5rem;
   /* position: relative; */
 }
 .table .tbody .tr .td{
@@ -60,17 +61,24 @@
 .tbody{
   display: table-row-group;
 }
+
 .tbody .pic{
-  width: 20%;
+  width: 11%;
 }
 .tbody .pic img{
   width: 100%;
+  height:100px;
 }
 .tbody .name a{
   /* display是block才可以給margin屬性 */
+  font-weight:400;
   display: block;
   margin-bottom: 10px;
   color: #555;
+  transition:.3s;
+}
+.tbody .name a:hover{
+	font-weight:700;
 }
 .tbody .count select{
   padding-right: 20px;
