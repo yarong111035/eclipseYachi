@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -35,8 +36,7 @@
 <script
 	src="<c:url value='/_00_util/allUtil/javascript/jquery-3.5.1.js'/>"></script>
 <script src="<c:url value='/_00_util/allUtil/javascript/jquery-ui.js'/>"></script>
-<script
-	src="<c:url value='/_00_util/allUtil/javascript/enscroll-0.6.2.min.js'/>"></script>
+
 </head>
 <body>
 	<!-- 引入共同的頁首 -->
@@ -124,7 +124,7 @@
 			</div>
 			<!-- 卷軸部分結束 -->
 			<div class="buyBtn">
-				<a href="javascript:;">前往結帳</a>
+				<a href="<c:url value='/showCartContent'/>">前往結帳 NT$ ${sum}</a>
 			</div>
 
 			<label for="side_menu_switch"> <i class="fas fa-cart-plus"></i>
@@ -186,22 +186,28 @@
 										<div class="product_price">
 											<span>售價NT${entry.value.product_price }</span>
 										</div>
-										<div class="product_count">
-											<span>數量</span> <select name="count" id="">
-												<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-												<option value="5">5</option>
-												<option value="5">6</option>
-												<option value="5">7</option>
-												<option value="5">8</option>
-												<option value="5">9</option>
-												<option value="5">10</option>
-
-											</select>
-										</div>
-										<div class="cartBtn">加入購物車</div>
+										
+										<form action="<c:url value='/BuyProduct.do' />" modelAttribute="cartBean" method="POST">
+											<div class="product_count">
+												<span>數量</span> 
+												<select name='qty' id="">
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+													<option value="5">6</option>
+													<option value="5">7</option>
+													<option value="5">8</option>
+													<option value="5">9</option>
+													<option value="5">10</option>
+	
+												</select>
+											</div>
+											<input type='hidden' name='product_id' value='${entry.value.product_id}'>
+											<button type='submit' class="cartBtn">加入購物車</button>
+										</form>
+									
 									</div>
 									<!-- <div class="clearfix"></div> -->
 								</div>
@@ -248,8 +254,9 @@
 
 
 
-
-
+	
+	<script
+	src="<c:url value='/_00_util/allUtil/javascript/enscroll-0.6.2.min.js'/>"></script>
 	<script>
 		$(document).ready(function() {
 			//把點到的商品名稱放到標題上

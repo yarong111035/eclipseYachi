@@ -82,13 +82,14 @@ body{
     border-bottom: 1px solid #ddd;
 }
 .carItem .pic{
-    max-width: 140px;
+    width: 20%;
 }
 .carItem .pic img{
     width: 100%;
+    height:80px;
 }
 .text_box{
-    width: 43%;  /*讓寬度固定為父層的40%，即使產品名稱很長也不會跑版*/
+    width: 55%;  /*讓寬度固定為父層的40%，即使產品名稱很長也不會跑版*/
     display: flex;
     flex-direction: column;
     justify-content: space-between;
