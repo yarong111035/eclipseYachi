@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.request.WebRequest;
 
 import _10_member.entity.Member;
@@ -33,6 +34,7 @@ import _10_member.validate.MemberValidator;
 
 
 @Controller
+
 public class LoginAndRegisterController {
 	
 	@Autowired
@@ -151,6 +153,7 @@ public class LoginAndRegisterController {
 	    
 		// 登入成功
 	    
+	    model.addAttribute("member", member);	
 		session.setAttribute("member", member);	
 		
 		// 需要再次請求首頁資源
