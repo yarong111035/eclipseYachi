@@ -29,7 +29,7 @@ import _10_member.entity.Member;
 import _20_shoppingMall._22_shoppingCart.service.CartBeanService;
 
 @Controller
-@SessionAttributes({"member", "pageNo"})
+@SessionAttributes({"member", "pageNo","cartList"})
 public class ShoppingCartController {
 	@Autowired
 	CartBeanService cartBeanService;
@@ -121,11 +121,15 @@ public class ShoppingCartController {
 	}
 	
 	//刪除一筆購物車紀錄(根據id刪除)
-	@DeleteMapping("/cartDelete/{cart_id}")
-	public String deleteCart(@PathVariable Integer cart_id) {
-		cartBeanService.deleteCart(cart_id);
-		return "redirect:/showCartContent";
-	}
+//	@DeleteMapping("/cartDelete/{cart_id}")
+//	public String deleteCart(
+//			@PathVariable Integer cart_id,
+//			SessionStatus status
+//			) {
+//		cartBeanService.deleteCart(cart_id);
+//		status.setComplete();
+//		return "redirect:/showCartContent";
+//	}
 	
 		
 	//透過此方式產生下拉選單數量的值
@@ -137,4 +141,8 @@ public class ShoppingCartController {
 		 }
 		 return qtyMap;
 	}
+	
+
+	
+	
 }
