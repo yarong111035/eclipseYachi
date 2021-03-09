@@ -80,7 +80,7 @@
 			    	<a href="<c:url value='/LoginAndRegister'/>"><font>登入</font></a>
 			    </c:if>
 			    
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="<c:url value='/showCartContent'/>"><i class="fas fa-shopping-cart"></i></a>
 
 				</div>
 
