@@ -39,7 +39,7 @@ aside{
   margin: 5px;
 }
 .items{
-    padding: 30px 0;
+    padding: 15px 0;
     margin-left: 20px;
 }
 .items a span{
@@ -70,7 +70,7 @@ aside{
                         <h3>線上商城</h3>
                     </div>
                     <div class="items">
-                            <a href='<c:url value='/'/>'><span>最新商品</span></a>
+                            <a href='<c:url value='/DisplayPageProducts'/>'><span>最新商品</span></a>
                     </div>
                 	<c:forEach var='sort' items='${sortList}'>
                     	<hr class="hr">
