@@ -65,7 +65,7 @@ public class EditController {
 	ServletContext context;
 	
 //	產品維護頁面
-	@RequestMapping("/admin_editProduct")
+	@RequestMapping("/admin/admin_editProduct")
 	public String admin(Model model) {  
 		List<ProductBean> list = productService.getAllProducts();
 //		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -169,7 +169,7 @@ public class EditController {
 				throw new RuntimeException("檔案上傳時發生異常: " + e.getMessage());
 			}
 		}
-		return "redirect:/admin_editProduct";
+		return "redirect:/admin/admin_editProduct";
 	}
 	
 	
@@ -245,7 +245,7 @@ public class EditController {
 	@DeleteMapping("/productDelete/{product_id}") 
 	public String deleteProduct(@PathVariable("product_id") Integer product_id) {
 		productService.deleteProduct(product_id);
-		return "redirect:/admin_editProduct";
+		return "redirect:/admin/admin_editProduct";
 	}
 	
 	
@@ -317,7 +317,7 @@ public class EditController {
 		//更新購物車的total(當產品價格改變須同步更新購物車表格的total)
 		cartBeanService.updateCartTotal();
 		System.out.println("===============================222============================");
-		return "redirect:/admin_editProduct";
+		return "redirect:/admin/admin_editProduct";
 	}
 	
 	

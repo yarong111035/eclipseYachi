@@ -54,7 +54,7 @@ import _20_shoppingMall._22_shoppingCart.service.CartBeanService;
 //此controller 目的為 列出商城的產品與產品種類並可以連結至商品明細頁
 //POJO類別 不須繼承任何類別
 @Controller  //spring mvc 控制器
-@SessionAttributes({"pageNo", "member"})
+@SessionAttributes({"pageNo", "LoginOK"})
 public class ProductController {
 	@Autowired
 	ProductTypeService productTypeService;
@@ -129,7 +129,7 @@ public class ProductController {
 			HttpServletResponse res,
 			@RequestParam(value = "pageNo", required = false) Integer pageNo)
 	{
-		Member memberBean = (Member) model.getAttribute("member");
+		Member memberBean = (Member) model.getAttribute("LoginOK");
 		if(pageNo == null) {
 			pageNo = 1;
 		}

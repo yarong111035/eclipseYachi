@@ -30,6 +30,8 @@ public class NightMarketBean implements Serializable{
 	
 	private String market_memo;
 	
+	// 雙向多對一 
+	// 夜市一方 商家多方  夜市可以有多個商家 一個商家只能有一個夜市 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "nightMarketBean")  //告訴外鍵後就不會有中介表格
 	private Set<ShopBean> shops = new LinkedHashSet<ShopBean>();
 	
@@ -46,6 +48,12 @@ public class NightMarketBean implements Serializable{
 		this.market_comment = market_comment;
 		this.market_memo = market_memo;
 		this.shops = shops;
+	}
+	public NightMarketBean(String market_name, Double market_score) {
+		super();
+		this.market_name = market_name;
+		this.market_score = market_score;
+		
 	}
 
 	public Integer getMarket_id() {

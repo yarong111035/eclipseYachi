@@ -42,6 +42,10 @@ public class FavoriteCouponListBean implements Serializable{
 			)
 	private Set<CouponBean> coupons = new LinkedHashSet<CouponBean>();
 
+	
+	
+	
+	
 	public Integer getCoupon_list_id() {
 		return coupon_list_id;
 	}

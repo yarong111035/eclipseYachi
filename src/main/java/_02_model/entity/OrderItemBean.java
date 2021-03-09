@@ -37,6 +37,11 @@ public class OrderItemBean implements Serializable{
 	
 	private String order_memo;
 
+	
+	
+	
+	
+	
 	public Integer getOrder_item_id() {
 		return order_item_id;
 	}

@@ -30,7 +30,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @Entity
 @Table
 public class Member implements Serializable{
@@ -52,7 +51,6 @@ public class Member implements Serializable{
 	@Column(columnDefinition = "mediumblob")
 	private Blob image;
 	private String fileName;
-	
 	@Transient
 	MultipartFile memberMultipartFile;
 	
@@ -149,18 +147,13 @@ public class Member implements Serializable{
 		this.address = address;
 	}
 
-	
-
-
 	public Blob getImage() {
 		return image;
 	}
 
 	public void setImage(Blob image) {
 		this.image = image;
-	}
-
-	
+	}	
 
 	public ShopBean getShopBean() {
 		return shopBean;
@@ -201,6 +194,16 @@ public class Member implements Serializable{
 	public void setMemberMultipartFile(MultipartFile memberMultipartFile) {
 		this.memberMultipartFile = memberMultipartFile;
 	}
+
+	@Override
+	public String toString() {
+		return "Member [memberId=" + memberId + ", username=" + username + ", password=" + password + ", fullname="
+				+ fullname + ", sex=" + sex + ", birthday=" + birthday + ", phone=" + phone + ", email=" + email
+				+ ", address=" + address + ", registerTime=" + registerTime + ", image=" + image + ", fileName="
+				+ fileName + ", memberMultipartFile=" + memberMultipartFile + ", roles="
+				+ roles + "]";
+	}
+
 
 
 	 

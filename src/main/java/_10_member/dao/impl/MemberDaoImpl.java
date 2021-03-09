@@ -58,11 +58,22 @@ public class MemberDaoImpl implements MemberDao{
 		return mBean;
 	}
 
+	// 新增會員
 	@Override
 	public Object insertMember(Member member) {
 		Session session = factory.getCurrentSession();
 		
 		return session.save(member);
 	}
+
+	// 更新會員
+	@Override
+	public void updateMember(Member member) {
+		
+		Session session = factory.getCurrentSession();
+		session.update(member);
+		
+	}
+
 	
 }

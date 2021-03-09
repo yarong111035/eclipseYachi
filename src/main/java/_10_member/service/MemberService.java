@@ -9,4 +9,7 @@ public interface MemberService {
 	public Member findByMemberId(Integer memberId);
 	
 	public Object insertMember(Member member);
+	
+	public void updateMember(Member member); 
+
 }

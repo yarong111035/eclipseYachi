@@ -20,7 +20,7 @@ import javax.xml.bind.DatatypeConverter;
 public class GlobalService {
 
 	public static final int RECORDS_PER_PAGE = 8;
-	public static final String SYSTEM_NAME = "雅君網路購物商城";
+	public static final String SYSTEM_NAME = "YACHI";
 	public static final int IMAGE_FILENAME_LENGTH = 20;
 	public static final String JNDI_DB_NAME = "java:comp/env/jdbc/BookDataSQLver";
 	public static final String KEY = "KittySnoopyMicky"; // 16, 24, 32

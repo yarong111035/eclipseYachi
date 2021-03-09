@@ -65,6 +65,12 @@
              <form:label path="username">帳號</form:label>
              <form:input path="username" name="username" type="text"/>
              <form:errors path="username" cssClass="error"/>
+             <c:if test="${! empty msg}">
+             	<p class="error">
+             		${msg} 這個帳號   ${errorInfo} 已經有人註冊了
+             	</p>
+             </c:if>
+             
          </div>
 
          <div class="input-div">
@@ -72,12 +78,6 @@
             <form:input path="password" type="password"/>
             <form:errors path="password" cssClass="error"/>
          </div>
-
-<!--          <div class="input-div"> -->
-<%--           <form:label path="password-again">確認密碼</form:label> --%>
-<%--           <form:input path="password-again" type="password"/> --%>
-<%--           <form:errors path="password-again" cssClass="error"/> --%>
-<!--          </div> -->
 
          <div class="input-div">
 	         <form:label path="fullname">姓名</form:label>
