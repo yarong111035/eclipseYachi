@@ -153,7 +153,9 @@
     display: flex;
     justify-content: space-between;
 }
-.cartBtn a, .buyBtn a{
+.cartBtn input, .buyBtn a{
+	border:none;
+	outline:none;
 	display:inline-block;
     width: 7rem;
     padding:10px;
@@ -164,7 +166,9 @@
     text-align: center;
 } 
 
-.cartBtn a:hover,.buyBtn a:hover{
+.cartBtn input:hover,.buyBtn a:hover{
+  border:none;
+  outline:none;
   background: #d2b3b3;
   color: #555555;
 }
