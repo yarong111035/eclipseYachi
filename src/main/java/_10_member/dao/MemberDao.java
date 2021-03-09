@@ -13,4 +13,7 @@ public interface MemberDao {
 	
 	public Object insertMember(Member member);
 	
+	public void updateMember(Member member); 
+
+	
 }	

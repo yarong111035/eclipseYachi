@@ -10,8 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import _10_member.entity.Member;
@@ -22,19 +21,42 @@ import _10_member.entity.Member;
 public class CartBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	/** 此表更改欄位
+	 * 考慮若多一個表我應該寫不出來....
+	 * cart_id
+	 * member_id
+	 * product_id
+	 * total
+	 * amount
+	 */
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer cart_id;
+	private Integer cart_id; 
+	
+//	一對多(購物車 : 購物車明細)
+//	@OneToMany(cascade=CascadeType.ALL, mappedBy = "cartBean")
+//	private Set<CartItemBean> itemBeans = new LinkedHashSet<CartItemBean>();
 	
 	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy = "cartBean")
-	private Set<CartItemBean> itemBeans = new LinkedHashSet<CartItemBean>();
-	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="FK_member_id")
 	private Member memberBean;
 	
-	private Integer cart_status;  //用數字表示購物車存在狀況
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="FK_product_id")
+	private ProductBean productBean;
+	
+//	private Integer cart_status;  //用數字表示購物車存在狀況
+
+	/**
+	 * 購物車中所有商品的總金額
+	 * 如果不在此計算，則每次可能需要用到都要算一次
+	 */
+	private Double cart_total;
+	
+//	購物車中商品的數量
+	private Integer cart_amount;
 
 	public Integer getCart_id() {
 		return cart_id;
@@ -42,16 +64,6 @@ public class CartBean implements Serializable{
 
 	public void setCart_id(Integer cart_id) {
 		this.cart_id = cart_id;
-	}
-
-	
-
-	public Set<CartItemBean> getItemBeans() {
-		return itemBeans;
-	}
-
-	public void setItemBeans(Set<CartItemBean> itemBeans) {
-		this.itemBeans = itemBeans;
 	}
 
 	public Member getMemberBean() {
@@ -62,26 +74,35 @@ public class CartBean implements Serializable{
 		this.memberBean = memberBean;
 	}
 
-	public Integer getCart_status() {
-		return cart_status;
+	public ProductBean getProductBean() {
+		return productBean;
 	}
 
-	public void setCart_status(Integer cart_status) {
-		this.cart_status = cart_status;
+	public void setProductBean(ProductBean productBean) {
+		this.productBean = productBean;
 	}
 
-	public CartBean(Integer cart_id, Set<CartItemBean> itemBeans, Member memberBean,
-			Integer cart_status) {
-		super();
-		this.cart_id = cart_id;
-		this.itemBeans = itemBeans;
-		this.memberBean = memberBean;
-		this.cart_status = cart_status;
+	
+	public Double getCart_total() {
+//		數量*價格
+		Double price = productBean.getProduct_price();
+		Integer amount = this.cart_amount;
+		this.cart_total = price * amount;
+		return this.cart_total;
 	}
 
-	public CartBean() {
-		super();
+	public void setCart_total(Double cart_total) {
+		this.cart_total = cart_total;
 	}
+
+	public Integer getCart_amount() {
+		return cart_amount;
+	}
+
+	public void setCart_amount(Integer cart_amount) {
+		this.cart_amount = cart_amount;
+	}
+	
 	
 	
 }

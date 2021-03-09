@@ -50,6 +50,7 @@ import _02_model.entity.ProductBean;
 
 
 @Controller
+@RequestMapping("/admin")
 public class EditCouponController {
 	
 //	表單頁面控制器方法
@@ -59,7 +60,6 @@ public class EditCouponController {
 		cb.setCoupon_id(001);
 		cb.setCoupon_name("林筱珍");
 		cb.setCoupon_amount(30);
-		cb.setCoupon_days(5);
 		model.addAttribute("couponBean", cb); 
 		return "_16_admin/admin_coupon";
 	}

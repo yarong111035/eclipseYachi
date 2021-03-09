@@ -29,7 +29,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
 	integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
 	crossorigin="anonymous"></script>
-<title>insert product</title>
+<title>update product</title>
 </head>
 <body>
 	<!-- 引入共同的頁首 -->
@@ -108,19 +108,20 @@
 							<form:input type="file" path="productImage" class="custom-file-input" id="productImage"/>
 							<label class="custom-file-label" for="productImage">choose file</label>
 						</div>
-
+						<!-- 選擇照片 -->
 						<div class="imageBox d-flex justify-content-between pt-4">
 							<div class="image">
-								<img id="image1">
+								<img id="image1"/>
+							 </div>
+							<!--<div class="image">
+								<img src="${pageContext.request.contextPath}/images_2/product3-2.jpg" alt="">
 							</div>
-<!-- 							<div class="image"> -->
-<%-- 								<img src="${pageContext.request.contextPath}/images_2/product3-2.jpg" alt=""> --%>
-<!-- 							</div> -->
-<!-- 							<div class="image"> -->
-<%-- 								<img src="${pageContext.request.contextPath}/images/Shinnosuke/Shinnosuke2.jpg" alt=""> --%>
-<!-- 							</div> -->
+							<div class="image">
+								<img src="${pageContext.request.contextPath}/images/Shinnosuke/Shinnosuke2.jpg" alt="">
+							</div> -->
+						
 						</div>
-						<!-- 選擇照片 -->
+						
 
 
 						<div class="form-group row  d-flex justify-content-end mt-5">
@@ -143,10 +144,15 @@
 	<script>
 	//選擇圖片時會出現檔名(因bootstrap4.6此用法必須這樣寫才會出現)
 	$(document).ready(function(){
+		//選擇圖片時會出現檔名(因bootstrap4.6此用法必須這樣寫才會出現)
 	  $(".custom-file-input").change(function () {
 	    $(this).next(".custom-file-label").html($(this).val().split("\\").pop());
 	  });
-	//因為單選的關係，所以有檔案一定是在第0個。
+	  
+	  $('#productImage').change(function(){
+		  readURL(this);
+	  })
+	  //因為單選的關係，所以有檔案一定是在第0個。
 	  function readURL(input){
 		  if(input.files && input.files[0]){
 		    let reader = new FileReader();

@@ -24,13 +24,13 @@ public class RootAppConfig {
 	public DataSource dataSource() {
 		ComboPooledDataSource ds = new ComboPooledDataSource();
 		ds.setUser("root");
-		ds.setPassword("ABCDE123");
+		ds.setPassword("0972703983");
 		try {
 			ds.setDriverClass("com.mysql.cj.jdbc.Driver");
 		} catch (PropertyVetoException e) {
 			e.printStackTrace();
 		}
-		ds.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/yachidb00?serverTimezone=Asia/Taipei&useSSL=false&useUnicode=true&characterEncoding=utf-8");
+		ds.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/yachidb00?useUnicode=yes&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Taipei&allowPublicKeyRetrieval=true");
 		ds.setInitialPoolSize(4); //初始化
 		ds.setMaxPoolSize(8); //設定最大連結數
 		return ds;
@@ -43,7 +43,7 @@ public class RootAppConfig {
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 		factory.setDataSource(dataSource()); 
 		//掃描永續類別(有加@Entity註釋的類別)
-		factory.setPackagesToScan(new String[] {"_02_model.entity" , "_10_member\\entity"});
+		factory.setPackagesToScan(new String[] {"_02_model.entity" , "_10_member.entity"});
 		factory.setHibernateProperties(additionalProperties());  //自訂方法
 		return factory;
 	}

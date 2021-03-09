@@ -10,11 +10,26 @@
 <title></title>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-<link rel="stylesheet"
-	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
-<link rel="stylesheet"
-	href="<c:url value='/_00_util/allUtil/css/header.css'/>">
+<link rel="stylesheet"href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
+<link rel="stylesheet"href="<c:url value='/_00_util/allUtil/css/header.css'/>">
 </head>
+<style>
+
+	/* 會員大頭貼的設定 */
+	.member-headImg{
+		position: absolute;
+		top: 40px;
+		right: 10px;
+		width: 100px;
+		padding: 10px; 
+	}
+	.member-headImg img{
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+	}
+
+</style>
 
 <body>
 	<!-- Start:header -->
@@ -77,19 +92,25 @@
 				</div>
 
 				<div class="member">
-					<c:if test="${!empty member}">
+					<c:if test="${!empty LoginOK}">
 						<a href="#"><font>你好 ! </font></a>
-						<a href="#"><font>${member.fullname}</font></a>
+						<a href="#"><font>${LoginOK.fullname}</font></a>
 					</c:if>
 
-					<c:if test="${empty member}">
+					<c:if test="${empty LoginOK}">
 						<a href="<c:url value='/LoginAndRegister'/>"><font>免費註冊</font></a>
 						<a href="<c:url value='/LoginAndRegister'/>"><font>登入</font></a>
 					</c:if>
 
-					<a href="#"><i class="fas fa-shopping-cart"></i></a>
+				<a href="<c:url value='/showCartContent'/>"><i class="fas fa-shopping-cart"></i></a>
 
 				</div>
+				
+				<c:if test="${!empty LoginOK}">
+					<div class="member-headImg">
+						<img src="<c:url value='/_00_init/getMemberImage?memberId=${LoginOK.memberId}'/>">
+					</div>
+				</c:if>
 
 			</div>
 		</div>
@@ -132,20 +153,23 @@
 						<a href="<c:url value='update/price' />">點我更新價格(+50元)</a><br>
 					</div>
 					<div class="tab-panel">
-						<a href="<c:url value='/administrator' />">管理員首頁</a><br> <a
-							href="<c:url value='/admin_editProduct' />">商品維護</a><br> <a
-							href="<c:url value='/admin_coupon' />">平台優惠券</a><br> <a
-							href="<c:url value='/admin_chatroom' />">客服回應</a><br> <a
-							href="<c:url value='/admin_announcement' />">公告</a><br> <a
-							href="<c:url value='/admin_adinfo' />">廣告資訊</a><br> <a
-							href="<c:url value='/admin_activity' />">平台優惠活動</a><br> <a
-							href="<c:url value='/admin_checkShop' />">審核商家</a><br>
+						<a href="<c:url value='/admin/administrator' />">管理員首頁</a><br> <a
+							href="<c:url value='/admin/admin_editProduct' />">商品維護</a><br> <a
+							href="<c:url value='/admin/admin_coupon' />">平台優惠券</a><br> <a
+							href="<c:url value='/admin/admin_chatroom' />">客服回應</a><br> <a
+							href="<c:url value='/admin/admin_announcement' />">公告</a><br> <a
+							href="<c:url value='/admin/admin_adinfo' />">廣告資訊</a><br> <a
+							href="<c:url value='/admin/admin_activity' />">平台優惠活動</a><br> <a
+							href="<c:url value='/admin/admin_checkShop' />">審核商家</a><br><a
+							href="<c:url value='/_50_shop/_53_shopRegister/InsertShop' />">申請商家</a><br><a
+							href="<c:url value='/_50_shop/_53_shopRegister/modifyShop/${LoginOK.shopBean.shop_id}' />">商家管理頁面</a><br>
 
-						<c:if test="${!empty member}">
-							<a href="<c:url value='/member/update/${member.memberId}'/>">修改會員資料</a>
+						<c:if test="${!empty LoginOK}">
+							<a href="<c:url value='/member/update/${LoginOK.memberId}'/>">修改會員資料</a>
 						</c:if>
-						<c:if test="${!empty member}">
-							<a href="<c:url value='/doLogout'/>"><font>登 出</font></a>
+						<c:if test="${!empty LoginOK}">
+							<a href="<c:url value='/doLogout'/>" onclick="return window.confirm('確定登出嗎?');">
+							<font>登 出</font></a>
 						</c:if>
 
 					</div>

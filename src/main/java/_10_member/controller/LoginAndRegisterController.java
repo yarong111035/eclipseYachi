@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.WebRequest;
 
 import _10_member.entity.Member;
@@ -31,8 +34,8 @@ import _10_member.service.MemberService;
 import _10_member.validate.MemberValidator;
 
 
-
 @Controller
+@SessionAttributes("LoginOK")
 public class LoginAndRegisterController {
 	
 	@Autowired
@@ -41,16 +44,20 @@ public class LoginAndRegisterController {
 	@Autowired
 	MemberValidator mValidator;
 	
+	@Autowired
+	PasswordEncoder pEncoder;
+	
+	// 登入和註冊頁面的視圖邏輯名稱渲染
 	@RequestMapping("/LoginAndRegister")
 	public String LoginAndRegister(@ModelAttribute("member") Member member) {
 		
 		return "/_11_member/LoginAndRegister"; 
 	}
 			
-	
+	// 會員註冊事務
 	@PostMapping("doRegister")
 	public String doRegist(@ModelAttribute("member") Member member,
-			BindingResult bindingResult,Model model) {
+			BindingResult bindingResult,Model model,HttpSession session) {
 		
 		mValidator.validate(member, bindingResult);
 		
@@ -61,13 +68,15 @@ public class LoginAndRegisterController {
 			
 		// 獲取來自輸入表單的帳號和密碼
 		String username = member.getUsername();  //aa
+		String password = member.getPassword();
+
 		// 從資料庫找尋帳號是否有和輸入表單帳號重複的 
 		Member getUsername = memberService.findByUsername(username);  //aa
 				
 		if(getUsername != null ) {
 			
 			model.addAttribute("msg","註冊失敗");
-			model.addAttribute("errorInfo",getUsername);
+			model.addAttribute("errorInfo",username);
 			
 			return "/_11_member/errorRegister";
 			
@@ -84,11 +93,17 @@ public class LoginAndRegisterController {
 			// 註冊時間戳記
 			member.setRegisterTime(new Timestamp(System.currentTimeMillis()));
 			
+			// 密碼加密處理
+			member.setPassword(pEncoder.encode(password));
+
 			memberService.insertMember(member);
-			model.addAttribute("msg","註冊成功");
-			System.out.println(member);
+//			System.out.println(member);			
+//			session.setAttribute("member", member);	
+//			model.addAttribute("member", member);
 			
-			return "/_11_member/index";
+			model.addAttribute("LoginOK", member);
+			
+			return "redirect:/index";
 		}
 		
 	}
@@ -110,17 +125,22 @@ public class LoginAndRegisterController {
 	
 	 // 會員登出
 	@RequestMapping("/doLogout")
-	public String doLogout(HttpSession session) {
+	public String doLogout(HttpSession session, SessionStatus status) {
 		
 		session.invalidate();
+		
+		// 去除@SessionAttributes("LoginOK")
+		status.setComplete();
+		
 		
 		return "redirect:/index";
 	}
 	
 	
-	// <form action="/doLogin" method="POST">
+	// 會員登入
 	@PostMapping("doLogin") 
-	public String doLogin(Member member,Model model,HttpSession session) {
+	public String doLogin(Member member,Model model,HttpSession session,
+							HttpServletRequest request) {
 		
 		// 獲取來自輸入表單的帳號密碼
 		String username = member.getUsername();
@@ -133,31 +153,44 @@ public class LoginAndRegisterController {
 		// 依輸入表單的帳號獲取來自資料庫會員的全部資料
 		member = memberService.findByUsername(username);
 		
-		
 		if (member == null) {
-
-			model.addAttribute("accountError", "查無帳號，請先去註冊");
-			
+			model.addAttribute("accountError", "查無帳號，請先去註冊");		
 			return "/_11_member/LoginAndRegister";			
 		}
 		
-		String sqlPassword = member.getPassword();		
-	    if (!password.equals(sqlPassword)){
+		String sqlPassword = member.getPassword();
+		boolean matches = pEncoder.matches(password, sqlPassword);
+	    if (!matches){
 
 			model.addAttribute("passwordError", "密碼錯誤");
 			
 			return "/_11_member/LoginAndRegister";
 		}
 	    
-		// 登入成功
-	    
-		session.setAttribute("member", member);	
+		String nextPath = (String)session.getAttribute("requestURI");
+		if (nextPath == null) {
+			
+			// 如果nextPath等於null 則導向 "/" 首頁
+			// nextPath = request.getContextPath();
+			
+			// 如果nextPath等於null 則導向index
+			nextPath = request.getContextPath()+"/index";  
+		}
 		
-		// 需要再次請求首頁資源
-		return "redirect:/index";
-
+		// 登入成功 將用戶存入session中 識別字串為"member" 屬性物件為 member
+		// session.setAttribute("member", member);  //session
+		model.addAttribute("LoginOK",member);     //request
+		
+		
+		return "redirect: " + nextPath;
 	}
 	
+	// 避免出現以下的例外
+	// org.springframework.web.HttpSessionRequiredException: Expected session attribute 'member'
+	@ModelAttribute("member")
+	public Member populateForm() {
+	    return new Member();
+	}
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder, WebRequest request) {
@@ -173,8 +206,6 @@ public class LoginAndRegisterController {
 		binder.registerCustomEditor(java.sql.Date.class, ce2);
 	}
 
-
-	
 }
 
 

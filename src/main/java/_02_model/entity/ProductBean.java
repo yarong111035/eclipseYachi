@@ -45,7 +45,6 @@ public class ProductBean implements Serializable{
 	
 	private String filename;
 	
-
 	
     private String product_spec;
     
@@ -54,10 +53,6 @@ public class ProductBean implements Serializable{
     
     @JsonIgnoreProperties("products")
 	@ManyToOne
-
-	@JoinColumn(name = "fk_sort_id")
-	private Product_sort sort; // fk 商品種類
-
 	@JoinColumn(name = "FK_product_type_id")
 	private ProductTypeBean productTypeBean;
 	

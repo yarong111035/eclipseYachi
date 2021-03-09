@@ -36,19 +36,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import _02_model.entity.CartBean;
 import _02_model.entity.ProductBean;
 import _02_model.entity.ProductTypeBean;
+import _10_member.entity.Member;
 import _20_shoppingMall._21_product.exception.ProductNotFoundException;
 import _20_shoppingMall._21_product.service.ProductService;
 import _20_shoppingMall._21_product.service.ProductTypeService;
+import _20_shoppingMall._22_shoppingCart.service.CartBeanService;
  
 
 //此controller 目的為 列出商城的產品與產品種類並可以連結至商品明細頁
 //POJO類別 不須繼承任何類別
 @Controller  //spring mvc 控制器
+@SessionAttributes({"pageNo", "LoginOK"})
 public class ProductController {
 	@Autowired
 	ProductTypeService productTypeService;
@@ -56,21 +62,23 @@ public class ProductController {
 	ProductService productService;
 	@Autowired
 	ServletContext context;
-	
+	@Autowired 
+	CartBeanService cartBeanService;
 	
 	//撈出資料庫所有產品
-//	@RequestMapping({"/shopping.store"})
-//	public String store(Model model) {
-//		List<ProductBean> list = service.getAllProducts();
-//		model.addAttribute("products", list);
-//		return "_12_shoppingmall/2_shopping";
-//	}
+	@RequestMapping({"/allProducts"})
+	public @ResponseBody List<ProductBean> queryAllProducts(Model model) {
+		List<ProductBean> products = productService.getAllProducts();
+		return products;
+	}
 
 	
 	//更新產品價格
 	@RequestMapping("/update/price")
 	public String updatePrice(Model model) {
 		productService.updateAllPrice();
+		//更新購物車的total(當產品價格改變須同步更新購物車表格的total)
+		cartBeanService.updateCartTotal();
 		return "redirect:/DisplayPageProducts";  
 		//此處的導向是要寫控制器名稱(RequestMapping的名稱)
 		//而不是 真正的視圖名稱
@@ -121,6 +129,7 @@ public class ProductController {
 			HttpServletResponse res,
 			@RequestParam(value = "pageNo", required = false) Integer pageNo)
 	{
+		Member memberBean = (Member) model.getAttribute("LoginOK");
 		if(pageNo == null) {
 			pageNo = 1;
 		}

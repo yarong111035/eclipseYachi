@@ -26,21 +26,21 @@
 
 
 	<p>首頁測試用會員屬性表</p>
-	<br> member requestScope:${requestScope.member}
-    <br> 
-    <br> member sessionScope:${sessionScope.member}
+	<p>member requestScope:${requestScope.LoginOK}</p> 
+    <p>member sessionScope:${sessionScope.LoginOK}</p> 
+    
 
-	
-	
-	<c:if test="${!empty member.fullname}">
+	<c:if test="${!empty LoginOK}">
 		<a href="#"><font>登入成功 ! </font></a><br>
-	    <a href="#"><font>${member.fullname} 歡迎回來 !</font></a>
+	    <a href="#"><font>${LoginOK.fullname} 歡迎回來 !</font></a>
 	</c:if>
-	
+	<br>
 	<c:if test="${!empty errorInfo}">
 		<p>這個帳號 : ${errorInfo} 已經有人註冊了</p>
 		<p>${msg}</p>
 	</c:if>
 		
+	<img src="<c:url value='/_00_init/getMemberImage?memberId=${LoginOK.memberId}'/>"
+		   id="headImg" height='200px' width='200px'>
 </body>
 </html>

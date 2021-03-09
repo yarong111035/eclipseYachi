@@ -184,39 +184,6 @@
  <script>
         $(function () {
 
-            //     // /* hover事件切換 如果只寫一個方法  
-            //     //    那鼠標經過和離開都會觸發這個方法 slideToggle
-            //     // */
-            //     // // $('.menu-box').hover(function(){
-            //     // //     $(this).children('ul').slideToggle();
-            //     // // })
-
-            $('.tab-list a').hover(function () {
-                /* 為匹配的當前元素切換 class css類別 */
-                $(this).toggleClass('liColor');
-
-                /* 拿到當前(this) a 的索引號 */
-                index = $(this).index();
-
-                /* 讓上面和下面相應的索引號 eq() 顯示內容 
-                    其餘siblings() 隱藏起來 */
-                $('.tab-panel').eq(index).stop().fadeIn('slow').show().siblings().hide();
-
-            }, function () {
-                /* 第二個方法處理滑鼠移開事件 */
-                $(this).removeClass('liColor');
-                $('.tab-panel').hide();
-            })
-
-            $('.tab-panel').hover(function () {
-                index = $(this).index();
-                $(this).css('background-color', 'white').show();
-                $('.tab-list a').eq(index).addClass('liColor');
-            }, function () {
-                $(this).hide();
-                $('.tab-list a').eq(index).removeClass('liColor');
-            })
-
             const using = document.getElementById('using');
             using.addEventListener('click', function (e) {
                 Swal.fire({

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -35,8 +36,7 @@
 <script
 	src="<c:url value='/_00_util/allUtil/javascript/jquery-3.5.1.js'/>"></script>
 <script src="<c:url value='/_00_util/allUtil/javascript/jquery-ui.js'/>"></script>
-<script
-	src="<c:url value='/_00_util/allUtil/javascript/enscroll-0.6.2.min.js'/>"></script>
+
 </head>
 <body>
 	<!-- 引入共同的頁首 -->
@@ -56,43 +56,61 @@
 				<i class="fa fa-arrow-left"></i>
 			</div>
 			<div class="title">
-				購物清單 <span class="shopNum">4</span>
+				<c:if test='${empty cartList}'>
+					購物清單 <span class="shopNum">0</span>
+				</c:if>
+				<c:set value='0' var='sum'/>
+				<c:if test='${!empty cartList}'>
+            		購物清單 <span class="shopNum">${cartList.size()}</span>
+            	</c:if>
 				<!-- 存放購物數量-->
 			</div>
+			<c:if test='${empty cartList}'>
+           		<div class="emptyCart">
+           			<a href="<c:url value='/DisplayPageProducts' />" 
+           			style="display: block;color: #444;font-size: 1.1rem; height: 100px;line-height: 100px;margin-left: 50px;">
+           				購物車空空如也! 趕快去選購吧
+           			</a>
+       			</div>
+           	</c:if>
+			
+			
 			<ul id="item_box">
 				<!-- id 可以存放產品編號-->
-				<!-- <li id="car_productId" class="carItem">      
-                    <div class="pic">
-                        <a href="javascript:;">
-                            <img src="/images_2/1_product.jpg">
-                        </a>
-                    </div>
-                    <div class="text_box">
-                        <div class="name">
-                            <a href="javascript:;">超好用收納購物袋</a>
-                        </div>
-                        <div class="size">S</div>
-                        <div class="count">
-                            <select name="" id="car_productId">
-                                <option value="1" selected>1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        </div>
-                        <div class="price">NT$ 199</div>
-                    </div>
-                    <div class="cancelBtn">
-                        <i class="fa fa-trash"></i>
-                    </div>
-                </li>   -->
-
+				<c:forEach var='cart' items='${cartList }'>
+	                <li id="car_productId" class="carItem">      
+	                    <div class="pic">
+	                        <a href="javascript:;">
+	                            <img src="<c:url value='/getPicture/${cart.productBean.product_id}'/>">
+	                        </a>
+	                    </div>
+	                    <div class="text_box">
+	                        <div class="name">
+	                            <a href="javascript:;">${cart.productBean.product_name }</a>
+	                        </div>
+	                        <div class="size">${cart.productBean.product_spec }</div>
+	                        <div class="count">
+	                            <select name="" id="car_productId">
+	                                <option value="1" selected>1</option>
+	                                <option value="2">2</option>
+	                                <option value="3">3</option>
+	                                <option value="4">4</option>
+	                                <option value="5">5</option>
+	                                <option value="6">6</option>
+	                                <option value="7">7</option>
+	                                <option value="8">8</option>
+	                                <option value="9">9</option>
+	                                <option value="10">10</option>
+	                            </select>
+	                        </div>
+	                        <div class="price">NT$ ${cart.productBean.product_price }</div>
+	                    </div>
+	                    <div class="cancelBtn">
+	                        <i class="fa fa-trash"></i>
+	                    </div>
+	                </li> 
+	                <c:set var='sum' value='${sum + cart.cart_total}'/>
+				</c:forEach>
 
 			</ul>
 			<!-- 卷軸部分 -->
@@ -106,7 +124,7 @@
 			</div>
 			<!-- 卷軸部分結束 -->
 			<div class="buyBtn">
-				<a href="javascript:;">前往結帳</a>
+				<a href="<c:url value='/showCartContent'/>">前往結帳 NT$ ${sum}</a>
 			</div>
 
 			<label for="side_menu_switch"> <i class="fas fa-cart-plus"></i>
@@ -122,8 +140,13 @@
 
 		<div class="new_container">
 			<div class="new_product">
-
-				<h1>${sort.product_type_name}</h1>
+				<c:if test="${empty sort.product_type_name}">
+					<h1>最新商品</h1>
+				</c:if>
+				<c:if test="${!empty sort.product_type_name}">
+					<h1>${sort.product_type_name}</h1>
+				</c:if>
+				
 
 			</div>
 		</div>
@@ -163,22 +186,29 @@
 										<div class="product_price">
 											<span>售價NT${entry.value.product_price }</span>
 										</div>
-										<div class="product_count">
-											<span>數量</span> <select name="count" id="">
-												<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-												<option value="5">5</option>
-												<option value="5">6</option>
-												<option value="5">7</option>
-												<option value="5">8</option>
-												<option value="5">9</option>
-												<option value="5">10</option>
-
-											</select>
-										</div>
-										<div class="cartBtn">加入購物車</div>
+										
+										<form action="<c:url value='/BuyProduct.do' />" method="POST">
+											<div class="product_count">
+												<span>數量</span> 
+												<select name='qty'>
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+													<option value="6">6</option>
+													<option value="7">7</option>
+													<option value="8">8</option>
+													<option value="9">9</option>
+													<option value="10">10</option>
+	
+												</select>
+											</div>
+											<input type='hidden' name='product_id' value='${entry.value.product_id}'>
+											<Input type='hidden' name='pageNo' value='${param.pageNo}'>
+											<button type='submit' class="cartBtn">加入購物車</button>
+										</form>
+									
 									</div>
 									<!-- <div class="clearfix"></div> -->
 								</div>
@@ -225,8 +255,9 @@
 
 
 
-
-
+	
+	<script
+	src="<c:url value='/_00_util/allUtil/javascript/enscroll-0.6.2.min.js'/>"></script>
 	<script>
 		$(document).ready(function() {
 			//把點到的商品名稱放到標題上

@@ -1,14 +1,7 @@
 **/.metadata/*
 **/target/**
 **/Servers/**
-<<<<<<< HEAD
-**/.settings/**
-.project
-.classpath
-.MF
-=======
 **/m2e-wtp/**
 **/.settings/**
 .classpath
 .project
->>>>>>> main

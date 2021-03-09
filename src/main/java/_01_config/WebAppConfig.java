@@ -5,18 +5,27 @@ import java.util.ArrayList;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.hibernate5.support.OpenSessionInViewInterceptor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
+
+import _00_util.DisableCacheInterceptor;
+import _10_member.interceptor.CheckLoginInterceptor;
+
+
 
 //原本繼承的 WebMvcConfigurerAdapter類別已作廢，改實作 WebMvcConfigurer介面
 /*
@@ -30,7 +39,7 @@ Step3(@ComponentScan): 請Spring掃描有定義註釋的套件(含有Annotation
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"_01_config","_20_shoppingMall","_90_admin","_10_member","_80_home","_40_nightMarketShop","_30_coupon"})
+@ComponentScan({"_01_config","_20_shoppingMall","_90_admin","_10_member","_80_home","_40_nightMarketShop","_30_coupon","_50_shop"})
 public class WebAppConfig implements WebMvcConfigurer {
 
 	@Bean
@@ -72,6 +81,8 @@ public class WebAppConfig implements WebMvcConfigurer {
 		
 		registry.addResourceHandler("/_00_util/homeUtil/css/**")
 				.addResourceLocations("/WEB-INF/views/_00_util/homeUtil/css/");
+		registry.addResourceHandler("/_00_util/shopUtil/css/**")
+		.addResourceLocations("/WEB-INF/views/_00_util/shopUtil/css/");
 	
 //			讀取照片檔案
 //			registry.addResourceHandler("/data/images/**")
@@ -102,6 +113,8 @@ public class WebAppConfig implements WebMvcConfigurer {
 				.addResourceLocations("/WEB-INF/views/_00_util/shoppingMallUtil/javascript/");
 //			registry.addResourceHandler("/header/**")
 //					.addResourceLocations("WEB-INF/views/header/");
+		registry.addResourceHandler("/_00_util/shopUtil/javascript/**")
+		.addResourceLocations("/WEB-INF/views/_00_util/shopUtil/javascript/");
 	}
 
 	
@@ -142,5 +155,24 @@ public class WebAppConfig implements WebMvcConfigurer {
 		    views.add(jsonView());  //把視圖加上視圖解析器，可加不只一個
 		    resolver.setDefaultViews(views);
 		    return resolver;
+		}
+		
+		// 註冊過濾器
+		@Override
+	    public void addInterceptors(InterceptorRegistry registry) {
+			registry.addInterceptor(new CheckLoginInterceptor());
+			DisableCacheInterceptor  disableCacheInterceptor = new DisableCacheInterceptor();
+	        registry.addInterceptor(disableCacheInterceptor);
+	        
+//	        OpenSessionInViewInterceptor openSessionInViewInterceptor = new OpenSessionInViewInterceptor();
+//		    openSessionInViewInterceptor.setSessionFactory(factory);
+//		    registry.addWebRequestInterceptor(openSessionInViewInterceptor).addPathPatterns("/_05_orderProcess/orderDetail");
+	    }
+		
+		// 會員密碼進行加密處理
+		@Bean
+		public PasswordEncoder passwordEncoder() {
+			// 使用BCrypt加密
+			return new BCryptPasswordEncoder();
 		}
 }

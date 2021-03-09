@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <html lang="en">
 <head>
@@ -31,30 +30,29 @@
 			<!-- 功能選單結束 -->
             <main class="col-8">
                 <div class="coupon">
-                	<form:form method="POST" modelAttribute="couponBean" enctype="multipart/form-data" name="myForm">
                     <div class="coupon-mid">
-                        <label for="coupon_name">優惠券名稱 :</label>
-                        <form:input type="text" path="coupon_name" id="coupon_name" placeholder="輸入優惠券名稱" maxlength="30" style="margin-left: 2.8rem"/>
+                        <label for="">優惠券名稱 :</label>
+                        <input type="text" placeholder="輸入優惠券名稱" maxlength="30" style="margin-left: 2.8rem";>
                     </div>
                     <div class="coupon-mid">
-                        <label for="coupon_rule">使用規定 :</label>
-                        <form:input type="text" path="coupon_rule" id="coupon_rule" placeholder="輸入使用規定" maxlength="30"/>
+                        <label for="">使用規定 :</label>
+                        <input type="text" placeholder="輸入使用規定" maxlength="30">
                     </div>
                     <div class="coupon-mid">
                         <label for="">使用次數 :</label>
-                        <form:input type="number" path="" id="" placeholder="1" step="1" min="0" style="width: 45px;"/> 
+                        <input type="number" value="1" step="1" min="0" style="width: 45px;"> 
                     </div>
                     <div class="coupon-mid">
-                        <label for="coupon_days">使用期限 :</label>
-                        <form:input type="number" path="coupon_days" id="coupon_days" placeholder="1" step="1" min="0" style="width: 45px;"/> 
+                        <label for="">使用期限 :</label>
+                        <input type="date" value="1" step="1" min="0" style="width: 130px;"> 
                     </div>
                     <div class="coupon-mid">
                         <label for="">消費金額 :</label>
-                        <form:input type="number" path="" id="" placeholder="100" step="1" min="0" max="100"/>
+                        <input type="number" value="100" step="1" min="0" max="100">
                     </div>
                     <div class="coupon-mid">
-                        <label for="coupon_amount">折價金額 :</label>
-                        <form:input type="number" path="coupon_amount" id="coupon_amount" placeholder="50" step="1" min="0" max="50"/>
+                        <label for="">折價金額 :</label>
+                        <input type="number" value="50" step="1" min="0" max="50">
                     </div>
                     <div class="coupon-mid">
                         <label for="">可使用商品類型 :</label>
@@ -86,11 +84,9 @@
                             <button class="coupon-button">儲存</button>
                         </a>
                     </div>
-                    </form:form>
                 </div>
             </main>
         </div>
-    </div>						
-    <jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />					
+    </div>
 </body>
 </html>

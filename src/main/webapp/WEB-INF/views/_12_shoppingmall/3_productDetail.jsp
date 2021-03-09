@@ -24,7 +24,10 @@
     
 </head>
 <body>
+	<!-- 	引入共用haeader -->
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
+	<!-- 	引入共用haeader -->
+	
     <!-- ps: 需要優化的地方： 2/10 
         1. input標籤需要透過javascript去限制 input事件的最大值
         2. 還需要加上留言時間
@@ -64,6 +67,7 @@
                 <div class="right_container">
                     <div class="productBox">
                         <!-- Start 上方商品資訊 -->
+                        
                         <div class="productUpBox">
                             <!-- big photo start -->
                             <div class="productImage">
@@ -77,41 +81,47 @@
                                     <span>評價(99)</span>
                                     <h4>已售出: 87件</h4>
                                 </div>
+                                
+<%--                            <form  action="<c:url value='/BuyProduct.do' />" method="POST">	 --%>
                                 <div class="productPrice">
                                     <span class="perPrice">價格: NT$ ${product.product_price}</span>
                                     <span class="leftCount">剩餘數量: ${product.product_stock }</span>
                                 </div>
-                                <div class="selectCountBox">
-                                    <label for="selectCount">數量：</label>
-                                    	<select name="count" id="selectCount" selected="1" >
-                                    		<option value="1">1</option>
-                                    		<option value="2">2</option>
-                                    		<option value="3">3</option>
-                                    		<option value="4">4</option>
-                                    		<option value="5">5</option>
-                                    		<option value="6">6</option>
-                                    		<option value="7">7</option>
-                                    		<option value="8">8</option>
-                                    		<option value="9">9</option>
-                                    		<option value="10">10</option>
-                                    	</select>
-                                </div>
-                                <div class="selectSizeBox">
-                                    <label for="SelectSize">規格：</label>
-                                        <select name="size" id="SelectSize">
-	                                        <option value="S">S</option>
-	                                        <option value="M">M</option>
-                                        </select>
-                                </div>
-                                <div class="shopBtn">
-                                    <div class="cartBtn">
-                                        <a href="#"><span>加入購物車</span></a>
-                                    </div>
-                                    <div class="buyBtn">
-                                    
-                                        <a href="<c:url value='/carContent.html' />"><span>直接購買</span></a>
-                                    </div>
-                                </div>
+	                                
+                                <form method="POST" action="<c:url value='/BuyProduct.do' />">
+	                                <div class="selectCountBox">
+	                                    <label for="selectCount">數量：</label>
+	                                    	<select name='qty' >
+	                                    		<option value="1">1</option>
+	                                    		<option value="2">2</option>
+	                                    		<option value="3">3</option>
+	                                    		<option value="4">4</option>
+	                                    		<option value="5">5</option>
+	                                    		<option value="6">6</option>
+	                                    		<option value="7">7</option>
+	                                    		<option value="8">8</option>
+	                                    		<option value="9">9</option>
+	                                    		<option value="10">10</option>
+	                                    	</select>
+	                                </div>
+	                                <div class="selectSizeBox">
+	                                    <label for="SelectSize">規格：</label>
+	                                        <select name="size" id="SelectSize">
+		                                        <option value="S">S</option>
+		                                        <option value="M">M</option>
+	                                        </select>
+	                                </div>
+	                                <div class="shopBtn">
+	                                    <div class="cartBtn"> 
+	                                    	<input type='hidden' name='product_id' value='${product.product_id}'>
+	                                        <input type="submit" id="addCart" value="加入購物車">
+	                                    </div>
+	                                    <div class="buyBtn">
+	                                        <a href="<c:url value='/showAndAddCart/${product.product_id}'/>" ><span>直接購買</span></a>
+	                                    </div>
+	                                </div>
+                            	</form>   
+	                                
                             </div>
                         </div>   
                         <!-- End 上方商品資訊 -->
@@ -286,6 +296,12 @@
             <div class="clearfix"></div>
         </div>
     </div>
+	
+	
+	<script>
+		
+	</script>
+
 
 </body>
 </html>

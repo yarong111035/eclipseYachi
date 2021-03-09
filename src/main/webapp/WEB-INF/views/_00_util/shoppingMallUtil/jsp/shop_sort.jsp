@@ -39,7 +39,7 @@ aside{
   margin: 5px;
 }
 .items{
-    padding: 30px 0;
+    padding: 15px 0;
     margin-left: 20px;
 }
 .items a span{

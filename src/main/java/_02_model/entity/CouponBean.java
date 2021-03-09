@@ -1,11 +1,13 @@
 package _02_model.entity;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.sql.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +16,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "Coupon")
@@ -32,13 +37,21 @@ public class CouponBean implements Serializable{
 	
 	private String coupon_rule;
 	
-	private Integer coupon_days;
+	private Date coupon_end;
 	
-	private Date coupon_birth;
+	private Date coupon_begin;
 	
 	private String coupon_name;
 	
 	private String coupon_memo;
+	
+	
+	@Column(columnDefinition = "mediumblob")
+	private Blob coupon_pic;	
+	private String file_name;	
+	@Transient
+	MultipartFile coupon_image;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "FK_shop_id")
@@ -90,21 +103,7 @@ public class CouponBean implements Serializable{
 		this.coupon_rule = coupon_rule;
 	}
 
-	public Integer getCoupon_days() {
-		return coupon_days;
-	}
-
-	public void setCoupon_days(Integer coupon_days) {
-		this.coupon_days = coupon_days;
-	}
-
-	public Date getCoupon_birth() {
-		return coupon_birth;
-	}
-
-	public void setCoupon_birth(Date coupon_birth) {
-		this.coupon_birth = coupon_birth;
-	}
+	
 
 	public String getCoupon_name() {
 		return coupon_name;
@@ -152,21 +151,7 @@ public class CouponBean implements Serializable{
 
 
 
-	public CouponBean(Integer coupon_id, Integer coupon_amount, String coupon_info,
-			String coupon_rule, Integer coupon_days, Date coupon_birth, String coupon_name, String coupon_memo,
-			ShopBean shopBean) {
-		super();
-		this.coupon_id = coupon_id;
-		
-		this.coupon_amount = coupon_amount;
-		this.coupon_info = coupon_info;
-		this.coupon_rule = coupon_rule;
-		this.coupon_days = coupon_days;
-		this.coupon_birth = coupon_birth;
-		this.coupon_name = coupon_name;
-		this.coupon_memo = coupon_memo;
-		this.shopBean = shopBean;
-	}
+	
 
 
 
@@ -175,12 +160,72 @@ public class CouponBean implements Serializable{
 	}
 
 
-
+	
 	
 
 
 
 	
+
+
+
+	public Date getCoupon_end() {
+		return coupon_end;
+	}
+
+
+
+	public void setCoupon_end(Date coupon_end) {
+		this.coupon_end = coupon_end;
+	}
+
+
+
+	public Date getCoupon_begin() {
+		return coupon_begin;
+	}
+
+
+
+	public void setCoupon_begin(Date coupon_begin) {
+		this.coupon_begin = coupon_begin;
+	}
+
+
+
+	public Blob getCoupon_pic() {
+		return coupon_pic;
+	}
+
+
+
+	public void setCoupon_pic(Blob coupon_pic) {
+		this.coupon_pic = coupon_pic;
+	}
+
+
+
+	public String getFile_name() {
+		return file_name;
+	}
+
+
+
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
+	}
+
+
+
+	public MultipartFile getCoupon_image() {
+		return coupon_image;
+	}
+
+
+
+	public void setCoupon_image(MultipartFile coupon_image) {
+		this.coupon_image = coupon_image;
+	}
 
 
 

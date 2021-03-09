@@ -25,6 +25,9 @@ public class ShopTypeBean implements Serializable{
 	
 	private String shop_type_name;
 	
+	// 商家的類型 
+	// 雙向多對一 
+	// 商家類型一方 商家多方  類型可以有多個商家 一個商家只能有一個類型 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "shopTypeBean")  //告訴外鍵後就不會有中介表格
 	private Set<ShopBean> shops = new LinkedHashSet<ShopBean>();
 	
@@ -34,6 +37,12 @@ public class ShopTypeBean implements Serializable{
 	public ShopTypeBean() {
 		
 	}
+	
+	public ShopTypeBean(String shop_type_name) {
+		super();
+		this.shop_type_name = shop_type_name;
+	}
+
 
 	public ShopTypeBean(String shop_type_memo, String shop_type_name, Set<ShopBean> shops) {
 		super();
@@ -41,6 +50,7 @@ public class ShopTypeBean implements Serializable{
 		this.shop_type_name = shop_type_name;
 		this.shops = shops;
 	}
+	
 
 	public Integer getShop_type_id() {
 		return shop_type_id;

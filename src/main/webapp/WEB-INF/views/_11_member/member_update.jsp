@@ -1,16 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
  	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/_00_util/memberUtil/css/reset.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/_00_util/memberUtil/css/member_update.css" type="text/css">
+   	<link rel="stylesheet" href="<c:url value='/_00_util/memberUtil/css/reset.css'/>">
+	<link rel="stylesheet" href="<c:url value='/_00_util/memberUtil/css/member_update.css'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<title>member_update</title>
+	
+	
+	
 	
 	<script>
         $(function () {
@@ -25,12 +29,21 @@
                 // 它拿到檔案Object後會驅動onload事件
                 // 給它URL的方式就是用 readAsDataURL( /*裡面放檔案Object*/ )
                 // 所以我們才會放入 reader.readAsDataURL(input.files[0]);
-                // onload事件讀出來的會是一個接近二進位檔案，所以可以直接給<img>
+                // onload事件讀出來的會是一個接近二進位檔案，所以可以直接給<img>
                 // 所以這邊直接改變img 的 src 就可以了
                 reader.readAsDataURL(file); 
 
                 reader.onload = function(){     //成功讀取文件
                     $('#headImg').attr({
+                        
+                        // src = this.result 
+                        // 或者是 src = e.target () 
+                        // 只是function(e) 加上e 事件物件處理函數
+                        src:this.result , 
+                        width:`200px`,
+                        height:`200px`
+                    });
+					$('#headImgg').attr({
                         
                         // src = this.result 
                         // 或者是 src = e.target () 
@@ -74,10 +87,45 @@
                 $(this).hide();
                 $('.tab-list a').eq(index).removeClass('liColor');
             })
+            
+         	// 跑馬燈每三秒執行一次
+            setInterval(function(){
+            $('#news li:first-child').slideUp(function(){
 
-        });
+                $(this).appendTo($('#news')).slideDown();
+            });
+
+            },3000);
+
+
+        });    
 
     </script>
+     <style>
+        /* 跑馬燈開始 */
+        #Marquee{
+            display: flex;
+            padding-left: 160px;
+            align-items: center;   
+        }
+        #Marquee h3{
+            font-size: 1rem;
+            padding: 5px;
+        }
+        #Marquee ul{
+            
+            list-style:none;
+            height:30px;
+            overflow:hidden;
+            
+            
+        }
+        #Marquee ul li:first-child{
+            margin: 7px 0;
+
+        }
+        /* 跑馬燈結束 */
+    </style>
 	
 </head>
 <body>
@@ -85,23 +133,26 @@
 	<!-- 引入共同的頁首 -->
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
 	
+	<!-- 跑馬燈開始 -->
+     <div id="Marquee">
+        <h3>最新優惠消息:</h3>
+        <ul id="news">
+            <li>東西很貴不要買 !</li>
+            <li>還沒做完</li>
+            <li>目前網路商店全館免運</li>
+        </ul>
+    </div>
+    <!-- 跑馬燈結束 -->
+	
+
 	<div class="main-member">
         <aside>
             <div class="function">
                 <h3>會員中心</h3>
-                <div class="item">
-                    <img src="https://picsum.photos/200/200" id="headImg">
-                </div>
-
-                <label for="file">
-                    <i class="fas fa-image">
-                        編輯照片
-                        <input type="file" id="file" accept=".jpeg,.png" style="display: none;"
-                        >
-
-                    </i>
-                </label>
-
+				<div class="item">
+		            <img src='${pageContext.request.contextPath}/_00_init/getMemberImage?memberId=${LoginOK.memberId}'
+		                  id="headImgg" height='200px' width='200px'>					
+	            </div>
                 <div class="item">
                     <a href="#">
                         <button><span>基本資料</span></button>
@@ -145,11 +196,22 @@
             </div>
         </aside>
 
-
-
         <main>
 
-            <form:form  method="POST" modelAttribute="member" class="info" >
+            <form:form method="POST" modelAttribute="member" class="info" enctype="multipart/form-data">
+				
+				<div class="item">
+		            <img src='${pageContext.request.contextPath}/_00_init/getMemberImage?memberId=${LoginOK.memberId}'
+		                  id="headImg" height='200px' width='200px'>				
+	            </div>
+            	<div>
+            		<label for="file">
+	                    <i class="fas fa-image">編輯照片
+	                    <form:input type="file" id="file" path="memberMultipartFile" accept=".jpeg,.png" 
+	                    style="display: none;"/></i>
+	                </label>
+            	</div>
+            
                 <div>
                     <h3> 姓名 : </h3>
                     <form:label path="fullname">
@@ -165,8 +227,8 @@
                 <div>
                     <h3> 性別 : </h3>
                     <form:label path="sex">
-                    <form:radiobutton path="sex" value="M" label="Male" />
-            		<form:radiobutton path="sex" value="F" label="Female" />
+                    <form:radiobutton path="sex" value="Male" label="Male" />
+            		<form:radiobutton path="sex" value="Female" label="Female" />
                     </form:label>
                 </div>
                 <div>
@@ -193,15 +255,11 @@
                     <form:input path="address" type="text" id="address" />
                     </form:label>
                 </div>
-                <div>
-                    <h3> 簡介 : </h3>
-                    <form:label path="memo">
-                    <form:textarea path="memo" id="textarea" cols="20" rows="1"/>
-                    </form:label>
-                </div>
 
                 <div>
-                    <form:button type="submit"><i class="far fa-address-card"></i>修改資料</form:button>
+                    <form:button type="submit" 
+                    onclick="return window.confirm('確定修改嗎?');"><i class="far fa-address-card"></i>修改資料</form:button>
+                    
                 </div>
    
             </form:form>
