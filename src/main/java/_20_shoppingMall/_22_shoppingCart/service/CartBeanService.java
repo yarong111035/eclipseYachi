@@ -7,7 +7,7 @@ import _02_model.entity.ProductBean;
 import _10_member.entity.Member;
 
 public interface CartBeanService {
-	public void addToCart(Integer memberId, Integer productId);
+	public void addToCart(Integer memberId, Integer productId, Integer qty);
 
 	public List<CartBean> findCartByMemberId(Integer memberId);
 	
@@ -16,4 +16,6 @@ public interface CartBeanService {
 	
 	//刪除一筆購物車紀錄
 	public void deleteCart(Integer cart_id);
+
+	public void udateCartById(Integer cid, Integer amount, Double price);
 }

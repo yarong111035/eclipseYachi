@@ -45,12 +45,13 @@
                 <div class="table">
                     <div class="thead">
                         <div class="tr">
+                            <div class="th index">序號</div>
                             <div class="th pic"></div>
                             <div class="th name">商品名稱</div>
                             <div class="th price">價格</div>
                             <div class="th count">數量</div>
                             <div class="th total">小計</div>
-                            <div class="th delete"></div>
+                            <div class="th delete">刪除</div>
                         </div>
                     </div>
                     
@@ -65,8 +66,11 @@
                    			</div>
                     	</c:if>
                     	<c:set value='0' var='sum'/>
-                    	<c:forEach var='cart' items='${cartList }'>
+                    	<c:forEach var='cart' items='${cartList }' varStatus='i'>
 	                        <div class="tr">
+	                       		<div class="td price">
+	                                <span>${i.count}</span>
+	                            </div>
 	                            <div class="td pic">
 	                                <img src="<c:url value='/getPicture/${cart.productBean.product_id}'/>">
 	                            </div>
@@ -80,18 +84,15 @@
 	                                <span>NT$ ${cart.productBean.product_price }</span>
 	                            </div>
 	                            <div class="td count">
-	                                <select name="cart_amount"  id="" >
-	                                    <option value="1">1</option>
-	                                    <option value="2">2</option>
-	                                    <option value="3">3</option>
-	                                    <option value="4">4</option>
-	                                    <option value="5">5</option>
-	                                    <option value="6">6</option>
-	                                    <option value="7">7</option>
-	                                    <option value="8">8</option>
-	                                    <option value="9">9</option>
-	                                    <option value="10">10</option>
+	                                <select name="qty" id="selectAmount" onchange='updateAmount(${cart.cart_id}, this.options[this.options.selectedIndex].value,${cart.productBean.product_price})'>
+	                                	<c:forEach var="num" begin="1" end="10" >
+	                                		<option value="${num}" <c:if test="${cart.cart_amount == num}">selected</c:if>>${num}</option> 
+	                                	</c:forEach>
+<%-- 	                                	<c:forEach var="num" begin="1" end="10" > --%>
+<%-- 	                                		<option value="${num}" <c:if test="${cart.cart_amount == num}">selected</c:if>>${num}</option>  --%>
+<%-- 	                                	</c:forEach> --%>
 	                                </select>
+	                                
 	                            </div>
 	                            <div class="td total">
 	                                <span>NT$ ${cart.cart_total }</span>
@@ -135,7 +136,63 @@
     </div>
     
     <script>
+    
+//     	let newCount = 0;
+//     	let selectAmount = document.getElementById('selectAmount');
+// 		selectAmount.addEventListener('change',changeItemCount);
+// 		function changeItemCount(e){
+// 			newCount = e.target.value;
+// 			console.log(newCount);
+// 			// console.log(`\${cart.productBean.product_price}`);
+// 			// let product_price = '${cart.productBean.product_price}';
+// 			// console.log(product_price);
+		
+// 		}
+		
+		function updateAmount(id,amount,price){
+// 			amount = newCount;
+// 			this.id = id;
+// 			this.amount = amount;
+// 			this.price = price;
+// 			alert(id);
+// 			alert(amount);
+// 			alert(price);
+			location.href="<c:url value='/update/" + id + "/" + amount + "/" + price + "'/>";				
+		}
     	$(function(){
+       		
+// 			
+//     		function updateAmount(cart_id, num, product_price){
+
+    		
+			let xhr = new XMLHttpRequest();
+			xhr.addEventListener('readystatechange',callState);
+			xhr.open("GET","<c:url value='/allProducts' />",true)
+			xhr.send();
+
+			function callState(){
+				if(xhr.readyState == 4 && xhr.status == 200){
+					console.log(xhr.responseText);
+					products = JSON.parse(xhr.responseText)
+					console.log(products);
+					for(let i = 0; i < products.length; i++){
+						price = products[i].product_price;
+						console.log(price);
+					}
+				}
+			}
+			
+			let selectAmount = document.getElementById('selectAmount');
+			selectAmount.addEventListener('change',changeItemCount);
+			function changeItemCount(e){
+				newCount = e.target.value;
+				console.log(newCount);
+				
+				
+			}
+			
+			
+    		
     		$('.deleteLink').click(function() {
     			Swal.fire({
   	    		  title: '什麼!不要這個商品了!?',
@@ -152,7 +209,7 @@
   	    		})
         		return false;
        		});
-    		
+
     	})
     </script>
     

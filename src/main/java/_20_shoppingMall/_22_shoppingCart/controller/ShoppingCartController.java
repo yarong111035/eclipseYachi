@@ -15,14 +15,18 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+
+import com.mysql.cj.xdevapi.JsonArray;
 
 import _02_model.entity.CartBean;
 import _10_member.entity.Member;
@@ -58,12 +62,13 @@ public class ShoppingCartController {
 		
 		//獲取會員的id
 		Integer memberId = member.getMemberId();
-		//創建購物車
-		cartBeanService.addToCart(memberId, product_id);
+		//創建購物車(傳入會員編號, 產品編號, 數量)
+		cartBeanService.addToCart(memberId, product_id, qty);
 
 		return "redirect:/DisplayPageProducts";
 		
 	}
+
 	
 	/**
 	 * 顯示查看購物車
@@ -90,11 +95,7 @@ public class ShoppingCartController {
 			Collections.reverse(carts); //反轉順序，越新的在越上面
 			model.addAttribute("cartList", carts);
 		}
-		
-		
 		return "_12_shoppingmall/5_cartContent";
-		
-		
 	}
 	
 	/**
@@ -103,6 +104,7 @@ public class ShoppingCartController {
 	@GetMapping("/showAndAddCart/{product_id}")
 	public String showAndAddCart(
 			Model model,
+			@RequestParam("qty") Integer qty,
 			@PathVariable("product_id") Integer product_id,
 			HttpServletRequest request,
 			HttpServletResponse response
@@ -116,7 +118,7 @@ public class ShoppingCartController {
 		//獲取會員的id
 		Integer memberId = member.getMemberId();
 		//創建購物車
-		cartBeanService.addToCart(memberId, product_id);
+		cartBeanService.addToCart(memberId, product_id, qty);
 		return "redirect:/showCartContent";
 	}
 	
@@ -133,16 +135,42 @@ public class ShoppingCartController {
 	
 		
 	//透過此方式產生下拉選單數量的值
-	@ModelAttribute("qtyMap")
-	public Map<Integer,Integer> getQtyList(){
-		 Map<Integer, Integer> qtyMap = new HashMap<>();
-		 for(Integer i = 2; i <= 10; i++) {
-			 qtyMap.put(i, i);
-		 }
-		 return qtyMap;
-	}
+//	@ModelAttribute("qtyMap")
+//	public Map<Integer,Integer> getQtyList(){
+//		 Map<Integer, Integer> qtyMap = new HashMap<>();
+//		 for(Integer i = 2; i <= 10; i++) {
+//			 qtyMap.put(i, i);
+//		 }
+//		 return qtyMap;
+//	}
 	
-
+	
+	/**
+	 * 更新購物車數量
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/update/{cart_id}/{cart_amount}/{product_price}")
+	public String updateCartAmount(
+			Model model,
+			@PathVariable Integer cart_id,
+			@PathVariable Integer cart_amount,
+			@PathVariable Double product_price
+			) {
+		// STEP1: 取出傳遞過來的參數(cart_id, cart_amount, product_price)
+		//1.判斷用戶是否存在
+		Member member = (Member)model.getAttribute("member");
+		if(member == null) {
+			return "redirect:/LoginAndRegister";
+		}
+//		Integer cid = (Integer) model.getAttribute("cart_id");
+//		Integer amount = (Integer) model.getAttribute("cart_amount");
+//		Double price = (Double) model.getAttribute("product_price");
+		
+		// STEP2: 更新購物車 
+		cartBeanService.udateCartById(cart_id, cart_amount, product_price);
+		
+		return "forward:/showCartContent";
+	}
 	
 	
 }

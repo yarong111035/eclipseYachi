@@ -187,24 +187,25 @@
 											<span>售價NT${entry.value.product_price }</span>
 										</div>
 										
-										<form action="<c:url value='/BuyProduct.do' />" modelAttribute="cartBean" method="POST">
+										<form action="<c:url value='/BuyProduct.do' />" method="POST">
 											<div class="product_count">
 												<span>數量</span> 
-												<select name='qty' id="">
+												<select name='qty'>
 													<option value="1">1</option>
 													<option value="2">2</option>
 													<option value="3">3</option>
 													<option value="4">4</option>
 													<option value="5">5</option>
-													<option value="5">6</option>
-													<option value="5">7</option>
-													<option value="5">8</option>
-													<option value="5">9</option>
-													<option value="5">10</option>
+													<option value="6">6</option>
+													<option value="7">7</option>
+													<option value="8">8</option>
+													<option value="9">9</option>
+													<option value="10">10</option>
 	
 												</select>
 											</div>
 											<input type='hidden' name='product_id' value='${entry.value.product_id}'>
+											<Input type='hidden' name='pageNo' value='${param.pageNo}'>
 											<button type='submit' class="cartBtn">加入購物車</button>
 										</form>
 									

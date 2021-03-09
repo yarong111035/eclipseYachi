@@ -107,6 +107,20 @@ public class CartBeanDaoImpl implements CartBeanDao {
 			session.delete(cartBean);
 		}
 	}
+
+	@Override
+	public void updateCartById(Integer cid, Integer amount, Double total) {
+		Session session = factory.getCurrentSession();
+		String hql = " UPDATE CartBean "
+				   + " SET cart_total = :total, cart_amount = :amount "
+				   + " WHERE cart_id = :cid ";
+		session.createQuery(hql)
+			   .setParameter("total", total)
+			   .setParameter("amount", amount)
+			   .setParameter("cid", cid)
+			   .executeUpdate();
+					
+	}
 	
 
 }

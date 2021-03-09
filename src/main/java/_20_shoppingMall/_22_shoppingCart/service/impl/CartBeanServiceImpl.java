@@ -27,7 +27,7 @@ public class CartBeanServiceImpl implements CartBeanService {
 	
 	@Transactional
 	@Override
-	public void addToCart(Integer memberId, Integer productId) {
+	public void addToCart(Integer memberId, Integer productId, Integer qty) {
 		try {
 			//判斷購物車某會員是否已經加入某商品至購物車
 			CartBean cartBean = cartBeanDao.hasCart(memberId, productId);
@@ -39,17 +39,15 @@ public class CartBeanServiceImpl implements CartBeanService {
 //				封裝購物車資訊
 				cartBean.setMemberBean(member);
 				cartBean.setProductBean(productBean);
-				cartBean.setCart_amount(1); //按一次只會+1
+				cartBean.setCart_amount(qty); //從前端傳來的數量
 				cartBean.setCart_total(cartBean.getCart_total());//存入總金額
 				
 //				存入購物車
 				cartBeanDao.addToCart(cartBean);
 				
 			}else { //購物車裡面已經存在會員id 與 產品id 
-				cartBean.setCart_amount(cartBean.getCart_amount() + 1);
-//				當購物車存在修改購物車價格(數量改了價格也要改)
-				cartBeanDao.updateCartTotal(cartBean);
-				
+				cartBean.setCart_amount(cartBean.getCart_amount() + qty); //傳來的數量加上最原本的
+				cartBeanDao.updateCartTotal(cartBean); //當購物車存在修改購物車價格(數量改了價格也要改)
 			}
 			
 			//創建購物車
@@ -81,6 +79,14 @@ public class CartBeanServiceImpl implements CartBeanService {
 	@Transactional
 	public void deleteCart(Integer cart_id) {
 		cartBeanDao.deleteCart(cart_id);
+	}
+
+	@Override
+	@Transactional
+	public void udateCartById(Integer cid, Integer amount, Double price) {
+		//price 是前端傳的單一價格，必須先計算在送去資料庫
+		Double total = (double) (amount * price);
+		cartBeanDao.updateCartById(cid,amount,total);
 	}
 	
 }

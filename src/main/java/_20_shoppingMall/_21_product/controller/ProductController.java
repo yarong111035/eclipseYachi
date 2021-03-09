@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -65,12 +66,11 @@ public class ProductController {
 	CartBeanService cartBeanService;
 	
 	//撈出資料庫所有產品
-//	@RequestMapping({"/shopping.store"})
-//	public String store(Model model) {
-//		List<ProductBean> list = service.getAllProducts();
-//		model.addAttribute("products", list);
-//		return "_12_shoppingmall/2_shopping";
-//	}
+	@RequestMapping({"/allProducts"})
+	public @ResponseBody List<ProductBean> queryAllProducts(Model model) {
+		List<ProductBean> products = productService.getAllProducts();
+		return products;
+	}
 
 	
 	//更新產品價格

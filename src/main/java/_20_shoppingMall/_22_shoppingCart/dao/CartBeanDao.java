@@ -23,4 +23,6 @@ public interface CartBeanDao {
 	public void updateCartTotal(CartBean cartBean);
 
 	public List<CartBean> findCartByMemberId(Integer memberId);
+
+	public void updateCartById(Integer cid, Integer amount, Double total);
 }
