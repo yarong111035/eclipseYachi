@@ -124,7 +124,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 			return resolver;
 		}
 		
-//		@Bean
+		@Bean
 		public MappingJackson2JsonView jsonView() {
 			MappingJackson2JsonView view = new MappingJackson2JsonView();
 			view.setPrettyPrint(true);
