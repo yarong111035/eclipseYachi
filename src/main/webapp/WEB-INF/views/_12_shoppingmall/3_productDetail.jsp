@@ -82,14 +82,16 @@
                                     <h4>已售出: 87件</h4>
                                 </div>
                                 
-<%--                                 <form  action="<c:url value='/BuyProduct.do' />" method="POST">	 --%>
-	                                <div class="productPrice">
-	                                    <span class="perPrice">價格: NT$ ${product.product_price}</span>
-	                                    <span class="leftCount">剩餘數量: ${product.product_stock }</span>
-	                                </div>
+<%--                            <form  action="<c:url value='/BuyProduct.do' />" method="POST">	 --%>
+                                <div class="productPrice">
+                                    <span class="perPrice">價格: NT$ ${product.product_price}</span>
+                                    <span class="leftCount">剩餘數量: ${product.product_stock }</span>
+                                </div>
+	                                
+                                <form method="POST" action="<c:url value='/BuyProduct.do' />">
 	                                <div class="selectCountBox">
 	                                    <label for="selectCount">數量：</label>
-	                                    	<select name="count" id="selectCount" selected="1" >
+	                                    	<select name='qty' >
 	                                    		<option value="1">1</option>
 	                                    		<option value="2">2</option>
 	                                    		<option value="3">3</option>
@@ -110,14 +112,15 @@
 	                                        </select>
 	                                </div>
 	                                <div class="shopBtn">
-	                                    <div class="cartBtn">
-	                                        <a href="#" id="addCart"><span>加入購物車</span></a>
+	                                    <div class="cartBtn"> 
+	                                    	<input type='hidden' name='product_id' value='${product.product_id}'>
+	                                        <input type="submit" id="addCart" value="加入購物車">
 	                                    </div>
 	                                    <div class="buyBtn">
-	                                        <a href="<c:url value='/showAndAddCart/${ product.product_id}'/>" ><span>直接購買</span></a>
+	                                        <a href="<c:url value='/showAndAddCart/${product.product_id}'/>" ><span>直接購買</span></a>
 	                                    </div>
 	                                </div>
-<%-- 	                            </form>    --%>
+                            	</form>   
 	                                
                             </div>
                         </div>   
