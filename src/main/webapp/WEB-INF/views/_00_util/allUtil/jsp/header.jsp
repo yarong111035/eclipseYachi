@@ -168,6 +168,10 @@
 							<a href="<c:url value='/member/update/${LoginOK.memberId}'/>">修改會員資料</a>
 						</c:if>
 						<c:if test="${!empty LoginOK}">
+							<a href="<c:url value='/orderDetail'/>">
+							<font>查看訂單</font></a><br>
+						</c:if>
+						<c:if test="${!empty LoginOK}">
 							<a href="<c:url value='/doLogout'/>" onclick="return window.confirm('確定登出嗎?');">
 							<font>登 出</font></a>
 						</c:if>
