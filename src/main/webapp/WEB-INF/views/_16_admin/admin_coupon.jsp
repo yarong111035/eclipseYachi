@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,29 +31,32 @@
 			<!-- 功能選單結束 -->
             <main class="col-8">
                 <div class="coupon">
+                	<form:form method="POST" modelAttribute="AdminCouponBean" enctype="multipart/form-data" name="myForm">
                     <div class="coupon-mid">
-                        <label for="">優惠券名稱 :</label>
-                        <input type="text" placeholder="輸入優惠券名稱" maxlength="30" style="margin-left: 2.8rem";>
+                        <label for="admincoupon_name">優惠券名稱 :</label>
+                        <form:input type="text" path="admincoupon_name" id="admincoupon_name" placeholder="輸入優惠券名稱" maxlength="30" style="margin-left: 2.8rem"/>
                     </div>
                     <div class="coupon-mid">
-                        <label for="">使用規定 :</label>
-                        <input type="text" placeholder="輸入使用規定" maxlength="30">
+                        <label for="admincoupon_rule">使用規定 :</label>
+                        <form:input type="text" path="admincoupon_rule" id="admincoupon_rule" placeholder="輸入使用規定" maxlength="30"/>
                     </div>
                     <div class="coupon-mid">
-                        <label for="">使用次數 :</label>
-                        <input type="number" value="1" step="1" min="0" style="width: 45px;"> 
+                        <label for="admincoupon_amount">使用次數 :</label>
+                        <form:input type="number" path="admincoupon_amount" id="admincoupon_amount" placeholder="1" step="1" min="0" style="width: 55px;"/> 
                     </div>
                     <div class="coupon-mid">
-                        <label for="">使用期限 :</label>
-                        <input type="date" value="1" step="1" min="0" style="width: 130px;"> 
+                        <label for="admincoupon_begin">使用期限 :</label>
+                        <form:input type="date" path="admincoupon_begin" id="admincoupon_begin" style="width: 180px;"/> 
+                        <label for="">至</label>
+                        <form:input type="date" path="admincoupon_end" id="admincoupon_end" style="width: 180px; margin-left: 0rem;"/>
                     </div>
                     <div class="coupon-mid">
-                        <label for="">消費金額 :</label>
-                        <input type="number" value="100" step="1" min="0" max="100">
+                        <label for="admincoupon_consumption">消費金額 :</label>
+                        <form:input type="number" path="admincoupon_consumption" id="admincoupon_consumption" placeholder="500" step="1" min="0" max="100"/>
                     </div>
                     <div class="coupon-mid">
-                        <label for="">折價金額 :</label>
-                        <input type="number" value="50" step="1" min="0" max="50">
+                        <label for="admincoupon_discount">折價金額 :</label>
+                        <form:input type="number" path="admincoupon_discount" id="admincoupon_discount" placeholder="250" step="1" min="0" max="50"/>
                     </div>
                     <div class="coupon-mid">
                         <label for="">可使用商品類型 :</label>
@@ -80,10 +84,10 @@
                         </div>
                     </div>
                     <div class="coupon-mid">
-                        <a href="#">
-                            <button class="coupon-button">儲存</button>
-                        </a>
+                    
+                            <button type="submit" class="coupon-button">儲存</button>
                     </div>
+                    </form:form>
                 </div>
             </main>
         </div>

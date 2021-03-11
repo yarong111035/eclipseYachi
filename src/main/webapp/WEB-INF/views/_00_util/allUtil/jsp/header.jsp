@@ -155,7 +155,7 @@
 					<div class="tab-panel">
 						<a href="<c:url value='/admin/administrator' />">管理員首頁</a><br> <a
 							href="<c:url value='/admin/admin_editProduct' />">商品維護</a><br> <a
-							href="<c:url value='/admin/admin_coupon' />">平台優惠券</a><br> <a
+							href="<c:url value='/admin/InsertAdminCoupon' />">平台優惠券</a><br> <a
 							href="<c:url value='/admin/admin_chatroom' />">客服回應</a><br> <a
 							href="<c:url value='/admin/admin_announcement' />">公告</a><br> <a
 							href="<c:url value='/admin/admin_adinfo' />">廣告資訊</a><br> <a

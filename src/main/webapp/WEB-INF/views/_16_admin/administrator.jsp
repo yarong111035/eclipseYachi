@@ -46,16 +46,30 @@
 			<main class="col-8">
 				<div class="status">
 					<div class="status-nav">
+						<h3>平台優惠券</h3>
+						<div class="space"></div>
+						<a href="#">readmore...</a>
+					</div>
+					<hr>
+					<div> 
+					<c:forEach var="admincoupons" varStatus="stat" items="${admincouponList}">
+						<a href="#">${admincoupons.admincoupon_name} ----->
+						時間:${admincoupons.admincoupon_begin}至${admincoupons.admincoupon_end}</a><br>
+					</c:forEach>
+					</div>
+				</div>
+				<div class="status">
+					<div class="status-nav">
 						<h3>平台優惠活動</h3>
 						<div class="space"></div>
 						<a href="#">readmore...</a>
 					</div>
 					<hr>
 					<div>
-						<a href="#">2020/08/09-2020/09/01 中元節活動，集點換旺旺</a><br> <a
-							href="#">2020/09/15-2020/10/01 慶中秋，月餅買十送一優惠券</a><br> <a
-							href="#">2020/11/11 1111購物節，集優惠券換老婆餅</a><br> <a href="#">2020/10/28
-							慶萬聖節，帳號轉職魔法師</a><br>
+						<a href="#">2020/08/09-2020/09/01 中元節活動，集點換旺旺</a><br>
+						<a href="#">2020/09/15-2020/10/01 慶中秋，月餅買十送一優惠券</a><br>
+						<a href="#">2020/11/11 1111購物節，集優惠券換老婆餅</a><br> 
+						<a href="#">2020/10/28 慶萬聖節，帳號轉職魔法師</a><br>
 					</div>
 				</div>
 				<div class="status">

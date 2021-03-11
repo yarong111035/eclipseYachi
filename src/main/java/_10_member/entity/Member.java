@@ -28,8 +28,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
+
 @Entity
 @Table
 public class Member implements Serializable{

@@ -42,6 +42,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -420,38 +421,38 @@ public class EditController {
 	
 	
 	
-	@RequestMapping("/administrator")
-	public String administrator(Model model) {  
-
-		return "_16_admin/administrator"; 
-	}
-	@RequestMapping("/admin_coupon")
-	public String admin_coupon(Model model) { 
-
-		return "_16_admin/admin_coupon"; 
-	}
-	@RequestMapping("/admin_chatroom")
+//	@RequestMapping("/admin/administrator")
+//	public String administrator(Model model) {  
+//
+//		return "_16_admin/administrator"; 
+//	}
+//	@RequestMapping("/admin_coupon")
+//	public String admin_coupon(Model model) { 
+//
+//		return "_16_admin/admin_coupon"; 
+//	}
+	@RequestMapping("/admin/admin_chatroom")
 	public String admin_chatroom(Model model) {  
 
 		return "_16_admin/admin_chatroom"; 
 	}
-	@RequestMapping("/admin_announcement")
+	@RequestMapping("/admin/admin_announcement")
 	public String admin_announcement(Model model) {  
 
 		return "_16_admin/admin_announcement"; 
 	}
-	@RequestMapping("/admin_adinfo")
+	@RequestMapping("/admin/admin_adinfo")
 	public String admin_adinfo(Model model) {  
 
 		return "_16_admin/admin_adinfo"; 
 	}
-	@RequestMapping("/admin_activity")
+	@RequestMapping("/admin/admin_activity")
 	public String admin_activity(Model model) {  
 
 		return "_16_admin/admin_activity"; 
 	}
 	
-	@RequestMapping("/admin_checkShop")
+	@RequestMapping("/admin/admin_checkShop")
 	public String admin_checkoutShop(Model model) {  
 
 		return "_16_admin/admin_checkShop"; 

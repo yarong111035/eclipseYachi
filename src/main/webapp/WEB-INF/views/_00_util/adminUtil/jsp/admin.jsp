@@ -25,56 +25,56 @@
 		</label>
 
 		<div class="item">
-			<a href="<c:url value='/administrator' />">
+			<a href="<c:url value='/admin/administrator' />">
 				<button>
 					<span>管理員首頁</span>
 				</button>
 			</a>
 		</div>
 		<div class="item">
-			<a href="<c:url value='/admin_editProduct' />">
+			<a href="<c:url value='/admin/admin_editProduct' />">
 				<button>
 					<span>商品維護</span>
 				</button>
 			</a>
 		</div>
 		<div class="item">
-			<a href="<c:url value='/admin_activity' />">
+			<a href="<c:url value='/admin/admin_activity' />">
 				<button>
 					<span>平台優惠活動</span>
 				</button>
 			</a>
 		</div>
 		<div class="item">
-			<a href="<c:url value='/admin_coupon' />">
+			<a href="<c:url value='/admin/InsertAdminCoupon' />">
 				<button>
 					<span>平台優惠券</span>
 				</button>
 			</a>
 		</div>
 		<div class="item">
-			<a href="<c:url value='/admin_adinfo' />">
+			<a href="<c:url value='/admin/admin_adinfo' />">
 				<button>
 					<span>廣告資訊</span>
 				</button>
 			</a>
 		</div>
 		<div class="item">
-			<a href="<c:url value='/admin_chatroom' />">
+			<a href="<c:url value='/admin/admin_chatroom' />">
 				<button>
 					<span>客服回應</span>
 				</button>
 			</a>
 		</div>
 		<div class="item">
-			<a href="<c:url value='/admin_checkShop' />">
+			<a href="<c:url value='/admin/admin_checkShop' />">
 				<button>
 					<span>審核商家</span>
 				</button>
 			</a>
 		</div>
 		<div class="item">
-			<a href="<c:url value='/admin_announcement' />">
+			<a href="<c:url value='/admin/admin_announcement' />">
 				<button>
 					<span>公告</span>
 				</button>
