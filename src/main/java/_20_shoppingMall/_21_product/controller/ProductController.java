@@ -152,15 +152,8 @@ public class ProductController {
 //		return "3_productDetail";
 //	}
 	
-	@RequestMapping("/carContent.html")
-	public String showCarContent() {
-		return "_12_shoppingmall/5_cartContent";
-	}
 	
-	@RequestMapping("/orderDetail.html")
-	public String showOrderDetail() {
-		return "_12_shoppingmall/6_orderDetail";
-	}
+
 	
 	
 	
