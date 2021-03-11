@@ -261,5 +261,44 @@
         </main>
 
     </div>
+    
+    <script>
+    $(function () {
+        
+        $('#tabs-nav a').click(function(){ 
+            // 當點擊tabs-nav的元素a時  替當前(this)的a超連結增加.change類  
+            // 其餘兄弟類 siblings() remove .change類
+            $(this).addClass('change').siblings().removeClass('change');
+
+            // 點擊的同時 拿到當前 a 超連結的索引號
+            let index = $(this).index();     //  index有6個
+
+            // 讓下面對應的索引號  .tabs-content 的子元素.tabs-panel[index] 渲染出來  
+            // 其他 子元素 兄弟類 siblings() 隱藏起來   
+            // 用addClass 增加動畫
+            $('.tabs-content .tabs-panel').eq(index)
+            .addClass('fadeIn animated-tabs').show().siblings().hide();
+
+
+        });
+
+         // 每三秒執行一次
+         setInterval(function(){
+            $('#news li:first-child').slideUp(function(){
+
+                $(this).appendTo($('#news')).slideDown();
+            });
+
+        },3000);
+
+        // 點擊移除商品
+        $('.remove-product').click(function(){
+            $(this).closest('.product-item').remove(); 
+
+        });
+
+
+    });    
+    </script>
 </body>
 </html>
