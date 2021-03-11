@@ -33,7 +33,7 @@ import _10_member.entity.Member;
 import _20_shoppingMall._22_shoppingCart.service.CartBeanService;
 
 @Controller
-@SessionAttributes({"member", "pageNo","cartList"})
+@SessionAttributes({"LoginOK", "pageNo","cartList"})
 public class ShoppingCartController {
 	@Autowired
 	CartBeanService cartBeanService;
@@ -51,7 +51,7 @@ public class ShoppingCartController {
 			) throws ServletException, IOException {
 		
 		//1.判斷用戶是否存在
-		Member member = (Member)model.getAttribute("member");
+		Member member = (Member)model.getAttribute("LoginOK");
 		if(member == null) {
 			return "redirect:/LoginAndRegister";
 		}
@@ -79,7 +79,7 @@ public class ShoppingCartController {
 			SessionStatus status
 			) {
 		// STEP1:判斷用戶是否登入
-		Member member = (Member)model.getAttribute("member");
+		Member member = (Member)model.getAttribute("LoginOK");
 		if(member == null) {
 			//@SessionAttributes需要清除時，使用SessionStatus.setComplete();來清除。!它只清除@SessionAttributes的session，不會清除HttpSession的數據
 			status.setComplete();
@@ -111,7 +111,7 @@ public class ShoppingCartController {
 			) throws ServletException, IOException {
 		
 		//1.判斷用戶是否存在
-		Member member = (Member)model.getAttribute("member");
+		Member member = (Member)model.getAttribute("LoginOK");
 		if(member == null) {
 			return "redirect:/LoginAndRegister";
 		}
@@ -158,7 +158,7 @@ public class ShoppingCartController {
 			) {
 		// STEP1: 取出傳遞過來的參數(cart_id, cart_amount, product_price)
 		//1.判斷用戶是否存在
-		Member member = (Member)model.getAttribute("member");
+		Member member = (Member)model.getAttribute("LoginOK");
 		if(member == null) {
 			return "redirect:/LoginAndRegister";
 		}
@@ -171,6 +171,8 @@ public class ShoppingCartController {
 		
 		return "forward:/showCartContent";
 	}
+	
+	
 	
 	
 }
