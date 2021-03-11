@@ -2,7 +2,6 @@ package _02_model.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -14,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import _10_member.entity.Member;
@@ -28,6 +28,10 @@ public class OrderBean implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer order_id;
 	
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "FK_orderNumber")
+	private OrderNumberBean orderNumberBean; //fk 一對一(唯一性)
+	
 	@ManyToOne
 	@JoinColumn(name="FK_member_id")
 	private Member memberBean;  //fk member 多對一
@@ -36,20 +40,33 @@ public class OrderBean implements Serializable{
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy = "orderBean")
 	private Set<OrderItemBean> items = new LinkedHashSet<>();
-	
 	private String company_id;  //統編號碼
 	
 	private String company_title;  //統編title
 	
 	private String invoice_num;  //發票號碼
 	
-	private Timestamp order_datetime;
+	private java.util.Date order_datetime;
+	
+	@ManyToOne
+	@JoinColumn(name = "FK_shiptype_id")
+	private ShipTypeBean shipTypeBean;   //fk配送狀態:對應到配送表格(雙向多對一)
+	
+	@ManyToOne
+	@JoinColumn(name = "FK_paytype_id")
+	private PayTypeBean payTypeBean;  //fk付款方式:對應付款方式表格(雙向多對一)
+						
+	@ManyToOne
+	@JoinColumn(name = "FK_orderstatus_id")
+	private OrderStatusBean orderStatusBean; //fk訂單狀態:對應訂單狀態表格(雙向多對一)
+	
+	private Double order_total;
 	
 	private Date shipping_date;
 	
-	private Integer pay_me;  //用數字分辨付款方式
+	private Integer pay_me;  //用數字分辨付款方式  =>3/10不懂????by yarong
 	
-	private Integer order_status_id;  //用數字分辨運送方式
+	private Integer order_status_id;  //用數字分辨運送方式   =>3/10不懂????by yarong
 	
 	private String order_memo;
 
@@ -61,6 +78,14 @@ public class OrderBean implements Serializable{
 		this.order_id = order_id;
 	}
 
+	public OrderNumberBean getOrderNumberBean() {
+		return orderNumberBean;
+	}
+
+	public void setOrderNumberBean(OrderNumberBean orderNumberBean) {
+		this.orderNumberBean = orderNumberBean;
+	}
+
 	public Member getMemberBean() {
 		return memberBean;
 	}
@@ -68,8 +93,6 @@ public class OrderBean implements Serializable{
 	public void setMemberBean(Member memberBean) {
 		this.memberBean = memberBean;
 	}
-
-	
 
 	public String getOrder_address() {
 		return order_address;
@@ -111,12 +134,44 @@ public class OrderBean implements Serializable{
 		this.invoice_num = invoice_num;
 	}
 
-	public Timestamp getOrder_datetime() {
+	public java.util.Date getOrder_datetime() {
 		return order_datetime;
 	}
 
-	public void setOrder_datetime(Timestamp order_datetime) {
+	public void setOrder_datetime(java.util.Date order_datetime) {
 		this.order_datetime = order_datetime;
+	}
+
+	public ShipTypeBean getShipTypeBean() {
+		return shipTypeBean;
+	}
+
+	public void setShipTypeBean(ShipTypeBean shipTypeBean) {
+		this.shipTypeBean = shipTypeBean;
+	}
+
+	public PayTypeBean getPayTypeBean() {
+		return payTypeBean;
+	}
+
+	public void setPayTypeBean(PayTypeBean payTypeBean) {
+		this.payTypeBean = payTypeBean;
+	}
+
+	public OrderStatusBean getOrderStatusBean() {
+		return orderStatusBean;
+	}
+
+	public void setOrderStatusBean(OrderStatusBean orderStatusBean) {
+		this.orderStatusBean = orderStatusBean;
+	}
+
+	public Double getOrder_total() {
+		return order_total;
+	}
+
+	public void setOrder_total(Double order_total) {
+		this.order_total = order_total;
 	}
 
 	public Date getShipping_date() {
@@ -151,27 +206,5 @@ public class OrderBean implements Serializable{
 		this.order_memo = order_memo;
 	}
 
-	public OrderBean(Integer order_id, Member memberBean, String order_address, Set<OrderItemBean> items,
-			String company_id, String company_title, String invoice_num, Timestamp order_datetime, Date shipping_date,
-			Integer pay_me, Integer order_status_id, String order_memo) {
-		super();
-		this.order_id = order_id;
-		this.memberBean = memberBean;
-		this.order_address = order_address;
-		this.items = items;
-		this.company_id = company_id;
-		this.company_title = company_title;
-		this.invoice_num = invoice_num;
-		this.order_datetime = order_datetime;
-		this.shipping_date = shipping_date;
-		this.pay_me = pay_me;
-		this.order_status_id = order_status_id;
-		this.order_memo = order_memo;
-	}
-
-	public OrderBean() {
-		super();
-	}
-	
 	
 }
