@@ -127,7 +127,7 @@
                 <a href="<c:url value='/DisplayPageProducts' />">繼續購物</a>
             </div>
             <div class="confirmBtn">
-                <a href="<c:url value='/orderDetail.html' />">填寫資料</a>
+                <a href="<c:url value='/checkout' />">填寫資料</a>
             </div>
         </div>
         

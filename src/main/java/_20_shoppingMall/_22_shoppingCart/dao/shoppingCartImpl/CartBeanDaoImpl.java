@@ -107,6 +107,25 @@ public class CartBeanDaoImpl implements CartBeanDao {
 			session.delete(cartBean);
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void deleteCartByMemberId(Integer memberId) {
+		Session session = factory.getCurrentSession();
+		String hql = " FROM CartBean c "
+				   + " WHERE c.memberBean.memberId = :memberId ";
+		List<CartBean> carts = session.createQuery(hql)
+									  .setParameter("memberId", memberId)
+									  .getResultList();
+		if(carts != null) {
+			for(CartBean cart : carts) {
+				cart.setMemberBean(null);
+				cart.setProductBean(null);
+				session.delete(cart);
+			}
+		}
+	}
+	
 
 	@Override
 	public void updateCartById(Integer cid, Integer amount, Double total) {
@@ -121,6 +140,8 @@ public class CartBeanDaoImpl implements CartBeanDao {
 			   .executeUpdate();
 					
 	}
+
+
 	
 
 }

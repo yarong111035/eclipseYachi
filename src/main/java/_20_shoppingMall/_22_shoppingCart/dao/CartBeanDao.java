@@ -19,6 +19,9 @@ public interface CartBeanDao {
 	//根據cart_id刪除對應的購物車紀錄
 	public void deleteCart(Integer cart_id);
 	
+	//根據使用者id的清空所有購物車紀錄
+	public void deleteCartByMemberId(Integer memberId);
+	
 	//更新價格
 	public void updateCartTotal(CartBean cartBean);
 

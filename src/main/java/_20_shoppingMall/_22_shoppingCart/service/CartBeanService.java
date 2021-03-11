@@ -17,5 +17,8 @@ public interface CartBeanService {
 	//刪除一筆購物車紀錄
 	public void deleteCart(Integer cart_id);
 
+	//根據使用者id的清空所有購物車紀錄
+	public void deleteCartByMemberId(Integer memberId);
+	
 	public void udateCartById(Integer cid, Integer amount, Double price);
 }

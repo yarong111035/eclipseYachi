@@ -3,6 +3,7 @@ package _20_shoppingMall._22_shoppingCart.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -27,4 +28,11 @@ public class removeCartController {
 			status.setComplete();
 			return "redirect:/showCartContent";
 		}
+		
+		@GetMapping("/cartDeleteFromDatabase")
+		public String deleteCartByMemberId(SessionStatus status) {
+			status.setComplete();
+			return "redirect:/DisplayPageProducts";
+		}
+		
 }

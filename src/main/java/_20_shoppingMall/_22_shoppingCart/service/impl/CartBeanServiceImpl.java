@@ -81,6 +81,13 @@ public class CartBeanServiceImpl implements CartBeanService {
 		cartBeanDao.deleteCart(cart_id);
 	}
 
+	
+	@Override
+	@Transactional
+	public void deleteCartByMemberId(Integer memberId) {
+		cartBeanDao.deleteCartByMemberId(memberId);
+	}
+	
 	@Override
 	@Transactional
 	public void udateCartById(Integer cid, Integer amount, Double price) {
@@ -88,5 +95,7 @@ public class CartBeanServiceImpl implements CartBeanService {
 		Double total = (double) (amount * price);
 		cartBeanDao.updateCartById(cid,amount,total);
 	}
+
+
 	
 }
