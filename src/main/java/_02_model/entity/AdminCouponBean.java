@@ -55,6 +55,10 @@ public class AdminCouponBean implements Serializable{
 	@Transient
 	MultipartFile admincoupon_image;
 	
+	@JoinColumn(name = "FK_admincoupon_type_id")
+	@ManyToOne
+	private AdminCouponTypeBean adminCouponTypeBean;
+	
 	
 //	@ManyToOne
 //	@JoinColumn(name = "FK_shop_id")
@@ -71,6 +75,14 @@ public class AdminCouponBean implements Serializable{
 
 	public Integer getAdmincoupon_id() {
 		return admincoupon_id;
+	}
+
+	public AdminCouponTypeBean getAdminCouponTypeBean() {
+		return adminCouponTypeBean;
+	}
+
+	public void setAdminCouponTypeBean(AdminCouponTypeBean adminCouponTypeBean) {
+		this.adminCouponTypeBean = adminCouponTypeBean;
 	}
 
 	public void setAdmincoupon_id(Integer admincoupon_id) {

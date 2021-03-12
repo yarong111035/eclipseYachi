@@ -52,21 +52,21 @@
                     </div>
                     <div class="coupon-mid">
                         <label for="admincoupon_consumption">消費金額 :</label>
-                        <form:input type="number" path="admincoupon_consumption" id="admincoupon_consumption" placeholder="500" step="1" min="0" max="100"/>
+                        <form:input type="number" path="admincoupon_consumption" id="admincoupon_consumption" placeholder="500" step="1" min="0" max="10000"/>
                     </div>
                     <div class="coupon-mid">
                         <label for="admincoupon_discount">折價金額 :</label>
-                        <form:input type="number" path="admincoupon_discount" id="admincoupon_discount" placeholder="250" step="1" min="0" max="50"/>
+                        <form:input type="number" path="admincoupon_discount" id="admincoupon_discount" placeholder="250" step="1" min="0" max="5000"/>
                     </div>
                     <div class="coupon-mid">
                         <label for="">可使用商品類型 :</label>
                         <select name="" style=" margin-left: 0.3rem;">
                             <!-- 下拉式選單  -->
                             <option value="">請選擇商品類型</option>
-                            <option value="">aaa</option>
-                            <option value="">bbb</option>
-                            <option value="">ccc</option>
-                            <option value="">ddd</option>
+                            <option value="">折扣</option>
+                            <option value="">免費</option>
+                            <option value="">贈品</option>
+                            <option value="">其他</option>
                         </select>
                     </div>
 
@@ -74,13 +74,13 @@
                         <label for="">優惠券圖片:</label>
                         <div style="display: flex;">
                             <label for="file">
-                                <i class="fas fa-image coupon-photo" style="margin-top: 2rem; font-size: 18px;">
-                                    ☛選擇圖片<input type="file" id="file" accept=".jpeg,.png" style="display: none;">
+                                <i class="coupon-photo" style="margin-top: 2rem; font-size: 18px;">
+                              		<form:input type="file" id="admincoupon_image" path="admincoupon_image" accept=".jpeg,.png" style="margin-left: 0px;"/>  <!--  style="display: none;" -->
                                 </i>
-                            </label>
                             <div class="item">
-                                <img src="https://picsum.photos/500/250" id="headImg" style="margin-left: 48px; margin-top: -25px;">
+                                <img src="${pageContext.request.contextPath}/data/images/smallPic/coupon2.png" id="headImg1" style="width:200px; height: 200px;border: solid 1px #ddd">
                             </div>
+                            </label>
                         </div>
                     </div>
                     <div class="coupon-mid">
@@ -92,5 +92,24 @@
             </main>
         </div>
     </div>
+    <script>
+	$(document).ready(function(){
+	  $('#admincoupon_image').change(function(){
+		  readURL(this);
+	  })
+	  //因為單選的關係，所以有檔案一定是在第0個。
+	  function readURL(input){
+		  if(input.files && input.files[0]){
+		    let reader = new FileReader();
+		    reader.onload = function (e) { //讀出來是二進位檔案
+		    	$('#headImg1').attr('src', e.target.result);
+// 		    	$('#headImg1').attr({src:this.result , width:`200px`,height:`200px`});
+		    }
+		    reader.readAsDataURL(input.files[0]); 
+		  }
+		}
+	});
+
+	</script>
 </body>
 </html>
