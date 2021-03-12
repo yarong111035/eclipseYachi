@@ -2,6 +2,8 @@ package _02_model.entity;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -24,18 +26,10 @@ public class AdminCouponTypeBean implements Serializable{
 	private String admincoupon_type_name;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "adminCouponTypeBean")
-	private Set<AdminCouponBean>  admincoupons = new LinkedHashSet<>();
+	private List<AdminCouponBean>  admincoupons = new LinkedList<>();
 	
 	public AdminCouponTypeBean() {
 		super();
-	}
-
-	public AdminCouponTypeBean(Integer admincoupon_type_id, String admincoupon_type_name,
-			Set<AdminCouponBean> admincoupons) {
-		super();
-		this.admincoupon_type_id = admincoupon_type_id;
-		this.admincoupon_type_name = admincoupon_type_name;
-		this.admincoupons = admincoupons;
 	}
 
 	public Integer getAdmincoupon_type_id() {
@@ -54,14 +48,14 @@ public class AdminCouponTypeBean implements Serializable{
 		this.admincoupon_type_name = admincoupon_type_name;
 	}
 
-	public Set<AdminCouponBean> getAdmincoupons() {
+	public List<AdminCouponBean> getAdmincoupons() {
 		return admincoupons;
 	}
 
-	public void setAdmincoupons(Set<AdminCouponBean> admincoupons) {
+	public void setAdmincoupons(List<AdminCouponBean> admincoupons) {
 		this.admincoupons = admincoupons;
 	}
-	
+
 	
 	
 

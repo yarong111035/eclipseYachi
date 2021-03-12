@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import _02_model.entity.AdminCouponBean;
+import _02_model.entity.AdminCouponTypeBean;
 import _02_model.entity.CouponBean;
 import _50_shop._51_coupon.dao.CouponDao;
 import _50_shop._51_coupon.service.CouponService;
@@ -46,12 +47,6 @@ public class editCouponServiceImpl implements Serializable, editCouponService{
 		return admincoupondao.getAllAdminCoupons();
 	}
 	
-//	@Transactional
-//	@Override
-//	public List<AdminCouponBean> getShopCoupons(int shopId) {
-//		
-//		return admincoupondao.getShopCoupons(shopId);
-//	}
 	
 	@Transactional
 	@Override
@@ -66,13 +61,31 @@ public class editCouponServiceImpl implements Serializable, editCouponService{
 		
 		return admincoupondao.deleteAdminCoupon(admincouponId);
 	}
+	
+//	@Transactional
+//	@Override
+//	public List<AdminCouponBean> getShopCoupons(int shopId) {
+//		return admincoupondao.getShopCoupons(shopId);
+//	}
 
 	@Override
-	public List<AdminCouponBean> getShopCoupons(int shopId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<AdminCouponTypeBean> getAllSorts() {
+		return admincoupondao.getAllSorts();
 	}
-	
+
+	@Override
+	public AdminCouponTypeBean getTypeById(int typeId) {
+		return admincoupondao.getTypeById(typeId);
+	}
+
+	@Override
+	public List<AdminCouponTypeBean> getSortList() {
+		return admincoupondao.getSortList();
+	}
+
+
+
+
 	
 
 }

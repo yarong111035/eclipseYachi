@@ -1,6 +1,7 @@
 package _90_admin._93_editCoupon.dao.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import _02_model.entity.AdminCouponBean;
+import _02_model.entity.AdminCouponTypeBean;
 import _02_model.entity.CouponBean;
 import _90_admin._93_editCoupon.dao.editCouponDao;
 
@@ -33,9 +35,9 @@ public class editCouponDaoImpl implements editCouponDao, Serializable{
 	}
 	
 	@Override
-	public AdminCouponBean getAdminCoupon(int couponId) {
+	public AdminCouponBean getAdminCoupon(int admincouponId) {
 		Session session = factory.getCurrentSession();
-		AdminCouponBean ac = session.get(AdminCouponBean.class, couponId);
+		AdminCouponBean ac = session.get(AdminCouponBean.class, admincouponId);
 		return ac;
 	}
 
@@ -88,7 +90,36 @@ public class editCouponDaoImpl implements editCouponDao, Serializable{
 		n++;
 		return n;
 	}
-
 	
+	//得到所有產品種類id(直接從產品table裡面撈正存在的種類)
+		@SuppressWarnings("unchecked")
+		@Override
+		public List<AdminCouponTypeBean> getAllSorts() {
+			String hql = "SELECT DISTINCT p.adminCouponTypeBean FROM AdminCouponBean p";
+			Session session = factory.getCurrentSession();
+			List<AdminCouponTypeBean> list = new ArrayList<>();
+			list = session.createQuery(hql).getResultList();
+			return list;
+		}
+
+//	依據typeId取得種類紀錄
+	@Override
+	public AdminCouponTypeBean getTypeById(int typeId) {
+		AdminCouponTypeBean adminCouponTypeBean = null;
+		Session session = factory.getCurrentSession();
+		adminCouponTypeBean = session.get(AdminCouponTypeBean.class, typeId);
+		return adminCouponTypeBean;
+	}
+	
+	// 取得所有種類
+		@SuppressWarnings("unchecked")
+		@Override
+		public List<AdminCouponTypeBean> getSortList() {
+			String hql = "From AdminCouponTypeBean";
+			Session session = factory.getCurrentSession();
+			List<AdminCouponTypeBean> list = session.createQuery(hql).getResultList();
+			return list;
+		}
+
 
 }

@@ -58,31 +58,9 @@ public class AdminCouponBean implements Serializable{
 	@JoinColumn(name = "FK_admincoupon_type_id")
 	@ManyToOne
 	private AdminCouponTypeBean adminCouponTypeBean;
-	
-	
-//	@ManyToOne
-//	@JoinColumn(name = "FK_shop_id")
-//	private ShopBean shopBean;
-//
-//	
-//	
-//	@ManyToOne
-//	@JoinColumn(name = "FK_shop_type_id")
-//	private ShopTypeBean shopTypeBean;
-//	
-//	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "coupons")
-//	private Set<FavoriteCouponListBean> couponlist = new LinkedHashSet<FavoriteCouponListBean>();
 
 	public Integer getAdmincoupon_id() {
 		return admincoupon_id;
-	}
-
-	public AdminCouponTypeBean getAdminCouponTypeBean() {
-		return adminCouponTypeBean;
-	}
-
-	public void setAdminCouponTypeBean(AdminCouponTypeBean adminCouponTypeBean) {
-		this.adminCouponTypeBean = adminCouponTypeBean;
 	}
 
 	public void setAdmincoupon_id(Integer admincoupon_id) {
@@ -145,6 +123,22 @@ public class AdminCouponBean implements Serializable{
 		this.admincoupon_memo = admincoupon_memo;
 	}
 
+	public Integer getAdmincoupon_discount() {
+		return admincoupon_discount;
+	}
+
+	public void setAdmincoupon_discount(Integer admincoupon_discount) {
+		this.admincoupon_discount = admincoupon_discount;
+	}
+
+	public Integer getAdmincoupon_consumption() {
+		return admincoupon_consumption;
+	}
+
+	public void setAdmincoupon_consumption(Integer admincoupon_consumption) {
+		this.admincoupon_consumption = admincoupon_consumption;
+	}
+
 	public Blob getAdmincoupon_pic() {
 		return admincoupon_pic;
 	}
@@ -169,49 +163,15 @@ public class AdminCouponBean implements Serializable{
 		this.admincoupon_image = admincoupon_image;
 	}
 
-//	public ShopBean getShopBean() {
-//		return shopBean;
-//	}
-//
-//	public void setShopBean(ShopBean shopBean) {
-//		this.shopBean = shopBean;
-//	}
-
-//	public ShopTypeBean getShopTypeBean() {
-//		return shopTypeBean;
-//	}
-//
-//	public void setShopTypeBean(ShopTypeBean shopTypeBean) {
-//		this.shopTypeBean = shopTypeBean;
-//	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public AdminCouponTypeBean getAdminCouponTypeBean() {
+		return adminCouponTypeBean;
 	}
 
-	public Integer getAdmincoupon_discount() {
-		return admincoupon_discount;
+	public void setAdminCouponTypeBean(AdminCouponTypeBean adminCouponTypeBean) {
+		this.adminCouponTypeBean = adminCouponTypeBean;
 	}
-
-	public void setAdmincoupon_discount(Integer admincoupon_discount) {
-		this.admincoupon_discount = admincoupon_discount;
-	}
-
-	public Integer getAdmincoupon_consumption() {
-		return admincoupon_consumption;
-	}
-
-	public void setAdmincoupon_consumption(Integer admincoupon_consumption) {
-		this.admincoupon_consumption = admincoupon_consumption;
-	}
-
-//	public Set<FavoriteCouponListBean> getCouponlist() {
-//		return couponlist;
-//	}
-//
-//	public void setCouponlist(Set<FavoriteCouponListBean> couponlist) {
-//		this.couponlist = couponlist;
-//	}
+	
+	
 
 }
 	

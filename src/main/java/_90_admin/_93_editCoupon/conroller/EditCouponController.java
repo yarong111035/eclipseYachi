@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +35,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import _02_model.entity.AdminCouponBean;
+import _02_model.entity.AdminCouponTypeBean;
 import _02_model.entity.CouponBean;
+import _02_model.entity.ProductTypeBean;
 import _02_model.entity.ShopBean;
 import _10_member.entity.Member;
 import _90_admin._93_editCoupon.service.editCouponService;
@@ -75,6 +79,7 @@ public class EditCouponController {
 	
 	@GetMapping("modifyAdminCoupon/{admincouponId}")
 	public String showUpdateForm(Model model, @PathVariable Integer admincouponId) {
+		
 		AdminCouponBean admincouponBean = editcouponService.getAdminCoupon(admincouponId);
 		model.addAttribute("AdminCouponBean", admincouponBean);
 		return "_16_admin/admin/administrator";
@@ -128,14 +133,18 @@ public class EditCouponController {
 		AdminCouponBean acb = new AdminCouponBean();
 //		acb.setAdmincoupon_amount(5);
 		model.addAttribute("AdminCouponBean", acb);
+		System.out.println("===============111===============");
 		List<AdminCouponBean> admincoupons = editcouponService.getAllAdminCoupons();
+		System.out.println("===============2222===============");
 		model.addAttribute("admincouponList",admincoupons);
+		System.out.println("===============3333===============");
 		return "/_16_admin/admin_coupon";
 	}
 
 	@PostMapping("/InsertAdminCoupon")
 	public String processFormData(@ModelAttribute("AdminCouponBean") AdminCouponBean admincouponBean,
 			BindingResult result, Model model, HttpServletRequest request) {
+		System.out.println("===============4444===============");
 		Member ac = (Member) model.getAttribute("LoginOK");
 //		AdminCouponBean.setShopBean(ac.getShopBean());
 		MultipartFile picture = admincouponBean.getAdmincoupon_image();
@@ -216,9 +225,22 @@ public class EditCouponController {
 		return b;
 	}
 	
-	@ModelAttribute
-	public AdminCouponBean prepareAdminCouponBean(HttpServletRequest req) {
-		AdminCouponBean adminCouponBean = new AdminCouponBean();
-		return adminCouponBean;
+//	@ModelAttribute
+//	public AdminCouponBean prepareAdminCouponBean(HttpServletRequest req) {
+//		AdminCouponBean adminCouponBean = new AdminCouponBean();
+//		return adminCouponBean;
+//	}
+	
+//	得到種類id與對應的name
+	@ModelAttribute("admincouponMap") 
+	public Map<Integer, String> getSortList() {
+		Map<Integer, String> admincouponMap = new HashMap<>();
+		List<AdminCouponTypeBean> list = editcouponService.getSortList();
+		for(AdminCouponTypeBean act : list) {  //取出每一個種類物件的(id,name) 放入map物件
+			System.out.println();
+			admincouponMap.put(act.getAdmincoupon_type_id(), act.getAdmincoupon_type_name());
+			System.out.println(act);
+		}
+		return admincouponMap; 
 	}
 }

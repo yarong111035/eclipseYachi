@@ -3,6 +3,7 @@ package _90_admin._93_editCoupon.dao;
 import java.util.List;
 
 import _02_model.entity.AdminCouponBean;
+import _02_model.entity.AdminCouponTypeBean;
 
 
 
@@ -19,5 +20,14 @@ public interface editCouponDao {
 	int updateAdminCoupon(AdminCouponBean bean);
 	
 	int deleteAdminCoupon(int admincoupon_id);
+	
+	//得所有種類(從產品table撈種類)
+	List<AdminCouponTypeBean> getAllSorts();
+		
+	//依種類id找種類
+	public AdminCouponTypeBean getTypeById(int typeId); 
+		
+	List<AdminCouponTypeBean> getSortList();
+
 
 }

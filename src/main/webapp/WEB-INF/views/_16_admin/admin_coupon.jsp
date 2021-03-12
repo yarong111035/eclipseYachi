@@ -52,24 +52,20 @@
                     </div>
                     <div class="coupon-mid">
                         <label for="admincoupon_consumption">消費金額 :</label>
-                        <form:input type="number" path="admincoupon_consumption" id="admincoupon_consumption" placeholder="500" step="1" min="0" max="10000"/>
+                        <form:input type="number" path="admincoupon_consumption" id="admincoupon_consumption" placeholder="EX:500" step="1" min="0" max="10000"/>
                     </div>
                     <div class="coupon-mid">
                         <label for="admincoupon_discount">折價金額 :</label>
-                        <form:input type="number" path="admincoupon_discount" id="admincoupon_discount" placeholder="250" step="1" min="0" max="5000"/>
+                        <form:input type="number" path="admincoupon_discount" id="admincoupon_discount" placeholder="EX:250" step="1" min="0" max="5000"/>
                     </div>
                     <div class="coupon-mid">
-                        <label for="">可使用商品類型 :</label>
-                        <select name="" style=" margin-left: 0.3rem;">
-                            <!-- 下拉式選單  -->
-                            <option value="">請選擇商品類型</option>
-                            <option value="">折扣</option>
-                            <option value="">免費</option>
-                            <option value="">贈品</option>
-                            <option value="">其他</option>
-                        </select>
+                        <label for="">優惠券類型 :</label>
+                        <form:select path="adminCouponTypeBean.admincoupon_type_id" style=" margin-left: 2.8rem;">
+                            下拉式選單 
+                            <form:option value="-1" label="請選擇"/>
+                            <form:options items="${admincouponMap}"/>
+                        </form:select>
                     </div>
-
                     <div class="coupon-mid">
                         <label for="">優惠券圖片:</label>
                         <div style="display: flex;">
