@@ -1,5 +1,6 @@
 package _20_shoppingMall._23_orderProcess.dao.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Session;
@@ -17,10 +18,31 @@ public class OrderDaoImpl implements OrderDao {
 	@Autowired
 	private SessionFactory factory;
 	
+	//新建訂單紀錄
 	@Override
 	public void insertOrder(OrderBean orderBean) {
 		Session session = factory.getCurrentSession();
 		session.save(orderBean);
+	}
+
+	//取得會員所有訂單
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<OrderBean> getAllOrdersByMemberId(Integer memberId) {
+		Session session = factory.getCurrentSession();
+		String hql = " FROM OrderBean o "
+				   + " WHERE o.memberBean.memberId = :memberId ";
+		List<OrderBean> orders =  session.createQuery(hql)
+										 .setParameter("memberId", memberId)
+										 .getResultList();
+		return orders;
+	}
+
+	@Override
+	public OrderBean getOrderById(Integer orderNo) {
+		Session session = factory.getCurrentSession();
+		OrderBean orderBean = session.get(OrderBean.class, orderNo);
+		return orderBean;
 	}
 
 	//從號表格取得訂單號碼

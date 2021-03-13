@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -47,7 +48,7 @@ public class ProcessOrderController {
 			return "redirect:/LoginAndRegister";
 		}
 		OrderBean orderBean = new OrderBean();
-		orderBean.setCompany_id("11123456");
+//		orderBean.setCompany_id("11123456");
 		model.addAttribute("orderBean", orderBean);
 		return "_12_shoppingmall/6_orderDetail";
 	}
@@ -69,11 +70,10 @@ public class ProcessOrderController {
 			RedirectAttributes redirectAttributes,
 			HttpServletRequest request
 			) {
-		System.out.println(orderBean.getOrder_address());
 		Member member = (Member)model.getAttribute("LoginOK");
-//		if(member == null) {
-//			return "redirect:/LoginAndRegister";
-//		}
+		if(member == null) {
+			return "redirect:/LoginAndRegister";
+		}
 		
 		//取得購物車總金額
 		double total = 0;
@@ -86,24 +86,19 @@ public class ProcessOrderController {
 		orderBean.setMemberBean(member);
 		orderBean.setOrder_total(total);
 		
-		orderService.createOrder(orderBean);
+//		orderService.createOrder(orderBean); //還需檢查庫存量
+		try {
+			orderService.createOrder(orderBean); //新建訂單三步驟
+			System.out.println("======訂單新建成功======"); //尚須捕捉例外
+			return "redirect:/cartDeleteFromDatabase";
+		} catch (RuntimeException e) {
+			System.out.println(e.getMessage());
+			return "redirect:/cartDeleteFromDatabase";
+		}
 		
-		return "redirect:/cartDeleteFromDatabase";
 	}
 	
-	
-	
-	
-	
-	@RequestMapping("/orderDetail")
-	public String orderDetail() {
-		return "_11_member/mamber_order";
-	}
-	
-	
-	
-	
-	
+
 	//取貨方式下拉式選單資料
 	@ModelAttribute("shipTypeMap")
 	public Map<Integer, String> getShipTypeList(){
