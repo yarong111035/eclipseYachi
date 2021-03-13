@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -119,8 +120,8 @@
                 <div id="hcg_tabs">
     
                     <div id="tabs-nav">
-                        <a href="#" class="change">訂單詳情</a>
-                       <a href="#">購物車</a>
+                        <a href="#" class="change">訂單列表</a>
+                       <a href="#">訂單詳情</a>
                        <a href="#">待付款</a>
                        <a href="#">待出貨</a>
                        <a href="#">待收貨</a>
@@ -133,33 +134,58 @@
 
                       <!-- 訂單詳情 -->
                       <div class="tabs-panel"  style="display:block">
-
+                      
+							<div class="orderTitle">
+                               <span>共 ${memberOrders.size()} 筆訂單</span>
+                             </div>
+                             
                             <table class="order-info">
                                 <thead>
                                     <tr class="order-nav">
-                                        <th>訂購日期</th>
-                                        <th>訂單編號</th>
+                                   		<th>序號</th>
+                                        <th>日期</th>
+                                        <th>編號</th>
                                         <th>付款方式</th>
-                                        <th>應付金額</th>
-                                        <th>發票號碼</th>
-                                        <th>評價</th>
+                                        <th>配送方式</th>
+                                        <th>配送日期</th>
+                                        <th>總額</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
-                                    <tr>
-                                        <td colspan="10" class="alignC">
-                                            <!-- <span style="color: Red; font-weight: bold;">查無紀錄</span> -->
-                                        </td>
-                                    </tr>
-                                    
+                                    <c:forEach var="order" items="${memberOrders}" varStatus='i'>
+	                                    <tr>
+	                                    	<td>
+	                                    		${i.count}
+	                                    	</td>
+	                                    	<c:if test="${empty memberOrders}">
+		                                        <td colspan="10" class="alignC">
+		                                            <span style="color: Red; font-weight: bold;">查無紀錄</span>
+		                                        </td>
+	                                    	</c:if>
+	                                    	<td>
+	                                    		<fmt:formatDate value="${ order.order_datetime}" pattern="yyyy-MM-dd"/><br>
+	                                    		<fmt:formatDate value="${ order.order_datetime}" pattern="HH:mm"/>
+	                                    	</td>
+	                                    	<td id="orderDetail">
+	                                    		${order.orderNumber}
+	                                    	</td>
+	                                    	<td>
+	                                    		<a href="google.com">${order.payTypeBean.pay_type_name}</a>
+	                                    	</td>
+	                                    	<td>
+	                                    		<a>${order.shipTypeBean.type_name }</a>
+	                                    	</td>
+	                                    	<td><fmt:formatDate value="${ order.shipping_date}" pattern="yyyy-MM-dd"/></td>
+	                                    	<td>${ order.order_total}</td>
+	                                    </tr>
+                                    </c:forEach>
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th class="alignR" colspan="10">
                                             <div class="pager">
                                                 
-                                                <h2>共0筆訂單</h2>
+                                                <h2>共 ${memberOrders.size()} 筆訂單</h2>
                                             </div>
                                         </th>
                                     </tr>
@@ -172,10 +198,11 @@
 
                       <!-- 購物車 -->
                       <div class="tabs-panel"> 
-
+						<h3>出貨地址</h3>
                         <table>
 
                             <thead class="product-item">
+                            	
                                 <tr class="img-tr">
                                     <td colspan="2" rowspan="4" class="img-td">
                                         <img src="../img/cat.png">
@@ -296,6 +323,22 @@
             $(this).closest('.product-item').remove(); 
 
         });
+        
+        
+        $('#orderDetail').click(function(){
+        	//nav第二個 a亮燈
+        	$('#tabs-nav a:nth-child(2)').addClass('change').siblings().removeClass('change');
+        	// 點擊的同時 拿到當前 a 超連結的索引號
+            let index = $('#tabs-nav a:nth-child(2)').index();
+        	console.log(index);
+        	// 讓下面對應的索引號  .tabs-content 的子元素.tabs-panel[index] 渲染出來  
+            // 其他 子元素 兄弟類 siblings() 隱藏起來   
+            // 用addClass 增加動畫
+            $('.tabs-content .tabs-panel').eq(index)
+            .addClass('fadeIn animated-tabs').show().siblings().hide();
+        })
+        
+        
 
 
     });    

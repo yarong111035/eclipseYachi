@@ -223,7 +223,13 @@
     100% {opacity: 1;} 
 } 
 
-
+/* 總訂單數量 */
+.orderTitle{
+	text-align: left;
+    margin-left: 20px;
+    margin-bottom: 4px;
+    font-size: 1.1rem;
+}
 table{
     width: 100%;
     font-weight: bold;
@@ -232,10 +238,12 @@ table{
 }
 
 tr,td{
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-top: 0;
-    border-left: 0;
+/*     border: 1px solid #ccc; */
+    font-weight: 500;
+	border-bottom: 1px solid #ddd;
+    padding: 15px 5px ;
+/*     border-top: 0; */
+/*     border-left: 0; */
     
 }
 
