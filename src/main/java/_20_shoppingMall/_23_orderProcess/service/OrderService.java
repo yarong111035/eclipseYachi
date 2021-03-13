@@ -13,4 +13,6 @@ public interface OrderService {
 	OrderBean getOrderById(Integer orderNo);
 
 	public void checkStock(OrderBean orderBean);
+
+	void cancelOrder(OrderBean orderBean);
 }

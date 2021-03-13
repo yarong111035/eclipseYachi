@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -93,10 +94,36 @@ public class ProcessOrderController {
 			return "redirect:/cartDeleteFromDatabase";
 		} catch (RuntimeException e) {
 			System.out.println(e.getMessage());
-			return "redirect:/cartDeleteFromDatabase";
+			return "redirect:/showCartContent";
 		}
 		
 	}
+	
+	
+	
+	//取消訂單
+	@GetMapping("/cancelOrder/asdf9{order_id}8")
+	public String memberCancelOrder(
+			Model model,
+			@PathVariable Integer order_id) {
+		Member member = (Member)model.getAttribute("LoginOK");
+		if(member == null) {
+			return "redirect:/LoginAndRegister";
+		}
+		// 1. 取得當前訂單
+		OrderBean orderBean = orderService.getOrderById(order_id);
+		// 2. 更新此筆訂單狀態為取消
+		orderService.cancelOrder(orderBean);
+		return "redirect:/_23_orderProcess/orderList";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 	//取貨方式下拉式選單資料

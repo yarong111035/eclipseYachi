@@ -67,5 +67,14 @@ public class OrderDaoImpl implements OrderDao {
 	
 	}
 
+	//取消訂單
+	@Override
+	public void updateOrderStatus(OrderBean orderBean) {
+		if(orderBean.getOrderStatusBean() != null && orderBean.getOrder_id() != null) {
+			Session session = factory.getCurrentSession();
+			session.saveOrUpdate(orderBean);
+		}
+	}
+
 
 }

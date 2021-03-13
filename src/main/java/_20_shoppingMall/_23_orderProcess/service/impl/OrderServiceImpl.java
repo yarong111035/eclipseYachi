@@ -34,6 +34,10 @@ import _20_shoppingMall._23_orderProcess.service.OrderService;
 @Service
 @Transactional
 public class OrderServiceImpl implements OrderService {
+	final Integer cancelStatus = 5;  //取消狀態碼
+	final Integer unPayStatus = 1; //未付款狀態碼
+	final Integer returnedStatus = 6; //退貨狀態碼
+	
 	@Autowired 
 	OrderDao orderDao;
 	@Autowired
@@ -119,5 +123,31 @@ public class OrderServiceImpl implements OrderService {
 			orderItemDao.updateProductStock(item);
 		}
 	}
+
+	/**
+	 * 取消訂單： 此兩步驟需同時成功或失敗，故在同一個交易中
+	 * 1. 設定狀態為取消狀態
+	 * 2. 加回已取消訂單細項的庫存數量
+	 */
+
+	@Override
+	public void cancelOrder(OrderBean orderBean) {
+		//判斷只有未付款才可以取消訂單
+		if(orderBean.getOrderStatusBean().getStatus_id() == unPayStatus) {
+			// 1. 設定狀態為取消狀態
+			OrderStatusBean orderStatusBean = orderStatusDao.getStatusById(cancelStatus);
+			orderBean.setOrderStatusBean(orderStatusBean);
+			orderDao.updateOrderStatus(orderBean);
+			
+			// 2. 加回已取消訂單細項的庫存數量
+			checkStock(orderBean);  //目前為取消狀態的orderBean
+		}
+	}
+
+
+	
+
+
+
 	
 }

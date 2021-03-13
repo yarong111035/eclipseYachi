@@ -16,6 +16,8 @@ public interface OrderDao {
 
 	void updateOrderNumberById(Integer order_id);
 
+	void updateOrderStatus(OrderBean orderBean);
+
 
 
 

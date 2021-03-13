@@ -176,7 +176,22 @@
 	                                    		<a href="google.com">${order.payTypeBean.pay_type_name}</a>
 	                                    	</td>
 	                                    	<td>
-	                                    		<span style="color:red; font-weight:500;";>${order.orderStatusBean.status_name }</span>
+	                                    	
+	                                    		<c:choose>
+		                                        		<c:when test="${order.orderStatusBean.status_id == 1}">
+	                                    					<span style="color:red; font-weight:500;";>${order.orderStatusBean.status_name }</span>
+		                                        		</c:when>
+		                                        		<c:when test="${order.orderStatusBean.status_id == 2 || order.orderStatusBean.status_id == 3}">
+	                                    					<span style="color:black; font-weight:500;";>${order.orderStatusBean.status_name }</span>
+		                                        		</c:when>
+		                                        		<c:when test="${order.orderStatusBean.status_id == 4 }">
+	                                    					<span style="color:green; font-weight:500;";>${order.orderStatusBean.status_name }</span>
+		                                        		</c:when>
+		                                        		<c:otherwise>
+		                                        			<span style="color:gray; font-weight:500;";>${order.orderStatusBean.status_name }</span>
+		                                        		</c:otherwise>
+		                                        	</c:choose>
+	                                    	
 	                                    	</td>
 	                                    	<td><fmt:formatDate value="${ order.shipping_date}" pattern="yyyy-MM-dd"/></td>
 	                                    	<td>${ order.order_total}</td>
