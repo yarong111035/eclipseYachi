@@ -8,4 +8,6 @@ public interface OrderItemDao {
 
 	void insertItems(Set<OrderItemBean> orderItems);
 
+	void updateProductStock(OrderItemBean item);
+
 }

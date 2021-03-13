@@ -71,7 +71,7 @@ public class OrderServiceImpl implements OrderService {
 		
 // 	 2. 新增訂單明細紀錄(訂單細項:訂單 = 多 : 1)
 		//取出"購物車商品"轉成"訂單明細"
-		List<CartBean> carts = cartBeanDao.getAllCarts();
+		List<CartBean> carts = cartBeanDao.findCartByMemberId(orderBean.getMemberBean().getMemberId());
 		Set<OrderItemBean> orderItems = new HashSet<>();
 		for(CartBean cart : carts) {
 			OrderItemBean item = new OrderItemBean();
@@ -82,7 +82,11 @@ public class OrderServiceImpl implements OrderService {
 			item.setDiscount(0.8); //設置折扣(尚未計算折扣後金額)
 			orderItems.add(item); //添加item物件
 		}
-		orderBean.setItems(orderItems);  //將訂單明細加入訂單
+		//將訂單明細加入訂單
+		orderBean.setItems(orderItems);  
+		//檢查訂單的每一筆明細的訂購量是否夠下單
+		checkStock(orderBean);
+		
 		//資料庫新建一筆OrderBean訂單
 		orderDao.insertOrder(orderBean); //新建訂單紀錄會一起新建orderItem紀錄
 		//依照訂單id 配給訂單一個有序號碼
@@ -104,6 +108,16 @@ public class OrderServiceImpl implements OrderService {
 	public OrderBean getOrderById(Integer orderNo) {
 		OrderBean orderBean = orderDao.getOrderById(orderNo);
 		return orderBean;
+	}
+
+
+	//檢查庫存量是否有超過訂購量
+	@Override
+	public void checkStock(OrderBean orderBean) {
+		Set<OrderItemBean> items = orderBean.getItems();
+		for(OrderItemBean item : items) {
+			orderItemDao.updateProductStock(item);
+		}
 	}
 	
 }
