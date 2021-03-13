@@ -16,7 +16,7 @@ import _10_member.entity.Member;
 import _20_shoppingMall._23_orderProcess.service.OrderService;
 
 @Controller
-@SessionAttributes({ "LoginOK", "pageNo", "products_DPP"})
+@SessionAttributes({ "LoginOK", "products_DPP"})
 @RequestMapping("_23_orderProcess")
 public class OrderListController {
 	@Autowired
@@ -52,7 +52,7 @@ public class OrderListController {
 			OrderBean orderBean = orderService.getOrderById(orderNo);
 			model.addAttribute("orderBean", orderBean);
 			
-			return "redirect:/_23_orderProcess/orderList";
+			return "_11_member/memberOrderDetail";
 		}
 	
 }

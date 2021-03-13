@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,7 +43,8 @@ public class OrderBean implements Serializable{
 	
 	private String order_address;
 	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy = "orderBean")
+	//預設 lazyLoding 需要加fetch = FetchType.EAGER ，否則無法從訂單找明細
+	@OneToMany(cascade=CascadeType.ALL, mappedBy = "orderBean",fetch = FetchType.EAGER)
 	private Set<OrderItemBean> items = new LinkedHashSet<>();
 	private String company_id;  //統編號碼
 	
@@ -219,13 +221,7 @@ public class OrderBean implements Serializable{
 		this.order_memo = order_memo;
 	}
 
-	@Override
-	public String toString() {
-		return "OrderBean [order_id=" + order_id + ", memberBean=" + memberBean + ", order_address=" + order_address
-				+ ", company_id=" + company_id + ", order_datetime=" + order_datetime + ", shipTypeBean=" + shipTypeBean
-				+ ", payTypeBean=" + payTypeBean + ", orderStatusBean=" + orderStatusBean + ", order_total="
-				+ order_total + ", shipping_date=" + "]";
-	}
+	
 
 	
 }

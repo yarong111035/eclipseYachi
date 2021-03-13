@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,11 +133,11 @@
     
                         <!-- 先讓第一個內容顯示出來 display:block -->
 
-                      <!-- 訂單詳情 -->
+                      <!-- 訂單清單 -->
                       <div class="tabs-panel"  style="display:block">
                       
 							<div class="orderTitle">
-                               <span>共 ${memberOrders.size()} 筆訂單</span>
+                               <span>親愛的 ${LoginOK.fullname } ， 您目前有 ${memberOrders.size()} 筆訂單</span>
                              </div>
                              
                             <table class="order-info">
@@ -146,7 +147,7 @@
                                         <th>日期</th>
                                         <th>編號</th>
                                         <th>付款方式</th>
-                                        <th>配送方式</th>
+                                        <th>訂單狀態</th>
                                         <th>配送日期</th>
                                         <th>總額</th>
                                     </tr>
@@ -166,14 +167,16 @@
 	                                    		<fmt:formatDate value="${ order.order_datetime}" pattern="yyyy-MM-dd"/><br>
 	                                    		<fmt:formatDate value="${ order.order_datetime}" pattern="HH:mm"/>
 	                                    	</td>
-	                                    	<td id="orderDetail">
-	                                    		${order.orderNumber}
+	                                    	<td class="orderDetail">
+	                                    		<a href="<c:url value='/_23_orderProcess/orderDetail?orderNo=${order.order_id}'/>">
+	                                    			${order.orderNumber}
+	                                    		</a>
 	                                    	</td>
 	                                    	<td>
 	                                    		<a href="google.com">${order.payTypeBean.pay_type_name}</a>
 	                                    	</td>
 	                                    	<td>
-	                                    		<a>${order.shipTypeBean.type_name }</a>
+	                                    		<span style="color:red; font-weight:500;";>${order.orderStatusBean.status_name }</span>
 	                                    	</td>
 	                                    	<td><fmt:formatDate value="${ order.shipping_date}" pattern="yyyy-MM-dd"/></td>
 	                                    	<td>${ order.order_total}</td>
@@ -194,11 +197,10 @@
                             </table>
     
                       </div>
-                      <!-- 訂單詳情 -->
+                      <!-- 訂單清單 -->
 
-                      <!-- 購物車 -->
+                      <!-- 訂單詳情 -->
                       <div class="tabs-panel"> 
-						<h3>出貨地址</h3>
                         <table>
 
                             <thead class="product-item">
@@ -325,18 +327,52 @@
         });
         
         
-        $('#orderDetail').click(function(){
-        	//nav第二個 a亮燈
-        	$('#tabs-nav a:nth-child(2)').addClass('change').siblings().removeClass('change');
-        	// 點擊的同時 拿到當前 a 超連結的索引號
-            let index = $('#tabs-nav a:nth-child(2)').index();
-        	console.log(index);
-        	// 讓下面對應的索引號  .tabs-content 的子元素.tabs-panel[index] 渲染出來  
-            // 其他 子元素 兄弟類 siblings() 隱藏起來   
-            // 用addClass 增加動畫
-            $('.tabs-content .tabs-panel').eq(index)
-            .addClass('fadeIn animated-tabs').show().siblings().hide();
-        })
+        
+        
+        //測試用
+//         let id = "${id}";
+  
+//         function getOrderDetail(){
+//         	return new Promise((resolve,reject) => {
+//         		setTimeout(function(){
+//         			$('.orderDetail a').attr('href','<c:url value="/_23_orderProcess/orderDetail?orderNo=${id}"/>')
+//         		},0)
+//         		resolve();
+//         	})
+//         }
+        
+       
+        
+       
+// 	   function changeNav(){
+// 		 //nav第二個 a亮燈
+//        	$('#tabs-nav a:nth-child(2)').addClass('change').siblings().removeClass('change');
+//        	// 點擊的同時 拿到當前 a 超連結的索引號
+//            let index = $('#tabs-nav a:nth-child(2)').index();
+//        	console.log(index);
+//        	// 讓下面對應的索引號  .tabs-content 的子元素.tabs-panel[index] 渲染出來  
+//            // 其他 子元素 兄弟類 siblings() 隱藏起來   
+//            // 用addClass 增加動畫
+//            $('.tabs-content .tabs-panel').eq(index)
+//            .addClass('fadeIn animated-tabs').show().siblings().hide();
+// 	   }
+	   
+// 	   $('.orderDetail').click(getOrderDetail()).then(changeNav());
+        
+//         $('.orderDetail').click().(function(){
+        	
+        	
+//         	//nav第二個 a亮燈
+//         	$('#tabs-nav a:nth-child(2)').addClass('change').siblings().removeClass('change');
+//         	// 點擊的同時 拿到當前 a 超連結的索引號
+//             let index = $('#tabs-nav a:nth-child(2)').index();
+//         	console.log(index);
+//         	// 讓下面對應的索引號  .tabs-content 的子元素.tabs-panel[index] 渲染出來  
+//             // 其他 子元素 兄弟類 siblings() 隱藏起來   
+//             // 用addClass 增加動畫
+//             $('.tabs-content .tabs-panel').eq(index)
+//             .addClass('fadeIn animated-tabs').show().siblings().hide();
+//         })
         
         
 
