@@ -9,5 +9,6 @@ public interface OrderDao {
 
 	void insertOrder(OrderBean orderBean);
 
+	void updateOrderNumberById(Integer order_id);
 
 }

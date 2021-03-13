@@ -13,6 +13,8 @@ import java.io.Reader;
 import java.sql.Blob;
 import java.sql.Clob;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.Date;
 
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialClob;
@@ -70,4 +72,14 @@ public class SystemUtils2018 {
 	public static String extractFileName(String pathName) throws IOException, SQLException {
 		return pathName.substring(pathName.lastIndexOf("/") + 1);
 	}
+	
+	//指定日期加上天數
+	public static long addDate(Date date, long day){
+		long time = date.getTime(); // 得到指定日期的毫秒數
+		day = day * 24 * 60 * 60 * 1000; // 要加上的天數轉換成毫秒數
+		time += day; // 相加得到新的毫秒數
+		return time; // 最後日期的總毫秒數
+	}
+	
+	
 }

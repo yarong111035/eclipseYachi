@@ -23,5 +23,27 @@ public class OrderDaoImpl implements OrderDao {
 		session.save(orderBean);
 	}
 
+	//從號表格取得訂單號碼
+	@Override
+	public void updateOrderNumberById(Integer order_id) {
+		Session session = factory.getCurrentSession();
+		String hqlSelect = " SELECT o.random_code "
+				   + " FROM OrderNumberBean o "
+				   + " WHERE o.random_id = :order_id ";
+		String hqlUpdate = " UPDATE OrderBean o "
+						 + " SET o.orderNumber = :orderNumber"
+						 + " WHERE o.order_id = :order_id";
+		//依據訂單id 取得訂單號
+		String orderCode = (String) session.createQuery(hqlSelect)
+										   .setParameter("order_id", order_id)
+										   .getSingleResult();
+		//加入有序訂單號欄位
+		session.createQuery(hqlUpdate)
+			   .setParameter("orderNumber", orderCode)
+			   .setParameter("order_id", order_id)
+			   .executeUpdate();
+	
+	}
+
 
 }

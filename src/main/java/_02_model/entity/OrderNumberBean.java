@@ -17,20 +17,20 @@ public class OrderNumberBean {
 	private Integer random_id;
 	
 	@Column(unique = true)
-	private Long random_code;
+	private String random_code;
 	/**
 	 * 本類別對照表格並無外鍵欄位，
 	 * 外鍵欄位必須參考對照類別(OrderBean)的orderNumberBean屬性
 	 */
-	@OneToOne(mappedBy="orderNumberBean")
-	private OrderBean orderBean;
+//	@OneToOne(mappedBy="orderNumberBean")
+//	private OrderBean orderBean;
 	
 	
 	public OrderNumberBean() {
 		super();
 	}
 
-	public OrderNumberBean(Integer random_id, Long random_code) {
+	public OrderNumberBean(Integer random_id, String random_code) {
 		super();
 		this.random_id = random_id;
 		this.random_code = random_code;
@@ -46,24 +46,24 @@ public class OrderNumberBean {
 	}
 
 
-	public Long getRandom_code() {
+	public String getRandom_code() {
 		return random_code;
 	}
 
 
-	public void setRandom_code(Long random_code) {
+	public void setRandom_code(String random_code) {
 		this.random_code = random_code;
 	}
 
 
-	public OrderBean getOrderBean() {
-		return orderBean;
-	}
-
-
-	public void setOrderBean(OrderBean orderBean) {
-		this.orderBean = orderBean;
-	}
+//	public OrderBean getOrderBean() {
+//		return orderBean;
+//	}
+//
+//
+//	public void setOrderBean(OrderBean orderBean) {
+//		this.orderBean = orderBean;
+//	}
 
 
 

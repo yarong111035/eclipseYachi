@@ -1,11 +1,13 @@
 package _00_util.init;
 
+import java.sql.SQLException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+
 import _00_util.util.HibernateUtils;
-import _00_util.util.SnowflakeMini;
 import _02_model.entity.OrderNumberBean;
 
 public class initOrderRandomNumber {
@@ -14,12 +16,16 @@ public class initOrderRandomNumber {
 		Session session = factory.getCurrentSession();
 		Transaction tx = session.beginTransaction();
 		
-		for (int i = 0; i < 300; i++) {
-            long id = SnowflakeMini.nextId();
-            session.persist(new OrderNumberBean(null,id));
-            System.out.println("=============");
-            System.out.println("d:"+id);
-        }
+		String orderString ;
+		for (int i = 1; i < 20001; i += 11) {
+			orderString = "YA" + String.format("%05d", i) + "CHI";
+			
+			session.persist(new OrderNumberBean(null,orderString));
+//			System.out.println("=============");
+			
+		
+		}
+        
 		
 		
 		tx.commit();

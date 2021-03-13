@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,9 +29,12 @@ public class OrderBean implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer order_id;
 	
-	@OneToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "FK_orderNumber")
-	private OrderNumberBean orderNumberBean; //fk 一對一(唯一性)
+//	@OneToOne(cascade = CascadeType.PERSIST)
+//	@JoinColumn(name = "FK_orderNumber")
+//	private OrderNumberBean orderNumberBean; //fk 一對一(唯一性)
+	
+	@Column(unique = true)
+	private String orderNumber; //有序訂單號(唯一性，無關連其他表格)
 	
 	@ManyToOne
 	@JoinColumn(name="FK_member_id")
@@ -64,9 +68,9 @@ public class OrderBean implements Serializable{
 	
 	private Date shipping_date;
 	
-	private Integer pay_me;  //用數字分辨付款方式  =>3/10不懂????by yarong
+//	private Integer pay_me;  //用數字分辨付款方式  =>3/10不懂????by yarong
 	
-	private Integer order_status_id;  //用數字分辨運送方式   =>3/10不懂????by yarong
+//	private Integer order_status_id;  //用數字分辨運送方式   =>3/10不懂????by yarong
 	
 	private String order_memo;
 
@@ -78,16 +82,25 @@ public class OrderBean implements Serializable{
 		this.order_id = order_id;
 	}
 
-	public OrderNumberBean getOrderNumberBean() {
-		return orderNumberBean;
-	}
+//	public OrderNumberBean getOrderNumberBean() {
+//		return orderNumberBean;
+//	}
+//
+//	public void setOrderNumberBean(OrderNumberBean orderNumberBean) {
+//		this.orderNumberBean = orderNumberBean;
+//	}
 
-	public void setOrderNumberBean(OrderNumberBean orderNumberBean) {
-		this.orderNumberBean = orderNumberBean;
-	}
-
+	
 	public Member getMemberBean() {
 		return memberBean;
+	}
+
+	public String getOrderNumber() {
+		return orderNumber;
+	}
+
+	public void setOrderNumber(String orderNumber) {
+		this.orderNumber = orderNumber;
 	}
 
 	public void setMemberBean(Member memberBean) {
@@ -181,22 +194,22 @@ public class OrderBean implements Serializable{
 	public void setShipping_date(Date shipping_date) {
 		this.shipping_date = shipping_date;
 	}
-
-	public Integer getPay_me() {
-		return pay_me;
-	}
-
-	public void setPay_me(Integer pay_me) {
-		this.pay_me = pay_me;
-	}
-
-	public Integer getOrder_status_id() {
-		return order_status_id;
-	}
-
-	public void setOrder_status_id(Integer order_status_id) {
-		this.order_status_id = order_status_id;
-	}
+//
+//	public Integer getPay_me() {
+//		return pay_me;
+//	}
+//
+//	public void setPay_me(Integer pay_me) {
+//		this.pay_me = pay_me;
+//	}
+//
+//	public Integer getOrder_status_id() {
+//		return order_status_id;
+//	}
+//
+//	public void setOrder_status_id(Integer order_status_id) {
+//		this.order_status_id = order_status_id;
+//	}
 
 	public String getOrder_memo() {
 		return order_memo;
@@ -204,6 +217,14 @@ public class OrderBean implements Serializable{
 
 	public void setOrder_memo(String order_memo) {
 		this.order_memo = order_memo;
+	}
+
+	@Override
+	public String toString() {
+		return "OrderBean [order_id=" + order_id + ", memberBean=" + memberBean + ", order_address=" + order_address
+				+ ", company_id=" + company_id + ", order_datetime=" + order_datetime + ", shipTypeBean=" + shipTypeBean
+				+ ", payTypeBean=" + payTypeBean + ", orderStatusBean=" + orderStatusBean + ", order_total="
+				+ order_total + ", shipping_date=" + "]";
 	}
 
 	
