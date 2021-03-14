@@ -144,6 +144,13 @@ public class OrderServiceImpl implements OrderService {
 		}
 	}
 
+	
+	//依據訂單號搜索訂單
+	@Override
+	public OrderBean queryOrder(String orderNumber) {
+		return orderDao.queryOrder(orderNumber);
+	}
+
 
 	
 

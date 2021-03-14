@@ -76,5 +76,19 @@ public class OrderDaoImpl implements OrderDao {
 		}
 	}
 
+	@Override
+	public OrderBean queryOrder(String orderNumber) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM OrderBean WHERE orderNumber = :orderNumber";
+		@SuppressWarnings("unchecked")
+		List<OrderBean> orders = session.createQuery(hql)
+										.setParameter("orderNumber", orderNumber)
+										.getResultList();
+		if(orders == null || orders.isEmpty()) {
+			return null;
+		}
+		return orders.get(0);
+	}
+
 
 }

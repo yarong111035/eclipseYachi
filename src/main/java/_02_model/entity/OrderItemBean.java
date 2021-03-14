@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "Order_Item")
 public class OrderItemBean implements Serializable{
@@ -23,6 +25,7 @@ public class OrderItemBean implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="FK_order_id")
+	@JsonIgnoreProperties("items")
 	private OrderBean orderBean;  //fk
 	
 	@OneToOne(cascade = CascadeType.ALL)

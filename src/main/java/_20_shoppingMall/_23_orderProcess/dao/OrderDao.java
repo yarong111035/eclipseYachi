@@ -18,6 +18,8 @@ public interface OrderDao {
 
 	void updateOrderStatus(OrderBean orderBean);
 
+	OrderBean queryOrder(String orderNumber);
+
 
 
 

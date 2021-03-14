@@ -18,6 +18,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import _10_member.entity.Member;
 
 
@@ -44,6 +47,7 @@ public class OrderBean implements Serializable{
 	private String order_address;
 	
 	//預設 lazyLoding 需要加fetch = FetchType.EAGER ，否則無法從訂單找明細
+	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy = "orderBean",fetch = FetchType.EAGER)
 	private Set<OrderItemBean> items = new LinkedHashSet<>();
 	private String company_id;  //統編號碼
@@ -54,14 +58,18 @@ public class OrderBean implements Serializable{
 	
 	private java.util.Date order_datetime;
 	
+	@JsonIgnoreProperties("orderBeans")
 	@ManyToOne
 	@JoinColumn(name = "FK_shiptype_id")
 	private ShipTypeBean shipTypeBean;   //fk配送狀態:對應到配送表格(雙向多對一)
 	
+	@JsonIgnoreProperties("orderBeans")
 	@ManyToOne
 	@JoinColumn(name = "FK_paytype_id")
 	private PayTypeBean payTypeBean;  //fk付款方式:對應付款方式表格(雙向多對一)
 						
+	@JsonIgnoreProperties("orderBeans")
+	
 	@ManyToOne
 	@JoinColumn(name = "FK_orderstatus_id")
 	private OrderStatusBean orderStatusBean; //fk訂單狀態:對應訂單狀態表格(雙向多對一)

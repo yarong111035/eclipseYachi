@@ -22,6 +22,9 @@ import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import _02_model.entity.ShopBean;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -48,9 +51,12 @@ public class Member implements Serializable{
 	private String address;	
 	private Timestamp registerTime;
 	
+	@JsonIgnore
 	@Column(columnDefinition = "mediumblob")
 	private Blob image;
 	private String fileName;
+	
+	@JsonIgnore
 	@Transient
 	MultipartFile memberMultipartFile;
 	
@@ -62,6 +68,7 @@ public class Member implements Serializable{
 	// 使用者和角色之間是多對多關係，因為使用者可以有一個或多個角色，角色也可以分配給一個或多個使用者。 
 	// 所以需要中間表 member_role 來實現多對多關聯。‎
 	 @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	 @JsonIgnoreProperties("member")
 	    @JoinTable(                              				   //配置中介表的訊息
 	        name = "Member_Role",								
 	        joinColumns = @JoinColumn(name = "fk_member_id"),        //建立當前表在中介表的外鍵

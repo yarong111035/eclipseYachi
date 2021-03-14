@@ -133,9 +133,38 @@
     font-size: 50px;
     border: none;
   }
+  
+  /*搜尋框*/
+   .container_search{
+      margin: 10px 20px 20px 15px;
+  }
+  #order_number{
+  	  width:140px;
+      line-height: 38px;
+      margin-right: 10px;
+  }
+  .input_area{
+		
+      border-radius: 20px;
+      margin-right: 8px;
+  }
+  .submit_btn{
+      border: none;
+      padding: 0 10px;
+      line-height: 35px;
+      font-size: 1.4rem;
+      color: #BE5555;
+      border-radius: 50%;
+  }
+  .submit_btn:hover{
+      background-color: #BE5555;
+      border-radius: 50%;
+  }
 
 
-  /*表單製作*/
+
+
+/*表單製作*/
   main{
             
     width: 100%;
@@ -293,3 +322,36 @@ tr,td{
 
 }
 /* 跑馬燈結束 */
+
+
+/*產品詳情*/
+h3{
+	letter-spacing: 2px;
+	border-bottom: 1px solid #cccc;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    padding-left: 30px;
+}
+h4{
+	padding-left: 30px;
+	color: orange;
+}
+
+.descArea{
+    padding: 10px 30px;
+    padding-bottom: 15px;
+}
+.tableArea{
+	padding: 10px 30px;
+}
+.descTitle, .descContent,.content .total{
+	letter-spacing: 2px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.descContent{
+	font-weight:300;
+}
+.total{
+	color: #BE5555;
+}
