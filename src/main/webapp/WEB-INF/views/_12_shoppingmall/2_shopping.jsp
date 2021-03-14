@@ -39,8 +39,10 @@
 
 </head>
 <body>
-	<!-- 引入共同的頁首 -->
+	<!-- -----------------------------------------引入共同的頁首--------------------------------------------- -->
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
+	<!-- -----------------------------------------引入共同的頁首--------------------------------------------- -->
+	
 	<!-- ps: 需要優化的地方： 2/10 
         1. 會用bootstrap 優化商品排列(已完成)
         2. 點選商品分類 上方中括號的字會變成點選的商品分類名稱
@@ -48,7 +50,7 @@
         4. 購物車選單出現時，會回到最上方，需改善此問題(未解決) 
     -->
 
-	<!-- Start：購物車介面 -->
+	<!-- ---------------------------------------Start：購物車介面-------------------------------------------- -->
 	<div class="cart_container">
 		<input type="checkbox" name="" id="side_menu_switch">
 		<div class="side_cart">
@@ -131,7 +133,9 @@
 			</label>
 		</div>
 	</div>
-	<!-- End：購物車介面 -->
+	<!-- ---------------------------------------End：購物車介面-------------------------------------------- -->
+	
+	
 	<div id="main">
 		<!--         <div class="header_image"> -->
 		<!--             <img src="images_2/封面圖.jpg"> -->
@@ -154,68 +158,75 @@
 		<!-- 商品部分 -->
 		<div class="shoppingArea">
 
-			<!-- leftSide start  引入共同商品種類功能列 -->
+			<!-- ------------------------------leftSide start  引入共同商品種類功能列----------------------------- -->
 			<jsp:include
 				page="/WEB-INF/views/_00_util/shoppingMallUtil/jsp/shop_sort.jsp" />
-			<!-- leftSide over -->
+			<!-- ------------------------------leftSide start  引入共同商品種類功能列----------------------------- -->
 
 			<!-- Start:rightSide -->
 			<main>
 				<div class="right_container container">
-
+				
+			<!-----------------------------------------商品排列區域------------------------------------------------>
 					<div class="row">
 						<c:forEach var='entry' items='${products_DPP}'>
-							<div class="product_contianer col col-md-6 col-lg-3 ">
-								<div class="product_items">
-									<div class="product_image image2">
-
-										<img
-											src="<c:url value='/data/images/mediumPic/noImage1.PNG'/>">
-									</div>
-									<div class="product_image image1">
-
-										<a
-											href="<spring:url value='singleProduct?id=${entry.value.product_id}'/>"><img
-											src="<c:url value='/getPicture/${entry.value.product_id}'/>"></a>
-									</div>
-									<div class="itemBody">
-										<div class="product_name">
-											<a
-												href="<spring:url value='singleProduct?id=${entry.value.product_id}'/>">${entry.value.product_name }</a>
-										</div>
-										<div class="product_price">
-											<span>售價NT${entry.value.product_price }</span>
-										</div>
-										
-										<form action="<c:url value='/BuyProduct.do' />" method="POST">
-											<div class="product_count">
-												<span>數量</span> 
-												<select name='qty'>
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-													<option value="4">4</option>
-													<option value="5">5</option>
-													<option value="6">6</option>
-													<option value="7">7</option>
-													<option value="8">8</option>
-													<option value="9">9</option>
-													<option value="10">10</option>
+							<!-- 判斷商品是否示刪除狀態 -->
+							<c:if test="${entry.value.product_status == 0 }">
+								<div class="product_contianer col col-md-6 col-lg-3 ">
+									<div class="product_items">
+										<div class="product_image image2">
 	
-												</select>
+											<img
+												src="<c:url value='/data/images/mediumPic/noImage1.PNG'/>">
+										</div>
+										<div class="product_image image1">
+	
+											<a
+												href="<spring:url value='singleProduct?id=${entry.value.product_id}'/>"><img
+												src="<c:url value='/getPicture/${entry.value.product_id}'/>"></a>
+										</div>
+										<div class="itemBody">
+											<div class="product_name">
+												<a
+													href="<spring:url value='singleProduct?id=${entry.value.product_id}'/>">${entry.value.product_name }</a>
 											</div>
-											<input type='hidden' name='product_id' value='${entry.value.product_id}'>
-											<Input type='hidden' name='pageNo' value='${param.pageNo}'>
-											<button type='submit' class="cartBtn">加入購物車</button>
-										</form>
-									
+											<div class="product_price">
+												<span>售價NT${entry.value.product_price }</span>
+											</div>
+											
+											<form action="<c:url value='/BuyProduct.do' />" method="POST">
+												<div class="product_count">
+													<span>數量</span> 
+													<select name='qty'>
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
+														<option value="8">8</option>
+														<option value="9">9</option>
+														<option value="10">10</option>
+		
+													</select>
+												</div>
+												<input type='hidden' name='product_id' value='${entry.value.product_id}'>
+												<Input type='hidden' name='pageNo' value='${param.pageNo}'>
+												<button type='submit' class="cartBtn">加入購物車</button>
+											</form>
+										
+										</div>
+										<!-- <div class="clearfix"></div> -->
 									</div>
-									<!-- <div class="clearfix"></div> -->
 								</div>
-							</div>
+							 </c:if>
 						</c:forEach>
 					</div>
-					<!--控制頁數區域 -->
+			<!-----------------------------------------商品排列區域------------------------------------------------>	
+					
+					
+			<!-----------------------------------------控制頁數區域------------------------------------------------>
 					<nav aria-label="Page navigation example" class="navConfig">
 						<ul class="pagination">
 							<c:if test="${pageNo > 1 }">
@@ -240,7 +251,7 @@
 						</ul>
 
 					</nav>
-					<!--控制頁數區域 -->
+			<!-----------------------------------------控制頁數區域------------------------------------------------>
 
 				</div>
 
@@ -250,7 +261,7 @@
 
 
 		</div>
-
+		
 	</div>
 
 

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 
+import org.apache.commons.io.filefilter.FalseFileFilter;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -29,6 +31,10 @@ public class ProductBean implements Serializable{
 	private Integer product_id;
 	
 	private String product_name;
+	
+	//0 為顯示商品 (因訂單明細要存商品外鍵，故不可把產品刪除，以狀態碼代表刪除產品)
+	@Column(nullable = false, columnDefinition = "INT default 0")
+	private Integer product_status = 0;
 	
 	@Min(value=0, message="數值必須大於0")
 	private Double product_price;
@@ -189,7 +195,15 @@ public class ProductBean implements Serializable{
 		this.product_type_id = product_type_id;
 	}
 
+	public Integer getProduct_status() {
+		return product_status;
+	}
 
+	public void setProduct_status(Integer product_status) {
+		this.product_status = product_status;
+	}
+
+	
 	
 	
 }

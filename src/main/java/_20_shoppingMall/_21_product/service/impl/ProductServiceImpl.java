@@ -133,7 +133,7 @@ public class ProductServiceImpl implements ProductService {
 		productDao.setSelected(selected);
 	}
 
-	//刪除產品
+	//刪除產品(更改產品狀態)
 	@Transactional
 	@Override
 	public void deleteProduct(Integer product_id) {

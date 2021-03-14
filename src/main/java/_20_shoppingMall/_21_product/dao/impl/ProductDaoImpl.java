@@ -186,16 +186,36 @@ public class ProductDaoImpl implements Serializable,ProductDao {
 		this.selected = selected;
 	}
 
+//	@Override
+//	public void deleteProduct(Integer product_id) {
+//		Session session = factory.getCurrentSession();
+//		ProductBean productBean = session.get(ProductBean.class, product_id);
+//		if(productBean != null) {
+//			productBean.setProductTypeBean(null);
+////			productBean.setProduct_type_id(null);//要把外鍵卸掉才可以刪除此筆紀錄
+//			session.delete(productBean);
+//		}
+//	}
+	
+	//刪除產品(更改產品狀態0=>1)
 	@Override
 	public void deleteProduct(Integer product_id) {
 		Session session = factory.getCurrentSession();
-		ProductBean productBean = session.get(ProductBean.class, product_id);
-		if(productBean != null) {
-			productBean.setProductTypeBean(null);
-//			productBean.setProduct_type_id(null);//要把外鍵卸掉才可以刪除此筆紀錄
-			session.delete(productBean);
-		}
+		int product_status = 1;  // 此狀態碼不會顯示在產品頁上
+		String hql = " UPDATE ProductBean p "
+				   + " SET p.product_status = :product_status "
+			       + " WHERE p.product_id = :product_id ";
+		session.createQuery(hql)
+			   .setParameter("product_status", product_status)
+			   .setParameter("product_id", product_id)
+			   .executeUpdate();
+		
 	}
+	
+	
+	
+	
+	
 
 	@Override
 	public void updateProduct(ProductBean productBean) {

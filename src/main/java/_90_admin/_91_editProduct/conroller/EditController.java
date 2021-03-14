@@ -242,11 +242,20 @@ public class EditController {
 	
 
 	//刪除一筆紀錄
-	@DeleteMapping("/productDelete/{product_id}") 
+//	@DeleteMapping("/productDelete/{product_id}") 
+//	public String deleteProduct(@PathVariable("product_id") Integer product_id) {
+//		productService.deleteProduct(product_id);
+//		return "redirect:/admin/admin_editProduct";
+//	}
+	
+	//不會真的從資料庫刪除，而是更新狀態
+	@GetMapping("/productDelete/{product_id}")
 	public String deleteProduct(@PathVariable("product_id") Integer product_id) {
 		productService.deleteProduct(product_id);
 		return "redirect:/admin/admin_editProduct";
 	}
+	
+	
 	
 	
 	// 當使用者需要修改時，本方法送回含有會員資料的表單，讓使用者進行修改(GET)
