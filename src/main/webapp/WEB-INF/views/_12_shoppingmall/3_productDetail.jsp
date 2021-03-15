@@ -88,7 +88,7 @@
                                     <span class="leftCount">剩餘數量: ${product.product_stock }</span>
                                 </div>
 	                                
-                                <form method="POST" action="<c:url value='/BuyProduct.do' />">
+                                <form method="POST" action="<c:url value='/BuyProduct.do?cmd=ADD1' />">
 	                                <div class="selectCountBox">
 	                                    <label for="selectCount">數量：</label>
 	                                    	<select name='qty' >
@@ -114,10 +114,11 @@
 	                                <div class="shopBtn">
 	                                    <div class="cartBtn"> 
 	                                    	<input type='hidden' name='product_id' value='${product.product_id}'>
-	                                        <input type="submit" id="addCart" value="加入購物車">
+<!-- 	                                        <input type="submit" id="addCart" value="加入購物車"> -->
 	                                    </div>
 	                                    <div class="buyBtn">
-	                                        <a href="<c:url value='/showAndAddCart/${product.product_id}'/>" ><span>直接購買</span></a>
+<%-- 	                                        <a href="<c:url value='/showAndAddCart/${product.product_id}'/>" ><span>直接購買</span></a> --%>
+	                                    		<input type="submit" id="addCart" value="直接購買">
 	                                    </div>
 	                                </div>
                             	</form>   

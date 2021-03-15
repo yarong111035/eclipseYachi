@@ -171,7 +171,7 @@
 					<div class="row">
 						<c:forEach var='entry' items='${products_DPP}'>
 							<!-- 判斷商品是否示刪除狀態 -->
-							<c:if test="${entry.value.product_status == 0 }">
+							<c:if test="${entry.product_status == 0 }">
 								<div class="product_contianer col col-md-6 col-lg-3 ">
 									<div class="product_items">
 										<div class="product_image image2">
@@ -182,19 +182,19 @@
 										<div class="product_image image1">
 	
 											<a
-												href="<spring:url value='singleProduct?id=${entry.value.product_id}'/>"><img
-												src="<c:url value='/getPicture/${entry.value.product_id}'/>"></a>
+												href="<spring:url value='singleProduct?id=${entry.product_id}'/>"><img
+												src="<c:url value='/getPicture/${entry.product_id}'/>"></a>
 										</div>
 										<div class="itemBody">
 											<div class="product_name">
 												<a
-													href="<spring:url value='singleProduct?id=${entry.value.product_id}'/>">${entry.value.product_name }</a>
+													href="<spring:url value='singleProduct?id=${entry.product_id}'/>">${entry.product_name }</a>
 											</div>
 											<div class="product_price">
-												<span>售價NT${entry.value.product_price }</span>
+												<span>售價NT${entry.product_price }</span>
 											</div>
 											
-											<form action="<c:url value='/BuyProduct.do' />" method="POST">
+											<form action="<c:url value='/BuyProduct.do?cmd=add' />" method="POST">
 												<div class="product_count">
 													<span>數量</span> 
 													<select name='qty'>
@@ -211,7 +211,7 @@
 		
 													</select>
 												</div>
-												<input type='hidden' name='product_id' value='${entry.value.product_id}'>
+												<input type='hidden' name='product_id' value='${entry.product_id}'>
 												<Input type='hidden' name='pageNo' value='${param.pageNo}'>
 												<button type='submit' class="cartBtn">加入購物車</button>
 											</form>
@@ -227,30 +227,33 @@
 					
 					
 			<!-----------------------------------------控制頁數區域------------------------------------------------>
-					<nav aria-label="Page navigation example" class="navConfig">
-						<ul class="pagination">
-							<c:if test="${pageNo > 1 }">
-								<li class="page-item">
-									<a class="page-link" href="<c:url value='DisplayPageProducts?pageNo=${pageNo-1}' />" aria-label="Previous"> 
-										<span aria-hidden="true">&laquo;</span>
-									</a>
-								</li>
-							</c:if>
-							<!-- 利用總頁數跑迴圈，得出自動新增分頁的按鈕 -->
-							<c:forEach var='page' begin='1' end='${totalPages}'>
-								<li class="page-item"><a class="page-link" href="<c:url value='DisplayPageProducts?pageNo=${page}' />">${page}</a></li>
-							</c:forEach>
-							
-            				<c:if test="${pageNo != totalPages}">
-								<li class="page-item">
-									<a class="page-link" href="<c:url value='DisplayPageProducts?pageNo=${pageNo+1}' />" aria-label="Next">
-									 	<span aria-hidden="true">&raquo;</span>
-									</a>
-								</li>
-							</c:if>
-						</ul>
-
-					</nav>
+					
+					<c:if test="${empty sort.product_type_name}">
+						<nav aria-label="Page navigation example" class="navConfig">
+							<ul class="pagination">
+								<c:if test="${pageNo > 1 }">
+									<li class="page-item">
+										<a class="page-link" href="<c:url value='DisplayPageProducts?pageNo=${pageNo-1}' />" aria-label="Previous"> 
+											<span aria-hidden="true">&laquo;</span>
+										</a>
+									</li>
+								</c:if>
+								<!-- 利用總頁數跑迴圈，得出自動新增分頁的按鈕 -->
+								<c:forEach var='page' begin='1' end='${totalPages}'>
+									<li class="page-item"><a class="page-link" href="<c:url value='DisplayPageProducts?pageNo=${page}' />">${page}</a></li>
+								</c:forEach>
+								
+	            				<c:if test="${pageNo != totalPages}">
+									<li class="page-item">
+										<a class="page-link" href="<c:url value='DisplayPageProducts?pageNo=${pageNo+1}' />" aria-label="Next">
+										 	<span aria-hidden="true">&raquo;</span>
+										</a>
+									</li>
+								</c:if>
+							</ul>
+	
+						</nav>
+					</c:if>
 			<!-----------------------------------------控制頁數區域------------------------------------------------>
 
 				</div>
