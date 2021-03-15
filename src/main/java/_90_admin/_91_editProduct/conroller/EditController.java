@@ -133,7 +133,7 @@ public class EditController {
 
 //		圖片上傳
 //		step1: 從前端取得使用者上傳圖片的路徑
-		MultipartFile productImage = productBean.getProductImage();
+		MultipartFile productImage = productBean.getProductImage();//圖片本身
 		String originalFilename = productImage.getOriginalFilename();
 		productBean.setFilename(originalFilename);
 		

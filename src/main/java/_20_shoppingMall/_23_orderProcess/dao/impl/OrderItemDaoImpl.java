@@ -45,7 +45,7 @@ public class OrderItemDaoImpl implements OrderItemDao {
 			stock= 0;
 		}
 		
-		//如果狀態處於 "取消" 或 "退貨" 則加回原本的庫存量
+		//如果目前狀態處於 "取消" 或 "退貨" 則加回原本的庫存量
 		Integer orderStatus = item.getOrderBean().getOrderStatusBean().getStatus_id();
 		if( orderStatus == cancelStatus || orderStatus == returnedStatus ) {
 			hqlUpdate = " UPDATE ProductBean "
