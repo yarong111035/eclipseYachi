@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.filefilter.FalseFileFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,8 +45,9 @@ public class ShoppingCartController {
 	@PostMapping("/BuyProduct.do")
 	public String creatCart(
 			Model model,
+			@RequestParam(value = "cmd",required = false) String cmd,
 			@RequestParam("product_id") Integer product_id,
-			@RequestParam("qty") Integer qty,
+			@RequestParam(value = "qty",required = false) Integer qty,
 			HttpServletRequest request,
 			HttpServletResponse response
 			) throws ServletException, IOException {
@@ -64,7 +66,14 @@ public class ShoppingCartController {
 		Integer memberId = member.getMemberId();
 		//創建購物車(傳入會員編號, 產品編號, 數量)
 		cartBeanService.addToCart(memberId, product_id, qty);
-
+		
+		if(cmd.equalsIgnoreCase("ADD")) {
+			return "redirect:/DisplayPageProducts";
+		}
+		else if(cmd.equalsIgnoreCase("ADD1")){
+			return "redirect:/showCartContent";
+		}
+			
 		return "redirect:/DisplayPageProducts";
 		
 	}
@@ -101,26 +110,26 @@ public class ShoppingCartController {
 	/**
 	 * 顯示並加入購物車
 	 */
-	@GetMapping("/showAndAddCart/{product_id}")
-	public String showAndAddCart(
-			Model model,
-			@RequestParam("qty") Integer qty,
-			@PathVariable("product_id") Integer product_id,
-			HttpServletRequest request,
-			HttpServletResponse response
-			) throws ServletException, IOException {
-		
-		//1.判斷用戶是否存在
-		Member member = (Member)model.getAttribute("LoginOK");
-		if(member == null) {
-			return "redirect:/LoginAndRegister";
-		}
-		//獲取會員的id
-		Integer memberId = member.getMemberId();
-		//創建購物車
-		cartBeanService.addToCart(memberId, product_id, qty);
-		return "redirect:/showCartContent";
-	}
+//	@GetMapping("/showAndAddCart/{product_id}")
+//	public String showAndAddCart(
+//			Model model,
+//			@RequestParam("qty") Integer qty,
+//			@PathVariable("product_id") Integer product_id,
+//			HttpServletRequest request,
+//			HttpServletResponse response
+//			) throws ServletException, IOException {
+//		
+//		//1.判斷用戶是否存在
+//		Member member = (Member)model.getAttribute("LoginOK");
+//		if(member == null) {
+//			return "redirect:/LoginAndRegister";
+//		}
+//		//獲取會員的id
+//		Integer memberId = member.getMemberId();
+//		//創建購物車
+//		cartBeanService.addToCart(memberId, product_id, qty);
+//		return "redirect:/showCartContent";
+//	}
 	
 	//刪除一筆購物車紀錄(根據id刪除)
 //	@DeleteMapping("/cartDelete/{cart_id}")
