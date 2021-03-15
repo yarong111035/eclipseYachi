@@ -140,7 +140,7 @@ public class ProductDaoImpl implements Serializable,ProductDao {
 	@Override
 	public long getRecordCounts() {
 		long count = 0; // 必須使用 long 型態
-		String hql = "SELECT count(*) FROM ProductBean";
+		String hql = "SELECT count(*) FROM ProductBean WHERE product_status = 0"; //只有狀態是上架狀態才取出來
 		Session session = factory.getCurrentSession();
 		count = (Long)session.createQuery(hql).getSingleResult();
 		return count;
@@ -167,7 +167,8 @@ public class ProductDaoImpl implements Serializable,ProductDao {
 	@Override
 	public Map<Integer, ProductBean> getPageProducts(int pageNo) {
 		Map<Integer, ProductBean> map = new LinkedHashMap<>(); //有排序(last in last out)
-		String hql = "FROM ProductBean";
+//		String hql = "FROM ProductBean";
+		String hql = "FROM ProductBean WHERE product_status = 0";//只有狀態是上架狀態才取出來
 		Session session = factory.getCurrentSession();
 		int startRecordNo = (pageNo - 1) * recordsPerPage; //得到每一頁開始的產品索引
 		List<ProductBean> list = session.createQuery(hql)  //只要從資料庫撈此頁需要的紀錄即可，index從0開始
