@@ -8,6 +8,7 @@ import java.net.http.HttpRequest;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -65,7 +66,7 @@ public class ProductController {
 	@Autowired 
 	CartBeanService cartBeanService;
 	
-	//撈出資料庫所有產品
+	//撈出資料庫所有產品(轉成json格式)
 	@RequestMapping({"/allProducts"})
 	public @ResponseBody List<ProductBean> queryAllProducts(Model model) {
 		List<ProductBean> products = productService.getAllProducts();
@@ -73,7 +74,7 @@ public class ProductController {
 	}
 
 	
-	//更新產品價格
+	//更新產品價格(一次更新所有價格 + 50元)
 	@RequestMapping("/update/price")
 	public String updatePrice(Model model) {
 		productService.updateAllPrice();
@@ -99,9 +100,9 @@ public class ProductController {
 	public String getProductsBySort(Model model, @PathVariable("sortId") int sortId) {
 		List<ProductBean> products = productService.getProductBySort(sortId);
 		ProductTypeBean ps = productTypeService.getTypeById(sortId);
-		model.addAttribute("products", products);
+		model.addAttribute("products_DPP", products);
 		model.addAttribute("sort", ps); // 依據產品種類顯示title
-		return "_12_shoppingmall/2_sortProduct";
+		return "_12_shoppingmall/2_shopping";
 	}
 	
 	
@@ -137,7 +138,9 @@ public class ProductController {
 		Map<Integer, ProductBean> productMap = productService.getPageProducts(pageNo);
 		model.addAttribute("pageNo", String.valueOf(pageNo));
 		model.addAttribute("totalPages", productService.getTotalPages());
-		model.addAttribute("products_DPP", productMap);
+		System.out.println(productMap.values());
+		List<ProductBean> produtctList = new LinkedList<>(productMap.values());
+		model.addAttribute("products_DPP", produtctList); //將Map 型態轉成 list 放到 Model
 		return "_12_shoppingmall/2_shopping";	
 	}
 	
