@@ -57,63 +57,141 @@
 			<div class="carCancelBtn">
 				<i class="fa fa-arrow-left"></i>
 			</div>
-			<div class="title">
-				<c:if test='${empty cartList}'>
-					購物清單 <span class="shopNum">0</span>
-				</c:if>
-				<c:set value='0' var='sum'/>
-				<c:if test='${!empty cartList}'>
-            		購物清單 <span class="shopNum">${cartList.size()}</span>
-            	</c:if>
-				<!-- 存放購物數量-->
-			</div>
-			<c:if test='${empty cartList}'>
-           		<div class="emptyCart">
-           			<a href="<c:url value='/DisplayPageProducts' />" 
-           			style="display: block;color: #444;font-size: 1.1rem; height: 100px;line-height: 100px;margin-left: 50px;">
-           				購物車空空如也! 趕快去選購吧
-           			</a>
-       			</div>
-           	</c:if>
+			
+			
+			<c:if test="${empty LoginOK}">
+				<div class="title">
+					<c:if test='${empty sessionCartVoList}'>
+						購物清單 <span class="shopNum">0</span>
+					</c:if>
+					<c:set value='0' var='sum'/>
+					<c:if test='${!empty sessionCartVoList}'>
+	            		購物清單 <span class="shopNum">${sessionCartVoList.size()}</span>
+	            	</c:if>
+					<!-- 存放購物數量-->
+				</div>
+				<c:if test='${empty sessionCartVoList}'>
+	           		<div class="emptyCart">
+	           			<a href="<c:url value='/DisplayPageProducts' />" 
+	           			style="display: block;color: #444;font-size: 1.1rem; height: 100px;line-height: 100px;margin-left: 50px;">
+	           				購物車空空如也! 趕快去選購吧
+	           			</a>
+	       			</div>
+	           	</c:if>
+			</c:if>
+			<c:if test="${!empty LoginOK}">
+				<div class="title">
+					<c:if test='${empty memberCartVoList}'>
+						購物清單 <span class="shopNum">0</span>
+					</c:if>
+					<c:set value='0' var='sum'/>
+					<c:if test='${!empty memberCartVoList}'>
+	            		購物清單 <span class="shopNum">${memberCartVoList.size()}</span>
+	            	</c:if>
+					<!-- 存放購物數量-->
+				</div>
+				<c:if test='${empty memberCartVoList}'>
+	           		<div class="emptyCart">
+	           			<a href="<c:url value='/DisplayPageProducts' />" 
+	           			style="display: block;color: #444;font-size: 1.1rem; height: 100px;line-height: 100px;margin-left: 50px;">
+	           				購物車空空如也! 趕快去選購吧
+	           			</a>
+	       			</div>
+	           	</c:if>
+			</c:if>
+			
 			
 			
 			<ul id="item_box">
 				<!-- id 可以存放產品編號-->
-				<c:forEach var='cart' items='${cartList }'>
-	                <li id="car_productId" class="carItem">      
-	                    <div class="pic">
-	                        <a href="javascript:;">
-	                            <img src="<c:url value='/getPicture/${cart.productBean.product_id}'/>">
-	                        </a>
-	                    </div>
-	                    <div class="text_box">
-	                        <div class="name">
-	                            <a href="javascript:;">${cart.productBean.product_name }</a>
-	                        </div>
-	                        <div class="size">${cart.productBean.product_spec }</div>
-	                        <div class="count">
-	                            <select name="" id="car_productId">
-	                                <option value="1" selected>1</option>
-	                                <option value="2">2</option>
-	                                <option value="3">3</option>
-	                                <option value="4">4</option>
-	                                <option value="5">5</option>
-	                                <option value="6">6</option>
-	                                <option value="7">7</option>
-	                                <option value="8">8</option>
-	                                <option value="9">9</option>
-	                                <option value="10">10</option>
-	                            </select>
-	                        </div>
-	                        <div class="price">NT$ ${cart.productBean.product_price }</div>
-	                    </div>
-	                    <div class="cancelBtn">
-	                        <i class="fa fa-trash"></i>
-	                    </div>
-	                </li> 
-	                <c:set var='sum' value='${sum + cart.cart_total}'/>
-				</c:forEach>
-
+				
+				<c:choose>
+					<c:when test="${empty LoginOK}">
+						
+						<c:forEach var='cartVo' items='${sessionCartVoList }'>
+		                <li id="car_productId" class="carItem">      
+		                    <div class="pic">
+		                        <a href="javascript:;">
+		                            <img src="<c:url value='/getPicture/${cartVo.product_id }'/>">
+		                        </a>
+		                    </div>
+		                    <div class="text_box">
+		                        <div class="name">
+		                            <a href="javascript:;">${cartVo.product_name }</a>
+		                        </div>
+		                        <div class="size">規格：${cartVo.product_spec }</div>
+		                        <div class="count">
+		                        	<span>數量：</span><span class="showCount">${cartVo.scQty}</span>
+	<!-- 	                            <select name="" id="car_productId"> -->
+	<%-- 	                            	<c:forEach var="num" begin="1" end="10" > --%>
+	<%--                                 		<option value="${num}" <c:if test="${cartVo.scQty == num}">selected</c:if>>${num}</option>  --%>
+	<%--                                 	</c:forEach> --%>
+	<!-- 	                                <option value="1" selected>1</option> -->
+	<!-- 	                                <option value="2">2</option> -->
+	<!-- 	                                <option value="3">3</option> -->
+	<!-- 	                                <option value="4">4</option> -->
+	<!-- 	                                <option value="5">5</option> -->
+	<!-- 	                                <option value="6">6</option> -->
+	<!-- 	                                <option value="7">7</option> -->
+	<!-- 	                                <option value="8">8</option> -->
+	<!-- 	                                <option value="9">9</option> -->
+	<!-- 	                                <option value="10">10</option> -->
+	<!-- 	                            </select> -->
+		                        </div>
+		                        <div class="unit_price">單價：${cartVo.product_price }</div>
+		                        <div class="price">NT$ ${cartVo.product_price * cartVo.scQty}</div>
+		                    </div>
+		                    <div class="cancelBtn">
+		                        <a class="deleteLink" href="<c:url value='/visitorSideCartDel/${cartVo.product_id}/'/>"><i class="fa fa-trash"></i></a>
+		                    </div>
+		                </li> 
+		                <c:set var='sum' value='${sum + cartVo.product_price * cartVo.scQty}'/>
+					</c:forEach>
+					</c:when>
+					<c:otherwise>
+						
+						<c:forEach var='memberCartVo' items='${memberCartVoList}'>
+		                <li id="car_productId" class="carItem">      
+		                    <div class="pic">
+		                        <a href="#">
+		                            <img src="<c:url value='/getPicture/${memberCartVo.product_id}'/>">
+		                        </a>
+		                    </div>
+		                    <div class="text_box">
+		                        <div class="name">
+		                            <a href="javascript:;">${memberCartVo.product_name }</a>
+		                        </div>
+		                        <div class="size">規格：${memberCartVo.product_spec }</div>
+		                        <div class="count">
+		                        	<span>數量：</span><span class="showCount">${memberCartVo.scQty}</span>
+	<!-- 	                            <select name="" id="car_productId"> -->
+	<%-- 	                            	<c:forEach var="num" begin="1" end="10" > --%>
+	<%--                                 		<option value="${num}" <c:if test="${cartVo.scQty == num}">selected</c:if>>${num}</option>  --%>
+	<%--                                 	</c:forEach> --%>
+	<!-- 	                                <option value="1" selected>1</option> -->
+	<!-- 	                                <option value="2">2</option> -->
+	<!-- 	                                <option value="3">3</option> -->
+	<!-- 	                                <option value="4">4</option> -->
+	<!-- 	                                <option value="5">5</option> -->
+	<!-- 	                                <option value="6">6</option> -->
+	<!-- 	                                <option value="7">7</option> -->
+	<!-- 	                                <option value="8">8</option> -->
+	<!-- 	                                <option value="9">9</option> -->
+	<!-- 	                                <option value="10">10</option> -->
+	<!-- 	                            </select> -->
+		                        </div>
+		                        <div class="unit_price">單價：${memberCartVo.product_price }</div>
+		                        <div class="price">NT$ ${memberCartVo.product_price * memberCartVo.scQty}</div>
+		                    </div>
+		                    <div class="cancelBtn">
+		                        <a class="deleteLink" href="<c:url value='/sideCartDel/${memberCartVo.cart_id}/${LoginOK.memberId }'/>"><i class="fa fa-trash"></i></a>
+		                    </div>
+		                </li> 
+		                <c:set var='sum' value='${sum + memberCartVo.product_price * memberCartVo.scQty}'/>
+					</c:forEach>
+					</c:otherwise>
+				</c:choose>
+				
 			</ul>
 			<!-- 卷軸部分 -->
 			<div class="scrollArea">
@@ -131,6 +209,21 @@
 
 			<label for="side_menu_switch"> <i class="fas fa-cart-plus"></i>
 			</label>
+			<c:choose>
+				<c:when test="${empty LoginOK}">
+					<c:if test="${sessionCartVoList.size() == 0 }">
+						<div id="count_circle">0</div>
+					</c:if>
+					<div id="count_circle">${sessionCartVoList.size() }</div>
+				</c:when>
+				<c:otherwise>
+					<c:if test="${memberCartVoList.size() == 0 }">
+						<div id="count_circle">0</div>
+					</c:if>
+					<div id="count_circle">${memberCartVoList.size() }</div>
+				</c:otherwise>
+			</c:choose>
+			
 		</div>
 	</div>
 	<!-- ---------------------------------------End：購物車介面-------------------------------------------- -->
@@ -193,28 +286,56 @@
 											<div class="product_price">
 												<span>售價NT${entry.product_price }</span>
 											</div>
-											
-											<form action="<c:url value='/BuyProduct.do?cmd=add' />" method="POST">
-												<div class="product_count">
-													<span>數量</span> 
-													<select name='qty'>
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-														<option value="4">4</option>
-														<option value="5">5</option>
-														<option value="6">6</option>
-														<option value="7">7</option>
-														<option value="8">8</option>
-														<option value="9">9</option>
-														<option value="10">10</option>
-		
-													</select>
-												</div>
-												<input type='hidden' name='product_id' value='${entry.product_id}'>
-												<Input type='hidden' name='pageNo' value='${param.pageNo}'>
-												<button type='submit' class="cartBtn">加入購物車</button>
-											</form>
+											<c:if test="${!empty LoginOK}">
+												<form action="<c:url value='/BuyProduct.do?cmd=add&sortId=${entry.productTypeBean.product_type_id }' />" method="POST">
+													<div class="product_count">
+														<span>數量</span> 
+														<select name='qty'>
+															<option value="1">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+															<option value="4">4</option>
+															<option value="5">5</option>
+															<option value="6">6</option>
+															<option value="7">7</option>
+															<option value="8">8</option>
+															<option value="9">9</option>
+															<option value="10">10</option>
+														</select>
+													</div>
+													<input type='hidden' name='product_id' value='${entry.product_id}'>
+													<Input type='hidden' name='pageNo' value='${param.pageNo}'>
+													<button type='submit' class="cartBtn" onclick="alert('加入購物車成功')">加入購物車</button>
+												</form>
+											</c:if>
+											<c:if test="${empty LoginOK}">
+												<form action="<c:url value='/visitorBuyProduct.do/${entry.product_id}' />" method="POST">
+													<div class="product_count">
+														<span>數量</span> 
+														<select name='qty'>
+															<option value="1">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+															<option value="4">4</option>
+															<option value="5">5</option>
+															<option value="6">6</option>
+															<option value="7">7</option>
+															<option value="8">8</option>
+															<option value="9">9</option>
+															<option value="10">10</option>
+														</select>
+													</div>
+													<input type='hidden' name='product_id' value='${entry.product_id}'>
+													<Input type='hidden' name='pageNo' value='${param.pageNo}'>
+													<button type='submit' class="cartBtn" onclick="alert('加入購物車成功')">加入購物車</button>
+												</form>
+											</c:if>
+										
+										
+										
+										
+										
+										
 										
 										</div>
 										<!-- <div class="clearfix"></div> -->
@@ -268,8 +389,8 @@
 	</div>
 
 
-
-	
+	<script src="sweetalert2.all.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
 	<script
 	src="<c:url value='/_00_util/allUtil/javascript/enscroll-0.6.2.min.js'/>"></script>
 	<script>
@@ -315,6 +436,38 @@
 				$('.new_product h1').text(sort); //把抓到的文字放進標題內
 			})
 		}
+		
+		$('.deleteLink').click(function() {
+			Swal.fire({
+	    		  title: '什麼!不要這個商品了!?',
+	    		  icon: 'warning',
+	    		  showCancelButton: true,
+	    		  confirmButtonColor: '#3085d6',
+	    		  cancelButtonColor: '#d33',
+	    		  confirmButtonText: '不想要了!'
+	    		}).then((result) => {
+	    		  if (result.isConfirmed) {
+	    			let href = $(this).attr('href');
+	    			$(this).attr('href', href).submit();
+	    		  }
+	    		})
+    		return false;
+   		});
+		
+		
+// 		if($('#count_circle').change(){
+			$('#count_circle').css({
+				"display":"inline-block",
+				"width":"25px",
+				"height":"25px",
+			
+			});
+// 		}
+		
+		
+			
+	
+		
 	</script>
 
 

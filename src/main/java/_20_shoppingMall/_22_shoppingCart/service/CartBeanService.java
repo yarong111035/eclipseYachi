@@ -1,10 +1,13 @@
 package _20_shoppingMall._22_shoppingCart.service;
 
 import java.util.List;
+import java.util.Map;
 
 import _02_model.entity.CartBean;
 import _02_model.entity.ProductBean;
 import _10_member.entity.Member;
+import _20_shoppingMall._22_shoppingCart.vo.MemberCartBeanVo;
+import _20_shoppingMall._22_shoppingCart.vo.SessionCartVo;
 
 public interface CartBeanService {
 	public void addToCart(Integer memberId, Integer productId, Integer qty);
@@ -21,4 +24,11 @@ public interface CartBeanService {
 	public void deleteCartByMemberId(Integer memberId);
 	
 	public void udateCartById(Integer cid, Integer amount, Double price);
+
+	public List<SessionCartVo> getCartVo(Map<Integer, Integer> sessionCart);
+
+	public List<MemberCartBeanVo> getMemberCartVo(Integer memberId);
+	
+	//根據cart_id找member
+	public Member getMemberById(Integer cart_id);
 }

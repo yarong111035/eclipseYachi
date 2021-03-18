@@ -1,14 +1,19 @@
 package _20_shoppingMall._22_shoppingCart.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import _10_member.entity.Member;
 import _20_shoppingMall._22_shoppingCart.service.CartBeanService;
+import _20_shoppingMall._22_shoppingCart.vo.MemberCartBeanVo;
 
 @Controller
 @SessionAttributes({"cartList"})
@@ -28,7 +33,7 @@ public class removeCartController {
 			status.setComplete();
 			return "redirect:/showCartContent";
 		}
-		
+
 		@GetMapping("/cartDeleteFromDatabase")
 		public String deleteCartByMemberId(SessionStatus status) {
 			status.setComplete();

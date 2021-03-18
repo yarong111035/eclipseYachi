@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,20 +27,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.client.HttpClientErrorException.Conflict;
 
 import com.mysql.cj.xdevapi.JsonArray;
 
 import _02_model.entity.CartBean;
+import _02_model.entity.ProductTypeBean;
 import _10_member.entity.Member;
+import _20_shoppingMall._21_product.service.ProductService;
 import _20_shoppingMall._22_shoppingCart.service.CartBeanService;
+import _20_shoppingMall._22_shoppingCart.vo.MemberCartBeanVo;
+import _20_shoppingMall._22_shoppingCart.vo.SessionCartVo;
 
-@Controller
-@SessionAttributes({"LoginOK", "pageNo","cartList"})
+@Controller													              
+@SessionAttributes({"LoginOK", "pageNo","cartList","sortId","sessionCart","sessionCartVoList","memberCartVoList"})
 public class ShoppingCartController {
 	@Autowired
 	CartBeanService cartBeanService;
+	@Autowired
+	ProductService productService;
+	
 	/**
-	 * 創建購物車
+	 * 會員：創建購物車
 	 */
 	
 	@PostMapping("/BuyProduct.do")
@@ -93,7 +102,7 @@ public class ShoppingCartController {
 
 	
 	/**
-	 * 顯示查看購物車
+	 * 會員：顯示查看購物車
 	 */
 	@GetMapping("/showCartContent")
 	public String showCartContent(
@@ -119,6 +128,86 @@ public class ShoppingCartController {
 		}
 		return "_12_shoppingmall/5_cartContent";
 	}
+	
+	
+	/**
+	 * 更新購物車數量
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/update/{cart_id}/{cart_amount}/{product_price}")
+	public String updateCartAmount(
+			Model model,
+			@PathVariable Integer cart_id,
+			@PathVariable Integer cart_amount,
+			@PathVariable Double product_price
+			) {
+		// STEP1: 取出傳遞過來的參數(cart_id, cart_amount, product_price)
+		//1.判斷用戶是否存在
+		Member member = (Member)model.getAttribute("LoginOK");
+		if(member == null) {
+			return "redirect:/LoginAndRegister";
+		}
+//		Integer cid = (Integer) model.getAttribute("cart_id");
+//		Integer amount = (Integer) model.getAttribute("cart_amount");
+//		Double price = (Double) model.getAttribute("product_price");
+		
+		// STEP2: 更新購物車 
+		cartBeanService.udateCartById(cart_id, cart_amount, product_price);
+		
+		return "forward:/showCartContent";
+	}
+	
+	/**
+	 * 訪客加入購物車
+	 * step1 :參數需要產品id 與 購買數量
+	 * step2 :將訪客的購買放入sessionCart(已準備好的map容器)
+	 */
+	@SuppressWarnings("unchecked")
+	@PostMapping("/visitorBuyProduct.do/{product_id}")
+	public String visitorAddToCart(Model model,
+			@PathVariable("product_id") Integer product_id,
+			@RequestParam("qty") Integer qty) {
+		
+		//獲取session內的購物清單
+		Map<Integer, Integer> sessionCart = (Map<Integer, Integer>) model.getAttribute("sessionCart");
+		//如果session內的購物清單不為空
+		if(sessionCart == null) {
+			sessionCart = new LinkedHashMap<>();
+			sessionCart.put(product_id, qty);
+			model.addAttribute("sessionCart", sessionCart);
+			System.err.println(sessionCart);
+		}else {
+			sessionCart.put(product_id, qty);
+			model.addAttribute("sessionCart", sessionCart);
+		}
+		
+		//使用value object類別 借放sessionCart 的產品資料，不直接操作entity
+		List<SessionCartVo> sessionCartVoList = cartBeanService.getCartVo(sessionCart);
+		
+		model.addAttribute("sessionCart", sessionCart);
+		model.addAttribute("sessionCartVoList", sessionCartVoList);
+		System.out.println("sessionCartVoList=========================" + sessionCartVoList);
+		return "redirect:/DisplayPageProducts";
+	}
+	
+	/**
+	 * 將sessionCartList丟到CartBean
+	 * 1. 判斷是否有登入
+	 */
+	@SuppressWarnings("unchecked")
+	@GetMapping("/goCheckout")
+	public String sessionToCartBean(Model model,CartBean cartBean) {
+		//step1 : 判斷是否有登入
+		Member member = (Member)model.getAttribute("LoginOK");
+		if(member == null) {
+			return "redirect:/LoginAndRegister"; // 將sessionCartList丟到CartBean
+		}else {
+			return "redirect:/showCartContent";
+		}
+	}
+	
+	
+	
 	
 	/**
 	 * 顯示並加入購物車
@@ -167,32 +256,7 @@ public class ShoppingCartController {
 //	}
 	
 	
-	/**
-	 * 更新購物車數量
-	 */
-	@SuppressWarnings("unchecked")
-	@RequestMapping("/update/{cart_id}/{cart_amount}/{product_price}")
-	public String updateCartAmount(
-			Model model,
-			@PathVariable Integer cart_id,
-			@PathVariable Integer cart_amount,
-			@PathVariable Double product_price
-			) {
-		// STEP1: 取出傳遞過來的參數(cart_id, cart_amount, product_price)
-		//1.判斷用戶是否存在
-		Member member = (Member)model.getAttribute("LoginOK");
-		if(member == null) {
-			return "redirect:/LoginAndRegister";
-		}
-//		Integer cid = (Integer) model.getAttribute("cart_id");
-//		Integer amount = (Integer) model.getAttribute("cart_amount");
-//		Double price = (Double) model.getAttribute("product_price");
-		
-		// STEP2: 更新購物車 
-		cartBeanService.udateCartById(cart_id, cart_amount, product_price);
-		
-		return "forward:/showCartContent";
-	}
+	
 	
 	
 	

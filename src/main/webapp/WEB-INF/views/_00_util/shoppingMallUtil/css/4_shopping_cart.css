@@ -95,7 +95,9 @@ body{
     justify-content: space-between;
 }
 .text_box .name a {
-    color: #555555;
+	font-size: 1.1rem;
+    color: black;
+    letter-spacing:2px;
 }
 .text_box .count select{
     width: 50%;
@@ -105,11 +107,23 @@ body{
     border: 1px #ccc solid;
     color: #555;
 }
+.text_box .showCount{
+	color: black;
+}
 .text_box .price{
     font-size: 1.1rem;
     font-weight: 900;
     letter-spacing: 1px;
     color:#BE5555;
+}
+.cancelBtn .deleteLink{
+	transition: .15s linear;
+	color:#aaa;
+	
+}
+.cancelBtn .deleteLink:hover{
+	font-size:1.1rem;
+	color:#555;
 }
 
 /* 卷軸 */
@@ -195,4 +209,21 @@ body{
 /* 當checkbox被點選的時候(label的for 對應到 checkout的id)，購物車會跑出來 */
 #side_menu_switch:checked + .side_cart{
     transform: translateX(0); 
+}
+
+/*數量提示*/
+#count_circle{
+	display:inline-block;
+	width:20px;
+	height:20px;
+	border-radius:50%;
+	z-index: 9999;
+    position: absolute;
+    left: -40px;
+    top: 29%;
+    background:#EDD9D9;
+    text-align: center;
+    line-height: 23px;
+    color:#555;
+    transition: .2s;
 }

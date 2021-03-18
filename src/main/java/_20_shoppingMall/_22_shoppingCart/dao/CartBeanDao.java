@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import _02_model.entity.CartBean;
+import _10_member.entity.Member;
 
 public interface CartBeanDao {
 	
@@ -28,5 +29,7 @@ public interface CartBeanDao {
 	public List<CartBean> findCartByMemberId(Integer memberId);
 
 	public void updateCartById(Integer cid, Integer amount, Double total);
+
+	public Member getMemberById(Integer cart_id);
 
 }

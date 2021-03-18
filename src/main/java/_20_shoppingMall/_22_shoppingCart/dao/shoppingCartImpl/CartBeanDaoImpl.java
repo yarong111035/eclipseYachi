@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import _02_model.entity.CartBean;
+import _10_member.entity.Member;
 import _20_shoppingMall._22_shoppingCart.dao.CartBeanDao;
 
 @Repository
@@ -139,6 +140,17 @@ public class CartBeanDaoImpl implements CartBeanDao {
 			   .setParameter("cid", cid)
 			   .executeUpdate();
 					
+	}
+
+	@Override
+	public Member getMemberById(Integer cart_id) {
+		Session session = factory.getCurrentSession();
+		String hql = "SELECT memberBean "
+				   + " FROM CartBean "
+				   + " WHERE cart_id = :cart_id";
+		
+		Member member = (Member) session.createQuery(hql).setParameter("cart_id", cart_id).getSingleResult();
+		return member;
 	}
 
 

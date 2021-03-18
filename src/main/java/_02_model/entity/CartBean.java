@@ -23,7 +23,6 @@ public class CartBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	/** 此表更改欄位
-	 * 考慮若多一個表我應該寫不出來....
 	 * cart_id
 	 * member_id
 	 * product_id
