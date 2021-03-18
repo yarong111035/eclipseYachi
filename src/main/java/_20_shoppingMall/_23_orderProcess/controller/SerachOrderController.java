@@ -28,8 +28,13 @@ public class SerachOrderController {
 	public @ResponseBody OrderBean queryOrderByMid(
 			Model model,
 			@PathVariable("orderNumber") String orderNumber){
-		OrderBean order = orderService.queryOrder(orderNumber);
-		return order;
+		Member member = (Member) model.getAttribute("LoginOK");
+		List<OrderBean> ordersByMember = orderService.getAllOrdersByMemberId(member.getMemberId());
+		OrderBean queryOrder = new OrderBean();
+		for(OrderBean order : ordersByMember) {
+			queryOrder = orderService.queryOrder(order.getOrderNumber());
+		}
+		return queryOrder;
 	}
 	
 	
