@@ -76,7 +76,7 @@ aside{
                     	<hr class="hr">
 	                    <div class="items">         
 	                    												
-	                           <a href='<c:url value='/sort=${sort.product_type_id}'/>'><span>${sort.product_type_name}</span></a>
+	                           <a href="<c:url value='/sortId=${sort.product_type_id}'/>"><span>${sort.product_type_name}</span></a>
 	                    </div>
 					</c:forEach>
                 </div>

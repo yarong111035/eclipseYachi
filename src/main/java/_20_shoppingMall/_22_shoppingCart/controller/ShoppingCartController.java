@@ -48,6 +48,7 @@ public class ShoppingCartController {
 			@RequestParam(value = "cmd",required = false) String cmd,
 			@RequestParam("product_id") Integer product_id,
 			@RequestParam(value = "qty",required = false) Integer qty,
+			@RequestParam(value = "sortId",required = false) Integer sortId,
 			HttpServletRequest request,
 			HttpServletResponse response
 			) throws ServletException, IOException {
@@ -66,8 +67,20 @@ public class ShoppingCartController {
 		Integer memberId = member.getMemberId();
 		//創建購物車(傳入會員編號, 產品編號, 數量)
 		cartBeanService.addToCart(memberId, product_id, qty);
+		List<MemberCartBeanVo> memberCartVoList = cartBeanService.getMemberCartVo(memberId);
+		model.addAttribute("memberCartVoList", memberCartVoList);
 		
-		if(cmd.equalsIgnoreCase("ADD")) {
+		
+		//得到當前加入購物車產品種類，目的為加入購物車後停留在當前種類頁面
+//		Integer sort = productService.getProductById(product_id).getProductTypeBean().getProduct_type_id();
+		Integer sessionSortId = (Integer) (model.getAttribute("sortId"));
+		
+		
+		if(cmd.equalsIgnoreCase("ADD") && sortId == sessionSortId) {
+			System.out.println(123);
+			return "redirect:/sortId=" + sessionSortId;
+		}else if(cmd.equalsIgnoreCase("ADD")) {
+			System.out.println(456);
 			return "redirect:/DisplayPageProducts";
 		}
 		else if(cmd.equalsIgnoreCase("ADD1")){
