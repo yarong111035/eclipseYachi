@@ -9,6 +9,7 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -53,6 +54,7 @@ import _20_shoppingMall._21_product.service.ProductService;
 import _20_shoppingMall._21_product.service.ProductTypeService;
 import _20_shoppingMall._22_shoppingCart.service.CartBeanService;
 import _90_admin._91_editProduct.validator.ProductValidator;
+// 產品狀態碼 0:上架 1:刪除 2:下架
 
 @Controller
 public class EditController {
@@ -132,11 +134,29 @@ public class EditController {
 		}
 		
 
-//		圖片上傳
+//		圖片上傳1
 //		step1: 從前端取得使用者上傳圖片的路徑
-		MultipartFile productImage = productBean.getProductImage();//圖片本身
+		MultipartFile productImage = productBean.getProductImage();//圖片本身1
+		MultipartFile productImageA = productBean.getProductImagesA();//圖片2
 		String originalFilename = productImage.getOriginalFilename();
+		String originalFilenameA = productImageA.getOriginalFilename();//圖片2
+		
 		productBean.setFilename(originalFilename);
+		productBean.setFilenameA(originalFilenameA);//圖片2
+		
+//		step1: 從前端取得使用者上傳圖片的路徑(多張圖片)
+//		List<MultipartFile> files = productBean.getProductImages();
+//		List<String> fileNames = new ArrayList<>();
+//		if(files != null && files.size() > 0) {
+//			for(int i = 0; i < files.size(); i++) {
+//				String originalFilename = files.get(i).getOriginalFilename();
+//				fileNames.add(originalFilename);
+//				fileNames.get(i);
+//				ProductBean productBean = new ProductBean();
+//				productBean.setFilename0(originalFilename);
+//			}
+//			
+//		}
 		
 //		step2: 建立Blob物件，交由 Hibernate寫入資料庫
 		if(productImage != null && !productImage.isEmpty()) {
@@ -146,7 +166,17 @@ public class EditController {
 				Blob blob = new SerialBlob(b);
 				productBean.setProduct_pic(blob);
 			}catch (Exception e) {
-				throw new RuntimeException("照片上傳時發生異常: " + e.getMessage());
+				throw new RuntimeException("照片上傳時發生異常1: " + e.getMessage());
+			}
+		}
+		if(productImageA != null && !productImageA.isEmpty()) {
+			try {
+//				需要先得到byte[]，才能透過SerialBlob(byte[] b) 得到Blob的物件
+				byte[] b = productImageA.getBytes();
+				Blob blob = new SerialBlob(b);
+				productBean.setProduct_picA(blob);
+			}catch (Exception e) {
+				throw new RuntimeException("照片上傳時發生異常2: " + e.getMessage());
 			}
 		}
 		productService.addProduct(productBean);  //必須先存到資料庫
@@ -182,7 +212,7 @@ public class EditController {
 	 * 3. 狀態碼
 	 */
 	
-//	從資料庫撈Blob型態，讓商品頁出現產品
+//	從資料庫撈Blob型態，讓商品頁出現產品(圖片一)
 //	ResponseEntity<Byte[]> => 回應本體的資料型態(blob 需轉成 位元組型態才可讀取)
 	@RequestMapping(value = "/getPicture/{product_id}")
 	public ResponseEntity<byte[]> getPicture(
@@ -203,6 +233,44 @@ public class EditController {
 					pic = blob.getBytes(1, len); //???   jdbc相關類別都是1開頭
 				} catch (SQLException e) {
 					throw new RuntimeException("ProductController的getPicture()發生SQLException: " + e.getMessage());
+				}
+			}else { //如果沒有照片
+				pic = toByteArray(filePath);
+				filename = filePath;
+			}
+		}else {
+			pic = toByteArray(filePath);
+			filename = filePath;
+		}
+		headers.setCacheControl(CacheControl.noCache().getHeaderValue()); //請瀏覽器不要快取圖片內容
+		String mimeType = context.getMimeType(filename);
+		MediaType mediaType = MediaType.valueOf(mimeType); //把字串轉成 mediaType 型別的物件
+		System.out.println("mediatype = " + mediaType);
+		headers.setContentType(mediaType);
+		ResponseEntity<byte[]> responoEntity = new ResponseEntity<>(pic, headers, HttpStatus.OK); 
+		return responoEntity;
+	}
+//	從資料庫撈Blob型態，讓商品頁出現產品(圖片二)
+//	ResponseEntity<Byte[]> => 回應本體的資料型態(blob 需轉成 位元組型態才可讀取)
+	@RequestMapping(value = "/getPictureA/{product_id}")
+	public ResponseEntity<byte[]> getPictureA(
+			HttpServletResponse resp, 
+			@PathVariable Integer product_id){
+		String filePath = "/data/images/mediumPic/noImage1.PNG"; //預設圖片路徑
+		byte[] pic = null;
+		String filename = "";
+		int len = 0;
+		HttpHeaders headers = new HttpHeaders();
+		ProductBean productBean = productService.getProductById(product_id); 
+		if(productBean != null) {
+			Blob blob = productBean.getProduct_picA();
+			filename = productBean.getFilenameA();
+			if(blob != null) {
+				try {
+					len = (int) blob.length();  //取得照片大小
+					pic = blob.getBytes(1, len); //???   jdbc相關類別都是1開頭
+				} catch (SQLException e) {
+					throw new RuntimeException("ProductController的getPictureA()發生SQLException: " + e.getMessage());
 				}
 			}else { //如果沒有照片
 				pic = toByteArray(filePath);
@@ -405,7 +473,8 @@ public class EditController {
 			"product_info"	,
 			"product_spec",
 			"productTypeBean.product_type_id",
-			"productImage"
+			"productImage",
+			"productImagesA"
 		);
 	}
 	

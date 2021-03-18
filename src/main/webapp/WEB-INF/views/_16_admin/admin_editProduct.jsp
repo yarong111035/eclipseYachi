@@ -91,8 +91,8 @@
 													<div class="th pic">圖片</div>
 													<div class="th name">商品名稱</div>
 													<div class="th price">價格</div>
-													<div class="th count">數量</div>
-													<div class="th upDate">上架順序</div>
+													<div class="th count">庫存</div>
+													<div class="th upDate">順序</div>
 													<div class="th edit">修改</div>
 													<div class="th delete">刪除</div>
 												</div>
@@ -319,7 +319,7 @@
 		                   		      'success'
 			                    	)
 						})
-//           	   	window.location = href;  //改用get方式更改資料庫狀態碼
+          	   	window.location = href;  //改用get方式更改資料庫狀態碼
           	  	
 	    		  }
 	    		})

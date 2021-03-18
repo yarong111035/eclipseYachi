@@ -3,6 +3,7 @@ package _02_model.entity;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,11 +46,15 @@ public class ProductBean implements Serializable{
 	
 	@JsonIgnore
 	private Blob product_pic;
+	private Blob product_picA;
 	
 	
+
 	private Date product_expire;
 	
 	private String filename;
+	
+	private String filenameA;
 	
 	
     private String product_spec;
@@ -68,14 +73,49 @@ public class ProductBean implements Serializable{
 	@Transient
 	private MultipartFile productImage; //上傳照片用
 	
+	@JsonIgnore
+	@Transient
+	private MultipartFile productImagesA;//上傳照片用
+	
+	
 	public MultipartFile getProductImage() {
 		return productImage;
 	}
+
 
 	public void setProductImage(MultipartFile productImage) {
 		this.productImage = productImage;
 	}
 
+	public Blob getProduct_picA() {
+		return product_picA;
+	}
+
+
+	public void setProduct_picA(Blob product_picA) {
+		this.product_picA = product_picA;
+	}
+
+
+	public String getFilenameA() {
+		return filenameA;
+	}
+
+
+	public void setFilenameA(String filenameA) {
+		this.filenameA = filenameA;
+	}
+
+
+	public MultipartFile getProductImagesA() {
+		return productImagesA;
+	}
+
+
+	public void setProductImagesA(MultipartFile productImagesA) {
+		this.productImagesA = productImagesA;
+	}
+	
 	public Integer getProduct_id() {
 		return product_id;
 	}
@@ -202,6 +242,8 @@ public class ProductBean implements Serializable{
 	public void setProduct_status(Integer product_status) {
 		this.product_status = product_status;
 	}
+
+
 
 	
 	

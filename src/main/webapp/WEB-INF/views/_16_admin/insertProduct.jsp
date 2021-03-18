@@ -101,20 +101,26 @@
 						</div>
 						
 						<!-- 選擇照片 -->
-						<div class="custom-file">
-							<form:input type="file" path="productImage" class="custom-file-input" id="productImage"  accept="image/gif, image/jpeg, image/png"/>
-							<label class="custom-file-label" for="productImage">圖片一</label>
-						</div>
+						<div class="row d-flex justify-content-around ">
+							<div class="col-5 custom-file">
+								<form:input type="file" path="productImage" class="custom-file-input" id="productImage"  accept="image/gif, image/jpeg, image/png"/>
+								<label class="custom-file-label" for="productImage">圖片一</label>
+							</div>
+							<div class="col-5 custom-file">
+								<form:input type="file" path="productImagesA" class="custom-file-input" id="productImageA"  accept="image/gif, image/jpeg, image/png"/>
+								<label class="custom-file-label" for="productImageA">圖片二</label>
+							</div>
+						</div>	
 						<!-- 選擇照片 -->
 
-						<div class="imageBox d-flex justify-content-between pt-4">
+						<div class="row imageBox d-flex justify-content-around pt-4">
 							<div class="image">
 								<img id="image1"/>
 							 </div>
-							<!--<div class="image">
-								<img src="${pageContext.request.contextPath}/images_2/product3-2.jpg" alt="">
-							</div>
 							<div class="image">
+								<img id="image2">
+							</div>
+							<!--<div class="image">
 								<img src="${pageContext.request.contextPath}/images/Shinnosuke/Shinnosuke2.jpg" alt="">
 							</div> -->
 						
@@ -157,7 +163,21 @@
 			    }
 			    reader.readAsDataURL(input.files[0]); 
 			  }
-			}
+		  }
+		  $('#productImageA').change(function(){
+			  readURLA(this);
+		  })
+		  //因為單選的關係，所以有檔案一定是在第0個。
+		  function readURLA(input){
+			  if(input.files && input.files[0]){
+			    let reader = new FileReader();
+			    reader.onload = function (e) { //讀出來是二進位檔案
+			       $('#image2').attr('src', e.target.result);
+			    }
+			    reader.readAsDataURL(input.files[0]); 
+			  }
+		  }
+		  
 		});
 		
 

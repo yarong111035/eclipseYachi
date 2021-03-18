@@ -270,7 +270,7 @@
 										<div class="product_image image2">
 	
 											<img
-												src="<c:url value='/data/images/mediumPic/noImage1.PNG'/>">
+												src="<c:url value='/getPictureA/${entry.product_id}'/>">
 										</div>
 										<div class="product_image image1">
 	
