@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +30,7 @@ import _10_member.entity.Member;
 import _20_shoppingMall._23_orderProcess.service.OrderService;
 import _20_shoppingMall._23_orderProcess.service.PayTypeService;
 import _20_shoppingMall._23_orderProcess.service.ShipTypeService;
+import _20_shoppingMall._23_orderProcess.validator.OrderValidator;
 import lombok.Getter;
 
 @Controller
@@ -66,7 +69,7 @@ public class ProcessOrderController {
 	@PostMapping("/checkout")
 	public String processCreateOrder(
 			Model model,
-			@ModelAttribute("orderBean") OrderBean orderBean,
+			@Valid @ModelAttribute("orderBean") OrderBean orderBean,
 			BindingResult result,
 			RedirectAttributes redirectAttributes,
 			HttpServletRequest request
@@ -74,6 +77,17 @@ public class ProcessOrderController {
 		Member member = (Member)model.getAttribute("LoginOK");
 		if(member == null) {
 			return "redirect:/LoginAndRegister";
+		}
+		
+		//設定表單資料檢查條件
+		OrderValidator validator= new OrderValidator();
+		validator.validate(orderBean, result);
+		if(result.hasErrors()) {
+			List<ObjectError> list =  result.getAllErrors();//把所有錯誤裝在list裡面
+			for(ObjectError error : list) {
+				System.out.println("====>有錯誤:" + error);
+			}
+			return "_12_shoppingmall/6_orderDetail";
 		}
 		
 		//取得購物車總金額

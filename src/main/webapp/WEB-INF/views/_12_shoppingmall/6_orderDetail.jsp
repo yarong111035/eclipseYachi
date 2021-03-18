@@ -57,9 +57,11 @@
                         <div class="col-sm-10">
                           <c:if test='${empty LoginOK.address}'>
                           	  <form:input type="address" path="order_address" class="form-control" id="delivery_address" placeholder="地址空空如也! 趕快填上吧"  onfocus="this.placeholder=''" onblur="this.placeholder='地址空空如也! 趕快填上吧'"/>
+                          	  <form:errors path="order_address" cssClass="error"/>
                           </c:if>
                           <c:if test='${!empty LoginOK.address}'>
                           	  <form:input type="address" path="order_address" class="form-control" id="delivery_address" value="${LoginOK.address}"/>
+                          	  <form:errors path="order_address" cssClass="error"/>
                           </c:if>
                         </div>
                     </div>
@@ -79,17 +81,19 @@
                     <form:select path="shipTypeBean.ship_type_id" class=" custom-select">
 	                    <form:option value="-1" label="選擇取貨方式"/>
 	                    <form:options items="${shipTypeMap}"/>
-                  	</form:select>
+                  	</form:select><br>
                 </div>
+	            <form:errors path="shipTypeBean" cssClass="error"/>
             </div>
             <div class="select">
                 <div class="col-8 deliveryBox"> 
                     <label for="delivery" class="col-sm-2 col-form-label">付款方式</label>
                     <form:select path="payTypeBean.pay_type_id" class=" custom-select">
-                    <form:option value="-1" label="選擇付款方式"/>
-                    <form:options items="${payTypeMap}"/>
-                  </form:select>
+	                    <form:option value="-1" label="選擇付款方式"/>
+	                    <form:options items="${payTypeMap}"/>
+                  	</form:select>
                 </div>
+	            <form:errors path="payTypeBean" cssClass="error"/>
             </div>
 		    <!-- 按鈕 -->
 		    <div class="shopBtn">
