@@ -48,6 +48,7 @@
                             <div class="th index">序號</div>
                             <div class="th pic"></div>
                             <div class="th name">商品名稱</div>
+                            <div class="th stock"></div>
                             <div class="th price">價格</div>
                             <div class="th count">數量</div>
                             <div class="th total">小計</div>
@@ -79,6 +80,11 @@
 	                                <div>
 	                                    <span>${cart.productBean.product_spec }</span>
 	                                </div>
+	                            </div>
+								<div class="td stock">
+									<c:if test="${cart.productBean.product_stock == 0}">
+	                                	<span style="color: rgb(211, 73, 73);">目前暫無庫存 下次再選購吧!</span>
+									</c:if>
 	                            </div>
 	                            <div class="td price">
 	                                <span>NT$ ${cart.productBean.product_price }</span>
@@ -201,9 +207,9 @@
   	    		  confirmButtonColor: '#3085d6',
   	    		  cancelButtonColor: '#d33',
   	    		  confirmButtonText: '不想要了!'
-  	    		}).then(function(result){
+  	    		}).then((result) => {
   	    		  if (result.isConfirmed) {
-  	    			let href = $('.deleteLink').attr('href');
+  	    			let href = $(this).attr('href');
               	   	$('form').attr('action', href).submit();
   	    		  }
   	    		})
