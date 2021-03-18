@@ -45,6 +45,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import _00_util.init.initOrderRandomNumber;
 import _02_model.entity.ProductBean;
 import _02_model.entity.ProductTypeBean;
 import _20_shoppingMall._21_product.exception.ProductNotFoundException;
@@ -328,6 +329,29 @@ public class EditController {
 		System.out.println("===============================222============================");
 		return "redirect:/admin/admin_editProduct";
 	}
+	
+	/**
+	 * 批量刪除與下架
+	 */
+	@RequestMapping("/productManage/{selected_id}/{cmd}")
+	public String deleteAll(Model model,
+			HttpServletRequest request,
+			@PathVariable("selected_id") String selected_id,
+			@PathVariable("cmd") String cmd
+			) {
+		System.out.println(selected_id); //10+9+7+6+5
+		String[] selectArray = selected_id.split("\\+");
+		for(int i = 0; i < selectArray.length; i++) {
+			Integer product_id = Integer.parseInt(selectArray[i]);
+			if(cmd.equalsIgnoreCase("del")) {
+				productService.deleteProduct(product_id);
+			}else if(cmd.equalsIgnoreCase("down")){
+				productService.downProduct(product_id);
+			}
+		}
+		return "redirect:/admin/admin_editProduct";
+	}
+	
 	
 	
 	

@@ -85,8 +85,8 @@
 											<div class="thead">
 												<div class="tr">
 													<div class="th checkBox">
-														<input type="checkbox" id="vehicle1" name="vehicle1"
-															value="Bike"> <label for="vehicle1"></label><br>
+														<input type="checkbox" id="selectAll"> 
+														<label for="selectAll"></label><br>
 													</div>
 													<div class="th pic">圖片</div>
 													<div class="th name">商品名稱</div>
@@ -103,8 +103,8 @@
 													<c:if test="${product.product_status == 0}">
 														<div class="tr">
 															<div class="td checkBox">
-																<input type="checkbox" id="vehicle1" name="vehicle1"
-																	value="Bike"> <label for="vehicle1"></label>
+																<input type="checkbox" id="product_id${product.product_id}" name="product_id"
+																	value="${product.product_id}"> <label for="product_id"></label>
 															</div>
 															<div class="td pic">
 																<img
@@ -159,46 +159,111 @@
 											<div class="th name">商品名稱</div>
 											<div class="th price">價格</div>
 											<div class="th count">數量</div>
-											<div class="th upDate">下架時間</div>
+<!-- 											<div class="th upDate">下架時間</div> -->
 											<div class="th edit">修改</div>
 											<div class="th delete">刪除</div>
 										</div>
 									</div>
 									<div class="tbody">
-										<div class="tr">
-											<div class="td pic">
-												<img src="/images_2/1_product.jpg">
-											</div>
-											<div class="td name">
-												<a href="#">超好用收納購物袋</a>
-												<div>
-													<span>白色</span>
+									
+										<c:forEach var='product' items='${editProducts}'>
+											<c:if test="${product.product_status == 2}">
+												<div class="tr">
+													<div class="td pic">
+														<img src="<c:url value='/getPicture/${product.product_id}'/>">
+													</div>
+													<div class="td name">
+														<a  style="color:gray; href="<c:url value='/productUpdate/${product.product_id}'/>">${product.product_name}</a>
+														<div>
+															<span>${product.product_spec}</span>
+														</div>
+													</div>
+													<div class="td price">
+														<span>NT$ ${product.product_price }</span>
+													</div>
+													<div class="td count">
+														<span>${product.product_stock }</span>
+													</div>
+<!-- 													<div class="td upDate"> -->
+<!-- 														<span>2021-02-28</span> -->
+<!-- 													</div> -->
+													<div class="td edit">
+														<a href="<c:url value='/productUpdate/${product.product_id}'/>"><i class="fas fa-pen"></i></a>
+													</div>
+													<div class="td delete">
+														<a href="<c:url value='/productDelete/${product.product_id}'/>"><i class="fas fa-trash"></i></a>
+													</div>
 												</div>
-											</div>
-											<div class="td price">
-												<span>NT$ 199</span>
-											</div>
-											<div class="td count">
-												<span>30</span>
-											</div>
-											<div class="td upDate">
-												<span>2021-02-28</span>
-											</div>
-											<div class="td edit">
-												<a href="#"><i class="fas fa-pen"></i></a>
-											</div>
-											<div class="td delete">
-												<a href="#"><i class="fas fa-trash"></i></i></a>
-											</div>
-										</div>
-
+											</c:if>
+										</c:forEach>
 
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<div class="tabs_panel noStock">測試三</div>
+
+
+
+						<div class="tabs_panel noStock">
+							<div class="title">
+								<span>商品缺貨囉! 趕緊補貨去<i class="fas fa-arrow-down"></i><i class="fas fa-arrow-down"></i><i class="fas fa-arrow-down"></i></span>
+							</div>
+							<div class="itemsList">
+
+								<div class="table">
+									<div class="thead">
+										<div class="tr">
+
+											<div class="th pic">圖片</div>
+											<div class="th name">商品名稱</div>
+											<div class="th price">價格</div>
+											<div class="th count">數量</div>
+<!-- 											<div class="th upDate">下架時間</div> -->
+											<div class="th edit">修改</div>
+											<div class="th delete">刪除</div>
+										</div>
+									</div>
+									<div class="tbody">
+									
+										<c:forEach var='product' items='${editProducts}'>
+											<c:if test="${product.product_stock == 0}">
+												<div class="tr">
+													<div class="td pic">
+														<img src="<c:url value='/getPicture/${product.product_id}'/>">
+													</div>
+													<div class="td name">
+														<a  style="color:gray; href="<c:url value='/productUpdate/${product.product_id}'/>">${product.product_name}</a>
+														<div>
+															<span>${product.product_spec}</span>
+														</div>
+													</div>
+													<div class="td price">
+														<span>NT$ ${product.product_price }</span>
+													</div>
+													<div  class="td count">
+														<span style="color: red;">${product.product_stock }</span>
+													</div>
+<!-- 													<div class="td upDate"> -->
+<!-- 														<span>2021-02-28</span> -->
+<!-- 													</div> -->
+													<div class="td edit">
+														<a href="<c:url value='/productUpdate/${product.product_id}'/>"><i class="fas fa-pen"></i></a>
+													</div>
+													<div class="td delete">
+														<a href="<c:url value='/productDelete/${product.product_id}'/>"><i class="fas fa-trash"></i></a>
+													</div>
+												</div>
+											</c:if>
+										</c:forEach>
+
+									</div>
+								</div>
+							</div>
+
+
+
+						</div>
 
 					</div>
 				</div>
@@ -254,13 +319,6 @@
 		                   		      'success'
 			                    	)
 						})
-	                   
-	                    	
-	                   
-
-
-
-
 //           	   	window.location = href;  //改用get方式更改資料庫狀態碼
           	  	
 	    		  }
@@ -268,6 +326,59 @@
     	return false;
     });
   //當刪除產品按鈕點擊時(jquery 的箭頭涵式裡面包住的$(this)指的是window)
+
+  //checkbox 
+  $('#selectAll').click(function(){
+	if($(this).is(":checked")) {
+		$(":checkbox").prop("checked", true);//所有选择框都选中
+		let checkPid = new Array();	
+		$('input:checkbox:checked[name="product_id"]').each(function(i) {
+			 checkPid[i] = this.value; 
+			//  console.log(checkPid[i]);
+		})
+		// console.log($('input:checkbox:checked[name="product_id"]').each(function(i) { checkPid[i] = this.value; }));
+	} else {
+		$(":checkbox").prop("checked", false);
+	}
+  });
+  
+  function selectedCheck(){
+	let checkedNum = $("input[name='product_id']:checked").length;
+	//判斷至少需勾選一項
+	if (checkedNum == 0) {
+		alert("請至少選擇一項");
+		return false;
+    }
+	let checkList = new Array();	
+	$('input[name="product_id"]:checked').each(function() {
+		checkList.push($(this).val()); //產品id的集合
+	})
+	checkId = checkList.join("+");  //使用"+"將陣列合併成字串(這樣才有辦法送到後端)
+	console.log(checkId);
+  }
+
+
+  //刪除按鈕
+  $('#deleteProduct').on("click",function(){
+	
+	selectedCheck();
+
+	let yes = confirm("確定刪除勾選的項目")
+	if(yes){
+		let href = "<c:url value='/productManage/" + checkId + "/del'/>";
+		$('#deleteProduct').attr('href', href).submit();
+		}
+  })
+
+  //下架按鈕
+  	$('#downProduct').on("click",function(){
+		selectedCheck();
+		let yes = confirm("確定下架勾選的項目")
+		if(yes){
+			let href = "<c:url value='/productManage/" + checkId + "/down'/>";
+			$('#downProduct').attr('href', href).submit();
+		}
+	  })
 </script>
 
 </body>

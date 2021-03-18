@@ -42,4 +42,6 @@ public interface ProductService {
 	void setSelected(String selected);
 //	void setPageNo(int pageNo);
 //	int getPageNo();
+
+	public void downProduct(Integer product_id);
 }

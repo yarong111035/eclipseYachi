@@ -233,6 +233,20 @@ public class ProductDaoImpl implements Serializable,ProductDao {
 		}
 	}
 
+	@Override
+	public void downProduct(Integer product_id) {
+		Session session = factory.getCurrentSession();
+		int product_status = 2;  // 此狀態碼為下架中
+		String hql = " UPDATE ProductBean p "
+				   + " SET p.product_status = :product_status "
+			       + " WHERE p.product_id = :product_id ";
+		session.createQuery(hql)
+			   .setParameter("product_status", product_status)
+			   .setParameter("product_id", product_id)
+			   .executeUpdate();
+		
+	}
+
 
 
 }

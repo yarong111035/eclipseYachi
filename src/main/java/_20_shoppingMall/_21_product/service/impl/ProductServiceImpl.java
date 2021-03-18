@@ -14,7 +14,7 @@ import _20_shoppingMall._21_product.dao.ProductDao;
 import _20_shoppingMall._21_product.dao.ProductTypeDao;
 import _20_shoppingMall._21_product.service.ProductService;
 
-
+@Transactional
 @Service
 public class ProductServiceImpl implements ProductService {
 	@Autowired //透過容器自動注入，不需要自己new
@@ -149,6 +149,12 @@ public class ProductServiceImpl implements ProductService {
 		productBean.setProduct_type_id(productTypeBean.getProduct_type_id()); //未set進去
 		System.out.println(productBean);
 		productDao.updateProduct(productBean);
+	}
+
+	@Override
+	public void downProduct(Integer product_id) {
+		productDao.downProduct(product_id);
+		
 	}
 
 }

@@ -111,7 +111,8 @@
 						<!-- 選擇照片 -->
 						<div class="imageBox d-flex justify-content-between pt-4">
 							<div class="image">
-								<img id="image1"/>
+								<img id="image1" src="<c:url value='/getPicture/${product_id}'/>"/>
+								
 							 </div>
 							<!--<div class="image">
 								<img src="${pageContext.request.contextPath}/images_2/product3-2.jpg" alt="">
