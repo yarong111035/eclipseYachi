@@ -42,7 +42,7 @@
                     </div>
                     <div class="coupon-mid">
                         <label for="admincoupon_amount">使用次數 :</label>
-                        <form:input type="number" path="admincoupon_amount" id="admincoupon_amount" placeholder="1" step="1" min="0" style="width: 55px;"/> 
+                        <form:input type="number" path="admincoupon_amount" id="admincoupon_amount" placeholder="1" step="1" min="0" style="width: 70px;"/> 
                     </div>
                     <div class="coupon-mid">
                         <label for="admincoupon_begin">使用期限 :</label>

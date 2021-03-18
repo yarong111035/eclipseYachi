@@ -16,15 +16,20 @@
 	<div class="function ">
 		<!-- <h3>管理員</h3> -->
 		<div class="item">
-			<img src="https://picsum.photos/250/250" id="headImg">
+<!-- 			<img src="https://picsum.photos/250/250" id="headImg"> -->
+		<c:if test="${!empty LoginOK}">
+				<div>
+					<a href="<c:url value='/member/update/${LoginOK.memberId}'/>"><img style="height: 200px; width: 200px;" src="<c:url value='/_00_init/getMemberImage?memberId=${LoginOK.memberId}'/>"></a>
+				</div>
+		</c:if>
 		</div>
+<!-- 		<label for="file"> <i class="fas fa-image"> 編輯頭貼 <input -->
+<!-- 				type="file" id="file" accept=".jpeg,.png" style="display: none;"> -->
+<!-- 		</i> -->
+<!-- 		</label> -->
+		
 
-		<label for="file"> <i class="fas fa-image"> 編輯頭貼 <input
-				type="file" id="file" accept=".jpeg,.png" style="display: none;">
-		</i>
-		</label>
-
-		<div class="item">
+		<div class="item" style="margin-top: 1rem;">
 			<a href="<c:url value='/admin/administrator' />">
 				<button>
 					<span>管理員首頁</span>
