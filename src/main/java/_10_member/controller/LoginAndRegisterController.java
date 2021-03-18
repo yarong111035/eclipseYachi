@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,14 +33,20 @@ import _10_member.entity.Member;
 import _10_member.entity.Role;
 import _10_member.service.MemberService;
 import _10_member.validate.MemberValidator;
+import _20_shoppingMall._22_shoppingCart.service.CartBeanService;
+import _20_shoppingMall._22_shoppingCart.vo.MemberCartBeanVo;
+import _20_shoppingMall._22_shoppingCart.vo.SessionCartVo;
 
 
 @Controller
-@SessionAttributes("LoginOK")
+@SessionAttributes({"LoginOK","sessionCartVoList","memberCartVoList"})
 public class LoginAndRegisterController {
 	
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	CartBeanService cartBeanService;
 	
 	@Autowired
 	MemberValidator mValidator;
@@ -55,6 +62,7 @@ public class LoginAndRegisterController {
 	}
 			
 	// 會員註冊事務
+	@SuppressWarnings("unchecked")
 	@PostMapping("doRegister")
 	public String doRegist(@ModelAttribute("member") Member member,
 			BindingResult bindingResult,Model model,HttpSession session) {
@@ -103,6 +111,23 @@ public class LoginAndRegisterController {
 			
 			model.addAttribute("LoginOK", member);
 			
+			//訪客登入成功 (sessionCart => CartBean)
+			
+			
+			//1. 先取得sessionCart的購物清單
+																						
+//			List<SessionCartVo> sessionCartVoList = (List<SessionCartVo>) session.getAttribute("sessionCartVoList");
+//			
+//			//2. 利用 SessionCartVo 創建購物車 
+//			for(SessionCartVo sessionCart : sessionCartVoList) {
+//				cartBeanService.addToCart(member.getMemberId(), sessionCart.getProduct_id(), sessionCart.getScQty());
+//			}
+//			
+//			List<MemberCartBeanVo> memberCartVoList = cartBeanService.getMemberCartVo(member.getMemberId());
+//			model.addAttribute("memberCartVoList", memberCartVoList);
+			
+	
+			
 			return "redirect:/index";
 		}
 		
@@ -138,6 +163,7 @@ public class LoginAndRegisterController {
 	
 	
 	// 會員登入
+	@SuppressWarnings("unchecked")
 	@PostMapping("doLogin") 
 	public String doLogin(Member member,Model model,HttpSession session,
 							HttpServletRequest request) {
@@ -181,6 +207,21 @@ public class LoginAndRegisterController {
 		// session.setAttribute("member", member);  //session
 		model.addAttribute("LoginOK",member);     //request
 		
+		
+		//訪客登入成功 (sessionCart => CartBean)
+		//1. 先取得sessionCart的購物清單
+		
+		List<SessionCartVo> sessionCartVoList = (List<SessionCartVo>) model.getAttribute("sessionCartVoList");
+		if(sessionCartVoList != null) {
+			//2. 利用 SessionCartVo 創建購物車 
+			for(SessionCartVo sessionCart : sessionCartVoList) {
+				cartBeanService.addToCart(member.getMemberId(), sessionCart.getProduct_id(), sessionCart.getScQty());
+			}
+			
+		}
+		
+		List<MemberCartBeanVo> memberCartVoList = cartBeanService.getMemberCartVo(member.getMemberId());
+		model.addAttribute("memberCartVoList", memberCartVoList);
 		
 		return "redirect: " + nextPath;
 	}
