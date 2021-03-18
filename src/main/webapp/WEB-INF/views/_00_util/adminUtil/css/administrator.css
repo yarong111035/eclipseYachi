@@ -44,3 +44,10 @@
     color: #333;
     padding-left: 20px;
 }
+.status {
+	overflow: hidden;
+}
+.status1 {
+	overflow: hidden;
+	height: fit-content;
+}

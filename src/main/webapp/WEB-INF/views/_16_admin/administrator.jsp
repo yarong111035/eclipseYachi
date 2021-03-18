@@ -48,13 +48,13 @@
 					<div class="status-nav">
 						<h3>平台優惠券</h3>
 						<div class="space"></div>
-						<a href="#">readmore...</a>
+						<a class="readmore" href="#">readmore...</a>
 					</div>
 					<hr>
 					<div> 
 					<c:forEach var="admincoupons" varStatus="stat" items="${admincouponList}">
-						<a href="#">${admincoupons.admincoupon_name} ----->
-						時間:${admincoupons.admincoupon_begin}至${admincoupons.admincoupon_end}</a><br>
+						<a href="<c:url value='/admin/modifyAdminCoupon/${admincoupons.admincoupon_id}' />">${admincoupons.admincoupon_name} ----->
+						時間:${admincoupons.admincoupon_begin}至${admincoupons.admincoupon_end}----->剩:${admincoupons.admincoupon_amount}張</a><br>
 					</c:forEach>
 					</div>
 				</div>
@@ -62,7 +62,7 @@
 					<div class="status-nav">
 						<h3>平台優惠活動</h3>
 						<div class="space"></div>
-						<a href="#">readmore...</a>
+						<a class="readmore" href="#">readmore...</a>
 					</div>
 					<hr>
 					<div>
@@ -76,7 +76,7 @@
 					<div class="status-nav">
 						<h3>廣告資訊</h3>
 						<div class="space"></div>
-						<a href="#">readmore...</a>
+						<a class="readmore" href="#">readmore...</a>
 					</div>
 					<hr>
 					<div>
@@ -90,7 +90,7 @@
 					<div class="status-nav">
 						<h3>客服回應</h3>
 						<div class="space"></div>
-						<a href="#">readmore...</a>
+						<a class="readmore" href="#">readmore...</a>
 					</div>
 					<hr>
 					<div>
@@ -105,7 +105,7 @@
 					<div class="status-nav">
 						<h3>審核商家</h3>
 						<div class="space"></div>
-						<a href="#">readmore...</a>
+						<a class="readmore" href="#">readmore...</a>
 					</div>
 					<hr>
 					<div>
@@ -118,7 +118,7 @@
 					<div class="status-nav">
 						<h3>公告</h3>
 						<div class="space"></div>
-						<a href="#">readmore...</a>
+						<a class="readmore" href="#">readmore...</a>
 					</div>
 					<hr>
 					<div>
@@ -131,7 +131,7 @@
 					<div class="status-nav">
 						<h3>申訴單</h3>
 						<div class="space"></div>
-						<a href="#">readmore...</a>
+						<a class="readmore" href="#">readmore...</a>
 					</div>
 					<hr>
 					<div>
@@ -144,5 +144,14 @@
 			</main>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		$('.readmore').click(function(){
+			$('.status').toggleClass("status1")
+		})
+	
+	</script>
+	
+	
 </body>
 </html>
