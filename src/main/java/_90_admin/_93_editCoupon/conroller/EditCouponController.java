@@ -35,6 +35,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import _02_model.entity.AdminActivityBean;
 import _02_model.entity.AdminCouponBean;
 import _02_model.entity.AdminCouponTypeBean;
 import _02_model.entity.CouponBean;
@@ -42,14 +43,18 @@ import _02_model.entity.ProductTypeBean;
 import _02_model.entity.ShopBean;
 import _10_member.entity.Member;
 import _90_admin._93_editCoupon.service.editCouponService;
+import _90_admin._94_editActivity.service.editActivityService;
 
 @Controller
 @RequestMapping("/admin")
-@SessionAttributes({ "LoginOK","admincouponList"})
+@SessionAttributes({ "LoginOK","admincouponList" , "adminactivityList"})
 public class EditCouponController {
 
 	@Autowired
 	editCouponService editcouponService;
+	
+	@Autowired
+	editActivityService editactivityService;
 
 	@Autowired
 	ServletContext context;
@@ -74,9 +79,11 @@ public class EditCouponController {
 	
 	@RequestMapping("/administrator")
 	public String administrator(Model model) {
-		List<AdminCouponBean> list = editcouponService.getAllAdminCoupons();
+		List<AdminCouponBean> couponList = editcouponService.getAllAdminCoupons();
 //		model.getAttribute("admincouponList");  //需把"admincouponList"加到這個model裡才會正確顯示
-		model.addAttribute("admincouponList", list);
+		model.addAttribute("admincouponList", couponList);
+		List<AdminActivityBean> activityList = editactivityService.getAllAdminActivities();
+		model.addAttribute("adminactivityList", activityList);
 		return "_16_admin/administrator"; 
 	}
 	
@@ -186,12 +193,15 @@ public class EditCouponController {
 			filename = acb.getAdminfile_name();
 			if(blob != null) {
 				try {
+					
 					len = (int) blob.length();  //取得照片大小
 					pic = blob.getBytes(1, len); //???   jdbc相關類別都是1開頭
+					
 				} catch (SQLException e) {
 					throw new RuntimeException("shopController的getPicture()發生SQLException: " + e.getMessage());
 				}
 			}else { //如果沒有照片
+				
 				pic = toByteArray(filePath);
 				filename = filePath;
 			}

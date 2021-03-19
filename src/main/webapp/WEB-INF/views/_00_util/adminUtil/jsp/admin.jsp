@@ -44,7 +44,7 @@
 			</a>
 		</div>
 		<div class="item">
-			<a href="<c:url value='/admin/admin_activity' />">
+			<a href="<c:url value='/admin/InsertAdminActivity' />">
 				<button>
 					<span>平台優惠活動</span>
 				</button>

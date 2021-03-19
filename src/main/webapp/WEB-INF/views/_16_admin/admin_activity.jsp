@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,69 +31,95 @@
 			<!-- 功能選單結束 -->
             <main class="col-8">
                 <div class="active">
+                	<form:form method="POST" modelAttribute="AdminActivityBean" enctype="multipart/form-data" name="myForm">
                     <div>
                         <fieldset>
-                            <legend align="center">近期優惠活動</legend>
-                            <a href="#">2020/01/30-2020/02/15 月老助你一指傳情</a><br><br>
-                            <a href="#">2020/01/20-2020/02/25 金牛報喜</a><br><br>
+                            <legend align="center">優惠活動</legend>
+                         	<c:forEach var="adminactivities" varStatus="stat" items="${adminactivityList}">
+								<a href="<c:url value='/admin/modifyAdminActivity/${adminactivities.adminactivity_id}' />">
+								${adminactivities.adminactivity_name} ----->時間:${adminactivities.adminactivity_begin}至${adminactivities.adminactivity_end}</a><br>
+							</c:forEach>
+<!--                             <a href="#">2020/01/30-2020/02/15 月老助你一指傳情</a><br><br> -->
+<!--                             <a href="#">2020/01/20-2020/02/25 金牛報喜</a><br><br> -->
                         </fieldset>
                     </div>
-                    <div>
-                        <fieldset>
-                            <legend align="center">過期優惠活動</legend>
-                            <a href="#">2020/08/09-2020/09/01 中元節活動，集點換旺旺</a><br><br>
-                            <a href="#">2020/09/15-2020/10/01 慶中秋，月餅買十送一優惠券</a><br><br>
-                            <a href="#">2020/11/11 1111購物節，集優惠券換老婆餅</a><br><br>
-                        </fieldset>
-                    </div>
-                    <div class="active-mid">
-                        <label for="">優惠活動名稱 :</label>
-                        <input type="text" placeholder="輸入活動名稱" maxlength="30" size="83px">
-                    </div>
-                    <div class="active-mid">
-                        <label for="">優惠活動日期 : 開始</label>
-                        <input type="date" style="margin-left: 5px;">
-                        <label for=""> ~ </label>
-                        <input type="date" style="margin-right: 5px;">
-                        <label for="">結束</label>
-                    </div>
-                    <div style="display: flex;">
-                        <label for="">優惠活動內文 :</label>
-                        <div class='active-functionbar'>
-                            <table>
-                            <tr>
-                                <td><b>B</b></td>
-                                <td><I>I</I></td>
-                                <td style="text-decoration: underline;">U</td>
-                            </tr> 
-                            </table>
-                        </div>
-                    </div>
-                        <div>
-                            <textarea style="resize: none; width: 550px; height: 200px;"></textarea>
-                        </div>
-                    
-                    <div class="active-img">
-                        <label for="">優惠活動圖片 :</label>
-                        <div style="display: flex;">
-                            <label for="file">
-                                <i class="fas fa-image active-photo" style="margin-top: 2rem;">
-                                    ☛選擇圖片<input type="file" id="file" accept=".jpeg,.png" style="display: none;">
-                                </i>
+<!--                     <div> -->
+<!--                         <fieldset> -->
+<!--                             <legend align="center">過期優惠活動</legend> -->
+<!--                             <a href="#">2020/08/09-2020/09/01 中元節活動，集點換旺旺</a><br><br> -->
+<!--                             <a href="#">2020/09/15-2020/10/01 慶中秋，月餅買十送一優惠券</a><br><br> -->
+<!--                             <a href="#">2020/11/11 1111購物節，集優惠券換老婆餅</a><br><br> -->
+<!--                         </fieldset> -->
+<!--                     </div> -->
+                    <div style="border: 2px solid black; border-radius: 20px; padding: 2rem;">
+	                    <div class="active-mid">
+	                        <label for="">優惠活動名稱 :</label>
+	                        <form:input type="text" path="adminactivity_name" id="adminactivity_name" placeholder="輸入活動名稱" maxlength="30" size="75px"/>
+	                    </div>
+	                    <div class="active-mid">
+	                        <label for="">優惠活動日期 : 開始</label>
+	                        <form:input type="date" path="adminactivity_begin" id="adminactivity_begin" style="margin-left: 5px;"/>
+	                        <label for=""> ~ </label>
+	                        <form:input type="date" path="adminactivity_end" id="adminactivity_end" style="margin-right: 5px;"/>
+	                        <label for="">結束</label>
+	                    </div>
+	                    <div style="display: flex;">
+	                        <label for="">優惠活動內文 :</label>
+	                        <div class='active-functionbar'>
+	                            <table>
+	                            <tr>
+	                                <td><b>B</b></td>
+	                                <td><I>I</I></td>
+	                                <td style="text-decoration: underline;">U</td>
+	                            </tr> 
+	                            </table>
+	                        </div>
+	                    </div>
+	                        <div>
+	                            <form:textarea path="adminactivity_content" id="adminactivity_content" style="resize: none; width: 550px; height: 200px;"></form:textarea>
+	                        </div>
+	                    
+	                    <div class="active-img">
+	                        <label for="">優惠活動圖片 :</label>
+	                        <div style="display: flex;">
+	                            <label for="file">
+                                	<i class="coupon-photo" style="margin-top: 2rem; font-size: 18px;">
+                              			<form:input type="file" id="adminactivity_image" path="adminactivity_image" accept=".jpeg,.png" style="margin-left: 0px;"/>  <!--  style="display: none;" -->
+                                	</i>
+                            	<div class="item">
+                                	<img src="${pageContext.request.contextPath}/data/images/smallPic/coupon2.png" id="headImg1" style="width:200px; height: 200px;border: solid 1px #ddd">
+                            	</div>
                             </label>
-                            <div class="item">
-                                <img src="https://picsum.photos/540/250" id="headImg" style="margin-left: 25px; margin-top: -35px;">
-                            </div>
-                        </div>
+	                        </div>
+	                    </div>
+	                    <div class="active-btn">
+	                        
+	                            <button type="submit" class="active-button">儲存</button>
+	                    </div>
                     </div>
-                    <div class="active-btn">
-                        <a href="#">
-                            <button class="active-button">儲存</button>
-                        </a>
-                    </div>
+                    </form:form>
                 </div>
             </main>
         </div>
     </div>
+    <script>
+	$(document).ready(function(){
+	  $('#adminactivity_image').change(function(){
+		  readURL(this);
+	  })
+	  //因為單選的關係，所以有檔案一定是在第0個。
+	  function readURL(input){
+		  if(input.files && input.files[0]){
+		    let reader = new FileReader();
+		    reader.onload = function (e) { //讀出來是二進位檔案
+		    	$('#headImg1').attr('src', e.target.result);
+// 		    	$('#headImg1').attr({src:this.result , width:`200px`,height:`200px`});
+		    }
+		    reader.readAsDataURL(input.files[0]); 
+		  }
+		}
+	});
+
+	</script>
 </body>
 </html>

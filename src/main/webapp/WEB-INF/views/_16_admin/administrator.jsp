@@ -66,10 +66,10 @@
 					</div>
 					<hr>
 					<div>
-						<a href="#">2020/08/09-2020/09/01 中元節活動，集點換旺旺</a><br>
-						<a href="#">2020/09/15-2020/10/01 慶中秋，月餅買十送一優惠券</a><br>
-						<a href="#">2020/11/11 1111購物節，集優惠券換老婆餅</a><br> 
-						<a href="#">2020/10/28 慶萬聖節，帳號轉職魔法師</a><br>
+					<c:forEach var="adminactivities" varStatus="stat" items="${adminactivityList}">
+						<a href="<c:url value='/admin/modifyAdminActivity/${adminactivities.adminactivity_id}' />">
+						${adminactivities.adminactivity_name} ----->時間:${adminactivities.adminactivity_begin}至${adminactivities.adminactivity_end}</a><br>
+					</c:forEach>
 					</div>
 				</div>
 				<div class="status">

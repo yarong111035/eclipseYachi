@@ -14,7 +14,7 @@
     margin-bottom: 2rem;
 }
 .active fieldset{
- height: 250px;   
+ height: fit-content;   
  border-radius: 20px;
  margin-bottom: 2rem;
  border: 2px solid #333;
@@ -37,7 +37,7 @@
 }
 .active input {
     padding: 5px;
-    border: 2px solid #333;
+/*     border: 2px solid #333; */
     border-radius: 10px;
 }
 .active-mid {

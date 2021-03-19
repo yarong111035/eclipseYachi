@@ -159,7 +159,7 @@
 							href="<c:url value='/admin/admin_chatroom' />">客服回應</a><br> <a
 							href="<c:url value='/admin/admin_announcement' />">公告</a><br> <a
 							href="<c:url value='/admin/admin_adinfo' />">廣告資訊</a><br> <a
-							href="<c:url value='/admin/admin_activity' />">平台優惠活動</a><br> <a
+							href="<c:url value='/admin/InsertAdminActivity' />">平台優惠活動</a><br> <a
 							href="<c:url value='/admin/admin_checkShop' />">審核商家</a><br><a
 							href="<c:url value='/_50_shop/_53_shopRegister/InsertShop' />">申請商家</a><br><a
 							href="<c:url value='/_50_shop/_53_shopRegister/modifyShop/${LoginOK.shopBean.shop_id}' />">商家管理頁面</a><br>

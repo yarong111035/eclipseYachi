@@ -446,11 +446,11 @@ public class EditController {
 
 		return "_16_admin/admin_adinfo"; 
 	}
-	@RequestMapping("/admin/admin_activity")
-	public String admin_activity(Model model) {  
-
-		return "_16_admin/admin_activity"; 
-	}
+//	@RequestMapping("/admin/admin_activity")
+//	public String admin_activity(Model model) {  
+//
+//		return "_16_admin/admin_activity"; 
+//	}
 	
 	@RequestMapping("/admin/admin_checkShop")
 	public String admin_checkoutShop(Model model) {  
