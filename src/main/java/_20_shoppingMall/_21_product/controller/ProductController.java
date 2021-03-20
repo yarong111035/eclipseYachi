@@ -50,6 +50,7 @@ import _20_shoppingMall._21_product.exception.ProductNotFoundException;
 import _20_shoppingMall._21_product.service.ProductService;
 import _20_shoppingMall._21_product.service.ProductTypeService;
 import _20_shoppingMall._22_shoppingCart.service.CartBeanService;
+import _20_shoppingMall._23_orderProcess.service.OrderItemService;
  
 
 //此controller 目的為 列出商城的產品與產品種類並可以連結至商品明細頁
@@ -65,6 +66,8 @@ public class ProductController {
 	ServletContext context;
 	@Autowired 
 	CartBeanService cartBeanService;
+	@Autowired 
+	OrderItemService orderItemService;
 	
 	//撈出資料庫所有產品(轉成json格式)
 	@RequestMapping({"/allProducts"})
@@ -111,8 +114,13 @@ public class ProductController {
 	
 //	查詢單筆產品資料
 	@RequestMapping("/singleProduct")
-	public String getProductById(@RequestParam("id") Integer id,Model model) {
+	public String getProductById(
+			@RequestParam("id") Integer id,
+			Model model) {
 		model.addAttribute("product", productService.getProductById(id));
+		Integer soldQty = orderItemService.getSoldQty(id); //取得某一個產品售出的總數量
+		model.addAttribute("soldQty", soldQty);
+		
 		return "_12_shoppingmall/3_productDetail";
 	}
 	

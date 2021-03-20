@@ -1,5 +1,6 @@
 package _20_shoppingMall._23_orderProcess.dao.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Session;
@@ -60,8 +61,11 @@ public class OrderItemDaoImpl implements OrderItemDao {
 			int resultStock = stock -  item.getAmount();
 			if(resultStock < 0) {
 				throw new ProductStockException(
-						"庫存數量不足: product_id: " + item.getProductBean().getProduct_id() 
-						+ ", 目前庫存量: " + stock + ", 訂購數量: " + item.getAmount());
+//						"庫存數量不足: product_id: " + item.getProductBean().getProduct_id() 
+						"庫存不足！"
+						+ "目前庫存量: " + stock  
+//						", 訂購數量: " + item.getAmount()
+						);
 			}
 		}
 		
@@ -70,6 +74,18 @@ public class OrderItemDaoImpl implements OrderItemDao {
 			   .setParameter("orderItem_amount", item.getAmount())
 			   .setParameter("product_id", item.getProductBean().getProduct_id())
 		       .executeUpdate();
+	}
+
+	//取得資料庫某一個產品的售出數量紀錄
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Integer> queryAmountByProductId(Integer id) {
+		Session session = factory.getCurrentSession();
+		String hql = "SELECT o.amount "
+				   + " FROM OrderItemBean o "
+				   + " WHERE o.productBean.product_id = :product_id "; //可能select出很多筆
+		List<Integer> amountList = session.createQuery(hql).setParameter("product_id", id).getResultList();
+		return amountList;
 	}
 
 }

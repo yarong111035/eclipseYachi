@@ -78,16 +78,18 @@
                             <div class="productIntro">
                                 <div class="productName">
                                     <h3>${product.product_name}</h3><br>
-                                    <h6>評價(99)</h6>
-                                    <h4>已售出: <span style="color:#C95555; font-size:1.1rem;">87</span>件</h4>
+<!--                                     <h6>評價(99)</h6> -->
+                                    <h4>已售出: <span style="color:#C95555; font-size:1.5rem;">${soldQty}</span>件</h4>
                                 </div>
                                 
 <%--                            <form  action="<c:url value='/BuyProduct.do' />" method="POST">	 --%>
-                                <div class="productPrice">
-                                    <span class="perPrice">價格: NT$ ${product.product_price}</span>
+                                <div class="productInfoo">
+                                    <span class="spanHeader">單價:</span> 
+                                    <span class="spanContent">NT$ ${product.product_price}</span>
                                 </div>
-                                <div class="productPrice">
-                                    <span class="leftCount">剩餘數量: ${product.product_stock }</span>
+                                <div class="productInfoo">
+                                    <span class="spanHeader">剩餘數量:</span> 
+                                    <span class="spanContent">${product.product_stock } 件</span>
                                 </div>
 	                                
                                 <form method="POST" action="<c:url value='/BuyProduct.do?cmd=ADD1' />">
@@ -116,11 +118,13 @@
 	                                <div class="shopBtn">
 	                                    <div class="cartBtn"> 
 	                                    	<input type='hidden' name='product_id' value='${product.product_id}'>
+<%-- 	                                    	<input type='hidden' name='pageNo' value='${prarm.pageNo}'> --%>
 <!-- 	                                        <input type="submit" id="addCart" value="加入購物車"> -->
+											<a href="<c:url value='/DisplayPageProducts'/>" ><span>返回列表</span></a>
 	                                    </div>
 	                                    <div class="buyBtn">
-<%-- 	                                        <a href="<c:url value='/showAndAddCart/${product.product_id}'/>" ><span>直接購買</span></a> --%>
-	                                    		<input type="submit" id="addCart" value="直接購買">
+<%-- 	                                    <a href="<c:url value='/showAndAddCart/${product.product_id}'/>" ><span>直接購買</span></a> --%>
+                                    		<input type="submit" id="addCart" value="直接購買">
 	                                    </div>
 	                                </div>
                             	</form>   

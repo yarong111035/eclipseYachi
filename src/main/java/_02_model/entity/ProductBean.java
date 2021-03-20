@@ -46,6 +46,7 @@ public class ProductBean implements Serializable{
 	
 	@JsonIgnore
 	private Blob product_pic;
+	@JsonIgnore
 	private Blob product_picA;
 	
 	

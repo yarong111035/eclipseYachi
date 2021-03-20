@@ -104,7 +104,7 @@
 }
 /* 商品資訊元素共用屬性 */
 .productName h3, .inputCountBox, .selectSizeBox, .cartBtn, .buyBtn, .productName h4,.dropdownList li{
-  letter-spacing: 2px;
+  letter-spacing: 4px;
   color: #444444;
 }
 .productName h3{
@@ -117,26 +117,43 @@
 .productName h4, .productName h3{
   margin-top: 0;
   margin-bottom: 10px;
+  
 }
 /* 讓價格與數量在同一列，並且各自左右擺放 */
 .productPrice{
-    display: flex;
-    justify-content: space-between;
-    margin:15px 0;
+/*     display: flex; */
+/*     justify-content: space-between; */
+/*     margin:15px 0; */
 }
 .productPrice span{
-    letter-spacing: 1px;
-    font-size:1.1rem;
-    color:#BE5555;
+/*     letter-spacing: 1px; */
+/*     font-size:1.1rem; */
+/*     color:#BE5555; */
+}
+.productInfoo{
+	margin-bottom: 12px;
+}
+.spanHeader{
+	font-size: 1.1rem;
+    letter-spacing: 4px;
+    color: #444;
+}
+.spanContent{
+	font-size: 1.2rem;
+    letter-spacing: 2px;
+    color: #555;
 }
 .selectCountBox,.selectSizeBox{
     display: flex;
     justify-content: space-between;
     color: #555555;
     margin-bottom: 30px;
+    border-bottom: 1px solid #e6b3b3;
+    padding-bottom: 32px;
 }
 .selectCountBox label,.selectSizeBox label{
   align-self: center;
+  font-size:1.2rem;
 }
 /* input寬度 與 select 框 是 包住它的div的72% */
 .selectCountBox select, .selectSizeBox select{
@@ -152,23 +169,25 @@
 
 /* 按鈕部分 */
 .shopBtn{
-/*     display: flex; */
-/*     justify-content: space-between; */
+    display: flex;
+    justify-content: space-between;
 }
-.cartBtn input, .buyBtn input{
+.cartBtn a, .buyBtn input{
 	border:none;
 	outline:none;
 	display:inline-block;
     width: 7rem;
+    height:38px;
     padding:10px;
     background-color: #C39C9C;
     color: #ffffff;
     border-radius: 2px;
     cursor: pointer;
     text-align: center;
+    letter-spacing:2px;
 } 
 
-.cartBtn input:hover,.buyBtn input:hover{
+.cartBtn a:hover,.buyBtn input:hover{
   border:none;
   outline:none;
   background: #d2b3b3;
