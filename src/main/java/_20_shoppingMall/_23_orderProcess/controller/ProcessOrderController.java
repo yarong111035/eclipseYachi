@@ -114,6 +114,7 @@ public class ProcessOrderController {
 			return "redirect:/cartDeleteFromDatabase";
 		} catch (RuntimeException e) {
 			System.out.println(e.getMessage());
+			redirectAttributes.addFlashAttribute("stockShortage", e.getMessage()); //只會出現一次
 			return "redirect:/showCartContent";
 		}
 		

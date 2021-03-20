@@ -118,8 +118,13 @@
 	                            </div>
 								<div class="td stock">
 									<c:if test="${cart.productBean.product_stock == 0}">
-	                                	<span style="color: rgb(211, 73, 73);">目前暫無庫存 下次再選購吧!</span>
+	                                	<span style="color: rgb(211, 73, 73);">目前暫無庫存 下次再選購吧!</span><br>
 									</c:if>
+									<!--產品狀態 == 2 代表下架中，需顯示訊息在會員的購物車中 -->
+<%-- 									<c:if test="${cart.productBean.product_status == 2 }"> --%>
+<!-- 										<span style="color: rgb(211, 73, 73);">產品已下架 下次再選購吧!</span> -->
+<%-- 									</c:if> --%>
+									<span style="color: rgb(211, 73, 73);">${stockShortage}</span>
 	                            </div>
 	                            <div class="td price">
 	                                <span>NT$ ${cart.productBean.product_price }</span>
