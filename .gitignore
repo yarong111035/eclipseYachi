@@ -3,5 +3,6 @@
 **/Servers/**
 **/m2e-wtp/**
 **/.settings/**
+.class
 .classpath
 .project
