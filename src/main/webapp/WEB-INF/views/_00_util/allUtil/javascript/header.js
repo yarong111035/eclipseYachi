@@ -10,7 +10,10 @@ $(function(){
 //        console.log(scroll);
         if(scroll >= 1){
             $('.myNav, .search').css({
-                opacity:'0',
+//                opacity:'0',  //會佔空間
+//				display:none,
+				position: 'absolute',
+				top:'-9999px',
                 transition:'.2s'
                 });
             $('.tab').css({
@@ -31,6 +34,8 @@ $(function(){
             $('.myNav, .search').css({   
                 transition:'.5s',
                 opacity:'1',
+                position: 'static',  //復原定位屬性
+//				  display:flex,
             });
         }
     })

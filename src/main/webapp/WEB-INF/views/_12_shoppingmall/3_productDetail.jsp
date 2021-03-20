@@ -77,14 +77,16 @@
                             <!-- big photo end -->
                             <div class="productIntro">
                                 <div class="productName">
-                                    <h3>${product.product_name}</h3>
-                                    <span>評價(99)</span>
-                                    <h4>已售出: 87件</h4>
+                                    <h3>${product.product_name}</h3><br>
+                                    <h6>評價(99)</h6>
+                                    <h4>已售出: <span style="color:#C95555; font-size:1.1rem;">87</span>件</h4>
                                 </div>
                                 
 <%--                            <form  action="<c:url value='/BuyProduct.do' />" method="POST">	 --%>
                                 <div class="productPrice">
                                     <span class="perPrice">價格: NT$ ${product.product_price}</span>
+                                </div>
+                                <div class="productPrice">
                                     <span class="leftCount">剩餘數量: ${product.product_stock }</span>
                                 </div>
 	                                
@@ -104,13 +106,13 @@
 	                                    		<option value="10">10</option>
 	                                    	</select>
 	                                </div>
-	                                <div class="selectSizeBox">
-	                                    <label for="SelectSize">規格：</label>
-	                                        <select name="size" id="SelectSize">
-		                                        <option value="S">S</option>
-		                                        <option value="M">M</option>
-	                                        </select>
-	                                </div>
+<!-- 	                                <div class="selectSizeBox"> -->
+<!-- 	                                    <label for="SelectSize">規格：</label> -->
+<!-- 	                                        <select name="size" id="SelectSize"> -->
+<!-- 		                                        <option value="S">S</option> -->
+<!-- 		                                        <option value="M">M</option> -->
+<!-- 	                                        </select> -->
+<!-- 	                                </div> -->
 	                                <div class="shopBtn">
 	                                    <div class="cartBtn"> 
 	                                    	<input type='hidden' name='product_id' value='${product.product_id}'>

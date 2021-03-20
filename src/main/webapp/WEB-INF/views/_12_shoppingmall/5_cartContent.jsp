@@ -9,19 +9,54 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cart content</title>
-    <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
     <link rel="stylesheet" href="<c:url value='/_00_util/shoppingMallUtil/css/5_cart_content.css'/>">
     <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/background.css'/>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="<c:url value='/_00_util/allUtil/javascript/jquery-3.5.1.js'/>"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script src="<c:url value='/_00_util/allUtil/javascript/jquery-3.5.1.js'/>"></script>
     <script src="<c:url value='/_00_util/allUtil/javascript/jquery-ui.js'/>"></script>
 </head>
 <body>
+	<!------------------------------引入共同首頁-------------------------- -->
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
+	<!------------------------------引入共同首頁-------------------------- -->
+	
+	<!-----------------------------訂單流程圖----------------------------- -->
+	  <div class="container chart_box">
+		  <div class="row justify-content-center chart">
+			<div data-aos="fade-up"
+			data-aos-duration="1000">
+			  <ul class="shop_list d-flex ">
+					<li class="circle_box step1">
+						<span>01</span>	
+						<span class="chart_name">購物清單</span>
+					</li>
+				
+				<li class="circle_box step2">
+					<span>02</span>
+					<span class="chart_name">填寫資料</span>
+				</li>
+				<li class="circle_box step3">
+					<span>03</span>
+					<span class="chart_name">完成訂單</span>
+				</li>
+			  </ul>
+			  </div>
+			
+		  </div>
+	  </div>
+	  <!-----------------------------訂單流程圖----------------------------- -->
 
-	<div class="container">
-        <!--Start c -->
+
+	<div class="container shop_title_box">
+        <!--Start  購物車標頭 -->
         <div class="shopping_title">
             <i class="fas fa-shopping-cart"></i>
             <span>購物車</span>
@@ -218,6 +253,8 @@
 
     	})
     </script>
-    
+    <script>
+		AOS.init();
+	</script>
 </body>
 </html>

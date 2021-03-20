@@ -128,7 +128,7 @@
 
 						<div class="form-group row  d-flex justify-content-end mt-5">
 							<div>
-								<button type="submit" class="btn btn-secondary mr-3">一鍵輸入</button>
+								<button id="inputAllBtn" type="button" class="btn btn-light mr-3">一鍵輸入</button>
 							</div>
 							<div>
 								<button type="submit" id="btnAdd" class="btn btn-primary">新增</button>
@@ -178,6 +178,15 @@
 			  }
 		  }
 		  
+		  //一鍵輸入功能
+		  //存取input標籤的值必須使用.val()方法
+		  $('#inputAllBtn').click(function(){
+			  $('#product_name').val("美的冒泡304不鏽鋼餐具");
+			  $('#product_info').val("超輕量304不鏽鋼餐具，安全無毒又美觀！");
+			  $('#product_price').val("199.0");
+			  $('#product_stock').val("5")
+			  $('#product_spec').val("環保餐具")
+		  })
 		});
 		
 

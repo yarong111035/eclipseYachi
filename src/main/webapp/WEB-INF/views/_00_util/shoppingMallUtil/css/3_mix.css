@@ -122,10 +122,11 @@
 .productPrice{
     display: flex;
     justify-content: space-between;
-    margin:25px 0;
+    margin:15px 0;
 }
 .productPrice span{
     letter-spacing: 1px;
+    font-size:1.1rem;
     color:#BE5555;
 }
 .selectCountBox,.selectSizeBox{
@@ -151,8 +152,8 @@
 
 /* 按鈕部分 */
 .shopBtn{
-    display: flex;
-    justify-content: space-between;
+/*     display: flex; */
+/*     justify-content: space-between; */
 }
 .cartBtn input, .buyBtn input{
 	border:none;
@@ -229,7 +230,10 @@
   margin: 5px 0;
 }
 
-
+/*頁籤第一頁(商品詳細介紹)*/
+.product_info{
+	height:300px;
+}
 
 
 /* 頁籤第二頁 (評論內容) */

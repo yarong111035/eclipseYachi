@@ -329,72 +329,64 @@
 
 
 
-						<!-- ----------------------------待付款訂單開始 ------------------------>
-						<div class="tabs-panel">
-							<table>
+						<!-- ----------------------------未付款訂單開始 ------------------------>
+							<div class="tabs-panel">
 
-								<thead class="product-item">
-
-									<tr class="img-tr">
-										<td colspan="2" rowspan="4" class="img-td"><img
-											src="../img/cat.png"></td>
-										<td colspan="6">商品名稱</td>
-									</tr>
-									<tr>
-										<td colspan="4" rowspan="3">簡介</td>
-										<td style="text-align: center;">移除商品</td>
-										<td style="text-align: right;">
-											<button class="remove-product">移除</button>
-										</td>
-
-									</tr>
-									<tr>
-										<td style="text-align: center;">數量</td>
-										<td style="text-align: right;">x2</td>
-									</tr>
-									<tr>
-
-										<td style="text-align: center;">金額</td>
-										<td style="text-align: right;">$300</td>
+							<table class="order-info">
+								<thead>
+									<tr class="order-nav">
+										<th>序號</th>
+										<th>日期</th>
+										<th>編號</th>
+										<th>付款方式</th>
+										<th>訂單狀態</th>
+										<th>配送日期</th>
+										<th>總額</th>
 									</tr>
 								</thead>
-
-								<thead class="product-item">
-									<tr class="img-tr">
-										<td colspan="2" rowspan="4" class="img-td"><img
-											src="../img/cat.png"></td>
-										<td colspan="6">商品名稱</td>
-									</tr>
-									<tr>
-										<td colspan="4" rowspan="3">簡介</td>
-										<td style="text-align: center;">移除商品</td>
-										<td style="text-align: right;">
-											<button class="remove-product">移除</button>
-										</td>
-
-									</tr>
-									<tr>
-										<td style="text-align: center;">數量</td>
-										<td style="text-align: right;">x2</td>
-									</tr>
-									<tr>
-
-										<td style="text-align: center;">金額</td>
-										<td style="text-align: right;">$300</td>
-									</tr>
-								</thead>
+								<tbody>
+									<!-----------------出現未付款狀態 == 1-------------- -->
+									<c:forEach var="order" items="${memberOrders}" varStatus='i'>
+										<c:if test="${order.orderStatusBean.status_id == 1}">
+										<tr>
+											<td>${i.count}</td>
+											<c:if test="${empty memberOrders}">
+												<td colspan="10" class="alignC"><span
+													style="color: Red; font-weight: bold;">查無紀錄</span></td>
+											</c:if>
+											<td><fmt:formatDate value="${ order.order_datetime}"
+													pattern="yyyy-MM-dd" /><br> <fmt:formatDate
+													value="${ order.order_datetime}" pattern="HH:mm" /></td>
+											<td class="orderDetail"><a
+												href="<c:url value='/_23_orderProcess/orderDetail?orderNo=${order.order_id}'/>">
+													${order.orderNumber} </a></td>
+											<td><a href="google.com">${order.payTypeBean.pay_type_name}</a>
+											</td>
+											<td><c:choose>
+													<c:when test="${order.orderStatusBean.status_id == 1}">
+														<span style="color: red; font-weight: 500;";>${order.orderStatusBean.status_name }</span>
+													</c:when>
+													<c:when
+														test="${order.orderStatusBean.status_id == 2 || order.orderStatusBean.status_id == 3}">
+														<span style="color: black; font-weight: 500;";>${order.orderStatusBean.status_name }</span>
+													</c:when>
+													<c:when test="${order.orderStatusBean.status_id == 4 }">
+														<span style="color: green; font-weight: 500;";>${order.orderStatusBean.status_name }</span>
+													</c:when>
+													<c:otherwise>
+														<span style="color: gray; font-weight: 500;";>${order.orderStatusBean.status_name }</span>
+													</c:otherwise>
+												</c:choose></td>
+											<td><fmt:formatDate value="${ order.shipping_date}"
+													pattern="yyyy-MM-dd" /></td>
+											<td>${ order.order_total}</td>
+										</tr>
+										</c:if>
+									</c:forEach>
+								
+								</tbody>
 
 							</table>
-
-							<div class="btCancel">
-
-								<a href="#"><button>
-										<i class="fas fa-cart-arrow-down"></i>再買一次
-									</button></a> <a href="#"><button>
-										<i class="fas fa-window-close"></i>取消訂單
-									</button></a>
-
-							</div>
 
 						</div>
 						<!-- -----------------------------待付款訂單結束-------------------------- -->
@@ -403,15 +395,131 @@
 
 
 						<!--------------------------------- 待出貨訂單開始------------------------- -->
-						<div class="tabs-panel">測試3</div>
+						<div class="tabs-panel">
+
+							<table class="order-info">
+								<thead>
+									<tr class="order-nav">
+										<th>序號</th>
+										<th>日期</th>
+										<th>編號</th>
+										<th>付款方式</th>
+										<th>訂單狀態</th>
+										<th>配送日期</th>
+										<th>總額</th>
+									</tr>
+								</thead>
+								<tbody>
+									<!-----------------出現未出貨狀態 == 2-------------- -->
+									<c:forEach var="order" items="${memberOrders}" varStatus='i'>
+										<c:if test="${order.orderStatusBean.status_id == 2}">
+										<tr>
+											<td>${i.count}</td>
+											<c:if test="${empty memberOrders}">
+												<td colspan="10" class="alignC"><span
+													style="color: Red; font-weight: bold;">查無紀錄</span></td>
+											</c:if>
+											<td><fmt:formatDate value="${ order.order_datetime}"
+													pattern="yyyy-MM-dd" /><br> <fmt:formatDate
+													value="${ order.order_datetime}" pattern="HH:mm" /></td>
+											<td class="orderDetail"><a
+												href="<c:url value='/_23_orderProcess/orderDetail?orderNo=${order.order_id}'/>">
+													${order.orderNumber} </a></td>
+											<td><a href="google.com">${order.payTypeBean.pay_type_name}</a>
+											</td>
+											<td><c:choose>
+													<c:when test="${order.orderStatusBean.status_id == 1}">
+														<span style="color: red; font-weight: 500;";>${order.orderStatusBean.status_name }</span>
+													</c:when>
+													<c:when
+														test="${order.orderStatusBean.status_id == 2 || order.orderStatusBean.status_id == 3}">
+														<span style="color: black; font-weight: 500;";>${order.orderStatusBean.status_name }</span>
+													</c:when>
+													<c:when test="${order.orderStatusBean.status_id == 4 }">
+														<span style="color: green; font-weight: 500;";>${order.orderStatusBean.status_name }</span>
+													</c:when>
+													<c:otherwise>
+														<span style="color: gray; font-weight: 500;";>${order.orderStatusBean.status_name }</span>
+													</c:otherwise>
+												</c:choose></td>
+											<td><fmt:formatDate value="${ order.shipping_date}"
+													pattern="yyyy-MM-dd" /></td>
+											<td>${ order.order_total}</td>
+										</tr>
+										</c:if>
+									</c:forEach>
+								
+								</tbody>
+
+							</table>
+
+						</div>
 						<!---------------------------------- 待出貨訂單開始------------------------ -->			
 						
 
 
 
-						<!---------------------------------- 待收貨訂單開始------------------------- -->
-						<div class="tabs-panel">測試4</div>
-						<!-- ---------------------------------待收貨訂單開始------------------------- -->
+						<!---------------------------------- 待收貨(已送達)訂單開始------------------------- -->
+						<div class="tabs-panel">
+
+							<table class="order-info">
+								<thead>
+									<tr class="order-nav">
+										<th>序號</th>
+										<th>日期</th>
+										<th>編號</th>
+										<th>付款方式</th>
+										<th>訂單狀態</th>
+										<th>配送日期</th>
+										<th>總額</th>
+									</tr>
+								</thead>
+								<tbody>
+									<!-----------------出現未出貨狀態 == 2-------------- -->
+									<c:forEach var="order" items="${memberOrders}" varStatus='i'>
+										<c:if test="${order.orderStatusBean.status_id == 4}">
+										<tr>
+											<td>${i.count}</td>
+											<c:if test="${empty memberOrders}">
+												<td colspan="10" class="alignC"><span
+													style="color: Red; font-weight: bold;">查無紀錄</span></td>
+											</c:if>
+											<td><fmt:formatDate value="${ order.order_datetime}"
+													pattern="yyyy-MM-dd" /><br> <fmt:formatDate
+													value="${ order.order_datetime}" pattern="HH:mm" /></td>
+											<td class="orderDetail"><a
+												href="<c:url value='/_23_orderProcess/orderDetail?orderNo=${order.order_id}'/>">
+													${order.orderNumber} </a></td>
+											<td><a href="google.com">${order.payTypeBean.pay_type_name}</a>
+											</td>
+											<td><c:choose>
+													<c:when test="${order.orderStatusBean.status_id == 1}">
+														<span style="color: red; font-weight: 500;";>${order.orderStatusBean.status_name }</span>
+													</c:when>
+													<c:when
+														test="${order.orderStatusBean.status_id == 2 || order.orderStatusBean.status_id == 3}">
+														<span style="color: black; font-weight: 500;";>${order.orderStatusBean.status_name }</span>
+													</c:when>
+													<c:when test="${order.orderStatusBean.status_id == 4 }">
+														<span style="color: green; font-weight: 500;";>${order.orderStatusBean.status_name }</span>
+													</c:when>
+													<c:otherwise>
+														<span style="color: gray; font-weight: 500;";>${order.orderStatusBean.status_name }</span>
+													</c:otherwise>
+												</c:choose></td>
+											<td><fmt:formatDate value="${ order.shipping_date}"
+													pattern="yyyy-MM-dd" /></td>
+											<td>${ order.order_total}</td>
+										</tr>
+										</c:if>
+									</c:forEach>
+								
+								</tbody>
+
+							</table>
+
+						</div>
+						<!-- ---------------------------------待收貨(已送達)訂單開始------------------------- -->
 
 
 					</div>
@@ -492,6 +600,11 @@
 			$.getJSON(url).then(res => {
 				// alert(res.orderNumber);
 				
+				if(res.orderNumber != orderNumber){
+					alert("訂單號不正確喔!!!")
+					return;
+				}else{
+					
 				// 資訊區域
 				h3Title = `<h3>${'${res.orderNumber}'} 的訂單詳情</h3>`; 
 				h3Title +=`<h4>訂單狀態: ${'${res.orderStatusBean.status_name}'} </h4>`
@@ -534,6 +647,8 @@
 				}
 				segment += `</table></div>`;	
 				h3Title += segment;
+				}
+				
 
 				//判斷如果此區域有元素就清空(解決累加問題)
 				if($('#orderDetailArea:has(h3)').length != 0)	{

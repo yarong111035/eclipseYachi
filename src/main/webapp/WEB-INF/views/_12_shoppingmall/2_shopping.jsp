@@ -13,6 +13,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
 	crossorigin="anonymous">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
@@ -33,6 +34,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
 	integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
 	crossorigin="anonymous"></script>
+
 <script
 	src="<c:url value='/_00_util/allUtil/javascript/jquery-3.5.1.js'/>"></script>
 <script src="<c:url value='/_00_util/allUtil/javascript/jquery-ui.js'/>"></script>
@@ -204,7 +206,7 @@
 			</div>
 			<!-- 卷軸部分結束 -->
 			<div class="buyBtn">
-				<a href="<c:url value='/showCartContent'/>">前往結帳 NT$ ${sum}</a>
+				<a href="<c:url value='/goCheckout'/>">前往結帳 NT$ ${sum}</a>
 			</div>
 
 			<label for="side_menu_switch"> <i class="fas fa-cart-plus"></i>
@@ -257,92 +259,109 @@
 			<!-- ------------------------------leftSide start  引入共同商品種類功能列----------------------------- -->
 
 			<!-- Start:rightSide -->
-			<main>
+			<main>-
 				<div class="right_container container">
 				
 			<!-----------------------------------------商品排列區域------------------------------------------------>
-					<div class="row">
-						<c:forEach var='entry' items='${products_DPP}'>
+					<div data-aos="fade-up">
+						<div class="row">
+							<c:forEach var='entry' items='${products_DPP}'>
 							<!-- 判斷商品是否示刪除狀態 -->
-							<c:if test="${entry.product_status == 0 }">
-								<div class="product_contianer col col-md-6 col-lg-3 ">
-									<div class="product_items">
-										<div class="product_image image2">
-	
-											<img
-												src="<c:url value='/getPictureA/${entry.product_id}'/>">
-										</div>
-										<div class="product_image image1">
-	
-											<a
-												href="<spring:url value='singleProduct?id=${entry.product_id}'/>"><img
-												src="<c:url value='/getPicture/${entry.product_id}'/>"></a>
-										</div>
-										<div class="itemBody">
-											<div class="product_name">
+								<c:if test="${entry.product_status == 0 }">
+									<div class="product_contianer col col-md-6 col-lg-3 ">
+										<div class="product_items">
+											<div class="product_image image2">
+		
+												<img
+													src="<c:url value='/getPictureA/${entry.product_id}'/>">
+											</div>
+											<div class="product_image image1">
+		
 												<a
-													href="<spring:url value='singleProduct?id=${entry.product_id}'/>">${entry.product_name }</a>
+													href="<spring:url value='singleProduct?id=${entry.product_id}'/>"><img
+													src="<c:url value='/getPicture/${entry.product_id}'/>"></a>
 											</div>
-											<div class="product_price">
-												<span>售價NT${entry.product_price }</span>
+											<div class="itemBody">
+												<div class="product_name">
+													<a
+														href="<spring:url value='singleProduct?id=${entry.product_id}'/>">${entry.product_name }</a>
+												</div>
+												<div class="product_price">
+													<span>售價NT${entry.product_price }</span>
+												</div>
+												<c:if test="${!empty LoginOK}">
+													<form action="<c:url value='/BuyProduct.do?cmd=add&sortId=${entry.productTypeBean.product_type_id }' />" method="POST">
+														<div class="product_count">
+															<span>數量</span> 
+															<select name='qty'>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10">10</option>
+															</select>
+														</div>
+														<input type='hidden' name='product_id' value='${entry.product_id}'>
+														<input type='hidden' name='pageNo' value='${param.pageNo}'>
+														<c:choose>
+															<c:when test="${entry.product_stock == 0}">
+																<button disabled class="cartBtn" style="cursor: no-drop; color:#444;">缺貨中</button>
+															</c:when>
+															<c:otherwise>
+																<button type='submit' class="cartBtn" onclick="alert('加入購物車成功')">加入購物車</button>
+															</c:otherwise>
+														</c:choose>
+													</form>
+												</c:if>
+												<c:if test="${empty LoginOK}">
+													<form action="<c:url value='/visitorBuyProduct.do/${entry.product_id}' />" method="POST">
+														<div class="product_count">
+															<span>數量</span> 
+															<select name='qty'>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10">10</option>
+															</select>
+														</div>
+														<input type='hidden' name='product_id' value='${entry.product_id}'>
+														<Input type='hidden' name='pageNo' value='${param.pageNo}'>
+														<c:choose>
+															<c:when test="${entry.product_stock == 0}">
+																<button disabled class="cartBtn" style="cursor: no-drop; color:#444;">缺貨中</button>
+															</c:when>
+															<c:otherwise>
+																<button type='submit' class="cartBtn" onclick="alert('加入購物車成功')">加入購物車</button>
+															</c:otherwise>
+														</c:choose>
+	<!-- 													<button type='submit' class="cartBtn" onclick="alert('加入購物車成功')">加入購物車</button> -->
+													</form>
+												</c:if>
+											
+											
+											
+											
+											
+											
+											
 											</div>
-											<c:if test="${!empty LoginOK}">
-												<form action="<c:url value='/BuyProduct.do?cmd=add&sortId=${entry.productTypeBean.product_type_id }' />" method="POST">
-													<div class="product_count">
-														<span>數量</span> 
-														<select name='qty'>
-															<option value="1">1</option>
-															<option value="2">2</option>
-															<option value="3">3</option>
-															<option value="4">4</option>
-															<option value="5">5</option>
-															<option value="6">6</option>
-															<option value="7">7</option>
-															<option value="8">8</option>
-															<option value="9">9</option>
-															<option value="10">10</option>
-														</select>
-													</div>
-													<input type='hidden' name='product_id' value='${entry.product_id}'>
-													<Input type='hidden' name='pageNo' value='${param.pageNo}'>
-													<button type='submit' class="cartBtn" onclick="alert('加入購物車成功')">加入購物車</button>
-												</form>
-											</c:if>
-											<c:if test="${empty LoginOK}">
-												<form action="<c:url value='/visitorBuyProduct.do/${entry.product_id}' />" method="POST">
-													<div class="product_count">
-														<span>數量</span> 
-														<select name='qty'>
-															<option value="1">1</option>
-															<option value="2">2</option>
-															<option value="3">3</option>
-															<option value="4">4</option>
-															<option value="5">5</option>
-															<option value="6">6</option>
-															<option value="7">7</option>
-															<option value="8">8</option>
-															<option value="9">9</option>
-															<option value="10">10</option>
-														</select>
-													</div>
-													<input type='hidden' name='product_id' value='${entry.product_id}'>
-													<Input type='hidden' name='pageNo' value='${param.pageNo}'>
-													<button type='submit' class="cartBtn" onclick="alert('加入購物車成功')">加入購物車</button>
-												</form>
-											</c:if>
-										
-										
-										
-										
-										
-										
-										
+											<!-- <div class="clearfix"></div> -->
 										</div>
-										<!-- <div class="clearfix"></div> -->
 									</div>
-								</div>
-							 </c:if>
-						</c:forEach>
+							 	</c:if>
+							</c:forEach>
+						</div>
 					</div>
 			<!-----------------------------------------商品排列區域------------------------------------------------>	
 					
@@ -469,7 +488,10 @@
 	
 		
 	</script>
-
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script>
+  		AOS.init();
+	</script>
 
 
 
