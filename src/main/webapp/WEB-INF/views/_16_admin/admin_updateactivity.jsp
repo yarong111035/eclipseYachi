@@ -35,7 +35,7 @@
                     <div>
                         <fieldset>
                             <legend align="center">優惠活動</legend>
-                         	<c:forEach var="adminactivities" varStatus="stat" items="${adminactivityList}">
+                            <c:forEach var="adminactivities" varStatus="stat" items="${adminactivityList}">
 								<a href="<c:url value='/admin/modifyAdminActivity/${adminactivities.adminactivity_id}' />">
 								${adminactivities.adminactivity_name} ----->時間:${adminactivities.adminactivity_begin}至${adminactivities.adminactivity_end}</a><br>
 							</c:forEach>
@@ -87,7 +87,8 @@
                               			<form:input type="file" id="adminactivity_image" path="adminactivity_image" accept=".jpeg,.png" style="margin-left: 0px;"/>  <!--  style="display: none;" -->
                                 	</i>
                             	<div class="item">
-                                	<img src="${pageContext.request.contextPath}/data/images/smallPic/coupon2.png" id="headImg1" style="width:200px; height: 200px;border: solid 1px #ddd">
+                                	<img src="<c:url value='/admin/_94_adminactivity/getPicture/${adminactivity_id}'/>" id="headImg1" style="width:200px; height: 200px;border: solid 1px #ddd">
+                            	
                             	</div>
                             </label>
 	                        </div>

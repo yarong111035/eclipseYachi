@@ -46,23 +46,37 @@
 			<main class="col-8">
 				<div class="status">
 					<div class="status-nav">
+						<h3>平台優惠券</h3>
+						<div class="space"></div>
+						<a class="readmore" href="#">readmore...</a>
+					</div>
+					<hr>
+					<div> 
+					<c:forEach var="admincoupons" varStatus="stat" items="${admincouponList}">
+						<a href="<c:url value='/admin/modifyAdminCoupon/${admincoupons.admincoupon_id}' />">${admincoupons.admincoupon_name} ----->
+						時間:${admincoupons.admincoupon_begin}至${admincoupons.admincoupon_end}----->剩:${admincoupons.admincoupon_amount}張</a><br>
+					</c:forEach>
+					</div>
+				</div>
+				<div class="status">
+					<div class="status-nav">
 						<h3>平台優惠活動</h3>
 						<div class="space"></div>
-						<a href="#">readmore...</a>
+						<a class="readmore" href="#">readmore...</a>
 					</div>
 					<hr>
 					<div>
-						<a href="#">2020/08/09-2020/09/01 中元節活動，集點換旺旺</a><br> <a
-							href="#">2020/09/15-2020/10/01 慶中秋，月餅買十送一優惠券</a><br> <a
-							href="#">2020/11/11 1111購物節，集優惠券換老婆餅</a><br> <a href="#">2020/10/28
-							慶萬聖節，帳號轉職魔法師</a><br>
+					<c:forEach var="adminactivities" varStatus="stat" items="${adminactivityList}">
+						<a href="<c:url value='/admin/modifyAdminActivity/${adminactivities.adminactivity_id}' />">
+						${adminactivities.adminactivity_name} ----->時間:${adminactivities.adminactivity_begin}至${adminactivities.adminactivity_end}</a><br>
+					</c:forEach>
 					</div>
 				</div>
 				<div class="status">
 					<div class="status-nav">
 						<h3>廣告資訊</h3>
 						<div class="space"></div>
-						<a href="#">readmore...</a>
+						<a class="readmore" href="#">readmore...</a>
 					</div>
 					<hr>
 					<div>
@@ -76,7 +90,7 @@
 					<div class="status-nav">
 						<h3>客服回應</h3>
 						<div class="space"></div>
-						<a href="#">readmore...</a>
+						<a class="readmore" href="#">readmore...</a>
 					</div>
 					<hr>
 					<div>
@@ -91,7 +105,7 @@
 					<div class="status-nav">
 						<h3>審核商家</h3>
 						<div class="space"></div>
-						<a href="#">readmore...</a>
+						<a class="readmore" href="#">readmore...</a>
 					</div>
 					<hr>
 					<div>
@@ -104,7 +118,7 @@
 					<div class="status-nav">
 						<h3>公告</h3>
 						<div class="space"></div>
-						<a href="#">readmore...</a>
+						<a class="readmore" href="#">readmore...</a>
 					</div>
 					<hr>
 					<div>
@@ -117,7 +131,7 @@
 					<div class="status-nav">
 						<h3>申訴單</h3>
 						<div class="space"></div>
-						<a href="#">readmore...</a>
+						<a class="readmore" href="#">readmore...</a>
 					</div>
 					<hr>
 					<div>
@@ -130,5 +144,14 @@
 			</main>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		$('.readmore').click(function(){
+			$('.status').toggleClass("status1")
+		})
+	
+	</script>
+	
+	
 </body>
 </html>

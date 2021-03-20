@@ -1,4 +1,4 @@
-package _90_admin._93_editCoupon.conroller;
+package _90_admin._94_editActivity.conroller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -42,16 +42,12 @@ import _02_model.entity.CouponBean;
 import _02_model.entity.ProductTypeBean;
 import _02_model.entity.ShopBean;
 import _10_member.entity.Member;
-import _90_admin._93_editCoupon.service.editCouponService;
 import _90_admin._94_editActivity.service.editActivityService;
 
 @Controller
 @RequestMapping("/admin")
-@SessionAttributes({ "LoginOK","admincouponList" , "adminactivityList"})
-public class EditCouponController {
-
-	@Autowired
-	editCouponService editcouponService;
+@SessionAttributes({ "LoginOK","adminactivityList"})
+public class EditActivityController {
 	
 	@Autowired
 	editActivityService editactivityService;
@@ -75,34 +71,31 @@ public class EditCouponController {
 //		return "_16_admin/admin_coupon";
 //	}
 	
-	//管理員首頁
+	//管理員平台活動
 	
-	@RequestMapping("/administrator")
-	public String administrator(Model model) {
-		List<AdminCouponBean> couponList = editcouponService.getAllAdminCoupons();
-//		model.getAttribute("admincouponList");  //需把"admincouponList"加到這個model裡才會正確顯示
-		model.addAttribute("admincouponList", couponList);
+	@RequestMapping("/admin/admin_activity")
+	public String admin_activity(Model model) {  
 		List<AdminActivityBean> activityList = editactivityService.getAllAdminActivities();
 		model.addAttribute("adminactivityList", activityList);
-		return "_16_admin/administrator"; 
+		return "_16_admin/admin_activity"; 
 	}
 	
-	@GetMapping("modifyAdminCoupon/{admincoupon_id}")
-	public String showUpdateForm(Model model, @PathVariable Integer admincoupon_id) {
+	@GetMapping("modifyAdminActivity/{adminactivity_id}")
+	public String showUpdateForm(Model model, @PathVariable Integer adminactivity_id) {
 		
-		AdminCouponBean admincouponBean = editcouponService.getAdminCoupon(admincoupon_id);
-		model.addAttribute("AdminCouponBean", admincouponBean);
-		return "_16_admin/admin_updatecoupon";
+		AdminActivityBean adminactivityBean = editactivityService.getAdminActivity(adminactivity_id);
+		model.addAttribute("AdminActivityBean", adminactivityBean);
+		return "_16_admin/admin_updateactivity";
 	}
 
-	@PostMapping("modifyAdminCoupon/{admincoupon_id}")
-	public String updateForm(@ModelAttribute AdminCouponBean bean, Model model, BindingResult result,
-			RedirectAttributes redirectAttributes, @PathVariable Integer admincoupon_id) {
+	@PostMapping("modifyAdminActivity/{adminactivity_id}")
+	public String updateForm(@ModelAttribute AdminActivityBean bean, Model model, BindingResult result,
+			RedirectAttributes redirectAttributes, @PathVariable Integer adminactivity_id) {
 		long sizeInBytes = -1;
-		MultipartFile picture = bean.getAdmincoupon_image();
+		MultipartFile picture = bean.getAdminactivity_image();
 		if (picture.getSize() == 0) {
-			AdminCouponBean original = editcouponService.getAdminCoupon(admincoupon_id);
-			bean.setAdmincoupon_pic(original.getAdmincoupon_pic());
+			AdminActivityBean original = editactivityService.getAdminActivity(adminactivity_id);
+			bean.setAdminactivity_pic(original.getAdminactivity_pic());
 			bean.setAdminfile_name(original.getAdminfile_name());
 		} else {
 			sizeInBytes = picture.getSize();
@@ -114,94 +107,88 @@ public class EditCouponController {
 				try {
 					byte[] b = picture.getBytes();
 					Blob blob = new SerialBlob(b);
-					bean.setAdmincoupon_pic(blob);
+					bean.setAdminactivity_pic(blob);
 				} catch (Exception e) {
 					e.printStackTrace();
 					throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 				}
 			}
 		}
-		bean.setAdmincoupon_id(admincoupon_id);
+		bean.setAdminactivity_id(adminactivity_id);
 		Member ac = (Member) model.getAttribute("LoginOK");
-//		bean.setShopBean(mb.getShopBean());
-		editcouponService.updateAdminCoupon(bean);
+		editactivityService.updateAdminActivity(bean);
 
 		return "redirect:/admin/administrator";
 	}
 
-	@GetMapping("deleteAdminCoupon/{admincouponId}")
-	public String deleteAdminCoupon(@PathVariable Integer admincoupon_id) {
-		editcouponService.deleteAdminCoupon(admincoupon_id);
-		return "redirect:/admin_coupon";
+	@GetMapping("deleteAdminActivity/{adminactivity_id}")
+	public String deleteAdminActivity(@PathVariable Integer adminactivity_id) {
+		editactivityService.deleteAdminActivity(adminactivity_id);
+		return "redirect:/admin_activity";
 	}
 
-	@GetMapping("/InsertAdminCoupon")
+	@GetMapping("/InsertAdminActivity")
 	public String sendingEmptyForm(Model model, HttpSession session) {
 		Member ac = (Member) model.getAttribute("LoginOK");
-//		Member mb = (Member) session.getAttribute("member");
-//		int shopId = ac.getShopBean().getShop_id();
-		AdminCouponBean acb = new AdminCouponBean();
-//		acb.setAdmincoupon_amount(5);
-		model.addAttribute("AdminCouponBean", acb);
+		AdminActivityBean aab = new AdminActivityBean();
+		model.addAttribute("AdminActivityBean", aab);
 		System.out.println("===============111===============");
-		List<AdminCouponBean> admincoupons = editcouponService.getAllAdminCoupons();
+		List<AdminActivityBean> adminactivities = editactivityService.getAllAdminActivities();
 		System.out.println("===============2222===============");
-		model.addAttribute("admincouponList",admincoupons);
+		model.addAttribute("adminActivityList",adminactivities);
 		System.out.println("===============3333===============");
-		return "/_16_admin/admin_coupon";
+		return "/_16_admin/admin_activity";
 	}
 
-	@PostMapping("/InsertAdminCoupon")
-	public String processFormData(@ModelAttribute("AdminCouponBean") AdminCouponBean admincouponBean,
+	@PostMapping("/InsertAdminActivity")
+	public String processFormData(@ModelAttribute("AdminActivityBean") AdminActivityBean adminactivityBean,
 			BindingResult result, Model model, HttpServletRequest request) {
 		System.out.println("===============4444===============");
 		Member ac = (Member) model.getAttribute("LoginOK");
-//		AdminCouponBean.setShopBean(ac.getShopBean());
-		MultipartFile picture = admincouponBean.getAdmincoupon_image();
+		MultipartFile picture = adminactivityBean.getAdminactivity_image();
 		String originalFilename = picture.getOriginalFilename();
 		if (originalFilename.length() > 0 && originalFilename.lastIndexOf(".") > -1) {
-			admincouponBean.setAdminfile_name(originalFilename);
+			adminactivityBean.setAdminfile_name(originalFilename);
 		}
 		if (picture != null && !picture.isEmpty()) {
 			try {
 				byte[] b = picture.getBytes();
 				Blob blob = new SerialBlob(b);
-				admincouponBean.setAdmincoupon_pic(blob);
+				adminactivityBean.setAdminactivity_pic(blob);
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 			}
 		}
 
-		editcouponService.saveAdminCoupon(admincouponBean);
+		editactivityService.saveAdminActivity(adminactivityBean);
 
 		return "redirect:/admin/administrator";
 	}
 
-	@RequestMapping(value = "/getPicture/{admincoupon_id}")
+	@RequestMapping(value = "_94_adminactivity/getPicture/{adminactivity_id}")
 	public ResponseEntity<byte[]> getPicture(
 			HttpServletResponse resp, 
-			@PathVariable Integer admincoupon_id){
+			@PathVariable Integer adminactivity_id){
 		String filePath = "/data/images/mediumPic/noImage1.PNG"; //預設圖片路徑
 		byte[] pic = null;
 		String filename = "";
 		int len = 0;
 		HttpHeaders headers = new HttpHeaders();
-		AdminCouponBean acb = editcouponService.getAdminCoupon(admincoupon_id);
-		if(acb != null) {
-			Blob blob = acb.getAdmincoupon_pic();
-			filename = acb.getAdminfile_name();
+		AdminActivityBean aab = editactivityService.getAdminActivity(adminactivity_id);
+		if(aab != null) {
+			Blob blob = aab.getAdminactivity_pic();
+			filename = aab.getAdminfile_name();
 			if(blob != null) {
 				try {
-					
+					System.out.println("0319");
 					len = (int) blob.length();  //取得照片大小
 					pic = blob.getBytes(1, len); //???   jdbc相關類別都是1開頭
-					
 				} catch (SQLException e) {
 					throw new RuntimeException("shopController的getPicture()發生SQLException: " + e.getMessage());
 				}
 			}else { //如果沒有照片
-				
+				System.out.println("0319-1");
 				pic = toByteArray(filePath);
 				filename = filePath;
 			}
@@ -236,24 +223,5 @@ public class EditCouponController {
 			e.printStackTrace();
 		}
 		return b;
-	}
-	
-//	@ModelAttribute
-//	public AdminCouponBean prepareAdminCouponBean(HttpServletRequest req) {
-//		AdminCouponBean adminCouponBean = new AdminCouponBean();
-//		return adminCouponBean;
-//	}
-	
-//	得到種類id與對應的name
-	@ModelAttribute("admincouponMap") 
-	public Map<Integer, String> getSortList() {
-		Map<Integer, String> admincouponMap = new HashMap<>();
-		List<AdminCouponTypeBean> list = editcouponService.getSortList();
-		for(AdminCouponTypeBean act : list) {  //取出每一個種類物件的(id,name) 放入map物件
-			System.out.println();
-			admincouponMap.put(act.getAdmincoupon_type_id(), act.getAdmincoupon_type_name());
-			System.out.println(act);
-		}
-		return admincouponMap; 
 	}
 }

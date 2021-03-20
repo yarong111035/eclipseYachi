@@ -73,8 +73,8 @@
                                 <i class="coupon-photo" style="margin-top: 2rem; font-size: 18px;">
                               		<form:input type="file" id="admincoupon_image" path="admincoupon_image" accept=".jpeg,.png" style="margin-left: 0px;"/>  <!--  style="display: none;" -->
                                 </i>
-                            <div class="item">
-                                <img src="${pageContext.request.contextPath}/data/images/smallPic/coupon2.png" id="headImg1" style="width:200px; height: 200px;border: solid 1px #ddd">
+                            <div class="item">							
+                                <img src="<c:url value='/admin/getPicture/${admincoupon_id}'/>" id="headImg1" style="width:200px; height: 200px; border: solid 1px #ddd">
                             </div>
                             </label>
                         </div>
