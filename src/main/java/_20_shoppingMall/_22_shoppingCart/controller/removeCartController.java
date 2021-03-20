@@ -35,9 +35,9 @@ public class removeCartController {
 		}
 
 		@GetMapping("/cartDeleteFromDatabase")
-		public String deleteCartByMemberId(SessionStatus status) {
+		public String deleteCartByMemberId(Model model,SessionStatus status) {
 			status.setComplete();
-			return "redirect:/DisplayPageProducts";
+			return "redirect:/successOrder";
 		}
 		
 }

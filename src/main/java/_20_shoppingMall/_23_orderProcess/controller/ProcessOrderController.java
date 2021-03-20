@@ -119,7 +119,13 @@ public class ProcessOrderController {
 		
 	}
 	
-	
+	//訂單成功頁面
+	@GetMapping("/successOrder")
+	public String orderSuccess(Model model) {
+		OrderBean orderBeanNew = (OrderBean) model.getAttribute("orderBeanNew");
+		model.addAttribute("orderBeanNew", orderBeanNew);
+		return "_12_shoppingmall/12_finish_order";
+	}
 	
 	//取消訂單
 	@GetMapping("/cancelOrder/asdf9{order_id}8")
@@ -167,6 +173,9 @@ public class ProcessOrderController {
 		}
 		return sortMap;
 	}
+	
+	
+
 	
 	
 	
