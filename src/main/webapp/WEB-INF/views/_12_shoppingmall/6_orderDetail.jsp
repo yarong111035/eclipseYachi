@@ -44,6 +44,13 @@
 	</div>
 	<!-----------------------------訂單流程圖----------------------------- -->
 
+    <!-- loading 圖示 -->
+   
+   <img src="<c:url value='/data/images/smallPic/長方形3.gif'/>" id="image_loading">
+  
+    <!-- loading 圖示 -->
+
+
 	<!--  資料表單 -->
     <div class="shopping_form">
         <form:form method="POST" modelAttribute="orderBean" class="infoBox">
@@ -55,7 +62,7 @@
                         <label for="orderName" class="col-sm-2 col-form-label">姓名</label>
                         <div class="col-sm-10">
 <%--                           <form:input type="text" path="memberBean.username" class="form-control" id="orderName"/> --%>
-							${LoginOK.username} 
+							${LoginOK.fullname} 
                         </div>
                     </div>
 
@@ -150,15 +157,32 @@
 // 			}
 // 		}
 		
-		var orderBtn = document.getElementById('orderBtn');
+		let orderBtn = document.getElementById('orderBtn');
+        let image_loading = document.getElementById('image_loading');
 		orderBtn.addEventListener('click',function(e){
 			var yes = confirm("確定送出此訂單?");
 			if(yes == false){					
 				e.preventDefault(); //預防表單預設事件(按取消不要送出去)
+				return;  //須加此行，否則表單還是會送出去，出現空指標例外
 			}
-			document.forms[0].action="<c:url value='/checkout' />";
-			document.forms[0].method="POST";
-			document.forms[0].submit();
+			// document.forms[0].action="<c:url value='/checkout' />";
+			// document.forms[0].method="POST";
+			// document.forms[0].submit();
+            
+            //1.建立AJAX物件
+            xhr = new XMLHttpRequest();
+            xhr.addEventListener('readystatechange',callState)
+
+            //2. 發出請求並傳送出去
+            let url = "<c:url value='/checkout' />";
+            xhr.open('POST',url,true);
+            xhr.send();
+
+            function callState(){
+                if(xhr.readyState != 4 && xhr.status != 200){
+                    image_loading.style.display = 'block';
+                }
+            }
 		});
         $(function () {
             $('#inputAllBtn').click(function(){
