@@ -37,7 +37,7 @@ public class removeCartController {
 		@GetMapping("/cartDeleteFromDatabase")
 		public String deleteCartByMemberId(Model model,SessionStatus status) {
 			status.setComplete();
-			return "redirect:/successOrder";
+			return "redirect:/cartDeleteFromVo";  //清掉會員購物車的session，也需要清掉vo的session，故導向cartDeleteFromVo
 		}
 		
 }

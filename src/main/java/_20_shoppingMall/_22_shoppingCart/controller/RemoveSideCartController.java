@@ -65,5 +65,10 @@ public class RemoveSideCartController {
 		return "redirect:/DisplayPageProducts";
 	}
 	
-	
+	//清掉vo的session，才能讓購物車側邊欄購物清單消失
+	@GetMapping("/cartDeleteFromVo")
+	public String deleteCartByMemberId(Model model,SessionStatus status) {
+		status.setComplete();
+		return "redirect:/successOrder";
+	}
 }
