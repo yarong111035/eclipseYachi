@@ -27,6 +27,7 @@ import _02_model.entity.OrderBean;
 import _02_model.entity.PayTypeBean;
 import _02_model.entity.ShipTypeBean;
 import _10_member.entity.Member;
+import _20_shoppingMall._23_orderProcess.mail.SendingOrderSuccessEmail;
 import _20_shoppingMall._23_orderProcess.service.OrderService;
 import _20_shoppingMall._23_orderProcess.service.PayTypeService;
 import _20_shoppingMall._23_orderProcess.service.ShipTypeService;
@@ -34,7 +35,7 @@ import _20_shoppingMall._23_orderProcess.validator.OrderValidator;
 import lombok.Getter;
 
 @Controller
-@SessionAttributes({"LoginOK", "pageNo","cartList"})
+@SessionAttributes({"LoginOK", "pageNo","cartList","orderBeanNew"})
 public class ProcessOrderController {
 	@Autowired
 	ShipTypeService shipTypeService;
@@ -103,7 +104,12 @@ public class ProcessOrderController {
 		
 //		orderService.createOrder(orderBean); //還需檢查庫存量
 		try {
-			orderService.createOrder(orderBean); //新建訂單三步驟
+			OrderBean orderBeanNew = orderService.createOrder(orderBean); //新建訂單三步驟
+			System.out.println("orderBeanN 訂單編號 %%%%%%%%% ========>" + orderBeanNew.getOrderNumber());
+			
+			SendingOrderSuccessEmail sendingOrderSuccessEmail = new SendingOrderSuccessEmail(member.getEmail(), orderBeanNew);
+			sendingOrderSuccessEmail.sendAcceptMail();
+			model.addAttribute("orderBeanNew", orderBeanNew);
 			System.out.println("======訂單新建成功======"); //尚須捕捉例外
 			return "redirect:/cartDeleteFromDatabase";
 		} catch (RuntimeException e) {

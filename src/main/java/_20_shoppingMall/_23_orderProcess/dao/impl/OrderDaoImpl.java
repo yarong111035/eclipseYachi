@@ -66,7 +66,20 @@ public class OrderDaoImpl implements OrderDao {
 			   .executeUpdate();
 	
 	}
-
+	
+	//依據訂單自增的id找訂單編號
+	@Override
+	public String getOrderNumber(Integer order_id) {
+		Session session = factory.getCurrentSession();
+		String hqlSelect = " SELECT o.random_code "
+				   + " FROM OrderNumberBean o "
+				   + " WHERE o.random_id = :order_id ";
+		String orderCode = (String) session.createQuery(hqlSelect)
+				   .setParameter("order_id", order_id)
+				   .getSingleResult();
+		return orderCode;
+	}
+	
 	//取消訂單
 	@Override
 	public void updateOrderStatus(OrderBean orderBean) {
@@ -89,6 +102,8 @@ public class OrderDaoImpl implements OrderDao {
 		}
 		return orders.get(0);
 	}
+
+	
 
 
 }

@@ -54,7 +54,7 @@ public class OrderServiceImpl implements OrderService {
 	OrderItemDao orderItemDao;
 	
 	@Override
-	public void createOrder(OrderBean orderBean) {
+	public OrderBean createOrder(OrderBean orderBean) {
 		
 // 	 1. 新增訂單紀錄
 		//狀態默認未付款
@@ -94,10 +94,16 @@ public class OrderServiceImpl implements OrderService {
 		//資料庫新建一筆OrderBean訂單
 		orderDao.insertOrder(orderBean); //新建訂單紀錄會一起新建orderItem紀錄
 		//依照訂單id 配給訂單一個有序號碼
-		orderDao.updateOrderNumberById(orderBean.getOrder_id());
+		String orderNumber = orderDao.getOrderNumber(orderBean.getOrder_id());
+//		orderDao.updateOrderNumberById(orderBean.getOrder_id());
+//		OrderBean orderBeanN = orderDao.getOrderById(orderBean.getOrder_id());
+		orderBean.setOrderNumber(orderNumber);
+		System.out.println("訂單編號================>  " + orderBean.getOrderNumber());
 		
 // 	 3. 清除使用者購物車表格紀錄(也需要清除session的購物車紀錄)
 		cartBeanDao.deleteCartByMemberId(orderBean.getMemberBean().getMemberId());
+		
+		return orderBean;
 	}
 
 	

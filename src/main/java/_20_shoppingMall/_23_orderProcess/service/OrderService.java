@@ -6,7 +6,7 @@ import _02_model.entity.OrderBean;
 
 public interface OrderService {
 
-	void createOrder(OrderBean orderBean);
+	OrderBean createOrder(OrderBean orderBean);
 
 	List<OrderBean> getAllOrdersByMemberId(Integer memberId);
 

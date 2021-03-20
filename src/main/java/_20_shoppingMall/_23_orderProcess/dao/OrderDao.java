@@ -20,6 +20,8 @@ public interface OrderDao {
 
 	OrderBean queryOrder(String orderNumber);
 
+	String getOrderNumber(Integer order_id);
+
 
 
 
