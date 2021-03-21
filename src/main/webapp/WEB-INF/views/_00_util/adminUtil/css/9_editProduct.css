@@ -14,8 +14,12 @@
     box-shadow: 1px 1px 2px #ccc;
     border-radius: 3px;
     color: #444;
+    transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
-
+.editBtn a:hover{
+    background-color: rgba(170,192,207,.5);
+    width: 105px;
+}
 /* 表格 */
 .table{
     position: relative;
@@ -120,7 +124,10 @@
     box-shadow:1px 1px 2px #ccc; 
     border-radius: 3px;
   }
-
+  #tab_nav a:hover{
+  background-color: rgba(170,192,207,.5);
+  width: 105px;
+  }
   #tab_nav .tab_selected{
     border-radius: 3px;
     background-color: rgb(170,192,207);

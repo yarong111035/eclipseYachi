@@ -149,8 +149,11 @@
 	                                </td>
 	                                <td colspan="6"><span class="productName">商品名稱: ${item.productBean.product_name }</span></td> 
 	                            </tr>
-	                            <tr>
-	                                <td colspan="4" rowspan="4">${item.productBean.product_info}</td>
+	                            <!-- <tr>
+	                                <td colspan="4" rowspan="4" white-space:pre-wrap>${item.productBean.product_info}</td>
+	                            </tr> -->
+                                <tr>
+	                                <td colspan="4" rowspan="4"></td>
 	                            </tr>
 	                            <tr>
 	                                <td style="text-align: center;">數量</td>

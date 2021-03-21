@@ -626,23 +626,24 @@
 				//訂單明細區域
 				let segment = `<div class = "tableArea"><table>
 									<tr>
+										<th>商品圖片</th>
 										<th>商品名稱</th>
-										<th>商品描述</th> 
 										<th>數量</th>
 										<th>單價</th>
 										<th>小計</th>
 									</tr>`;
 				for(let i = 0; i < res.items.length; i++){
 					//照片出不來(待補)
-					// let image = '<img width="33" height="60" src="' + 
-		          	// 			'<c:url value="/getPicture/' + 
-		        	//  			res.items[i].productBean.product_id + '" />';
+					let image = '<img class="product_images" src="' + 
+		          				'<c:url value="/getPicture/' + 
+		        	 			res.items[i].productBean.product_id + '" />">';
+					// <td style="white-space:pre-line;">${'${res.items[i].productBean.product_info}'} => <th>商品描述</th> 
 					segment += `<tr>
+									<td>${'${image}'}</td>
 									<td>${'${res.items[i].productBean.product_name}'}
-									<td>${'${res.items[i].productBean.product_info}'}	
 									<td>${'${res.items[i].amount}'}	
-									<td>${'${res.items[i].unitPrice}'}	
-									<td>${'${res.items[i].amount * res.items[i].unitPrice}'}	
+									<td>NT$ ${'${res.items[i].unitPrice}'}	
+									<td>NT$ ${'${res.items[i].amount * res.items[i].unitPrice}'}	
 								</tr>`; 	
 				}
 				segment += `</table></div>`;	
