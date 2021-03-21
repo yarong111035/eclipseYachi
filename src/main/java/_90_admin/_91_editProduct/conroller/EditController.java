@@ -371,6 +371,8 @@ public class EditController {
 		
 		//照片
 		MultipartFile picture = productBean.getProductImage();
+		MultipartFile productImageA = productBean.getProductImagesA();//圖片2
+		
 		//表示使用者未挑選圖片
 		if(picture.getSize() == 0) {
 			sizeInBytes = -1;
@@ -386,6 +388,27 @@ public class EditController {
 					byte[] b = picture.getBytes();
 					Blob blob = new SerialBlob(b);
 					productBean.setProduct_pic(blob);
+				} catch (Exception e) {
+					e.printStackTrace();
+					throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+				}
+			}
+		}
+		//圖片二
+		if(productImageA.getSize() == 0) {
+			sizeInBytes = -1;
+		}else {
+			sizeInBytes = productImageA.getSize();
+			String originalFilename = productImageA.getOriginalFilename();
+			if(originalFilename.length() > 0 && originalFilename.lastIndexOf(".") > -1) {
+				productBean.setFilenameA(originalFilename);
+			}
+			// 建立Blob物件
+			if (productImageA != null && !productImageA.isEmpty()) {
+				try {
+					byte[] b = productImageA.getBytes();
+					Blob blob = new SerialBlob(b);
+					productBean.setProduct_picA(blob);
 				} catch (Exception e) {
 					e.printStackTrace();
 					throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
