@@ -319,7 +319,7 @@
 													</form>
 												</c:if>
 												<c:if test="${empty LoginOK}">
-													<form action="<c:url value='/visitorBuyProduct.do/${entry.product_id}' />" method="POST">
+													<form action="<c:url value='/visitorBuyProduct.do?cmd=add&sortId=${entry.productTypeBean.product_type_id }' />" method="POST">
 														<div class="product_count">
 															<span>數量</span> 
 															<select name='qty'>

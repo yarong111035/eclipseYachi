@@ -58,6 +58,7 @@ public class ShoppingCartController {
 			@RequestParam("product_id") Integer product_id,
 			@RequestParam(value = "qty",required = false) Integer qty,
 			@RequestParam(value = "sortId",required = false) Integer sortId,
+			@RequestParam(value = "pageNo",required = false) String pageNo,
 			HttpServletRequest request,
 			HttpServletResponse response
 			) throws ServletException, IOException {
@@ -83,15 +84,16 @@ public class ShoppingCartController {
 		//得到當前加入購物車產品種類，目的為加入購物車後停留在當前種類頁面
 //		Integer sort = productService.getProductById(product_id).getProductTypeBean().getProduct_type_id();
 		Integer sessionSortId = (Integer) (model.getAttribute("sortId"));
-		
+//		String sessionPageNo = (String) (model.getAttribute("pageNo"));
 		
 		if(cmd.equalsIgnoreCase("ADD") && sortId == sessionSortId) {
 			System.out.println(123);
 			return "redirect:/sortId=" + sessionSortId;
-		}else if(cmd.equalsIgnoreCase("ADD")) {
-			System.out.println(456);
-			return "redirect:/DisplayPageProducts";
 		}
+//		}else if(cmd.equalsIgnoreCase("ADD") && pageNo == sessionPageNo) {
+//			System.out.println(456);
+//			return "redirect:/DisplayPageProducts";
+//		}
 		else if(cmd.equalsIgnoreCase("ADD1")){
 			return "redirect:/showCartContent";
 		}
@@ -163,9 +165,12 @@ public class ShoppingCartController {
 	 * step2 :將訪客的購買放入sessionCart(已準備好的map容器)
 	 */
 	@SuppressWarnings("unchecked")
-	@PostMapping("/visitorBuyProduct.do/{product_id}")
+	@PostMapping("/visitorBuyProduct.do")
 	public String visitorAddToCart(Model model,
-			@PathVariable("product_id") Integer product_id,
+			@RequestParam(value = "cmd",required = false) String cmd,
+			@RequestParam(value = "sortId",required = false) Integer sortId,
+			@RequestParam("product_id") Integer product_id,
+			@RequestParam(value = "pageNo",required = false) String pageNo,
 			@RequestParam("qty") Integer qty) {
 		
 		//獲取session內的購物清單
@@ -187,6 +192,19 @@ public class ShoppingCartController {
 		model.addAttribute("sessionCart", sessionCart);
 		model.addAttribute("sessionCartVoList", sessionCartVoList);
 		System.out.println("sessionCartVoList=========================" + sessionCartVoList);
+		
+		Integer sessionSortId = (Integer) (model.getAttribute("sortId"));
+//		String sessionPageNo = (String) model.getAttribute("pageNo");
+		
+		if(cmd.equalsIgnoreCase("ADD") && sortId == sessionSortId) {
+			System.out.println(123);
+			return "redirect:/sortId=" + sessionSortId;
+		}
+//		else if(cmd.equalsIgnoreCase("ADD") && pageNo == sessionPageNo) {
+//			System.out.println(456);
+//			return "redirect:/DisplayPageProducts";
+//		}
+		
 		return "redirect:/DisplayPageProducts";
 	}
 	
