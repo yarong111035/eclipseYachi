@@ -168,12 +168,14 @@ public class ProductDaoImpl implements Serializable,ProductDao {
 	public Map<Integer, ProductBean> getPageProducts(int pageNo) {
 		Map<Integer, ProductBean> map = new LinkedHashMap<>(); //有排序(last in last out)
 //		String hql = "FROM ProductBean";
-		String hql = "FROM ProductBean WHERE product_status = 0";//只有狀態是上架狀態才取出來
+		String hql = " FROM ProductBean"
+				   + " WHERE product_status = 0 "
+				   + " ORDER BY product_id DESC";//只有狀態是上架狀態才取出來
 		Session session = factory.getCurrentSession();
 		int startRecordNo = (pageNo - 1) * recordsPerPage; //得到每一頁開始的產品索引
 		List<ProductBean> list = session.createQuery(hql)  //只要從資料庫撈此頁需要的紀錄即可，index從0開始
 										.setFirstResult(startRecordNo) // 從第n筆開始
-										.setMaxResults(recordsPerPage) // 取五筆資料
+										.setMaxResults(recordsPerPage) // 取8筆資料
 										.getResultList();
 //      將 list 轉成 Map 物件
 		for(ProductBean productBean : list) {
