@@ -62,7 +62,7 @@
 							<label for="product_info" class="col-sm-2 col-form-label">商品資訊</label>
 							<div class="col-sm-10">
 <!-- 							path="product_info" => 呼叫ProductBean 的 getProduct_info() -->
-								<form:input type="text" path="product_info" class="form-control" id="product_info"/>
+								<form:textarea type="text" path="product_info" class="form-control" id="product_info"/>
 								<form:errors path="product_info" cssClass="error"/>
 							</div>
 						</div>

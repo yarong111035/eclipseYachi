@@ -197,10 +197,15 @@
 /* -----------下半部:頁籤-------------------------------------- */
 .tabs_content .tabs_panel{
   display: none;
+
 }
-#tab_nav{
+.tabs_content{
   margin-bottom: 50px;
+
 }
+/* #tab_nav{
+  margin-bottom: 50px;
+} */
 #tab_nav a{
   font-size: 1.1rem;
   color: #555555;
@@ -221,11 +226,11 @@
 .show_panel{ 
   animation-name: show_panel; 
 }
-.product_comment{
+/* .product_comment{
   background-color: rgba(196, 156, 156,0.3);
   border-radius: 6px;
   padding: 30px;
-}
+} */
 @keyframes show_panel{
   from {
     opacity: 0;

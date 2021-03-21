@@ -142,8 +142,8 @@
                                     <a href="javascript:;">商品評價</a>
                                 </div>
                                 <div class="tabs_content">
-                                    <div class="tabs_panel product_info" style="display: block;">
-                                        ${product.product_info }
+                                    <div class="tabs_panel product_info" style="display: inline-block;white-space:pre-line">
+                                        <span>${product.product_info }</span>>
                                     </div>
 
                                     
@@ -288,6 +288,7 @@
                                             </div>
 
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>

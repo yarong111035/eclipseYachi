@@ -42,6 +42,7 @@ public class ProductBean implements Serializable{
 	
 	private Integer product_stock;
 	
+	@Column(length = 65535,columnDefinition="Text") //對應到mysql longText型別
 	private String product_info;
 	
 	@JsonIgnore
