@@ -1,4 +1,7 @@
-
+/* 撐開與header的距離 */
+.checkshopTop {
+	margin-top: 200px;
+}
 /* 商家 */
 #shopTitle{
     font-size: 1.2rem;

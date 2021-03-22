@@ -40,7 +40,7 @@
 	
 	    <div class="container">
         
-        <div class="row">
+        <div class="row checkshopTop">
           	<!-- 功能選單開始 -->
           	<jsp:include page="/WEB-INF/views/_00_util/adminUtil/jsp/admin.jsp" />
 			<!-- 功能選單結束 -->
