@@ -45,7 +45,7 @@
 		<input type='hidden' name='_method' value='DELETE'>
 	</form>
 
-	<div class="container pt-4">
+	<div class="container pt-4 editTop">
 		<div class="row">
 
 			<!-- -------------------------功能選單開始 --------------------------------------->
@@ -272,7 +272,10 @@
 
 		</div>
 	</div>
-
+	
+	<!-- 引入共同的頁尾 -->
+	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 	<script>
     $(function () {
@@ -381,7 +384,6 @@
 	  })
 </script>
 
-<!-- 引入共同的頁尾-->
-	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
+
 </body>
 </html>

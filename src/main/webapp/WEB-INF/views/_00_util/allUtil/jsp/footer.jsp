@@ -30,7 +30,7 @@
      data-aos-offset="0">
 	
 	<footer>
-		<hr class="col-11">
+		<hr class="">
 		<div class="copyright text-dark text-center p-1">
 			<div class="logo">
 				<a href="<c:url value='/home' />"> 
