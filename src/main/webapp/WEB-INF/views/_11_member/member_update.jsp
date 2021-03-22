@@ -189,7 +189,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="#">
+                    <a href="<c:url value='/doLogout'/>">
                         <button><span>登出</span></button>
                     </a>
                 </div>

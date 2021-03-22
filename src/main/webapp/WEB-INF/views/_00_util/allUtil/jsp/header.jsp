@@ -24,8 +24,8 @@
 		padding: 10px; 
 	}
 	.member-headImg img{
-		width: 100%;
-		height: 100%;
+		width: 80%;
+		height: 80%;
 		border-radius: 50%;
 	}
 
@@ -108,7 +108,9 @@
 				
 				<c:if test="${!empty LoginOK}">
 					<div class="member-headImg">
-						<img src="<c:url value='/_00_init/getMemberImage?memberId=${LoginOK.memberId}'/>">
+						<a href="<c:url value='/member/update/${LoginOK.memberId}'/>">
+							<img src="<c:url value='/_00_init/getMemberImage?memberId=${LoginOK.memberId}'/>">
+						</a>
 					</div>
 				</c:if>
 
