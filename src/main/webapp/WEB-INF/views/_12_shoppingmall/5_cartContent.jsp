@@ -103,51 +103,56 @@
                     	</c:if>
                     	<c:set value='0' var='sum'/>
                     	<c:forEach var='cart' items='${cartList }' varStatus='i'>
-	                        <div class="tr">
-	                       		<div class="td price">
-	                                <span>${i.count}</span>
-	                            </div>
-	                            <div class="td pic">
-	                                <img src="<c:url value='/getPicture/${cart.productBean.product_id}'/>">
-	                            </div>
-	                            <div class="td name">
-	                                <a href="<c:url value='singleProduct?id=${cart.productBean.product_id}'/>">${cart.productBean.product_name }</a>
-	                                <div>
-	                                    <span>${cart.productBean.product_spec }</span>
-	                                </div>
-	                            </div>
-								<div class="td stock">
-									<c:if test="${cart.productBean.product_stock == 0}">
-	                                	<span style="color: rgb(211, 73, 73);">目前暫無庫存 下次再選購吧!</span><br>
-									</c:if>
-									<!--產品狀態 == 2 代表下架中，需顯示訊息在會員的購物車中 -->
-<%-- 									<c:if test="${cart.productBean.product_status == 2 }"> --%>
-<!-- 										<span style="color: rgb(211, 73, 73);">產品已下架 下次再選購吧!</span> -->
-<%-- 									</c:if> --%>
-									<span style="color: rgb(211, 73, 73);">${stockShortage}</span>
-	                            </div>
-	                            <div class="td price">
-	                                <span>NT$ ${cart.productBean.product_price }</span>
-	                            </div>
-	                            <div class="td count">
-	                                <select name="qty" id="selectAmount" onchange='updateAmount(${cart.cart_id}, this.options[this.options.selectedIndex].value,${cart.productBean.product_price})'>
-	                                	<c:forEach var="num" begin="1" end="10" >
-	                                		<option value="${num}" <c:if test="${cart.cart_amount == num}">selected</c:if>>${num}</option> 
-	                                	</c:forEach>
-<%-- 	                                	<c:forEach var="num" begin="1" end="10" > --%>
-<%-- 	                                		<option value="${num}" <c:if test="${cart.cart_amount == num}">selected</c:if>>${num}</option>  --%>
-<%-- 	                                	</c:forEach> --%>
-	                                </select>
-	                                
-	                            </div>
-	                            <div class="td total">
-	                                <span>NT$ ${cart.cart_total }</span>
-	                            </div>
-	                            <div class="td delete">
-	                            	
-	                                <a class="deleteLink" href="<c:url value='/cartDelete/${cart.cart_id}'/>"><i class="far fa-trash-alt"></i></a>
-	                            </div>
-	                        </div>
+<%--                     		<c:if test="${cart.productBean.product_status == 0 }"> --%>
+		                        <div class="tr">
+		                       		<div class="td price">
+		                                <span>${i.count}</span>
+		                            </div>
+		                            <div class="td pic">
+		                                <img src="<c:url value='/getPicture/${cart.productBean.product_id}'/>">
+		                            </div>
+		                            <div class="td name">
+		                                <a href="<c:url value='/singleProduct?id=${cart.productBean.product_id}'/>">${cart.productBean.product_name }</a>
+		                                <div>
+		                                    <span>${cart.productBean.product_spec }</span>
+		                                </div>
+		                            </div>
+									<div class="td stock">
+										<c:if test="${cart.productBean.product_stock == 0}">
+		                                	<span style="color: rgb(211, 73, 73);">目前暫無庫存<br>下次再選購吧!</span><br>
+		                                	
+										</c:if>
+										<!--產品狀態 == 2 代表下架中，需顯示訊息在會員的購物車中 -->
+	<%-- 									<c:if test="${cart.productBean.product_status == 2 }"> --%>
+	<!-- 										<span style="color: rgb(211, 73, 73);">產品已下架 下次再選購吧!</span> -->
+	<%-- 									</c:if> --%>
+										<c:if test="${cart.productBean.product_stock < cart.cart_amount && cart.productBean.product_stock > 0}">
+											<span style="color: rgb(211, 73, 73);">目前庫存：${cart.productBean.product_stock}<br>請重新選購數量</span>
+										</c:if>
+		                            </div>
+		                            <div class="td price">
+		                                <span>NT$ ${cart.productBean.product_price }</span>
+		                            </div>
+		                            <div class="td count">
+		                                <select name="qty" id="selectAmount" onchange='updateAmount(${cart.cart_id}, this.options[this.options.selectedIndex].value,${cart.productBean.product_price})'>
+		                                	<c:forEach var="num" begin="1" end="10" >
+		                                		<option value="${num}" <c:if test="${cart.cart_amount == num}">selected</c:if>>${num}</option> 
+		                                	</c:forEach>
+	<%-- 	                                	<c:forEach var="num" begin="1" end="10" > --%>
+	<%-- 	                                		<option value="${num}" <c:if test="${cart.cart_amount == num}">selected</c:if>>${num}</option>  --%>
+	<%-- 	                                	</c:forEach> --%>
+		                                </select>
+		                                
+		                            </div>
+		                            <div class="td total">
+		                                <span>NT$ ${cart.cart_total }</span>
+		                            </div>
+		                            <div class="td delete">
+		                            	
+		                                <a class="deleteLink" href="<c:url value='/cartDelete/${cart.cart_id}'/>"><i class="far fa-trash-alt"></i></a>
+		                            </div>
+		                        </div>
+<%-- 	                        </c:if> --%>
 	                        <c:set var='sum' value='${sum + cart.cart_total}'/>
  						</c:forEach>
  						
