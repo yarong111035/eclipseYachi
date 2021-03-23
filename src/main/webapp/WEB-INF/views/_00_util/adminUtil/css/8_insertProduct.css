@@ -26,6 +26,9 @@
 input{
     margin-top: 10px;
 }
+textarea.textBar{
+    height: 250px;
+}
 
 /*錯誤訊息樣式*/
 span.error{

@@ -62,7 +62,7 @@
 							<label for="product_info" class="col-sm-2 col-form-label">商品資訊</label>
 							<div class="col-sm-10">
 <!-- 							path="product_info" => 呼叫ProductBean 的 getProduct_info() -->
-								<form:textarea type="text" path="product_info" class="form-control" id="product_info"/>
+								<form:textarea type="text" path="product_info" class="form-control textBar" id="product_info"/>
 								<form:errors path="product_info" cssClass="error"/>
 							</div>
 						</div>
@@ -181,11 +181,11 @@
 		  //一鍵輸入功能
 		  //存取input標籤的值必須使用.val()方法
 		  $('#inputAllBtn').click(function(){
-			  $('#product_name').val("美的冒泡304不鏽鋼餐具");
-			  $('#product_info').val("超輕量304不鏽鋼餐具，安全無毒又美觀！");
-			  $('#product_price').val("199.0");
+			  $('#product_name').val("超輕量真空隨行杯");
+			  $('#product_info').val("內噴陶瓷表層0毛孔處理，真實呈現飲品原味\r\n抗酸鹼、異味不殘留\r\n環保矽膠吸管設計，上山下海隨手即飲\r\n保冰、續冰高達8小時 一體成形的陶瓷易潔層，簡單好清洗\r\n尺寸：口直徑-9cm，底直徑-7cm，含蓋高度-17.5cm\r\n容量：500ML\r\n重量：330G±5% 材質：杯身內層304不鏽鋼、陶瓷塗層，吸管tritan\r\n產地：台灣監製、中國製造");
+			  $('#product_price').val("300.0");
 			  $('#product_stock').val("5")
-			  $('#product_spec').val("環保餐具")
+			  $('#product_spec').val("聯名款")
 		  })
 		});
 		
