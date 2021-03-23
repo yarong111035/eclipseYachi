@@ -86,7 +86,7 @@
 				<div class="search-ticket">
 					<img src="<c:url value='/data/images/smallPic/yachiLogo50.png'/>">
 					<div class="txt">
-						<a href="<c:url value='vouchers' />"><h2>優惠券專區</h2></a>
+						<a href="<c:url value='/vouchers' />"><h2>優惠券專區</h2></a>
 					</div>
 
 				</div>
@@ -102,7 +102,7 @@
 						<a href="<c:url value='/LoginAndRegister'/>"><font>登入</font></a>
 					</c:if>
 
-				<a href="<c:url value='/showCartContent'/>"><i class="fas fa-shopping-cart"></i></a>
+				<a href="<c:url value='/goCheckout'/>"><i class="fas fa-shopping-cart"></i></a>
 
 				</div>
 				
