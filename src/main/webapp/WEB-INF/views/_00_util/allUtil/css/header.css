@@ -349,6 +349,70 @@ header .tab .tab-warp .tab-content .tab-panel a:hover{
   background-color: rgba(206, 16, 16, 0.5);
 }
 
+
+/* ======================================   RWD 調整  ====================================================*/
+/* ======================================   RWD 調整  ====================================================*/
+/* ======================================   RWD 調整  ====================================================*/
+@media screen and (max-width: 1474px){
+  .member-headImg img{
+    display: none;
+  }
+}
+@media screen and (max-width: 1296px){
+  div.search-wrap{
+      width: 90%;
+      margin: 0 auto;
+      margin-top: 20px;
+
+  }
+}
+@media screen and (max-width: 1210px){
+  div.logo-wrap img{
+    display: none;
+  }
+  div.search-wrap{
+      width: 77%;
+      margin-top: 20px;
+  }
+  .txt h2{
+    font-size: 20px;
+  }
+  .food-trending{
+    display: none;
+  }
+}
+@media screen and (max-width: 1170px){
+  .search-food{
+    width: 75%;
+  }
+  .search-input{
+    width: 600px;
+  }
+}
+@media screen and (max-width: 1120px){
+  .search-input{
+    width: 450px;
+  }
+}
+@media screen and (max-width: 910px){
+  .search-input{
+    width: 350px;
+  }
+}
+@media screen and (max-width: 768px){
+  .search-input{
+    width: 200px;
+  }
+  div.carousel-item{
+    width: 450px;
+  }
+}
+@media screen and (max-width: 521px){
+  div.links a{
+    display: none;
+  }
+}
+
 /* iPhone XS Max Viewport RWD 414*896 */
 @media (max-width: 415px) {
   header .myNav .navbar {

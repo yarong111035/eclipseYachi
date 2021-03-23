@@ -113,8 +113,8 @@ public class ProcessOrderController {
 			System.out.println("======訂單新建成功======"); //尚須捕捉例外
 			return "redirect:/cartDeleteFromDatabase";
 		} catch (RuntimeException e) {
-			System.out.println(e.getMessage());
-			redirectAttributes.addFlashAttribute("stockShortage", e.getMessage()); //只會出現一次
+			System.out.println("===========================" +e.getMessage() + "===================");
+//			redirectAttributes.addFlashAttribute("stockShortage", e.getMessage()); //只會出現一次
 			return "redirect:/showCartContent";
 		}
 		

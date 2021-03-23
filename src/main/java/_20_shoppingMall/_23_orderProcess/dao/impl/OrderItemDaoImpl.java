@@ -46,6 +46,10 @@ public class OrderItemDaoImpl implements OrderItemDao {
 			stock= 0;
 		}
 		
+//		System.out.println(item.getOrderBean());
+//		System.out.println(item.getOrderBean().getOrderStatusBean());
+//		System.out.println(item.getOrderBean().getOrderStatusBean().getStatus_id());
+		
 		//如果目前狀態處於 "取消" 或 "退貨" 則加回原本的庫存量
 		Integer orderStatus = item.getOrderBean().getOrderStatusBean().getStatus_id();
 		if( orderStatus == cancelStatus || orderStatus == returnedStatus ) {
@@ -61,10 +65,10 @@ public class OrderItemDaoImpl implements OrderItemDao {
 			int resultStock = stock -  item.getAmount();
 			if(resultStock < 0) {
 				throw new ProductStockException(
-//						"庫存數量不足: product_id: " + item.getProductBean().getProduct_id() 
-						"庫存不足！"
+						"庫存數量不足: product_id: " + item.getProductBean().getProduct_id() 
+						+ "庫存不足！"
 						+ "目前庫存量: " + stock  
-//						", 訂購數量: " + item.getAmount()
+						+ ", 訂購數量: " + item.getAmount()
 						);
 			}
 		}

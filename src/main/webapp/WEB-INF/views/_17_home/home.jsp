@@ -148,56 +148,11 @@ fieldset {
 
 
 <body style="background-color: #F3F8F2;">
+
+	<!------------------------- 引入共同頁首開始 ------------------------------->
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
+	<!------------------------- 引入共同頁首結束 ------------------------------->
 
-	<!-- 回到上方的按鈕 -->
-	<!------------------------- Start ------------------------------->
-
-	<!-------------------------  End  ------------------------------->
-
-	<!-- Log in====================================== -->
-	<!-- <div class="login-bg-first">
-    <div class="login-bg-second">
-      <form id="theForm">
-        <fieldset class="text-shadow">
-          <h1>登入</h1>
-          <div>
-            <label>帳號</label>
-            <input type="text" name="account" id="account">
-          </div>
-          <div>
-            <label>密碼</label>
-            <input type="text" name="password" id="password">
-          </div>
-          <div>
-            <input type="checkbox" name="rememberPw" id="rememberPw">
-            <label>記住密碼</label>
-          </div>
-
-
-
-          <div><button class="loginBtn loginBtn--facebook">
-              Facebook
-            </button></div>
-
-          <div> <button class="loginBtn loginBtn--google">
-              Google
-            </button></div>
-
-          <div id="btn">
-            <button id="confirm">確認</button>
-            <button id="signUp">註冊</button>
-          </div>
-          <a href="">忘記密碼</a>
-        </fieldset>
-      </form>
-    </div>
-  </div> -->
-	<!-- slider ================================= -->
-	<!-- .mt-n1 {
-      margin-top: -0.25rem !important;
-    } -->
-	<!-- <div class="slider"> -->
 	<div class="slider " style="margin:0px 150px;">
 		<div id="carouselExampleIndicators" class="carousel slide"
 			data-ride="carousel">
@@ -207,19 +162,19 @@ fieldset {
 				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 			</ol>
-			<div class="carousel-inner">
+			<div class="image_box carousel-inner">
 				<div class="carousel-item active">
 					<img src="<c:url value='/data/images/voucher/wheel pies.jpg'/>"
-						class="d-block w-100">
+						class="w-100">
 				</div>
-				<div class="carousel-item">
+				<div class="image_box carousel-item">
 					<img src="<c:url value='/data/images/voucher/Vermicelli2.jpg'/>"
-						class="d-block w-100">
+						class="w-100">
 				</div>
-				<div class="carousel-item">
+				<div class="image_box carousel-item">
 					<img
 						src="<c:url value='/data/images/voucher/Taiwanese hamburger.jpg'/>"
-						class="d-block w-100">
+						class="w-100">
 				</div>
 			</div>
 			<a class="carousel-control-prev" href="#carouselExampleIndicators"

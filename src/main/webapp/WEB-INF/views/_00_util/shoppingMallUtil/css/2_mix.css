@@ -10,7 +10,13 @@
 .header_image>img{
     max-width: 100%;
 }
-
+.h1Title{
+    display: inline-block;
+    margin: 0 0.5rem;
+  
+    /*animation: bounce; referring directly to the animation's @keyframe declaration*/
+    animation-duration: .8s; /* don't forget to set a duration! */
+}
 /* 商品標頭 */
 .new_container{
     /* background: #aaaaaa; */

@@ -65,10 +65,8 @@ div h5 {
   padding: 40px;
 }
 
-
-
-@media screen and (max-width: 768px){
-  .focus h1 {
-    font-size: 4rem;
-  }
+div .image_box{
+  display: inline-block;
+  width: 800px;
+  height: 400px;
 }

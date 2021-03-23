@@ -14,7 +14,10 @@
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
 	crossorigin="anonymous">
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
 <link rel="stylesheet"
@@ -240,10 +243,10 @@
 		<div class="new_container">
 			<div class="new_product">
 				<c:if test="${empty sort.product_type_name}">
-					<h1>最新商品</h1>
+					<h1 class="animate__flipInX h1Title">最新商品</h1>
 				</c:if>
 				<c:if test="${!empty sort.product_type_name}">
-					<h1>${sort.product_type_name}</h1>
+					<h1 class="animate__bounceIn h1Title">${sort.product_type_name}</h1>
 				</c:if>
 				
 
@@ -415,7 +418,7 @@
 	<script>
 		$(document).ready(function() {
 			//把點到的商品名稱放到標題上
-			displaySortName();
+			// displaySortName();
 
 			//側邊購物車
 			cartListHeight();
@@ -448,13 +451,13 @@
 			});
 
 		}
-		function displaySortName() {
-			$('.items span').click(function() {
-				let sort = $(this).text(); //抓取點到的文字
-				//  console.log(sort);
-				$('.new_product h1').text(sort); //把抓到的文字放進標題內
-			})
-		}
+		// function displaySortName() {
+		// 	$('.items span').click(function() {
+		// 		let sort = $(this).text(); //抓取點到的文字
+		// 		//  console.log(sort);
+		// 		$('.new_product h1').text(sort); //把抓到的文字放進標題內
+		// 	})
+		// }
 		
 		$('.deleteLink').click(function() {
 			Swal.fire({

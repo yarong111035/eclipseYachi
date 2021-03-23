@@ -143,7 +143,7 @@
                                 </div>
                                 <div class="tabs_content">
                                     <div class="tabs_panel product_info" style="display: inline-block;white-space:pre-line">
-                                        <span>${product.product_info }</span>>
+                                        <span>${product.product_info }</span>
                                     </div>
 
                                     
