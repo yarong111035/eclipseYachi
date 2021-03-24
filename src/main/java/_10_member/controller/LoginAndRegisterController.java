@@ -224,10 +224,10 @@ public class LoginAndRegisterController {
 		if (nextPath == null) {
 
 			// 如果nextPath等於null 則導向 "/" 首頁
-			// nextPath = request.getContextPath();
+			 nextPath = request.getContextPath();
 
 			// 如果nextPath等於null 則導向index
-			nextPath = request.getContextPath() + "/index";
+			//nextPath = request.getContextPath() + "/index";
 		}
 
 		// 清除 status code 識別字串 這個跟信箱有關係

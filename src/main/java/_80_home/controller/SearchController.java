@@ -122,9 +122,7 @@ public class SearchController {
 		return "/_17_home/searchALL";
 	}
 	
-	
-	
-	
+
 	// 查詢所有的商品 --> 依照最新上架的日期
 	@RequestMapping("/test07")
 	@ResponseBody
