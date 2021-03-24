@@ -27,7 +27,8 @@ public class CheckLoginInterceptor extends HandlerInterceptorAdapter  {
 	List<String> url = Arrays.asList(
 						  // "/admin/*" 
 							"/goCheckout",
-							"/useCoupon/*"
+							"/useCoupon/*",
+							"/addfavorite/add/*"
 						);
 	String servletPath;
 	String contextPath;
