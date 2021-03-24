@@ -11,9 +11,7 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
-    <script>
-    
-    </script>
+
 
 <style>
 
@@ -29,10 +27,19 @@
 	<p>member requestScope:${requestScope.LoginOK}</p> 
     <p>member sessionScope:${sessionScope.LoginOK}</p> 
     
+    <p>AdminLoginOK requestScope:${requestScope.AdminLoginOK}</p> 
+    <p>AdminLoginOK sessionScope:${sessionScope.AdminLoginOK}</p> 
 
 	<c:if test="${!empty LoginOK}">
 		<a href="#"><font>登入成功 ! </font></a><br>
 	    <a href="#"><font>${LoginOK.fullname} 歡迎回來 !</font></a>
+<!-- 	    <script type="text/javascript"> -->
+<!-- // 	    	$(document).ready(function(){ -->
+					
+<!-- // 	    		alert("登入成功 ! "); -->
+
+<!-- // 	    	}); -->
+<!-- 	    </script> -->
 	</c:if>
 	<br>
 	<c:if test="${!empty errorInfo}">
@@ -42,5 +49,12 @@
 		
 	<img src="<c:url value='/_00_init/getMemberImage?memberId=${LoginOK.memberId}'/>"
 		   id="headImg" height='200px' width='200px'>
+	
+	
+	
+	<p>status : ${status}</p>
+	<p>code : ${code}</p>	   
+		   
+		   
 </body>
 </html>

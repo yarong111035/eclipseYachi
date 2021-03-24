@@ -39,4 +39,10 @@ public class MemberServiceImpl implements MemberService{
 		memberDao.updateMember(member);
 	}
 
+	@Override
+	public Member findByCode(String code) {
+		
+		return memberDao.findByCode(code);
+	}
+
 }

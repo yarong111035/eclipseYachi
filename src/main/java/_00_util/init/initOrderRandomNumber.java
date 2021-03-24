@@ -17,7 +17,7 @@ public class initOrderRandomNumber {
 		Transaction tx = session.beginTransaction();
 		
 		String orderString ;
-		for (int i = 1; i < 10001; i += 11) {
+		for (int i = 1; i < 1100; i += 11) {
 			orderString = "YA" + String.format("%05d", i) + "CHI";
 			
 			session.persist(new OrderNumberBean(null,orderString));

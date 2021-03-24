@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +29,7 @@ public class ShopTypeBean implements Serializable{
 	// 商家的類型 
 	// 雙向多對一 
 	// 商家類型一方 商家多方  類型可以有多個商家 一個商家只能有一個類型 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "shopTypeBean")  //告訴外鍵後就不會有中介表格
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "shopTypeBean",fetch = FetchType.EAGER)  //告訴外鍵後就不會有中介表格
 	private Set<ShopBean> shops = new LinkedHashSet<ShopBean>();
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "shopTypeBean")  //告訴外鍵後就不會有中介表格

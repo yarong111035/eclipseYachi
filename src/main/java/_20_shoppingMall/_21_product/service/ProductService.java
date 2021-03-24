@@ -13,7 +13,7 @@ public interface ProductService {
 	List<ProductBean> getAllProducts();
 	
 	//更新產品價格(lab4)
-	void updateAllPrice();
+	public void updateAllPrice();
 	
 	//依據種類找產品(lab5)
 //	public List<ProductTypeBean> getAllSorts();

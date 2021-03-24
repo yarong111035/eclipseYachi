@@ -8,6 +8,9 @@ public interface MemberService {
 	
 	public Member findByMemberId(Integer memberId);
 	
+	public Member findByCode(String code);
+
+	
 	public Object insertMember(Member member);
 	
 	public void updateMember(Member member); 

@@ -32,6 +32,11 @@ public class PayTypeBean  implements Serializable{
 		super();
 	}
 
+	public PayTypeBean(String pay_type_name) {
+
+		this.pay_type_name = pay_type_name;
+	}
+
 	public Integer getPay_type_id() {
 		return pay_type_id;
 	}

@@ -206,9 +206,9 @@ body{
     z-index: -1;
     
 }
-/* 當checkbox被點選的時候(label的for 對應到 checkout的id)，購物車會跑出來 */
+/*當checkbox被點選的時候(label的for 對應到 checkout的id)，購物車會跑出來*/
 #side_menu_switch:checked + .side_cart{
-    transform: translateX(0); 
+    transform: translateX(0px); 
 }
 
 /*數量提示*/

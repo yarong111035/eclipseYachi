@@ -14,8 +14,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/adminUtil/css/normalize.css'/>">
-<link rel="stylesheet"
-	href="<c:url value='/_00_util/allUtil/css/background.css'/>">
+ <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/background.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/adminUtil/css/administrator.css'/>">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -49,36 +48,28 @@
 					<div class="status-nav">
 						<h3>平台優惠券</h3>
 						<div class="space"></div>
-						<a class="readmore">readmore...</a>
+						<a class="readmore" href="#">readmore...</a>
 					</div>
 					<hr>
-					<div>
-						<c:forEach var="admincoupons" varStatus="stat"
-							items="${admincouponList}">
-							<a
-								href="<c:url value='/admin/modifyAdminCoupon/${admincoupons.admincoupon_id}' />">${admincoupons.admincoupon_name}
-								----->
-								時間:${admincoupons.admincoupon_begin}至${admincoupons.admincoupon_end}----->剩:${admincoupons.admincoupon_amount}張</a>
-							<br>
-						</c:forEach>
+					<div> 
+					<c:forEach var="admincoupons" varStatus="stat" items="${admincouponList}">
+						<a href="<c:url value='/admin/modifyAdminCoupon/${admincoupons.admincoupon_id}' />">${admincoupons.admincoupon_name} ----->
+						時間:${admincoupons.admincoupon_begin}至${admincoupons.admincoupon_end}----->剩:${admincoupons.admincoupon_amount}張</a><br>
+					</c:forEach>
 					</div>
 				</div>
 				<div class="status">
 					<div class="status-nav">
 						<h3>平台優惠活動</h3>
 						<div class="space"></div>
-						<a class="readmore">readmore...</a>
+						<a class="readmore" href="#">readmore...</a>
 					</div>
 					<hr>
 					<div>
-						<c:forEach var="adminactivities" varStatus="stat"
-							items="${adminactivityList}">
-							<a
-								href="<c:url value='/admin/modifyAdminActivity/${adminactivities.adminactivity_id}' />">
-								${adminactivities.adminactivity_name}
-								----->時間:${adminactivities.adminactivity_begin}至${adminactivities.adminactivity_end}</a>
-							<br>
-						</c:forEach>
+					<c:forEach var="adminactivities" varStatus="stat" items="${adminactivityList}">
+						<a href="<c:url value='/admin/modifyAdminActivity/${adminactivities.adminactivity_id}' />">
+						${adminactivities.adminactivity_name} ----->時間:${adminactivities.adminactivity_begin}至${adminactivities.adminactivity_end}</a><br>
+					</c:forEach>
 					</div>
 				</div>
 				<div class="status">
@@ -153,14 +144,14 @@
 			</main>
 		</div>
 	</div>
-
+	
 	<script type="text/javascript">
-		$('.readmore').click(function() {
+		$('.readmore').click(function(){
 			$('.status').toggleClass("status1")
 		})
+	
 	</script>
-
-	<!-- 引入共同的頁尾-->
-	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
+	
+	
 </body>
 </html>

@@ -215,7 +215,7 @@ public class EditController {
 	
 //	從資料庫撈Blob型態，讓商品頁出現產品(圖片一)
 //	ResponseEntity<Byte[]> => 回應本體的資料型態(blob 需轉成 位元組型態才可讀取)
-	@RequestMapping(value = "/getPicture/{product_id}")
+	@RequestMapping(value = "/getProductPictureA/{product_id}")
 	public ResponseEntity<byte[]> getPicture(
 			HttpServletResponse resp, 
 			@PathVariable Integer product_id){
@@ -253,7 +253,7 @@ public class EditController {
 	}
 //	從資料庫撈Blob型態，讓商品頁出現產品(圖片二)
 //	ResponseEntity<Byte[]> => 回應本體的資料型態(blob 需轉成 位元組型態才可讀取)
-	@RequestMapping(value = "/getPictureA/{product_id}")
+	@RequestMapping(value = "/getProductPictureB/{product_id}")
 	public ResponseEntity<byte[]> getPictureA(
 			HttpServletResponse resp, 
 			@PathVariable Integer product_id){

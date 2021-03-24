@@ -105,7 +105,7 @@
 					</a>
 				</div>
 				<div class="item">
-					<a href="<c:url value='/doLogout'/>">
+					<a href="#">
 						<button>
 							<span>登出</span>
 						</button>
@@ -635,7 +635,7 @@
 				for(let i = 0; i < res.items.length; i++){
 					//照片出不來(待補)
 					let image = '<img class="product_images" src="' + 
-		          				'<c:url value="/getPicture/' + 
+		          				'<c:url value="/getProductPictureA/' + 
 		        	 			res.items[i].productBean.product_id + '" />">';
 					// <td style="white-space:pre-line;">${'${res.items[i].productBean.product_info}'} => <th>商品描述</th> 
 					segment += `<tr>

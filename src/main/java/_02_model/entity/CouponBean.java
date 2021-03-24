@@ -37,9 +37,9 @@ public class CouponBean implements Serializable{
 	
 	private String coupon_rule;
 	
-	private Date coupon_end;
-	
 	private Date coupon_begin;
+	
+	private Date coupon_end;
 	
 	private String coupon_name;
 	
@@ -51,8 +51,7 @@ public class CouponBean implements Serializable{
 	private String file_name;	
 	@Transient
 	MultipartFile coupon_image;
-	
-	
+
 	@ManyToOne
 	@JoinColumn(name = "FK_shop_id")
 	private ShopBean shopBean;
@@ -67,6 +66,26 @@ public class CouponBean implements Serializable{
 	private Set<FavoriteCouponListBean> couponlist = new LinkedHashSet<FavoriteCouponListBean>();
 	
 	
+	
+
+
+
+	public CouponBean(Integer coupon_id, Integer coupon_amount, String coupon_info, String coupon_rule,
+			Date coupon_begin, Date coupon_end, String coupon_name, String coupon_memo, ShopBean shopBean) {
+		super();
+		this.coupon_id = coupon_id;
+		this.coupon_amount = coupon_amount;
+		this.coupon_info = coupon_info;
+		this.coupon_rule = coupon_rule;
+		this.coupon_begin = coupon_begin;
+		this.coupon_end = coupon_end;
+		this.coupon_name = coupon_name;
+		this.coupon_memo = coupon_memo;
+		this.shopBean = shopBean;
+	}
+
+
+
 	public Integer getCoupon_id() {
 		return coupon_id;
 	}

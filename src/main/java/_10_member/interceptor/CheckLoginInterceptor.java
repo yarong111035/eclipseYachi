@@ -25,7 +25,9 @@ import _10_member.entity.Member;
 // 方法讀入，放入List型別的實例變數 url 內。
 public class CheckLoginInterceptor extends HandlerInterceptorAdapter  {
 	List<String> url = Arrays.asList(
-							"/admin/*"
+						  // "/admin/*" 
+							"/goCheckout",
+							"/useCoupon/*"
 						);
 	String servletPath;
 	String contextPath;

@@ -45,7 +45,7 @@
 		<input type='hidden' name='_method' value='DELETE'>
 	</form>
 
-	<div class="container pt-4 editTop">
+	<div class="container pt-4">
 		<div class="row">
 
 			<!-- -------------------------功能選單開始 --------------------------------------->
@@ -108,7 +108,7 @@
 															</div>
 															<div class="td pic">
 																<img
-																	src="<c:url value='/getPicture/${product.product_id}'/>">
+																	src="<c:url value='/getProductPictureA/${product.product_id}'/>">
 															</div>
 															<div class="td name">
 																<a
@@ -170,7 +170,7 @@
 											<c:if test="${product.product_status == 2}">
 												<div class="tr">
 													<div class="td pic">
-														<img src="<c:url value='/getPicture/${product.product_id}'/>">
+														<img src="<c:url value='/getProductPictureA/${product.product_id}'/>">
 													</div>
 													<div class="td name">
 														<a  style="color:gray; href="<c:url value='/productUpdate/${product.product_id}'/>">${product.product_name}</a>
@@ -230,7 +230,7 @@
 											<c:if test="${product.product_stock == 0}">
 												<div class="tr">
 													<div class="td pic">
-														<img src="<c:url value='/getPicture/${product.product_id}'/>">
+														<img src="<c:url value='/getProductPictureA/${product.product_id}'/>">
 													</div>
 													<div class="td name">
 														<a  style="color:gray; href="<c:url value='/productUpdate/${product.product_id}'/>">${product.product_name}</a>
@@ -272,10 +272,7 @@
 
 		</div>
 	</div>
-	
-	<!-- 引入共同的頁尾 -->
-	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
-	
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 	<script>
     $(function () {
@@ -383,7 +380,6 @@
 		}
 	  })
 </script>
-
 
 </body>
 </html>

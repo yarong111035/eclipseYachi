@@ -161,6 +161,16 @@
 					<form:input type="text" path="shop_hours" class="form-control" placeholder="營業時間"/>
 					<i class="fas fa-store"></i>
 				</div>
+				
+				<div class="form-wrapper">
+					<form:input type="text" path="shop_hyperlink" class="form-control" placeholder="商家網頁"/>
+					<i class="fas fa-store"></i>
+				</div>
+				
+				<div class="form-wrapper">
+					<form:input type="textarea" path="shop_info" class="form-control" placeholder="商家簡介"/>
+					<i class="fas fa-store"></i>
+				</div>
 
 				<div class="form-wrapper">
 					<form:select path='shopTypeBean.shop_type_id' class="form-control">
@@ -180,8 +190,8 @@
 					<i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
 				</div>
 				<input type="submit" value="更改資料"
-									class="button-submit">
-									</input>
+									class="button-submit" />
+									
 			</form:form>
 		</div>
 	</div>

@@ -26,6 +26,12 @@ public class ShipTypeBean {
 	public ShipTypeBean() {
 		super();
 	}
+	
+	
+	public ShipTypeBean(String type_name) {
+		super();
+		this.type_name = type_name;
+	}
 
 	public Integer getShip_type_id() {
 		return ship_type_id;

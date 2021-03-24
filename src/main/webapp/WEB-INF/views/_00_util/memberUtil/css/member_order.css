@@ -5,6 +5,7 @@
     display: -ms-flexbox;
     display: flex;
     padding: 0 10rem;
+    margin-bottom: 70px;
   }
   
   .main-member aside {

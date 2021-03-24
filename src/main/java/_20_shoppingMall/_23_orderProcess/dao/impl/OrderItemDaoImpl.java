@@ -46,12 +46,15 @@ public class OrderItemDaoImpl implements OrderItemDao {
 			stock= 0;
 		}
 		
-//		System.out.println(item.getOrderBean());
-//		System.out.println(item.getOrderBean().getOrderStatusBean());
-//		System.out.println(item.getOrderBean().getOrderStatusBean().getStatus_id());
+		//如果目前狀態處於 "取消" 或 "退貨" 則加回原本的庫存量 
 		
-		//如果目前狀態處於 "取消" 或 "退貨" 則加回原本的庫存量
+		System.out.println(item.getOrderBean());
+		System.out.println(item.getOrderBean().getOrderStatusBean());
+		System.out.println(item.getOrderBean().getOrderStatusBean().getStatus_id());
+	
+		
 		Integer orderStatus = item.getOrderBean().getOrderStatusBean().getStatus_id();
+		System.err.println(orderStatus);
 		if( orderStatus == cancelStatus || orderStatus == returnedStatus ) {
 			hqlUpdate = " UPDATE ProductBean "
 					 + " SET product_stock = product_stock + :orderItem_amount "

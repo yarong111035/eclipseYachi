@@ -37,10 +37,12 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
 	integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
 	crossorigin="anonymous"></script>
-
-<script
-	src="<c:url value='/_00_util/allUtil/javascript/jquery-3.5.1.js'/>"></script>
+<script src="<c:url value='/_00_util/allUtil/javascript/jquery-3.5.1.js'/>"></script>
 <script src="<c:url value='/_00_util/allUtil/javascript/jquery-ui.js'/>"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
 
 </head>
 <body>
@@ -62,11 +64,13 @@
 			<div class="carCancelBtn">
 				<i class="fa fa-arrow-left"></i>
 			</div>
+			<label for="side_menu_switch"><i class="fas fa-cart-plus"></i>
+			</label>
 			
 			
 			<c:if test="${empty LoginOK}">
 				<div class="title">
-					<c:if test='${empty sessionCartVoList}'>
+					<c:if test='${empty sessionCartVoList}'>  <!-- 訪客專用的 --> 
 						購物清單 <span class="shopNum">0</span>
 					</c:if>
 					<c:set value='0' var='sum'/>
@@ -117,7 +121,7 @@
 		                <li id="car_productId" class="carItem">      
 		                    <div class="pic">
 		                        <a href="javascript:;">
-		                            <img src="<c:url value='/getPicture/${cartVo.product_id }'/>">
+		                            <img src="<c:url value='/getProductPictureA/${cartVo.product_id }'/>">
 		                        </a>
 		                    </div>
 		                    <div class="text_box">
@@ -159,7 +163,7 @@
 		                <li id="car_productId" class="carItem">      
 		                    <div class="pic">
 		                        <a href="#">
-		                            <img src="<c:url value='/getPicture/${memberCartVo.product_id}'/>">
+		                            <img src="<c:url value='/getProductPictureA/${memberCartVo.product_id}'/>">
 		                        </a>
 		                    </div>
 		                    <div class="text_box">
@@ -212,8 +216,7 @@
 				<a href="<c:url value='/goCheckout'/>">前往結帳 NT$ ${sum}</a>
 			</div>
 
-			<label for="side_menu_switch"> <i class="fas fa-cart-plus"></i>
-			</label>
+			
 			<c:choose>
 				<c:when test="${empty LoginOK}">
 					<c:if test="${sessionCartVoList.size() == 0 }">
@@ -275,19 +278,22 @@
 										<div class="product_items">
 											<div class="product_image image2">
 		
-												<img
-													src="<c:url value='/getPictureA/${entry.product_id}'/>">
+												<img src="<c:url value='/getProductPictureB/${entry.product_id}'/>">
+
+												
 											</div>
 											<div class="product_image image1">
 		
-												<a
-													href="<spring:url value='singleProduct?id=${entry.product_id}'/>"><img
-													src="<c:url value='/getPicture/${entry.product_id}'/>"></a>
+<%-- 												<a href="<spring:url value='singleProduct?id=${entry.product_id}'/>"><img src="<c:url value='/getProductPictureA/${entry.product_id}'/>"></a> --%>
+													
+													<a data-fancybox="gallery" href="<c:url value='/getProductPictureA/${entry.product_id}'/>"><img src="<c:url value='/getProductPictureA/${entry.product_id}'/>"></a>
+													
 											</div>
 											<div class="itemBody">
 												<div class="product_name">
-													<a
-														href="<spring:url value='singleProduct?id=${entry.product_id}'/>">${entry.product_name }</a>
+												
+													<a href="<spring:url value='singleProduct?id=${entry.product_id}'/>">${entry.product_name }</a>
+													
 												</div>
 												<div class="product_price">
 													<span>售價NT${entry.product_price }</span>
@@ -407,7 +413,7 @@
 
 
 		</div>
-		
+
 	</div>
 
 
@@ -426,8 +432,28 @@
 			$(window).resize(function() {
 				cartListHeight();
 			})
-
-		})
+				
+// 			$("#side_menu_switch2").click(function(){
+// 				alert("123");
+// 			});
+			
+// 		$("#side_menu_switch").toggle(function(){
+			
+// 			alert("123");
+			
+// 			$(".side_cart").css('transform','translateX(0px)');
+		    
+			
+// 			},	    
+// 		    function(){
+			
+// 			alert("456");
+				
+// 			$(".side_cart").css('transform','translateX(-500px)');
+		    
+// 			});
+			
+// 		})
 
 		function cartListHeight() {
 			let box_height = $(window).height();
@@ -485,6 +511,7 @@
 			
 			});
 // 		}
+		
 		
 		
 			

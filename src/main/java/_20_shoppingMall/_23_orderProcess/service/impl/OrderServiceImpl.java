@@ -70,7 +70,7 @@ public class OrderServiceImpl implements OrderService {
 		//設定 訂單時間 與 配送日期
 		Date nowDate = new Date();
 		orderBean.setOrder_datetime(nowDate);//util.Date(當前訂單時間)
-		long newTime = SystemUtils2018.addDate(nowDate, 3); //訂單日期往後推三天
+		long newTime = addDate(nowDate, 3); //訂單日期往後推三天
 		orderBean.setShipping_date(new java.sql.Date(newTime)); //sql.Date(配送日期)
 		
 // 	 2. 新增訂單明細紀錄(訂單細項:訂單 = 多 : 1)
@@ -157,7 +157,14 @@ public class OrderServiceImpl implements OrderService {
 		return orderDao.queryOrder(orderNumber);
 	}
 
-
+	//指定日期加上天數
+	public static long addDate(Date date, long day){
+		long time = date.getTime(); // 得到指定日期的毫秒數
+		day = day * 24 * 60 * 60 * 1000; // 要加上的天數轉換成毫秒數
+		time += day; // 相加得到新的毫秒數
+		return time; // 最後日期的總毫秒數
+	}
+	
 	
 
 

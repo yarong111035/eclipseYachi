@@ -117,11 +117,11 @@
 						<!-- 選擇照片 -->
 						<div class="row imageBox d-flex justify-content-around pt-4">
 							<div class="image">
-								<img id="image1" src="<c:url value='/getPicture/${product_id}'/>"/>
+								<img id="image1" src="<c:url value='/getProductPictureA/${product_id}'/>"/>
 								
 							 </div>
 							<div class="image">
-								<img id="image2" src="<c:url value='/getPictureA/${product_id}'/>" alt="">
+								<img id="image2" src="<c:url value='/getProductPictureB/${product_id}'/>" alt="">
 							</div>
 							<!--<div class="image">
 								<img src="${pageContext.request.contextPath}/images/Shinnosuke/Shinnosuke2.jpg" alt="">
@@ -198,7 +198,5 @@
 	}
 	</script>
 
-	<!-- 引入共同的頁尾 -->
-	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
 </body>
 </html>
