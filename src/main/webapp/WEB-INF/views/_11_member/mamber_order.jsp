@@ -509,6 +509,11 @@
 		</main>
 
 	</div>
+	
+	<!-- -------------------------------引入共同的頁尾---------------------------------------- -->
+	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
+	<!-- -------------------------------引入共同的頁尾----------------------------------------- -->
+	
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>
@@ -581,7 +586,7 @@
 				
 				if(res.orderNumber != orderNumber){
 					alert("訂單號不正確喔!!!")
-					return;
+// 					return;
 				}else{
 					
 				// 資訊區域
