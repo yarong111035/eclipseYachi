@@ -86,7 +86,7 @@ public class DataTest {
 		NightMarketBean nightMarketBean4 = new NightMarketBean("士林夜市",2.5);
 		NightMarketBean nightMarketBean5 = new NightMarketBean("臨江街觀光夜市",4.0);
 		NightMarketBean nightMarketBean6 = new NightMarketBean("延三夜市",4.6);
-		NightMarketBean nightMarketBean7 = new NightMarketBean("廣州街夜市",4.3);
+		NightMarketBean nightMarketBean7 = new NightMarketBean("公館夜市",4.3);
 		NightMarketBean nightMarketBean8 = new NightMarketBean("南機場夜市",4.1);
 		session.persist(nightMarketBean1);
 		session.persist(nightMarketBean2);

@@ -107,9 +107,9 @@
                   <div class="tabs-panel" > 
 					
 					<div class="keyword">
-						<form action="" class="keyword-form">
+						<form action="<c:url value="/search/night"/>" class="keyword-form">
 							<a>搜尋夜市</a>
-							<input type="text" name="" id="">
+							<input type="text" name="market_name" id="">
 							<input type="submit" value="搜尋">
 						</form>
 						

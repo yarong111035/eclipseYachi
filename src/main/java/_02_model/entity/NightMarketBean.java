@@ -31,6 +31,10 @@ public class NightMarketBean implements Serializable{
 	
 	private String market_memo;
 	
+	private String marketURL;
+	
+	
+	
 	// 雙向多對一 
 	// 夜市一方 商家多方  夜市可以有多個商家 一個商家只能有一個夜市 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "nightMarketBean",fetch = FetchType.EAGER)  //告訴外鍵後就不會有中介表格
@@ -105,5 +109,13 @@ public class NightMarketBean implements Serializable{
 		this.shops = shops;
 	}
 	
+	public String getMarketURL() {
+		return marketURL;
+	}
+
+	public void setMarketURL(String marketURL) {
+		this.marketURL = marketURL;
+	}
+
 	
 }

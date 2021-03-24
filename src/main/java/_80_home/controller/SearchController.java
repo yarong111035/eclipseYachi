@@ -156,16 +156,19 @@ public class SearchController {
 	
 
 	// Like模糊搜尋夜市 
-	@RequestMapping("/test01")
+	@RequestMapping("/search/night")
 	public String searchNight(@RequestParam String market_name) {
+		
+		String marketName = "";
 		
 		List<NightMarketBean> list = searchService.searchNight(market_name);
 		
 		for (NightMarketBean nightMarketBean : list) {
-			System.out.println(nightMarketBean.getMarket_name());
+			marketName = nightMarketBean.getMarketURL();
 		}
 		
-		return "/_17_home/searchALL";
+		
+		return "redirect:"+marketName;
 	}
 	
 	// 查詢所有的優惠券 (優惠券有效期限大於當前時間) 尚未過期
