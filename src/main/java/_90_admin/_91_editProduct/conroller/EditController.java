@@ -251,6 +251,7 @@ public class EditController {
 		ResponseEntity<byte[]> responoEntity = new ResponseEntity<>(pic, headers, HttpStatus.OK); 
 		return responoEntity;
 	}
+	
 //	從資料庫撈Blob型態，讓商品頁出現產品(圖片二)
 //	ResponseEntity<Byte[]> => 回應本體的資料型態(blob 需轉成 位元組型態才可讀取)
 	@RequestMapping(value = "/getProductPictureB/{product_id}")

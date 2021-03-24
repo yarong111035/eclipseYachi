@@ -74,8 +74,23 @@
 				</div>
 
 				<form class="search-food" action="<c:url value='/search/product'/>" >
-					<div class="search-input">
-						<input name="product_name" type="text" placeholder="搜尋商城商品 . . .">
+					<div class="search-input">						
+						
+						<c:if test="${!empty keyword}">
+						
+							<c:if test="${keyword != '?' }">
+								<input name="product_name" type="text" placeholder="${keyword}">
+							</c:if>
+							<c:if test="${keyword == '?' }">
+								<input name="product_name" type="text" placeholder="請輸入關鍵字 . . .">
+							</c:if>
+							
+						</c:if>
+						
+						<c:if test="${empty keyword}">
+							<input name="product_name" type="text" placeholder="搜尋商城商品 . . .">
+						</c:if>
+						
 						<button type="submit">
 							<i class="fas fa-search"></i>
 						</button>

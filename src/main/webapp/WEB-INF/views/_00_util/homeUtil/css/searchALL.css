@@ -573,18 +573,16 @@ header .tab .tab-warp .tab-content .tab-panel a:hover{
   margin: 5px;
   padding: 5px;
 }
-.product .name{
 
+.product img{
+	width: 200px;
+	height: 200px;
 }
-.product .info{
 
-}
 .product .price{
   color: red;
 }
-.product .release{
 
-}
 
 /* 依商品類型開始 */
 #product-type{

@@ -69,6 +69,9 @@
 		splide.mount();
 
 		});
+   
+  
+   		
 
 </script>
 
@@ -188,20 +191,25 @@
                
                   <div class="tabs-panel" style="display:block">
 					<div class="product-price">
-						<a href="<c:url value='/search/product/low/${keyword}'/>"><input type="button" value="價格低"></a>
-						<a href="<c:url value='/search/product/high/${keyword}'/>"><input type="button" value="價格高"></a>
-
-						<form action="<c:url value='/search/product/range/${keyword}'/>" >
-							<a>搜尋價格</a>
-							<input type="number" name="lowPrice" id="" placeholder="最低價" min="1">
-							<a>～</a>
-							<input type="number" name="highPrice" id="" placeholder="最高價" min="1">
-							<input type="submit" value="確認" class="search-submit">
-						</form>
-						<a href="<c:url value="/search/ALLproducts"/>" style="margin-left: 20px;"><input type="button" value="顯示商城全部的商品"></a>
+					
+						<c:if test="${keyword != '?' }">
+							<a href="<c:url value='/search/product/low/${keyword}'/>"><input type="button" value="價格低"></a>
+							<a href="<c:url value='/search/product/high/${keyword}'/>"><input type="button" value="價格高"></a>
+	
+							<form action="<c:url value='/search/product/range/${keyword}'/>" >
+								<a>搜尋價格</a>
+								<input type="number" name="lowPrice" id="" placeholder="最低價" min="1">
+								<a>～</a>
+								<input type="number" name="highPrice" id="" placeholder="最高價" min="1">
+								<input type="submit" value="確認" class="search-submit" id="search-price">
+							</form>
+						</c:if>
+						
+						<a href="<c:url value="/search/ALLproducts"/>" style="margin-left: -20px;"><input type="button" value="顯示商城全部的商品"></a>
 					</div>
 
 					<div class="keyword">
+					
 						<c:if test="${keyword == '?' }">								
 							<p style="white-space: pre;">你沒有輸入關鍵字哦    !</p>						
 						</c:if>
@@ -219,10 +227,11 @@
 							<c:forEach var="productBean" items="${list}">
 								<div class="product">
 		
-									<a data-fancybox="gallery" href="https://picsum.photos/500/500"><img src="https://picsum.photos/200/200"></a>
+									<a data-fancybox="gallery" href="<c:url value='/searchProductPicture/${productBean.product_id}'/>">
+								    <img src="<c:url value='/searchProductPicture/${productBean.product_id}'/>"></a>
 		
 									<div class="name">${productBean.product_name}</div>
-									<div class="info">${productBean.product_info}</div>
+									<div class="info">${productBean.product_spec}</div>
 									<div class="price">$&nbsp;${productBean.product_price}</div>
 									<div class="release">發售日&nbsp;&nbsp;${productBean.product_release}</div>
 								</div>
