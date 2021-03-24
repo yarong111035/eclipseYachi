@@ -42,77 +42,56 @@
 	<div class="main-member">
 		<!-- 側邊攔開始 -->
 		<aside>
-			<div class="function">
-				<h3>會員中心</h3>
+            <div class="function">
+                <h3>會員中心</h3>
 				<div class="item">
-					<img src='/_00_init/getMemberImage?memberId=1' id="headImgg"
-						height='200px' width='200px'>
-				</div>
-
-				<!-- 	                <label for="file"> -->
-				<!-- 	                    <i class="fas fa-image">編輯照片 -->
-				<!-- 	                    <input type="file" id="file" name="fileField" accept=".jpeg,.png"  -->
-				<!-- 	                    style="display: none;"></i> -->
-				<!-- 	                </label> -->
-
-				<div class="item">
-					<a href="#">
-						<button>
-							<span>基本資料</span>
-						</button>
-					</a>
-				</div>
-				<div class="item">
-					<a href="#">
-						<button>
-							<span>訂單查詢</span>
-						</button>
-					</a>
-				</div>
-				<div class="item">
-					<a href="#">
-						<button>
-							<span>我的優惠券</span>
-						</button>
-					</a>
-				</div>
-				<div class="item">
-					<a href="#">
-						<button>
-							<span>喜愛商家</span>
-						</button>
-					</a>
-				</div>
-				<div class="item">
-					<a href="#">
-						<button>
-							<span>通知</span>
-						</button>
-					</a>
-				</div>
-				<div class="item">
-					<a href="#">
-						<button>
-							<span>申請商家</span>
-						</button>
-					</a>
-				</div>
-				<div class="item">
-					<a href="#">
-						<button>
-							<span>新增信用卡</span>
-						</button>
-					</a>
-				</div>
-				<div class="item">
-					<a href="#">
-						<button>
-							<span>登出</span>
-						</button>
-					</a>
-				</div>
-			</div>
-		</aside>
+				
+		            <img src='<c:url value='/_00_init/getMemberImage?memberId=${LoginOK.memberId}' /> '
+		                  id="headImgg" height='200px' width='200px'>
+		                  					
+	            </div>
+                <div class="item">
+                   	<a href="<c:url value='/member/update/${LoginOK.memberId}'/>">
+                        <button><span>基本資料</span></button>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<c:url value='/_23_orderProcess/orderList'/>">
+                        <button><span>訂單查詢</span></button>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<c:url value='/member/keep/coupons'/>">
+                        <button><span>我的優惠券</span></button>
+                    </a>                    
+                </div>
+                <div class="item">
+                    <a href="<c:url value="/queryFavoriteShop"/>"> 
+                        <button><span>喜愛商家</span></button>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <button><span>通知</span></button>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<c:url value='/_50_shop/_53_shopRegister/InsertShop' />">
+                        <button><span>申請商家</span></button>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <button><span>新增信用卡</span></button>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<c:url value='/doLogout'/>" onclick="return window.confirm('確定登出嗎?');">
+                        <button><span>登出</span></button>
+                    </a>
+                </div>
+            </div>
+        </aside>
 		<!-- 側邊攔結束 -->
 
 

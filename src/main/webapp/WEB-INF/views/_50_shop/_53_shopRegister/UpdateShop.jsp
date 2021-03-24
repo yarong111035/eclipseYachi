@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/shopUtil/css/normalize.css'/>">
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="<c:url value='/_00_util/shopUtil/css/shop_register1.css'/>">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -58,7 +58,8 @@
 </script>
 </head>
 <body>
-	
+
+	<!-- 引入共同的頁首 -->
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
 	
 	<div class="main-member">

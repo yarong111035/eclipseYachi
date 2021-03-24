@@ -78,12 +78,12 @@
 		                  id="headImgg" height='200px' width='200px'>					
 	            </div>
                 <div class="item">
-                    <a href="#">
+                    <a href="<c:url value='/member/update/${LoginOK.memberId}'/>">
                         <button><span>基本資料</span></button>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="#">
+                    <a href="<c:url value='/_23_orderProcess/orderList'/>">
                         <button><span>訂單查詢</span></button>
                     </a>
                 </div>
@@ -93,7 +93,7 @@
                     </a>    
                 </div>
                 <div class="item">
-                    <a href="#">
+                    <a href="<c:url value="/queryFavoriteShop"/>">
                         <button><span>喜愛商家</span></button>
                     </a>
                 </div>
@@ -103,7 +103,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="#">
+                    <a href="<c:url value='/_50_shop/_53_shopRegister/InsertShop' />">
                         <button><span>申請商家</span></button>
                     </a>
                 </div>
@@ -113,7 +113,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="#">
+                     <a href="<c:url value='/doLogout'/>" onclick="return window.confirm('確定登出嗎?');">
                         <button><span>登出</span></button>
                     </a>
                 </div>
@@ -142,7 +142,7 @@
                            <c:forEach var='couponlist' items='${coupons}'>   
                                                                           
                               <div class="coupon-shop">     
-                                  <img src="<c:url value='/getPicture/${couponlist.coupon_id}' />" >
+                                  <img src="<c:url value='/getCouponPicture/${couponlist.coupon_id}' />" >
                                   
                               		<a href="<c:url value='/member/delete/${couponlist.coupon_id}'/>" 
                               		class="remove-product" onclick="return window.confirm('確定移除嗎?')">

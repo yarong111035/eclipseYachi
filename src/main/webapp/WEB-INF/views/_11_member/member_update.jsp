@@ -161,7 +161,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="#">
+                    <a href="<c:url value='/_23_orderProcess/orderList'/>">
                         <button><span>訂單查詢</span></button>
                     </a>
                 </div>
@@ -171,7 +171,7 @@
                     </a>                    
                 </div>
                 <div class="item">
-                    <a href="#">
+                    <a href="<c:url value="/queryFavoriteShop"/>"> 
                         <button><span>喜愛商家</span></button>
                     </a>
                 </div>
@@ -191,7 +191,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="#">
+                    <a href="<c:url value='/doLogout'/>" onclick="return window.confirm('確定登出嗎?');">
                         <button><span>登出</span></button>
                     </a>
                 </div>

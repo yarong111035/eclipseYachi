@@ -213,6 +213,7 @@
 					
 						<a href="<c:url value='/member/update/${LoginOK.memberId}'/>">修改會員資料</a>
 						<a href="<c:url value='/member/keep/coupons'/>">我的優惠券</a>
+						<a href="<c:url value="/queryFavoriteShop"/>">我的喜愛商家</a>
 						<a href="<c:url value='/_23_orderProcess/orderList'/>"><font>查看訂單</font></a><br>						
 						<a href="<c:url value='/_50_shop/_53_shopRegister/InsertShop' />">申請商家</a><br>
 						<a href="<c:url value='/_50_shop/_53_shopRegister/modifyShop/${LoginOK.shopBean.shop_id}' />">商家管理頁面</a><br>

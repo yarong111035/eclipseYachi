@@ -150,7 +150,8 @@ public class MemberCenterController {
 	}
 	
 	
-	@RequestMapping(value = "/getPicture/{couponId}")
+	// 顯示來自資料庫優惠券的圖片
+	@RequestMapping(value = "/getCouponPicture/{couponId}")
 	public ResponseEntity<byte[]> getPicture(
 			HttpServletResponse resp, 
 			@PathVariable Integer couponId){

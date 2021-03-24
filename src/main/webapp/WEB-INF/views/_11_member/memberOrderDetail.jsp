@@ -58,15 +58,10 @@
             <div class="function">
                 <h3>會員中心</h3>
 				<div class="item">
-		            <img src='/_00_init/getMemberImage?memberId=1'
+		              <img src='<c:url value='/_00_init/getMemberImage?memberId=${LoginOK.memberId}' /> '
 		                  id="headImgg" height='200px' width='200px'>					
 	            </div>
 
-<!-- 	                <label for="file"> -->
-<!-- 	                    <i class="fas fa-image">編輯照片 -->
-<!-- 	                    <input type="file" id="file" name="fileField" accept=".jpeg,.png"  -->
-<!-- 	                    style="display: none;"></i> -->
-<!-- 	                </label> -->
 
                 <div class="item">
                     <a href="#">
