@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -22,217 +23,248 @@ import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.WebRequest;
-
 import _10_member.entity.Member;
 import _10_member.entity.Role;
+import _10_member.mail.Garbled;
+import _10_member.mail.MailUtil;
 import _10_member.service.MemberService;
 import _10_member.validate.MemberValidator;
 import _20_shoppingMall._22_shoppingCart.service.CartBeanService;
 import _20_shoppingMall._22_shoppingCart.vo.MemberCartBeanVo;
 import _20_shoppingMall._22_shoppingCart.vo.SessionCartVo;
 
-
 @Controller
-@SessionAttributes({"LoginOK","sessionCartVoList","memberCartVoList"})
+@SessionAttributes({ "LoginOK", "AdminLoginOK","sessionCartVoList","memberCartVoList"})
 public class LoginAndRegisterController {
-	
+
 	@Autowired
 	MemberService memberService;
-	
-	@Autowired
-	CartBeanService cartBeanService;
-	
+
 	@Autowired
 	MemberValidator mValidator;
-	
+
 	@Autowired
 	PasswordEncoder pEncoder;
-	
+
+	@Autowired
+	CartBeanService cartBeanService;
+
 	// 登入和註冊頁面的視圖邏輯名稱渲染
 	@RequestMapping("/LoginAndRegister")
-	public String LoginAndRegister(@ModelAttribute("member") Member member) {
-		
-		return "/_11_member/LoginAndRegister"; 
+	public String LoginAndRegister(Model model) {
+
+		// <form:form modelAttribute="member">
+		// 先送出空白表單
+		model.addAttribute("member", new Member());
+
+		return "/_11_member/LoginAndRegister";
 	}
-			
+
 	// 會員註冊事務
-	@SuppressWarnings("unchecked")
 	@PostMapping("doRegister")
-	public String doRegist(@ModelAttribute("member") Member member,
-			BindingResult bindingResult,Model model,HttpSession session) {
-		
+	public String doRegist(Member member, BindingResult bindingResult, Model model, HttpSession session) {
+
 		mValidator.validate(member, bindingResult);
-		
+
 		if (bindingResult.hasErrors()) {
-			
+
 			return "/_11_member/errorRegister";
 		}
-			
+
 		// 獲取來自輸入表單的帳號和密碼
-		String username = member.getUsername();  //aa
+		String username = member.getUsername();
 		String password = member.getPassword();
 
-		// 從資料庫找尋帳號是否有和輸入表單帳號重複的 
-		Member getUsername = memberService.findByUsername(username);  //aa
-				
-		if(getUsername != null ) {
-			
-			model.addAttribute("msg","註冊失敗");
-			model.addAttribute("errorInfo",username);
-			
+		// 從資料庫找尋帳號是否有和輸入表單帳號重複的
+		Member getUsername = memberService.findByUsername(username);
+
+		if (getUsername != null) {
+
+			model.addAttribute("msg", "註冊失敗");
+			model.addAttribute("errorInfo", username);
+
 			return "/_11_member/errorRegister";
-			
-		}else {
-			
+
+		} else {
+
+			// ---------寄送信箱驗證
+			Garbled garbled = new Garbled();
+			String code = garbled.getGalbled(8);
+			member.setCode(code);
+			new Thread(new MailUtil(member.getEmail(), code)).start();
+
+			// <c:if test="${empty status and !empty code }">
+			// alert(" 已寄出驗證信 登入前請先去驗證 !");
+			session.setAttribute("status", member.getStatus());
+			session.setAttribute("code", member.getCode());
+
+			// ------------------------------------------------------
+			// 加入會員角色
 			Role roleA = new Role();
 			roleA.setRole_name("會員");
 			roleA.setRole_code("USER");
-			
+
+//			// 註冊管理員請自行打開註解
+//			Role roleA = new Role();
+//			roleA.setRole_name("管理員");
+//			roleA.setRole_code("ADMIN");
+
 			Set<Role> roles = new HashSet<>();
-			roles.add(roleA);			
+			roles.add(roleA);
 			member.setRoles(roles);
-			
+
 			// 註冊時間戳記
 			member.setRegisterTime(new Timestamp(System.currentTimeMillis()));
-			
+
 			// 密碼加密處理
 			member.setPassword(pEncoder.encode(password));
 
 			memberService.insertMember(member);
-//			System.out.println(member);			
-//			session.setAttribute("member", member);	
-//			model.addAttribute("member", member);
-			
-			model.addAttribute("LoginOK", member);
-			
-			//訪客登入成功 (sessionCart => CartBean)
-			
-			
-			//1. 先取得sessionCart的購物清單
-																						
-//			List<SessionCartVo> sessionCartVoList = (List<SessionCartVo>) session.getAttribute("sessionCartVoList");
-//			
-//			//2. 利用 SessionCartVo 創建購物車 
-//			for(SessionCartVo sessionCart : sessionCartVoList) {
-//				cartBeanService.addToCart(member.getMemberId(), sessionCart.getProduct_id(), sessionCart.getScQty());
-//			}
-//			
-//			List<MemberCartBeanVo> memberCartVoList = cartBeanService.getMemberCartVo(member.getMemberId());
-//			model.addAttribute("memberCartVoList", memberCartVoList);
-			
-	
-			
+
 			return "redirect:/index";
 		}
-		
+
 	}
-	
-	// 登入成功後的畫面 	
-//	@RequestMapping("/success")
-//	public String success(HttpSession session,Model model,Member member) {
-//		
-//		String name = member.getFullname();
-//		
-//		member = memberService.findByUsername(name);	
-//		
-//		model.addAttribute(member);
-//		session.setAttribute("LoginOK",member.getFullname());
-//		
-//		return "/_11_member//success";
-//		
-//	}
-	
-	 // 會員登出
+
+	// 驗證信箱控制器
+	@RequestMapping("/emailConfirm/code={code}")
+	public String ConfirmEmail(@PathVariable String code) {
+
+		Member member = memberService.findByCode(code);
+		member.setStatus(1);
+		memberService.updateMember(member);
+
+		return "/_11_member/MailVerification";
+	}
+
+	// 會員忘記密碼
+	@RequestMapping("/forgetPassword")
+	public String resetPassword() {
+
+		return "/_11_member/findMemberPwd";
+	}
+
+	// 會員登出
 	@RequestMapping("/doLogout")
 	public String doLogout(HttpSession session, SessionStatus status) {
-		
+
 		session.invalidate();
-		
+
 		// 去除@SessionAttributes("LoginOK")
 		status.setComplete();
-		
-		
+
 		return "redirect:/index";
 	}
-	
-	
+
 	// 會員登入
-	@SuppressWarnings("unchecked")
-	@PostMapping("doLogin") 
-	public String doLogin(Member member,Model model,HttpSession session,
-							HttpServletRequest request) {
-		
+	@PostMapping("doLogin")
+	public String doLogin(Member member, Model model, HttpSession session, HttpServletRequest request) {
+
 		// 獲取來自輸入表單的帳號密碼
 		String username = member.getUsername();
 		String password = member.getPassword();
-		
+
 		// 依來自表單的帳號密碼去尋找有無和資料庫相符合的帳號密碼
 		// 如果返回 null 表示查無此人
 		// Member memberValidation = memberServiceImpl.getMember(account,password);
-		
+
 		// 依輸入表單的帳號獲取來自資料庫會員的全部資料
 		member = memberService.findByUsername(username);
-		
-		if (member == null) {
-			model.addAttribute("accountError", "查無帳號，請先去註冊");		
-			return "/_11_member/LoginAndRegister";			
-		}
-		
-		String sqlPassword = member.getPassword();
-		boolean matches = pEncoder.matches(password, sqlPassword);
-	    if (!matches){
 
-			model.addAttribute("passwordError", "密碼錯誤");
-			
+		if (member == null) {
+			model.addAttribute("accountError", "查無帳號，請先去註冊");
 			return "/_11_member/LoginAndRegister";
 		}
-	    
-		String nextPath = (String)session.getAttribute("requestURI");
+
+		String sqlPassword = member.getPassword();
+		boolean matches = pEncoder.matches(password, sqlPassword);
+		if (!matches) {
+
+			model.addAttribute("passwordError", "密碼錯誤");
+
+			return "/_11_member/LoginAndRegister";
+		}
+
+		// ----判斷是否為管理員登入
+
+		Set<Role> roles = member.getRoles();
+		String role_code = null;
+		Iterator<Role> iterator = roles.iterator();
+		while (iterator.hasNext()) {
+			role_code = iterator.next().getRole_code();
+		}
+
+		if (role_code.contains("ADMIN")) {
+			System.out.println("你是管理員");
+			member.setStatus(1);
+			memberService.updateMember(member);
+			model.addAttribute("AdminLoginOK", member);
+
+			return "redirect:/index";
+		}
+
+		// --------------------------------------------------------------
+		Integer status = member.getStatus();
+		if (status == null) {
+
+			model.addAttribute("emailError", "信箱尚未驗證");
+
+			return "/_11_member/LoginAndRegister";
+
+		}
+
+		String nextPath = (String) session.getAttribute("requestURI");
 		if (nextPath == null) {
-			
+
 			// 如果nextPath等於null 則導向 "/" 首頁
 			// nextPath = request.getContextPath();
-			
+
 			// 如果nextPath等於null 則導向index
-			nextPath = request.getContextPath()+"/index";  
+			nextPath = request.getContextPath() + "/index";
 		}
+
+		// 清除 status code 識別字串 這個跟信箱有關係
+		session.invalidate();
+
+		// 登入成功 將用戶存入session中 識別字串為"LoginOK" 屬性物件為 member
+		// 當 model.addAttribute("LoginOK",member); 時
+		// @SessionAttributes("LoginOK") 會自動幫你存入Session
+		model.addAttribute("LoginOK", member); // request
+
 		
-		// 登入成功 將用戶存入session中 識別字串為"member" 屬性物件為 member
-		// session.setAttribute("member", member);  //session
-		model.addAttribute("LoginOK",member);     //request
-		
-		
-		//訪客登入成功 (sessionCart => CartBean)
-		//1. 先取得sessionCart的購物清單
-		
+		// 訪客登入成功 (sessionCart => CartBean)
+		// 1. 先取得sessionCart的購物清單
+		@SuppressWarnings("unchecked")
 		List<SessionCartVo> sessionCartVoList = (List<SessionCartVo>) model.getAttribute("sessionCartVoList");
-		if(sessionCartVoList != null) {
-			//2. 利用 SessionCartVo 創建購物車 
-			for(SessionCartVo sessionCart : sessionCartVoList) {
+		if (sessionCartVoList != null) {
+			// 2. 利用 SessionCartVo 創建購物車
+			for (SessionCartVo sessionCart : sessionCartVoList) {
 				cartBeanService.addToCart(member.getMemberId(), sessionCart.getProduct_id(), sessionCart.getScQty());
 			}
-			
+
 		}
-		
 		List<MemberCartBeanVo> memberCartVoList = cartBeanService.getMemberCartVo(member.getMemberId());
 		model.addAttribute("memberCartVoList", memberCartVoList);
-		
+		//--------------------------------------------------------------------------------
+
 		return "redirect: " + nextPath;
 	}
-	
+
 	// 避免出現以下的例外
-	// org.springframework.web.HttpSessionRequiredException: Expected session attribute 'member'
-	@ModelAttribute("member")
-	public Member populateForm() {
-	    return new Member();
-	}
-	
+	// org.springframework.web.HttpSessionRequiredException: Expected session
+	// attribute 'member'
+//	@ModelAttribute("member")
+//	public Member populateForm() {
+//	    return new Member();
+//	}
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder, WebRequest request) {
 		// java.util.Date 1995-19-48 27:90:100
@@ -248,5 +280,3 @@ public class LoginAndRegisterController {
 	}
 
 }
-
-

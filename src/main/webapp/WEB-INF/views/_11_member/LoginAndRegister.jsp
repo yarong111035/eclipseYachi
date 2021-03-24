@@ -100,8 +100,8 @@
 	        <form:errors path="email" cssClass="error"/> 
         </div>
 
-        <form:button type="submit" class="btn" >註冊</form:button>
-
+        	<form:button type="submit" class="btn" >註冊</form:button>
+<!-- 			onclick="window.confirm('已寄出驗證信 登入前請先去驗證');" -->
         </form:form>
 
       </div>
@@ -120,7 +120,7 @@
           </div>
 
           <span>選擇其他登錄方式或使用你的帳號</span>
-          
+                    
           <div class="input-div">
              <form:label path="username">帳號</form:label>
              <form:input path="username" name="username" type="text"/>
@@ -130,11 +130,11 @@
           <div class="input-div">
             <form:label path="password">密碼</form:label>
             <form:input path="password" name="password" type="password"/>
-            <span Class="error">${passwordError}</span>
+            <span Class="error">${passwordError}${emailError}</span>
          </div>
   
-          <a href="#">忘記密碼 ?</a>
-
+          <a href="<c:url value='/forgetPassword'/>">忘記密碼 ?</a>
+                    
           <form:button type="submit" class="btn">登入</form:button>
 
         </form:form>

@@ -58,15 +58,10 @@
             <div class="function">
                 <h3>會員中心</h3>
 				<div class="item">
-		            <img src='/_00_init/getMemberImage?memberId=1'
+		              <img src='<c:url value='/_00_init/getMemberImage?memberId=${LoginOK.memberId}' /> '
 		                  id="headImgg" height='200px' width='200px'>					
 	            </div>
 
-<!-- 	                <label for="file"> -->
-<!-- 	                    <i class="fas fa-image">編輯照片 -->
-<!-- 	                    <input type="file" id="file" name="fileField" accept=".jpeg,.png"  -->
-<!-- 	                    style="display: none;"></i> -->
-<!-- 	                </label> -->
 
                 <div class="item">
                     <a href="#">
@@ -104,7 +99,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="<c:url value='/doLogout'/>">
+                    <a href="#">
                         <button><span>登出</span></button>
                     </a>
                 </div>
@@ -145,7 +140,7 @@
 	                        	
 	                            <tr class="img-tr">
 	                                <td colspan="2" rowspan="5" class="img-td">
-	                                    <img src="<c:url value='/getPicture/${item.productBean.product_id }'/>">
+	                                    <img src="<c:url value='/getProductPictureA/${item.productBean.product_id }'/>">
 	                                </td>
 	                                <td colspan="6"><span class="productName">商品名稱: ${item.productBean.product_name }</span></td> 
 	                            </tr>

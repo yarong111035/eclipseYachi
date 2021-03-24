@@ -23,17 +23,13 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	ProductTypeDao productTypeDao;
 	
-	public ProductServiceImpl() {
-		super();
-	}
 
-	@Transactional
 	@Override
 	public List<ProductBean> getAllProducts() {
 		return productDao.getAllProducts();
 	}
 	
-	@Transactional
+	
 	@Override
 	public void updateAllPrice() {
 		List<ProductBean> allProducts = productDao.getAllProducts();
@@ -51,20 +47,18 @@ public class ProductServiceImpl implements ProductService {
 //		return dao.getAllSorts();
 //	}
 
-	@Transactional
+	
 	@Override
 	public List<ProductBean> getProductBySort(int sortId) {
 		return productDao.getProductBySort(sortId);
 	}
 
 //	查詢單品產品資料
-	@Transactional
 	@Override
 	public ProductBean getProductById(int productId) {
 		return productDao.getProductById(productId);
 	}
 
-	@Transactional
 	@Override
 	public void addProduct(ProductBean product) {
 		ProductTypeBean ps = productTypeDao.getTypeById(product.getProductTypeBean().getProduct_type_id());
@@ -93,7 +87,6 @@ public class ProductServiceImpl implements ProductService {
 
 	
 	//每一分頁顯示的產品
-	@Transactional
 	@Override
 	public Map<Integer, ProductBean> getPageProducts(int pageNo) {
 		Map<Integer, ProductBean> map = null;
@@ -114,7 +107,6 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 //	得所有頁數數量
-	@Transactional
 	@Override
 	public int getTotalPages() {
 		int allPagesCount = 0;
@@ -134,14 +126,12 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	//刪除產品(更改產品狀態)
-	@Transactional
 	@Override
 	public void deleteProduct(Integer product_id) {
 		productDao.deleteProduct(product_id);
 	}
 	
 	//更新產品
-	@Transactional
 	@Override
 	public void updateProduct(ProductBean productBean) {
 		ProductTypeBean productTypeBean = productTypeDao.getTypeById(productBean.getProductTypeBean().getProduct_type_id());

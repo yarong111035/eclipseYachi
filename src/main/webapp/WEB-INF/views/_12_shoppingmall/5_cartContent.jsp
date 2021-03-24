@@ -109,7 +109,7 @@
 		                                <span>${i.count}</span>
 		                            </div>
 		                            <div class="td pic">
-		                                <img src="<c:url value='/getPicture/${cart.productBean.product_id}'/>">
+		                                <img src="<c:url value='/getProductPictureA/${cart.productBean.product_id}'/>">
 		                            </div>
 		                            <div class="td name">
 		                                <a href="<c:url value='/singleProduct?id=${cart.productBean.product_id}'/>">${cart.productBean.product_name }</a>

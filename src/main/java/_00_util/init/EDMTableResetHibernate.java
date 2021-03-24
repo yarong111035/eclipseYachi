@@ -58,20 +58,11 @@ public class EDMTableResetHibernate {
 					Blob blobPic = SystemUtils2018.fileToBlob(token[1].trim());
 					Blob blobPicA = SystemUtils2018.fileToBlob(token[2].trim());
 					
-					
 					productBean.setProduct_pic(blobPic);
 					productBean.setProduct_picA(blobPicA);
 					
 					productBean.setFilename(SystemUtils2018.extractFileName(token[1].trim()));
 					productBean.setFilenameA(SystemUtils2018.extractFileName(token[2].trim()));
-					
-					
-					//照片檔名拿掉
-//					productBean.setProduct_pic(null);
-//					productBean.setProduct_picA(null);
-//					
-//					productBean.setFilename(null);
-//					productBean.setFilenameA(null);
 					
 				
 					session.update(productBean);
@@ -79,7 +70,7 @@ public class EDMTableResetHibernate {
 				}
 				// 印出資料新增成功的訊息
 				session.flush();
-				System.out.println("======================更新ProductBean紀錄成功======================");
+				System.out.println("更新ProductBean紀錄成功");
 			}catch (Exception ex) {
 				ex.printStackTrace();
 			}

@@ -100,7 +100,7 @@
 			</a>
 		</div>
 		<div class="item">
-			<a href="<c:url value='/doLogout'/>">
+			<a href="#">
 				<button>
 					<span>登出</span>
 				</button>

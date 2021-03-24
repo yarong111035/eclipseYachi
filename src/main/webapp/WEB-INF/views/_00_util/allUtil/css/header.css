@@ -156,9 +156,9 @@ header .search .search-wrap .search-food {
 }
 
 header .search .search-wrap .search-food .search-input {
-  border: 2px solid #aaa;
-  border-radius: 100px;   
-  padding-left: 0px;
+  border: 1px solid #ccc;
+  border-radius: 10px;   
+  padding-left: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -167,9 +167,10 @@ header .search .search-wrap .search-food .search-input {
 
 header .search .search-wrap .search-food .search-input input, header .search .search-wrap .search-food .search-input button {
   background-color: transparent;
-  color: #aaad;
+  color: orange;
   border: none;
   height: 2rem;
+  padding-right: 10px;
 }
 
 header .search .search-wrap .search-food .search-input input {
@@ -181,7 +182,7 @@ header .search .search-wrap .search-food .search-input input:focus {
 }
 
 header .search .search-wrap .search-food .search-input button:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  font-size:30px;	
 }
 
 header .search .search-wrap .search-food .food-trending a {
@@ -337,7 +338,7 @@ header .tab .tab-warp .tab-content .tab-panel a{
 
 header .tab .tab-warp .tab-content .tab-panel a:hover{
   font-size: 1.1rem;
-  background-color: #e2e2e2;
+  background-color: orange;
   border-radius: 3px;
   text-decoration: none;
 }
@@ -348,6 +349,7 @@ header .tab .tab-warp .tab-content .tab-panel a:hover{
 .liColor {
   background-color: rgba(206, 16, 16, 0.5);
 }
+
 
 
 /* ======================================   RWD 調整  ====================================================*/
@@ -412,6 +414,8 @@ header .tab .tab-warp .tab-content .tab-panel a:hover{
     display: none;
   }
 }
+
+
 
 /* iPhone XS Max Viewport RWD 414*896 */
 @media (max-width: 415px) {

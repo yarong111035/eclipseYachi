@@ -75,5 +75,24 @@ public class MemberDaoImpl implements MemberDao{
 		
 	}
 
+	@Override
+	public Member findByCode(String code) {
+		
+		Member mBean = null;
+		Session session = factory.getCurrentSession();
+		String hql  = "FROM Member m WHERE m.code = :code";
+
+		try {
+			mBean = (Member)session.createQuery(hql)
+					.setParameter("code", code)
+					.getSingleResult();
+			
+		} catch (NoResultException e) {
+			return mBean;
+		}
+		
+		return mBean;
+	}
+
 	
 }

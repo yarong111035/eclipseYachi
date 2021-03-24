@@ -42,7 +42,7 @@ public class ProductBean implements Serializable{
 	
 	private Integer product_stock;
 	
-	@Column(length = 65535,columnDefinition="Text") //對應到mysql longText型別
+	@Column(length = 65535,columnDefinition = "Text")
 	private String product_info;
 	
 	@JsonIgnore
@@ -52,7 +52,7 @@ public class ProductBean implements Serializable{
 	
 	
 
-	private Date product_expire;
+	private Date product_release ;
 	
 	private String filename;
 	
@@ -166,15 +166,6 @@ public class ProductBean implements Serializable{
 		this.product_pic = product_pic;
 	}
 	
-	
-
-	public Date getProduct_expire() {
-		return product_expire;
-	}
-
-	public void setProduct_expire(Date product_expire) {
-		this.product_expire = product_expire;
-	}
 
 	public String getFilename() {
 		return filename;
@@ -208,22 +199,20 @@ public class ProductBean implements Serializable{
 	public void setProduct_spec(String product_spec) {
 		this.product_spec = product_spec;
 	}
-
-	public ProductBean(Integer product_id, String product_name, Double product_price, Integer product_stock,
-			String product_info, Blob product_pic, Date product_expire, String filename,
-			ProductTypeBean productTypeBean, String product_memo) {
+	
+	public ProductBean(String product_name, Integer product_status,
+			@Min(value = 0, message = "數值必須大於0") Double product_price, Integer product_stock, String product_info,
+			Date product_release, ProductTypeBean productTypeBean) {
 		super();
-		this.product_id = product_id;
 		this.product_name = product_name;
+		this.product_status = product_status;
 		this.product_price = product_price;
 		this.product_stock = product_stock;
 		this.product_info = product_info;
-		this.product_pic = product_pic;
-		this.product_expire = product_expire;
-		this.filename = filename;
+		this.product_release = product_release;
 		this.productTypeBean = productTypeBean;
-		this.product_memo = product_memo;
 	}
+
 
 	public ProductBean() {
 		super();
@@ -243,6 +232,16 @@ public class ProductBean implements Serializable{
 
 	public void setProduct_status(Integer product_status) {
 		this.product_status = product_status;
+	}
+
+
+	public Date getProduct_release() {
+		return product_release;
+	}
+
+
+	public void setProduct_release(Date product_release) {
+		this.product_release = product_release;
 	}
 
 

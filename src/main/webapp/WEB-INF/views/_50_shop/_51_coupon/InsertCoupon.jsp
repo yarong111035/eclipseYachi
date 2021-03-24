@@ -9,10 +9,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>新增優惠券</title>
-<link rel="stylesheet"
-	href="<c:url value='/_00_util/shopUtil/css/reset.css'/>">
-	<link rel="stylesheet"
-	href="<c:url value='/_00_util/shopUtil/css/新增優惠券2.css'/>">
+<link rel="stylesheet" href="<c:url value='/_00_util/shopUtil/css/reset.css'/>">
+<link rel="stylesheet" href="<c:url value='/_00_util/shopUtil/css/新增優惠券2.css'/>">
 
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>

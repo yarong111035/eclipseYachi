@@ -121,8 +121,5 @@
 	});
 
 	</script>
-	
-	<!-- 引入共同的頁尾-->
-	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
 </body>
 </html>

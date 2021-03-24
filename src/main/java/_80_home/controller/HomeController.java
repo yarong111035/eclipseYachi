@@ -39,7 +39,7 @@ public class HomeController {
 	public String testHome(Model model,HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();		
-		Member mem = (Member) session.getAttribute("member");		
+		Member mem = (Member) session.getAttribute("LoginOK");		
 		System.out.println("測試session有沒有被抓到 --> "+ mem );
 		
 		return "/_11_member/index";  //視圖邏輯名稱指定向index.jsp
@@ -111,5 +111,7 @@ public class HomeController {
 		}
 		return responseEntity;
 	}
+	
+	
 
 }

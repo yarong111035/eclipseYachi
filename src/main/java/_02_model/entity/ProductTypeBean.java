@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class ProductTypeBean implements Serializable{
 	
 	private String product_type_name;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "productTypeBean")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "productTypeBean",fetch = FetchType.EAGER)
 	private Set<ProductBean>  products = new LinkedHashSet<>();
 
 	public Integer getProduct_type_id() {
@@ -55,6 +56,13 @@ public class ProductTypeBean implements Serializable{
 		this.product_type_id = product_type_id;
 		this.product_type_name = product_type_name;
 		this.products = products;
+	}
+	
+	
+
+	public ProductTypeBean(String product_type_name) {
+		super();
+		this.product_type_name = product_type_name;
 	}
 
 	public ProductTypeBean() {

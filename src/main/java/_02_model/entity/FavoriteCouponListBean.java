@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +32,7 @@ public class FavoriteCouponListBean implements Serializable{
 	@JoinColumn(name="FK_member_id")
 	private Member memberBean;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "Coupon_CouponList",  //這個才有外鍵
 			joinColumns = {
@@ -54,13 +55,7 @@ public class FavoriteCouponListBean implements Serializable{
 		this.coupon_list_id = coupon_list_id;
 	}
 
-	public Member getMemberBean() {
-		return memberBean;
-	}
-
-	public void setMemberBean(Member memberBean) {
-		this.memberBean = memberBean;
-	}
+	
 
 	public Set<CouponBean> getCoupons() {
 		return coupons;
@@ -70,6 +65,19 @@ public class FavoriteCouponListBean implements Serializable{
 		this.coupons = coupons;
 	}
 
+
+	public FavoriteCouponListBean() {
+		super();
+	}
+
+	public Member getMemberBean() {
+		return memberBean;
+	}
+
+	public void setMemberBean(Member memberBean) {
+		this.memberBean = memberBean;
+	}
+
 	public FavoriteCouponListBean(Integer coupon_list_id, Member memberBean, Set<CouponBean> coupons) {
 		super();
 		this.coupon_list_id = coupon_list_id;
@@ -77,9 +85,7 @@ public class FavoriteCouponListBean implements Serializable{
 		this.coupons = coupons;
 	}
 
-	public FavoriteCouponListBean() {
-		super();
-	}
+	
 	
 	
 }

@@ -35,16 +35,11 @@ public class ProductDaoImpl implements Serializable,ProductDao {
 	@Autowired
 	ProductTypeDao productTypeDao;
 	
-	private int recordsPerPage = GlobalService.RECORDS_PER_PAGE; // 預設值：每頁五筆
+	private int recordsPerPage = 8; // 預設值：每頁五筆
 	private int totalPages = -1;
 	
 	String selected = "";
 	
-	
-	
-	public ProductDaoImpl() {
-		super();
-	}
 
 	@SuppressWarnings("unchecked")
 	@Override

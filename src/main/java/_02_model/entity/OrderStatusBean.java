@@ -27,6 +27,11 @@ public class OrderStatusBean implements Serializable{
 	public OrderStatusBean() {
 		super();
 	}
+	
+	public OrderStatusBean(String status_name) {
+
+		this.status_name = status_name;
+	}
 
 	public Integer getStatus_id() {
 		return status_id;

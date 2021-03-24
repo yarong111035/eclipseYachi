@@ -70,8 +70,9 @@ public class ProductController {
 	OrderItemService orderItemService;
 	
 	//撈出資料庫所有產品(轉成json格式)
-	@RequestMapping({"/allProducts"})
-	public @ResponseBody List<ProductBean> queryAllProducts(Model model) {
+	@RequestMapping("/allProducts")
+	@ResponseBody
+	public List<ProductBean> queryAllProducts() {
 		List<ProductBean> products = productService.getAllProducts();
 		return products;
 	}
@@ -100,7 +101,7 @@ public class ProductController {
 	
 	//依種類顯示(請求路徑會變動)
 	@RequestMapping("/sortId={sortId}")
-	public String getProductsBySort(Model model, @PathVariable(value = "sortId") int sortId) {
+	public String getProductsBySort(Model model, @PathVariable int sortId) {
 		System.out.println("==========分類控制器==========");
 		List<ProductBean> products = productService.getProductBySort(sortId);
 		ProductTypeBean ps = productTypeService.getTypeById(sortId);

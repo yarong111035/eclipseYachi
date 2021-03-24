@@ -1,27 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YaChi</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/background.css'/>">
-    <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
-    <link rel="stylesheet" href="<c:url value='/_00_util/shoppingMallUtil/css/4_shopping_cart.css'/>">
-    <link rel="stylesheet" href="<c:url value='/_00_util/shoppingMallUtil/css/2_mix.css'/>">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-    <script src="<c:url value='/_00_util/allUtil/javascript/jquery-3.5.1.js'/>"></script>
-    <script src="<c:url value='/_00_util/allUtil/javascript/jquery-ui.js'/>"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yachi</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="<c:url value='/_00_util/allUtil/css/background.css'/>">
+<link rel="stylesheet"
+	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
+<link rel="stylesheet"
+	href="<c:url value='/_00_util/shoppingMallUtil/css/4_shopping_cart.css'/>">
+<link rel="stylesheet"
+	href="<c:url value='/_00_util/shoppingMallUtil/css/2_mix.css'/>">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+	integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+	integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+	crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href="<c:url value='/WEB-INF/views/_00_util/allUtil/css/reset.css'/>">
-<link rel="stylesheet" href="<c:url value='/WEB-INF/views/_00_util/homeUtil/css/home.css'/>">
+<script src="<c:url value='/_00_util/allUtil/javascript/jquery-ui.js'/>"></script>
+
+<link rel="stylesheet"
+	href="<c:url value='/WEB-INF/views/_00_util/allUtil/css/reset.css'/>">
+<link rel="stylesheet"
+	href="<c:url value='/WEB-INF/views/_00_util/homeUtil/css/home.css'/>">
 <style>
-/* Log in=========================================   */
+.imgs {
+max-width:335.5px; 
+
+}
+
 div input {
 	height: 30px;
 }
@@ -143,17 +165,71 @@ fieldset {
 	transition: all 1000ms ease-in-out;
 	margin: 20px 30px;
 }
+
+.font {
+	font-weight: bold;
+}
+
+.pos {
+	position: absolute;
+	right: 16px;
+}
 </style>
 </head>
 
 
-<body style="background-color: #F3F8F2;">
-
-	<!------------------------- 引入共同頁首開始 ------------------------------->
+<body>
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
-	<!------------------------- 引入共同頁首結束 ------------------------------->
 
-	<div class="slider " style="margin:0px 150px;">
+	<!-- 回到上方的按鈕 -->
+	<!------------------------- Start ------------------------------->
+
+	<!-------------------------  End  ------------------------------->
+
+	<!-- Log in====================================== -->
+	<!-- <div class="login-bg-first">
+    <div class="login-bg-second">
+      <form id="theForm">
+        <fieldset class="text-shadow">
+          <h1>登入</h1>
+          <div>
+            <label>帳號</label>
+            <input type="text" name="account" id="account">
+          </div>
+          <div>
+            <label>密碼</label>
+            <input type="text" name="password" id="password">
+          </div>
+          <div>
+            <input type="checkbox" name="rememberPw" id="rememberPw">
+            <label>記住密碼</label>
+          </div>
+
+
+
+          <div><button class="loginBtn loginBtn--facebook">
+              Facebook
+            </button></div>
+
+          <div> <button class="loginBtn loginBtn--google">
+              Google
+            </button></div>
+
+          <div id="btn">
+            <button id="confirm">確認</button>
+            <button id="signUp">註冊</button>
+          </div>
+          <a href="">忘記密碼</a>
+        </fieldset>
+      </form>
+    </div>
+  </div> -->
+	<!-- slider ================================= -->
+	<!-- .mt-n1 {
+      margin-top: -0.25rem !important;
+    } -->
+	<!-- <div class="slider"> -->
+	<!--<div class="slider " style="margin: 0px 150px;">
 		<div id="carouselExampleIndicators" class="carousel slide"
 			data-ride="carousel">
 			<ol class="carousel-indicators">
@@ -162,19 +238,19 @@ fieldset {
 				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 			</ol>
-			<div class="image_box carousel-inner">
+			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="<c:url value='/data/images/voucher/wheel pies.jpg'/>"
-						class="w-100">
+					<img src="<c:url value='/data/images/couponPic/wheel_pies.jpg'/>"
+						class="d-block w-100">
 				</div>
-				<div class="image_box carousel-item">
-					<img src="<c:url value='/data/images/voucher/Vermicelli2.jpg'/>"
-						class="w-100">
+				<div class="carousel-item">
+					<img src="<c:url value='/data/images/couponPic/Vermicelli2.jpg'/>"
+						class="d-block w-100">
 				</div>
-				<div class="image_box carousel-item">
+				<div class="carousel-item">
 					<img
-						src="<c:url value='/data/images/voucher/Taiwanese hamburger.jpg'/>"
-						class="w-100">
+						src="<c:url value='/data/images/couponPic/Taiwanese_hamburger.jpg'/>"
+						class="d-block w-100">
 				</div>
 			</div>
 			<a class="carousel-control-prev" href="#carouselExampleIndicators"
@@ -187,101 +263,186 @@ fieldset {
 				class="sr-only">Next</span>
 			</a>
 		</div>
-	</div>
+	</div>-->
+		<div class="container ">
+				<div class="row no-gutters">
+					<div class="col-md-8">
+					<div class="slider">
+						<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+							<ol class="carousel-indicators">
+								<li data-target="#carouselExampleIndicators" data-slide-to="0"
+									class="active"></li>
+								<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+								<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+							</ol>
+							<div class="carousel-inner">
+								<div class="carousel-item active">
+									<img
+										src="<c:url value='/data/images/couponPic/lunch_box.webp.jpg'/>"
+										class="d-block w-100">
+								</div>
+								<div class="carousel-item">
+									<img
+										src="<c:url value='/data/images/couponPic/Vermicelli2.jpg'/>"
+										class="d-block w-100">
+								</div>
+								<div class="carousel-item">
+									<img
+										src="<c:url value='/data/images/couponPic/Taiwanese_hamburger.jpg'/>"
+										class="d-block w-100">
+								</div>
+							</div>
+							<a class="carousel-control-prev"
+								href="#carouselExampleIndicators" role="button"
+								data-slide="prev"> <span class="carousel-control-prev-icon"
+								aria-hidden="true"></span> <span class="sr-only">Previous</span>
+							</a> <a class="carousel-control-next"
+								href="#carouselExampleIndicators" role="button"
+								data-slide="next"> <span class="carousel-control-next-icon"
+								aria-hidden="true"></span> <span class="sr-only">Next</span>
+							</a>
+						</div>
+					</div>
+				</div>
+					<div class="col-md-4 pl-2">
+						
+						<div class="sec-cover">
+							<a href="RedBean_pies"> 
+							<img
+										src="<c:url value='/data/images/couponPic/RedBean_pies.webp.jpg'/>"
+										class="d-block w-100">
+							</a>
+						</div>
+						                       
+						<div class="third-cover mt-2 d-block">
+							<a href="bread"> 
+							<img
+										src="<c:url value='/data/images/couponPic/bread.webp.jpg'/>"
+										class="d-block w-100">
+							</a>
+						</div>
+						
+					</div>
+				</div>
+			</div>
 
 
 	<!-- Night Market =================================== -->
 	<!-- <div class="night-market-bg-first" style="background: url(./Night_Market/nightMarket-bg.jpg);"> -->
 
 	<div class="night-market-bg-second">
-		<div class="jobs "  > 
-			<div class="container">
+		<div class="jobs ">
+			<div class="container ">
 				<div class="focus text-black text-center text-shadow ">
 
 					<h1>夜市推薦</h1>
 					<hr>
 				</div>
-				<div class="row" style="margin:0px -70px">
+				<div class="row" style="margin: 0px -180px">
 					<div class="col-sm-6 col-lg-3 mt-4">
 						<div class="card">
-							<img
-								src="<c:url value='/data/images/Night_Market/Shilin_Night.jpg'/>">
-							<div class="card-body">
-								<h5 class="card-title">士林夜市</h5>
-								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p>
-								<a href="#" class="btn btn-primary  ml-5 mt-2">前進夜市</a>
+								<a href="<c:url value='/MarketShilin' />"> <img class="imgs"
+								src="<c:url value='/data/images/Night_Market/Shilin_Night.jpg'/>"></a>
+							<div class="card-body ">
+								<h5 class="card-title font">
+									士林夜市<i class="fas fa-star pos"> 4.8/5 (13785)</i>
+								</h5>
+								<!-- 	<i class="fas fa-star pos"></i>  我是Font Awesome星星圖-->
+
+								<!-- 		<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
+								<!-- 	<a href="#" class="btn btn-primary  ">前進夜市</a> -->
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-lg-3 mt-4">
 						<div class="card">
-							<img
-								src="<c:url value='/data/images/Night_Market/South_Airport.jpg'/>">
+						<a href="<c:url value='/MarketSouth' />"> <img class="imgs"
+								src="<c:url value='/data/images/Night_Market/South_Airport.jpg'/>"></a>
 							<div class="card-body">
-								<h5 class="card-title">南機場夜市</h5>
-								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p>
-								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a>
+								<h5 class="card-title font">
+									南機場夜市<i class="fas fa-star pos"> 4.8/5 (1085)</i>
+								</h5>
+								<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
+								<!-- 								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a> -->
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-lg-3 mt-4">
 						<div class="card">
-							<img src="<c:url value='/data/images/Night_Market/Raohe.jpg'/>">
+						<a href="<c:url value='/MarketRaohe' />"> <img class="imgs"
+								src="<c:url value='/data/images/Night_Market/Raohe.jpg'/>"></a>
 							<div class="card-body">
-								<h5 class="card-title">饒河夜市</h5>
-								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p>
-								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a>
+								<h5 class="card-title font">
+									饒河夜市<i class="fas fa-star pos"> 4.8/5 (11657)</i>
+								</h5>
+								<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
+								<!-- 								<a href="#" class="btn btn-primary justify-content-center">前進夜市</a> -->
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-lg-3 mt-4">
 						<div class="card">
-							<img src="<c:url value='/data/images/Night_Market/Ningxia.jpg'/>">
+								<a href="<c:url value='/MarketNingxia' />"> <img class="imgs"
+								src="<c:url value='/data/images/Night_Market/Ningxia.jpg'/>"></a>
 							<div class="card-body">
-								<h5 class="card-title">寧夏夜市</h5>
-								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p>
-								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a>
+								<h5 class="card-title font">
+									寧夏夜市<i class="fas fa-star pos"> 4.8/5 (6665)</i>
+								</h5>
+								<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
+								<!-- 								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a> -->
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-lg-3 mt-4">
 						<div class="card">
-							<img src="<c:url value='/data/images/Night_Market/kou.jpg'/>">
+						<a href="<c:url value='/MarketGongguan' />"> <img class="imgs"
+								src="<c:url value='/data/images/Night_Market/kou.jpg'/>"></a>
 							<div class="card-body">
-								<h5 class="card-title">公館夜市</h5>
-								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p>
-								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a>
+								<h5 class="card-title font">
+									公館夜市<i class="fas fa-star pos"> 4.8/5 (5050)</i>
+								</h5>
+								<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
+								<!-- 								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a> -->
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-lg-3 mt-4">
 						<div class="card">
-							<img
-								src="<c:url value='/data/images/Night_Market/Huaxi Street.jpg'/>">
+						<a href="<c:url value='/MarketMonga' />"> <img class="imgs"
+								src="<c:url value='/data/images/Night_Market/Huaxi Street.jpg'/>"></a>
+						
 							<div class="card-body">
-								<h5 class="card-title">華西街夜市</h5>
-								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p>
-								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a>
+								<h5 class="card-title font">
+									華西街夜市<i class="fas fa-star pos"> 4.8/5 (3505)</i>
+								</h5>
+								<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
+								<!-- 								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a> -->
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-lg-3 mt-4">
 						<div class="card">
-							<img src="<c:url value='/data/images/Night_Market/Xichang.jpg'/>">
+						<a href="<c:url value='/MarketLinjiang' />"> <img class="imgs"
+								src="<c:url value='/data/images/Night_Market/Xichang.jpg'/>"></a>
 							<div class="card-body">
-								<h5 class="card-title">西昌街</h5>
-								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p>
-								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a>
+								<h5 class="card-title font">
+									臨江夜市<i class="fas fa-star pos"> 4.8/5 (1774)</i>
+								</h5>
+								<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
+								<!-- 								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a> -->
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-lg-3 mt-4">
 						<div class="card">
-							<img src="<c:url value='/data/images/Night_Market/Yanzo.jpg'/>">
+						<a href="<c:url value='/MarketYanping' />"> <img class="imgs"
+								src="<c:url value='/data/images/Night_Market/Yanzo.jpg'/>"></a>
 							<div class="card-body">
-								<h5 class="card-title">延三夜市</h5>
-								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p>
-								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a>
+								<h5 class="card-title font">
+									延三夜市<i class="fas fa-star pos"> 4.8/5 (1548)</i>
+								</h5>
+								<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
+								<!-- 								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a> -->
 							</div>
 						</div>
 					</div>
@@ -293,100 +454,115 @@ fieldset {
 		<!-- Voucher  =================================== -->
 		<!-- <div class="Voucher-bg-first" style="background: url(./Night_Market/bg-4.jpg);">
           <div class="Voucher-bg-second"> -->
-		<div class="jobs " >
+		<div class="jobs ">
 			<div class="container">
 				<div class="focus text-black text-center text-shadow ">
 					<h1>優惠劵推薦</h1>
 					<hr>
 				</div>
-				<div class="row" style="margin:0px -70px" >
+				<div class="row" style="margin: 0px -180px">
 					<div class="col-sm-6 col-lg-3 mt-4 ">
 						<div class="card">
-							<img
-								src="<c:url value='/data/images/Taiwan_streetFood/Chicken Fillet.jpg'/>">
+						<a href="#"> <img class="imgs"
+								src="<c:url value='/data/images/Taiwan_streetFood/Chicken Fillet.jpg'/>"></a>
 							<div class="card-body">
-								<h5 class="card-title text-center">雞排 20%off</h5>
-								<p class="card-text"></p>
-								<a href="#" class="btn btn-primary ml-5">今晚想來點</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-3 mt-4 ">
-						<div class="card">
-							<img
-								src="<c:url value='/data/images/Taiwan_streetFood/Fried chicken.jpg'/>">
-							<div class="card-body">
-								<h5 class="card-title text-center">鹹酥雞 20%off</h5>
-								<p class="card-text"></p>
-								<a href="#" class="btn btn-primary ml-5">今晚想來點</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-							<img
-								src="<c:url value='/data/images/Taiwan_streetFood/Oyster vermicelli.jpg'/>">
-							<div class="card-body">
-								<h5 class="card-title text-center">大腸蚵仔麵線 10%off</h5>
-								<p class="card-text"></p>
-								<a href="#" class="btn btn-primary ml-5">今晚想來點</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-							<img
-								src="<c:url value='/data/images/Taiwan_streetFood/Pork.jpg'/>">
-							<div class="card-body">
-								<h5 class="card-title text-center">藥燉排骨 20%off</h5>
-								<p class="card-text"></p>
-								<a href="#" class="btn btn-primary ml-5">今晚想來點</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-							<img
-								src="<c:url value='/data/images/Taiwan_streetFood/soybean pudding.jpg'/>">
-							<div class="card-body">
-								<h5 class="card-title text-center">粉圓豆花 40%off</h5>
-								<p class="card-text"></p>
-								<a href="#" class="btn btn-primary ml-5">今晚想來點</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-							<img
-								src="<c:url value='/data/images/Taiwan_streetFood/Sweet potato balls.jpg'/>">
-							<div class="card-body">
-								<h5 class="card-title text-center">地瓜球 20%off</h5>
-								<p class="card-text"></p>
-								<a href="#" class="btn btn-primary ml-5">今晚想來點</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-							<img
-								src="<c:url value='/data/images/Taiwan_streetFood/Stinky Tofu.jpg'/>">
-							<div class="card-body">
-								<h5 class="card-title text-center">臭豆腐 20%off</h5>
-								<p class="card-text"></p>
-								<a href="#" class="btn btn-primary ml-5">今晚想來點</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-							<img
-								src="<c:url value='/data/images/Taiwan_streetFood/steak.jpg'/>">
-							<div class="card-body">
-								<h5 class="card-title text-center ">
-									招牌沙朗 20%OFF
-									<p class="card-text"></p>
+								<h5 class="card-title font">
+									雞排<i class="fas fa-star pos"> 4.8/5 (1k+)</i>
 								</h5>
-								<a href="#" class="btn btn-primary ml-5">今晚想來點</a>
+								<p class="card-text"></p>
+								<!-- 								<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3 mt-4 ">
+						<div class="card">
+							<a href="#"> <img class="imgs"
+								src="<c:url value='/data/images/Taiwan_streetFood/Fried chicken.jpg'/>"></a>
+							<div class="card-body">
+								<h5 class="card-title font">
+									鹹酥雞<i class="fas fa-star pos"> 4.8/5 (588)</i>
+								</h5>
+								<p class="card-text"></p>
+								<!-- 								<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3 mt-4">
+						<div class="card">
+						<a href="#"> <img class="imgs"
+								src="<c:url value='/data/images/Taiwan_streetFood/Oyster vermicelli.jpg'/>"></a>
+							<div class="card-body">
+								<h5 class="card-title font">
+									大腸蚵仔麵線<i class="fas fa-star pos"> 4.8/5 (167)</i>
+								</h5>
+								<p class="card-text"></p>
+								<!-- 								<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3 mt-4">
+						<div class="card">
+						<a href="#"> <img class="imgs"
+								src="<c:url value='/data/images/Taiwan_streetFood/Pork.jpg'/>"></a>
+							<div class="card-body">
+								<h5 class="card-title font">
+									藥燉排骨<i class="fas fa-star pos"> 4.8/5 (88)</i>
+								</h5>
+								<p class="card-text"></p>
+								<!-- 								<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3 mt-4">
+						<div class="card">
+						<a href="#"> <img class="imgs"
+								src="<c:url value='/data/images/Taiwan_streetFood/soybean pudding.jpg'/>"></a>
+							<div class="card-body">
+								<h5 class="card-title font">
+									粉圓豆花<i class="fas fa-star pos"> 4.8/5 (136)</i>
+								</h5>
+								<p class="card-text"></p>
+								<!-- 								<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3 mt-4">
+						<div class="card">
+							<a href="#"> <img class="imgs"
+								src="<c:url value='/data/images/Taiwan_streetFood/Sweet potato balls.jpg'/>"></a>
+							<div class="card-body">
+								<h5 class="card-title font">
+									地瓜球<i class="fas fa-star pos"> 4.8/5 (286)</i>
+								</h5>
+								<p class="card-text"></p>
+								<!-- 								<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3 mt-4">
+						<div class="card">
+							<a href="#"> <img class="imgs"
+								src="<c:url value='/data/images/Taiwan_streetFood/Stinky Tofu.jpg'/>"></a>
+							<div class="card-body">
+								<h5 class="card-title font">
+									港式臭豆腐<i class="fas fa-star pos"> 4.8/5 (102)</i>
+								</h5>
+								<p class="card-text"></p>
+								<!-- 								<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3 mt-4">
+						<div class="card">
+						<a href="#"> <img class="imgs"
+								src="<c:url value='/data/images/Taiwan_streetFood/steak.jpg'/>"></a>
+						
+							<div class="card-body">
+								<h5 class="card-title font ">
+									招牌沙朗<i class="fas fa-star pos"> 4.8/5 (85)</i>
+								</h5>
+								<p class="card-text"></p>
+								<!-- 								<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
 							</div>
 						</div>
 					</div>
@@ -399,27 +575,27 @@ fieldset {
 			Copyright © 2021 Yachi . All rights reserved.</div>
 
 		<!-- Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">...</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" id="close">
-							Close</button>
-						<button type="button" class="btn btn-primary">Save
-							changes</button>
-					</div>
-				</div>
-			</div>
-		</div>
+		<!-- 		<div class="modal fade" id="myModal" tabindex="-1" -->
+		<!-- 			aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+		<!-- 			<div class="modal-dialog"> -->
+		<!-- 				<div class="modal-content"> -->
+		<!-- 					<div class="modal-header"> -->
+		<!-- 						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+		<!-- 						<button type="button" class="close" data-dismiss="modal" -->
+		<!-- 							aria-label="Close"> -->
+		<!-- 							<span aria-hidden="true">&times;</span> -->
+		<!-- 						</button> -->
+		<!-- 					</div> -->
+		<!-- 					<div class="modal-body">...</div> -->
+		<!-- 					<div class="modal-footer"> -->
+		<!-- 						<button type="button" class="btn btn-secondary" id="close"> -->
+		<!-- 							Close</button> -->
+		<!-- 						<button type="button" class="btn btn-primary">Save -->
+		<!-- 							changes</button> -->
+		<!-- 					</div> -->
+		<!-- 				</div> -->
+		<!-- 			</div> -->
+		<!-- 		</div> -->
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

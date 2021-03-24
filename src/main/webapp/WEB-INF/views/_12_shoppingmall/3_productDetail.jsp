@@ -22,6 +22,9 @@
     <script src="<c:url value='/_00_util/allUtil/javascript/jquery-ui.js'/>"></script>
     <script src="<c:url value='/_00_util/shoppingMallUtil/javascript/3_商品頁面.js'/>"></script>
     
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+	<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+	
 </head>
 <body>
 	<!-- 	引入共用haeader -->
@@ -72,7 +75,12 @@
                             <!-- big photo start -->
                             <div class="productImage">
                             
-                            <img src="<c:url value='/getPicture/${product.product_id }'/>" alt="product">
+<%--                             <img src="<c:url value='/getProductPictureA/${product.product_id }'/>" alt="product"> --%>
+                            
+                            <!-- <a>中的連結為大圖的url位置，img的src為小縮圖的 url位置 -->
+							<a data-fancybox="gallery" href="<c:url value='/getProductPictureA/${product.product_id }'/>"><img src="<c:url value='/getProductPictureA/${product.product_id }'/>"></a>
+                            
+                            
                             </div>
                             <!-- big photo end -->
                             <div class="productIntro">
@@ -91,7 +99,8 @@
                                     <span class="spanHeader">剩餘數量:</span> 
                                     <span class="spanContent">${product.product_stock } 件</span>
                                 </div>
-	                             <c:if test="${empty LoginOK}">  
+	                                
+                                  <c:if test="${empty LoginOK}">  
 	                             	<form method="POST" action="<c:url value='/visitorBuyProduct.do?cmd=ADD1' />">
 	                             	 <div class="selectCountBox">
 		                                    <label for="selectCount">數量：</label>
@@ -167,6 +176,7 @@
 		                                </div>
 	                            	</form>   
 	                            </c:if>
+	                                
                             </div>
                         </div>   
                         <!-- End 上方商品資訊 -->

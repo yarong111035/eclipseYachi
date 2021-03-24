@@ -1,6 +1,8 @@
 package _50_shop._53_shopRegister.dao.impl;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -55,6 +57,16 @@ public class ShopDaoImpl implements Serializable, ShopDao{
 		
 		return sb;
 	}
+
+	@Override
+	public List<ShopBean> getAllShops() {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM ShopBean";
+		List<ShopBean> shops = (List<ShopBean>) session.createQuery(hql).getResultList();
+		return shops;
+	}
+	
+	
 
 	
 

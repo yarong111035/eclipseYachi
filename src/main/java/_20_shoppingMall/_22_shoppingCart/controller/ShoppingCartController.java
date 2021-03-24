@@ -212,16 +212,26 @@ public class ShoppingCartController {
 	 * 將sessionCartList丟到CartBean
 	 * 1. 判斷是否有登入
 	 */
-	@SuppressWarnings("unchecked")
+	
+	// 右邊購物清單的前往結帳   // 尚未解決問題 前往結帳登入後 需跳轉至 showCartContent頁面
+//	@SuppressWarnings("unchecked")
+//	@GetMapping("/goCheckout")
+//	public String sessionToCartBean(Model model,CartBean cartBean) {
+//		//step1 : 判斷是否有登入
+//		Member member = (Member)model.getAttribute("LoginOK");
+//		if(member == null) {
+//			return "redirect:/LoginAndRegister"; // 將sessionCartList丟到CartBean
+//		}else {
+//			return "redirect:/showCartContent";
+//		}
+//	}
+	
 	@GetMapping("/goCheckout")
 	public String sessionToCartBean(Model model,CartBean cartBean) {
-		//step1 : 判斷是否有登入
-		Member member = (Member)model.getAttribute("LoginOK");
-		if(member == null) {
-			return "redirect:/LoginAndRegister"; // 將sessionCartList丟到CartBean
-		}else {
-			return "redirect:/showCartContent";
-		}
+		
+		//step1 : 交給過濾器去判斷是否有登入
+		
+		return "redirect:/showCartContent";
 	}
 	
 	

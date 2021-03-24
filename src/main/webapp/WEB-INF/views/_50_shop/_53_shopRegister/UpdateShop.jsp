@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/shopUtil/css/normalize.css'/>">
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="<c:url value='/_00_util/shopUtil/css/shop_register1.css'/>">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -58,7 +58,8 @@
 </script>
 </head>
 <body>
-	
+
+	<!-- 引入共同的頁首 -->
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
 	
 	<div class="main-member">
@@ -161,6 +162,16 @@
 					<form:input type="text" path="shop_hours" class="form-control" placeholder="營業時間"/>
 					<i class="fas fa-store"></i>
 				</div>
+				
+				<div class="form-wrapper">
+					<form:input type="text" path="shop_hyperlink" class="form-control" placeholder="商家網頁"/>
+					<i class="fas fa-store"></i>
+				</div>
+				
+				<div class="form-wrapper">
+					<form:input type="textarea" path="shop_info" class="form-control" placeholder="商家簡介"/>
+					<i class="fas fa-store"></i>
+				</div>
 
 				<div class="form-wrapper">
 					<form:select path='shopTypeBean.shop_type_id' class="form-control">
@@ -180,8 +191,8 @@
 					<i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
 				</div>
 				<input type="submit" value="更改資料"
-									class="button-submit">
-									</input>
+									class="button-submit" />
+									
 			</form:form>
 		</div>
 	</div>

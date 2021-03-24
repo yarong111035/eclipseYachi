@@ -1,0 +1,56 @@
+
+/* 表單 */
+.shopping_form{
+    background: #fff;
+    box-shadow: 1px 1px 1px 4px  rgba(221, 221, 221, 0.1);
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 270px;
+    padding: 50px 30px;
+}
+.shopping_title{
+    font:1.6rem bold black;
+    letter-spacing: 2px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 60px;
+}
+.formBox div{
+    /* width: 66%; */
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
+.formBox div input{
+    outline: none;
+}
+
+/* 選單 */
+.deliveryBox{
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+}
+
+/* 按鈕 */
+.shopBtn{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 70px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .confirmBtn a, .btn a{
+   	display:inline-block;
+    width: 7rem;
+    padding:10px;
+    background-color: #C39C9C;
+    color: #ffffff;
+    border-radius: 2px;
+    cursor: pointer;
+    text-align: center;
+  } 
+  
+  .confirmBtn a:hover,.btn a:hover{
+  background: #d2b3b3;
+  color: #555555;
+  }

@@ -31,7 +31,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
+@Getter
+@Setter
 @Entity
 @Table
 public class Member implements Serializable{
@@ -49,7 +50,9 @@ public class Member implements Serializable{
 	private String email;
 	private String address;	
 	private Timestamp registerTime;
-	
+	private Integer status;
+	private String code;
+ 
 	@JsonIgnore
 	@Column(columnDefinition = "mediumblob")
 	private Blob image;
@@ -67,7 +70,7 @@ public class Member implements Serializable{
 	// 使用者和角色之間是多對多關係，因為使用者可以有一個或多個角色，角色也可以分配給一個或多個使用者。 
 	// 所以需要中間表 member_role 來實現多對多關聯。‎
 	 @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	 @JsonIgnoreProperties("member")
+	 @JsonIgnoreProperties("member") //忽略role實體裡面的member屬性
 	    @JoinTable(                              				   //配置中介表的訊息
 	        name = "Member_Role",								
 	        joinColumns = @JoinColumn(name = "fk_member_id"),        //建立當前表在中介表的外鍵
@@ -201,16 +204,31 @@ public class Member implements Serializable{
 		this.memberMultipartFile = memberMultipartFile;
 	}
 
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [memberId=" + memberId + ", username=" + username + ", password=" + password + ", fullname="
 				+ fullname + ", sex=" + sex + ", birthday=" + birthday + ", phone=" + phone + ", email=" + email
-				+ ", address=" + address + ", registerTime=" + registerTime + ", image=" + image + ", fileName="
-				+ fileName + ", memberMultipartFile=" + memberMultipartFile + ", roles="
-				+ roles + "]";
+				+ ", address=" + address + ", registerTime=" + registerTime + ", status=" + status + ", code=" + code
+				+ ", image=" + image + ", fileName=" + fileName + ", roles=" + roles + "]";
 	}
 
-
+	
 
 	 
 	 

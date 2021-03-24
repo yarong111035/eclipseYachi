@@ -14,7 +14,7 @@ public interface ProductDao {
 	List<ProductBean> getAllProducts();
 	
 	//更新產品價格(lab4)
-	void updatePrice(int productId, double newPrice);
+	public void updatePrice(int productId, double newPrice);
 	
 	//分類查詢產品資料(lab5)
 //	List<ProductTypeBean> getAllSorts();
@@ -36,12 +36,12 @@ public interface ProductDao {
 	
 	
 	//產品分頁功能
-	Map<Integer, ProductBean> getPageProducts(int pageNo);
-	long getRecordCounts();
-	int getRecordsPerPage();
-	int getTotalPages();
-	void setRecordsPerPage(int recordsPerPage);
-	void setSelected(String selected);
+	public Map<Integer, ProductBean> getPageProducts(int pageNo);
+	public long getRecordCounts();
+	public int getRecordsPerPage();
+	public int getTotalPages();
+	public void setRecordsPerPage(int recordsPerPage);
+	public void setSelected(String selected);
 //	void setPageNo(int pageNo);
 //	int getPageNo();
 

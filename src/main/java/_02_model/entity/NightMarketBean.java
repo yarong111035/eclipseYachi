@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +33,7 @@ public class NightMarketBean implements Serializable{
 	
 	// 雙向多對一 
 	// 夜市一方 商家多方  夜市可以有多個商家 一個商家只能有一個夜市 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "nightMarketBean")  //告訴外鍵後就不會有中介表格
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "nightMarketBean",fetch = FetchType.EAGER)  //告訴外鍵後就不會有中介表格
 	private Set<ShopBean> shops = new LinkedHashSet<ShopBean>();
 	
 	

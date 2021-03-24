@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
    	<link rel="stylesheet" href="<c:url value='/_00_util/memberUtil/css/reset.css'/>">
-	<link rel="stylesheet" href="<c:url value='/_00_util/memberUtil/css/member_update.css'/>">
+	<link rel="stylesheet" href="<c:url value='/_00_util/memberUtil/css/member_update2.css'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<title>member_update</title>
 	
@@ -150,26 +150,28 @@
             <div class="function">
                 <h3>會員中心</h3>
 				<div class="item">
-		            <img src='${pageContext.request.contextPath}/_00_init/getMemberImage?memberId=${LoginOK.memberId}'
-		                  id="headImgg" height='200px' width='200px'>					
+				
+		            <img src='<c:url value='/_00_init/getMemberImage?memberId=${LoginOK.memberId}' /> '
+		                  id="headImgg" height='200px' width='200px'>
+		                  					
 	            </div>
                 <div class="item">
-                    <a href="#">
+                   	<a href="<c:url value='/member/update/${LoginOK.memberId}'/>">
                         <button><span>基本資料</span></button>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="#">
+                    <a href="<c:url value='/_23_orderProcess/orderList'/>">
                         <button><span>訂單查詢</span></button>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="#">
+                    <a href="<c:url value='/member/keep/coupons'/>">
                         <button><span>我的優惠券</span></button>
-                    </a>
+                    </a>                    
                 </div>
                 <div class="item">
-                    <a href="#">
+                    <a href="<c:url value="/queryFavoriteShop"/>"> 
                         <button><span>喜愛商家</span></button>
                     </a>
                 </div>
@@ -179,7 +181,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="#">
+                    <a href="<c:url value='/_50_shop/_53_shopRegister/InsertShop' />">
                         <button><span>申請商家</span></button>
                     </a>
                 </div>
@@ -189,7 +191,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="<c:url value='/doLogout'/>">
+                    <a href="<c:url value='/doLogout'/>" onclick="return window.confirm('確定登出嗎?');">
                         <button><span>登出</span></button>
                     </a>
                 </div>
@@ -205,7 +207,7 @@
 		                  id="headImg" height='200px' width='200px'>				
 	            </div>
             	<div>
-            		<label for="file">
+            		<label for="file" class="editPhoto">
 	                    <i class="fas fa-image">編輯照片
 	                    <form:input type="file" id="file" path="memberMultipartFile" accept=".jpeg,.png" 
 	                    style="display: none;"/></i>
