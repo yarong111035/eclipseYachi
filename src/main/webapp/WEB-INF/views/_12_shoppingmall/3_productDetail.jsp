@@ -91,44 +91,82 @@
                                     <span class="spanHeader">剩餘數量:</span> 
                                     <span class="spanContent">${product.product_stock } 件</span>
                                 </div>
-	                                
-                                <form method="POST" action="<c:url value='/BuyProduct.do?cmd=ADD1' />">
-	                                <div class="selectCountBox">
-	                                    <label for="selectCount">數量：</label>
-	                                    	<select name='qty' >
-	                                    		<option value="1">1</option>
-	                                    		<option value="2">2</option>
-	                                    		<option value="3">3</option>
-	                                    		<option value="4">4</option>
-	                                    		<option value="5">5</option>
-	                                    		<option value="6">6</option>
-	                                    		<option value="7">7</option>
-	                                    		<option value="8">8</option>
-	                                    		<option value="9">9</option>
-	                                    		<option value="10">10</option>
-	                                    	</select>
-	                                </div>
-<!-- 	                                <div class="selectSizeBox"> -->
-<!-- 	                                    <label for="SelectSize">規格：</label> -->
-<!-- 	                                        <select name="size" id="SelectSize"> -->
-<!-- 		                                        <option value="S">S</option> -->
-<!-- 		                                        <option value="M">M</option> -->
-<!-- 	                                        </select> -->
-<!-- 	                                </div> -->
-	                                <div class="shopBtn">
-	                                    <div class="cartBtn"> 
-	                                    	<input type='hidden' name='product_id' value='${product.product_id}'>
-<%-- 	                                    	<input type='hidden' name='pageNo' value='${prarm.pageNo}'> --%>
-<!-- 	                                        <input type="submit" id="addCart" value="加入購物車"> -->
-											<a href="<c:url value='/DisplayPageProducts'/>" ><span>返回列表</span></a>
-	                                    </div>
-	                                    <div class="buyBtn">
-<%-- 	                                    <a href="<c:url value='/showAndAddCart/${product.product_id}'/>" ><span>直接購買</span></a> --%>
-                                    		<input type="submit" id="addCart" value="直接購買">
-	                                    </div>
-	                                </div>
-                            	</form>   
-	                                
+	                             <c:if test="${empty LoginOK}">  
+	                             	<form method="POST" action="<c:url value='/visitorBuyProduct.do?cmd=ADD1' />">
+	                             	 <div class="selectCountBox">
+		                                    <label for="selectCount">數量：</label>
+		                                    	<select name='qty' >
+		                                    		<option value="1">1</option>
+		                                    		<option value="2">2</option>
+		                                    		<option value="3">3</option>
+		                                    		<option value="4">4</option>
+		                                    		<option value="5">5</option>
+		                                    		<option value="6">6</option>
+		                                    		<option value="7">7</option>
+		                                    		<option value="8">8</option>
+		                                    		<option value="9">9</option>
+		                                    		<option value="10">10</option>
+		                                    	</select>
+		                                </div>
+	<!-- 	                                <div class="selectSizeBox"> -->
+	<!-- 	                                    <label for="SelectSize">規格：</label> -->
+	<!-- 	                                        <select name="size" id="SelectSize"> -->
+	<!-- 		                                        <option value="S">S</option> -->
+	<!-- 		                                        <option value="M">M</option> -->
+	<!-- 	                                        </select> -->
+	<!-- 	                                </div> -->
+		                                <div class="shopBtn">
+		                                    <div class="cartBtn"> 
+		                                    	<input type='hidden' name='product_id' value='${product.product_id}'>
+	<%-- 	                                    	<input type='hidden' name='pageNo' value='${prarm.pageNo}'> --%>
+	<!-- 	                                        <input type="submit" id="addCart" value="加入購物車"> -->
+												<a href="<c:url value='/DisplayPageProducts'/>" ><span>返回列表</span></a>
+		                                    </div>
+		                                    <div class="buyBtn">
+	<%-- 	                                    <a href="<c:url value='/showAndAddCart/${product.product_id}'/>" ><span>直接購買</span></a> --%>
+	                                    		<input type="submit" id="addCart" value="直接購買">
+		                                    </div>
+		                                </div>
+	                            	</form>
+	                             </c:if> 
+	                              <c:if test="${!empty LoginOK}">  
+                                	<form method="POST" action="<c:url value='/BuyProduct.do?cmd=ADD1' />">
+		                                <div class="selectCountBox">
+		                                    <label for="selectCount">數量：</label>
+		                                    	<select name='qty' >
+		                                    		<option value="1">1</option>
+		                                    		<option value="2">2</option>
+		                                    		<option value="3">3</option>
+		                                    		<option value="4">4</option>
+		                                    		<option value="5">5</option>
+		                                    		<option value="6">6</option>
+		                                    		<option value="7">7</option>
+		                                    		<option value="8">8</option>
+		                                    		<option value="9">9</option>
+		                                    		<option value="10">10</option>
+		                                    	</select>
+		                                </div>
+	<!-- 	                                <div class="selectSizeBox"> -->
+	<!-- 	                                    <label for="SelectSize">規格：</label> -->
+	<!-- 	                                        <select name="size" id="SelectSize"> -->
+	<!-- 		                                        <option value="S">S</option> -->
+	<!-- 		                                        <option value="M">M</option> -->
+	<!-- 	                                        </select> -->
+	<!-- 	                                </div> -->
+		                                <div class="shopBtn">
+		                                    <div class="cartBtn"> 
+		                                    	<input type='hidden' name='product_id' value='${product.product_id}'>
+	<%-- 	                                    	<input type='hidden' name='pageNo' value='${prarm.pageNo}'> --%>
+	<!-- 	                                        <input type="submit" id="addCart" value="加入購物車"> -->
+												<a href="<c:url value='/DisplayPageProducts'/>" ><span>返回列表</span></a>
+		                                    </div>
+		                                    <div class="buyBtn">
+	<%-- 	                                    <a href="<c:url value='/showAndAddCart/${product.product_id}'/>" ><span>直接購買</span></a> --%>
+	                                    		<input type="submit" id="addCart" value="直接購買">
+		                                    </div>
+		                                </div>
+	                            	</form>   
+	                            </c:if>
                             </div>
                         </div>   
                         <!-- End 上方商品資訊 -->
