@@ -160,7 +160,7 @@ public class LoginAndRegisterController {
 		// 去除@SessionAttributes("LoginOK")
 		status.setComplete();
 
-		return "redirect:/index";
+		return "redirect:/home";
 	}
 
 	// 會員登入
@@ -261,8 +261,8 @@ public class LoginAndRegisterController {
 	// org.springframework.web.HttpSessionRequiredException: Expected session
 	// attribute 'member'
 //	@ModelAttribute("member")
-//	public Member populateForm() {
-//	    return new Member();
+//		public Member populateForm() {
+//		    return new Member();
 //	}
 
 	@InitBinder

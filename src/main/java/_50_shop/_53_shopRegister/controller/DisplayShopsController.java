@@ -93,6 +93,11 @@ public class DisplayShopsController {
 			HttpServletRequest request
 			) {
 		Member member = (Member) model.getAttribute("LoginOK");
+		
+		if (member == null) {
+			return "redirect:/LoginAndRegister";
+		}
+		
 		ShopBean sb = shopService.getShop(shopId);
 		shopCommentBean.setShopBean(sb);
 		shopCommentService.saveCommentBean(member, shopCommentBean);
