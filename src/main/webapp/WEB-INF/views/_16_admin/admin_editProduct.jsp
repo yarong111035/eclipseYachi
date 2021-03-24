@@ -41,6 +41,7 @@
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
 	<!-- -------------------------------引入共同的頁首結束------------------------------------- -->
 
+
 	<form method='POST'>
 		<input type='hidden' name='_method' value='DELETE'>
 	</form>
@@ -51,7 +52,7 @@
 			<!-- -------------------------功能選單開始 --------------------------------------->
 			<jsp:include page="/WEB-INF/views/_00_util/adminUtil/jsp/admin.jsp" />
 			<!-- -------------------------功能選單結束 --------------------------------------->
-
+			
 
 
 
@@ -272,9 +273,10 @@
 
 		</div>
 	</div>
-	
-	<!-- 引入共同的頁尾 -->
+	<!-- -------------------------------引入共同的頁尾---------------------------------------- -->
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
+	<!-- -------------------------------引入共同的頁尾----------------------------------------- -->
+	
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 	<script>
