@@ -47,6 +47,7 @@ import _10_member.entity.Member;
 import _10_member.service.MemberService;
 import _30_coupon._33_editCoupon.service.FavoriteCouponService;
 import _50_shop._51_coupon.service.CouponService;
+import _80_home.service.SearchService;
 
 
 @Controller
@@ -149,6 +150,23 @@ public class Coupon_Controller {
 				
 				return "redirect:/coupons";
 			}
+//		=============================== 查詢優惠劵 ============================================
+			@Autowired
+			SearchService searchService;
+			
+			
+			@RequestMapping("/searchCoupons")
+			public String sCoupons(@RequestParam String coupon_name,Model model) {
+				
+				List<CouponBean> list = searchService.getAllCouponNoExpired(coupon_name);
+				
+				model.addAttribute("coupons", list);
+
+				
+				return "_15_coupon/coupons";
+			}
+			
+			
 	
 ////	=============================== 查詢優惠劵 ============================================
 //	@GetMapping(value = "/queryCoupon", 

@@ -172,17 +172,17 @@ public class SearchController {
 	}
 	
 	// 查詢所有的優惠券 (優惠券有效期限大於當前時間) 尚未過期
-	@RequestMapping("/test02")
-	@ResponseBody
-	public String searchCouponNoExpired() {
-		
-		List<CouponBean> list = searchService.getAllCouponNoExpired();
-		for (CouponBean couponBean : list) {
-			System.out.println(couponBean.getCoupon_name());
-		}
-		
-		return "測試成功";
-	}
+//	@RequestMapping("/test02")
+//	@ResponseBody
+//	public String searchCouponNoExpired() {
+//		
+//		List<CouponBean> list = searchService.getAllCouponNoExpired();
+//		for (CouponBean couponBean : list) {
+//			System.out.println(couponBean.getCoupon_name());
+//		}
+//		
+//		return "測試成功";
+//	}
 	
 	
 	

@@ -129,6 +129,13 @@
 	<%-- </c:forEach> --%>
 
 	<!-- </div> -->
+	
+	<form action="<c:url value="/searchCoupons"/>">
+		<a>搜尋優惠券</a>
+		<input type="text" name="coupon_name" id="">
+		<input type="submit" value="搜尋">
+	</form>
+	
 	<div class="row row-cols-1 row-cols-md-3 "
 		style="padding: 0px 130px 130px 130px">
 		<c:forEach var='coupon' items='${coupons}'>
