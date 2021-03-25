@@ -30,6 +30,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import _10_member.entity.Member;
 import _10_member.entity.Role;
 import _10_member.mail.Garbled;
@@ -69,7 +71,7 @@ public class LoginAndRegisterController {
 
 	// 會員註冊事務
 	@PostMapping("doRegister")
-	public String doRegist(Member member, BindingResult bindingResult, Model model, HttpSession session) {
+	public String doRegist(Member member, BindingResult bindingResult, Model model, HttpSession session, RedirectAttributes ra) {
 
 		mValidator.validate(member, bindingResult);
 
@@ -102,8 +104,10 @@ public class LoginAndRegisterController {
 
 			// <c:if test="${empty status and !empty code }">
 			// alert(" 已寄出驗證信 登入前請先去驗證 !");
-			session.setAttribute("status", member.getStatus());
-			session.setAttribute("code", member.getCode());
+//			model.addAttribute("status", member.getStatus());
+//			model.addAttribute("code", member.getCode());
+			ra.addFlashAttribute("status", member.getStatus());
+			ra.addFlashAttribute("code", member.getCode());
 
 			// ------------------------------------------------------
 			// 加入會員角色
