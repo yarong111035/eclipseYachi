@@ -79,6 +79,19 @@
         	return false;
         });
 		
+		//一鍵輸入功能
+		  //存取input標籤的值必須使用.val()方法
+		  $('#inputAllBtn').click(function(){
+			  $('#coupon_name').val("順順十全排骨");
+			  $('#coupon_info').val("排骨飯優惠5元")
+			  $('#coupon_amount').val("10")
+			  $('#product_spec').val("聯名款")
+		  })
+		
+		
+		
+		
+		
 		
 		
 
@@ -257,15 +270,13 @@
 			<div class="middle-bottom"
 				style="width: 95%; height: 40px; margin: 20px; border: 2px dashed #333; display: flex;">
 				<button style="margin: 3px;" id="insertbtn">＋ 新增優惠券</button>
+				<button type="button" id="inputAllBtn">一鍵輸入</button>
 			</div>
 
 		</main>
 
 	</div>
 	
-	
-	
-
 
 </body>
 </html>

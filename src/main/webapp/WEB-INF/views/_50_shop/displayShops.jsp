@@ -90,7 +90,7 @@ div.card {
 					<div class="goShopBtn">
 						<a
 							href="<c:url value='/_50_shop/_54_showShops/ShowShops/${shop.shop_id}' />"><button
-								type="button" class="btn btn-outline-primary">前往夜市</button></a>
+								type="button" class="btn btn-outline-primary">前往商家</button></a>
 					</div>
 				</div>
 			</div>

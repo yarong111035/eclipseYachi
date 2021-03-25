@@ -45,6 +45,9 @@
 	padding: 5px;
 	overflow: auto;
 }
+div.card{
+	box-shadow: 1px 1px 3px 1px #ccc;
+}
 
 </style>
 

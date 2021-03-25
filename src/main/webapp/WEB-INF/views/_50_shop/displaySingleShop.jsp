@@ -155,9 +155,12 @@
 								class="far fa-plus-square fa-3x" ></i></a>
 						</div>
 						<div>
+						<a
+						href="<c:url value='/coupon?coupon_id=${coupon.coupon_id}' />">
 							<img
 								src="<c:url value='/_50_shop/_51_coupon/getPicture/${coupon.coupon_id}'/>"
 								style="width: 200px; height: 80px;">
+								</a>
 						</div>
 						<div class="couponInfo">
 							<h3>${coupon.coupon_name}</h3>

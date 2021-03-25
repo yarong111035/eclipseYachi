@@ -67,15 +67,7 @@ public class ShopDaoImpl implements Serializable, ShopDao{
 		return shops;
 	}
 
-	@Override
-	public List<ShopBean> getShopsByMarket(NightMarketBean nightMarketBean) {
-		Session session = factory.getCurrentSession();
-		
-		String hql = "FROM ShopBean WHERE nightMarketBean.market_id = :nmb";
-		List<ShopBean> shops = (List<ShopBean>) session.createQuery(hql).setParameter("nmb", 4).getResultList();
-		
-		return shops;
-	}
+
 	
 	@Override
 	public List<ShopBean> getShopsByNightMarket(int marketId) {

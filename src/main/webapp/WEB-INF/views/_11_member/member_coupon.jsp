@@ -141,9 +141,11 @@
                         <div class="coupon-container">                            
                            <c:forEach var='couponlist' items='${coupons}'>   
                                                                           
-                              <div class="coupon-shop">     
+                              <div class="coupon-shop">   
+                              <a
+						href="<c:url value='/coupon?coupon_id=${couponlist.coupon_id}' />">  
                                   <img src="<c:url value='/getCouponPicture/${couponlist.coupon_id}' />" >
-                                  
+                                  </a>
                               		<a href="<c:url value='/member/delete/${couponlist.coupon_id}'/>" 
                               		class="remove-product" onclick="return window.confirm('確定移除嗎?')">
                               		<i class="fas fa-window-close"></i></a>
