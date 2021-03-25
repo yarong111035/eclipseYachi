@@ -128,7 +128,7 @@ public class LoginAndRegisterController {
 
 			memberService.insertMember(member);
 
-			return "redirect:/index";
+			return "redirect:/";
 		}
 
 	}
