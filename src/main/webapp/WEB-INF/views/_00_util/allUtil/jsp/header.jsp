@@ -27,10 +27,11 @@
 		padding: 10px; 
 	}
 	.member-headImg img{
-		width: 100%;
-		height: 100%;
+		width: 80%;
+		height: 80%;
 		border-radius: 50%;
 	}
+	
 
 </style>
 
@@ -173,13 +174,13 @@
 			<div class="tab-warp">
 
 				<div class="tab-list">
-					<a href="#">夜市簡介</a> 
+					<a href="<c:url value='/'/>">夜市簡介</a> 
 					<a href="<c:url value='/_50_shop/_54_showShops/ShowShops' />">優質商家</a> 
 					<a href="#">美食推薦</a> 
 					<a href="<c:url value="/DisplayPageProducts" />">購物中心</a> 
 												
 					<c:if test="${!empty AdminLoginOK}">
-						<a href="#">管理員中心</a>					
+						<a href="/admin/administrator">管理員中心</a>					
 					</c:if>
 					<c:if test="${!empty LoginOK}">
 						<a href="#">會員中心</a>					
@@ -224,12 +225,12 @@
 					
 						<a href="<c:url value='/admin/administrator' />">管理員首頁</a><br> 
 						<a href="<c:url value='/admin/admin_editProduct' />">商品維護</a><br> 
-						<a href="<c:url value='/admin/admin_coupon' />">平台優惠券</a><br> 
-						<a href="<c:url value='/admin/admin_chatroom' />">客服回應</a><br> 
-						<a href="<c:url value='/admin/admin_announcement' />">公告</a><br> 
+						<a href="<c:url value='/admin/InsertAdminActivity' />">平台優惠活動</a><br> 
+						<a href="<c:url value='/admin/InsertAdminCoupon' />">平台優惠券</a><br> 
 						<a href="<c:url value='/admin/admin_adinfo' />">廣告資訊</a><br> 
-						<a href="<c:url value='/admin/admin_activity' />">平台優惠活動</a><br> 
+						<a href="<c:url value='/admin/admin_chatroom' />">客服回應</a><br> 
 						<a href="<c:url value='/admin/admin_checkShop' />">審核商家</a><br>
+						<a href="<c:url value='/admin/admin_announcement' />">公告</a><br> 
 						<a href="<c:url value='/doLogout'/>" onclick="return window.confirm('確定登出嗎?');">
 						<font>登 出</font></a>
 						

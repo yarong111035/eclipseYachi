@@ -16,6 +16,18 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`yachidb00` /*!40100 DEFAULT CHARACTER S
 
 USE `yachidb00`;
 
+DROP TABLE IF EXISTS `admincoupon_type`;
+create table `admincoupon_type` (
+	`admincoupon_type_id` int (11),
+	`admincoupon_type_name` varchar (765)
+); 
+insert into `admincoupon_type` (`admincoupon_type_id`, `admincoupon_type_name`) values('1','折扣');
+insert into `admincoupon_type` (`admincoupon_type_id`, `admincoupon_type_name`) values('2','贈品');
+insert into `admincoupon_type` (`admincoupon_type_id`, `admincoupon_type_name`) values('3','免費');
+insert into `admincoupon_type` (`admincoupon_type_id`, `admincoupon_type_name`) values('4','其他');
+
+
+
 /*Table structure for table `admin_activity` */
 
 DROP TABLE IF EXISTS `admin_activity`;

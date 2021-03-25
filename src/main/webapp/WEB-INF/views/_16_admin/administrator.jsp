@@ -46,20 +46,6 @@
 			<main class="col-8">
 				<div class="status">
 					<div class="status-nav">
-						<h3>平台優惠券</h3>
-						<div class="space"></div>
-						<a class="readmore" href="#">readmore...</a>
-					</div>
-					<hr>
-					<div> 
-					<c:forEach var="admincoupons" varStatus="stat" items="${admincouponList}">
-						<a href="<c:url value='/admin/modifyAdminCoupon/${admincoupons.admincoupon_id}' />">${admincoupons.admincoupon_name} ----->
-						時間:${admincoupons.admincoupon_begin}至${admincoupons.admincoupon_end}----->剩:${admincoupons.admincoupon_amount}張</a><br>
-					</c:forEach>
-					</div>
-				</div>
-				<div class="status">
-					<div class="status-nav">
 						<h3>平台優惠活動</h3>
 						<div class="space"></div>
 						<a class="readmore" href="#">readmore...</a>
@@ -69,6 +55,20 @@
 					<c:forEach var="adminactivities" varStatus="stat" items="${adminactivityList}">
 						<a href="<c:url value='/admin/modifyAdminActivity/${adminactivities.adminactivity_id}' />">
 						${adminactivities.adminactivity_name} ----->時間:${adminactivities.adminactivity_begin}至${adminactivities.adminactivity_end}</a><br>
+					</c:forEach>
+					</div>
+				</div>
+				<div class="status">
+					<div class="status-nav">
+						<h3>平台優惠券</h3>
+						<div class="space"></div>
+						<a class="readmore" href="#">readmore...</a>
+					</div>
+					<hr>
+					<div> 
+					<c:forEach var="admincoupons" varStatus="stat" items="${admincouponList}">
+						<a href="<c:url value='/admin/modifyAdminCoupon/${admincoupons.admincoupon_id}' />">${admincoupons.admincoupon_name} ----->
+						時間:${admincoupons.admincoupon_begin}至${admincoupons.admincoupon_end}----->剩:${admincoupons.admincoupon_amount}張</a><br>
 					</c:forEach>
 					</div>
 				</div>
