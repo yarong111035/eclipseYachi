@@ -160,7 +160,7 @@ public class LoginAndRegisterController {
 		// 去除@SessionAttributes("LoginOK")
 		status.setComplete();
 
-		return "redirect:/index";
+		return "redirect:/home";
 	}
 
 	// 會員登入
@@ -224,10 +224,10 @@ public class LoginAndRegisterController {
 		if (nextPath == null) {
 
 			// 如果nextPath等於null 則導向 "/" 首頁
-			// nextPath = request.getContextPath();
+			 nextPath = request.getContextPath();
 
 			// 如果nextPath等於null 則導向index
-			nextPath = request.getContextPath() + "/index";
+			//nextPath = request.getContextPath() + "/index";
 		}
 
 		// 清除 status code 識別字串 這個跟信箱有關係
@@ -261,8 +261,8 @@ public class LoginAndRegisterController {
 	// org.springframework.web.HttpSessionRequiredException: Expected session
 	// attribute 'member'
 //	@ModelAttribute("member")
-//	public Member populateForm() {
-//	    return new Member();
+//		public Member populateForm() {
+//		    return new Member();
 //	}
 
 	@InitBinder

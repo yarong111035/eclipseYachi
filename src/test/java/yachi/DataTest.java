@@ -595,10 +595,13 @@ public class DataTest {
 	@Test
 	public void getAllCouponNoExpired() {
 		
-		Date date = Calendar.getInstance().getTime();
-		String hql = "FROM CouponBean c Where c.coupon_end >= :date";
+		String str = "牛排";
 		
-		List<CouponBean> list = session.createQuery(hql).setParameter("date", date)
+		Date date = Calendar.getInstance().getTime();
+		String hql = "FROM CouponBean c Where c.coupon_name LIKE :name and c.coupon_end >= :date and c.coupon_begin <= :date";
+		
+		List<CouponBean> list = session.createQuery(hql).setParameter("name","%"+str+"%")
+														.setParameter("date", date)
 														.getResultList();
 		
 		for (CouponBean couponBean : list) {

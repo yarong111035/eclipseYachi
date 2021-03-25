@@ -40,14 +40,15 @@ public class SearchDao{
 	
 	// 查詢所有的優惠券 (優惠券有效期限大於當前時間) 尚未過期
 	@SuppressWarnings("unchecked")
-	public List<CouponBean> getAllCouponNoExpired() {
+	public List<CouponBean> getAllCouponNoExpired(String coupon_name) {
 		
 		Session session = factory.getCurrentSession();
 		
 		Date date = Calendar.getInstance().getTime();
-		String hql = "FROM CouponBean c Where c.coupon_end >= :date";
+		String hql = "FROM CouponBean c Where c.coupon_name LIKE :name and c.coupon_end >= :date and c.coupon_begin <= :date";
 		
-		List<CouponBean> list = session.createQuery(hql).setParameter("date", date)
+		List<CouponBean> list = session.createQuery(hql).setParameter("name","%"+coupon_name+"%")
+														.setParameter("date", date)
 														.getResultList();
 		
 		return list;

@@ -25,8 +25,8 @@ public class SearchService {
 		return searchDao.searchNight(market_name);
 	}
 	
-	public List<CouponBean> getAllCouponNoExpired() {
-		return searchDao.getAllCouponNoExpired();
+	public List<CouponBean> getAllCouponNoExpired(String coupon_name) {
+		return searchDao.getAllCouponNoExpired(coupon_name);
 	}
 	
 	public List<ProductBean> getALLProducts(){

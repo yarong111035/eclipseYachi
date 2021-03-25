@@ -221,6 +221,7 @@
                     }
                 })
             });
+            
             const collect = document.getElementById('collect');
             collect.addEventListener('click', function (e) {
                 Swal.fire({
@@ -228,7 +229,7 @@
                     icon: 'success',
                     title: '成功收藏優惠卷',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 10000000
                 })
             });
         });
