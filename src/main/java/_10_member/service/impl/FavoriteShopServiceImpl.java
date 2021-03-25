@@ -59,16 +59,11 @@ public class FavoriteShopServiceImpl implements Serializable, FavoriteShopServic
 	}
 
 	@Override
-	public int updateFavoriteShop(FavoriteShopListBean favoriteShopListBean) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void saveFavoriteShop2(Member member, Integer shopBean_id) {
+		
+		favoriteShopDao.saveFavoriteShop2(member, shopBean_id);
 	}
 
-	@Override
-	public List<FavoriteShopListBean> getFavoriteShopByMemberId(Integer memberId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	
 }

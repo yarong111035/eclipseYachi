@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import _02_model.entity.CouponBean;
+import _02_model.entity.ShopBean;
 import _10_member.entity.Member;
 import _10_member.service.FavoriteShopService;
 import _50_shop._51_coupon.service.CouponService;
@@ -37,7 +38,10 @@ public class FavoriteShopController {
 	public String showUpdateForm(Model model, @PathVariable Integer shopId) {
 		Member member = (Member) model.getAttribute("LoginOK");
 		try {
-			favoriteShopService.saveFavoriteShop(shopService.getShop(shopId), member);
+//			favoriteShopService.saveFavoriteShop(shopService.getShop(shopId), member);
+			
+			favoriteShopService.saveFavoriteShop2(member, shopId);
+			
 		} catch (Exception e) {
 			return "redirect:/_50_shop/_54_showShops/ShowShops/" + shopId;
 		}
