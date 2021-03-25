@@ -51,10 +51,10 @@ public class ShopTableResetHibernate {
 						line = line.substring(1); 
 					}
 					String[] token = line.split("\\|");
-					ShopBean shopBean = new ShopBean();  //新增用
+//					ShopBean shopBean = new ShopBean();  //新增用
 					
 					Integer shop_id = Integer.valueOf(token[0].trim());
-//					ShopBean shopBean = session.get(ShopBean.class, shop_id); 
+					ShopBean shopBean = session.get(ShopBean.class, shop_id); //更新用
 					
 					String shop_name = token[1].trim();
 					String shop_hours = token[2].trim();
@@ -64,20 +64,20 @@ public class ShopTableResetHibernate {
 					String shop_addr = token[6].trim();
 					
 					// 店加種類 與 夜市外鍵 沒有id
-					shopBean.setShop_id(shop_id);
-					shopBean.setShop_name(shop_name);
-					shopBean.setShop_hours(shop_hours);
+//					shopBean.setShop_id(shop_id);
+//					shopBean.setShop_name(shop_name);
+//					shopBean.setShop_hours(shop_hours);
 					shopBean.setShop_pic(shop_pic);//存圖片
 					shopBean.setShop_file_name(SystemUtils2018.extractFileName(token[3].trim()));//圖片路徑
 //					shopBean.setShop_pic(null);//存圖片
 //					shopBean.setShop_file_name(null);//圖片路徑
-					shopBean.setShop_info(shop_info);
-					shopBean.setShop_phone(shop_phone);
-					shopBean.setShop_addr(shop_addr);
+//					shopBean.setShop_info(shop_info);
+//					shopBean.setShop_phone(shop_phone);
+//					shopBean.setShop_addr(shop_addr);
 					
 				
-					session.save(shopBean);
-//					session.update(shopBean);
+//					session.save(shopBean);
+					session.update(shopBean);
 					System.out.println("更新一筆shopBean紀錄成功");
 				}
 				// 印出資料新增成功的訊息
