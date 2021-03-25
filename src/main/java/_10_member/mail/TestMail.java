@@ -10,7 +10,7 @@ public class TestMail {
 
 	public static void main(String[] args) {
 		String code = "givemesomecode";
-		new Thread(new MailUtil("acadia891250@gmail.com", code)).start();
+		new Thread(new MailUtil("yarong111035@gmail.com", code)).start();
 	}
 
 }

@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Garbled {
 	
-	private String str = "os29580092car";
+	private String str = "Do!ng123";
 	
 	public String getStr() {
 		return str;

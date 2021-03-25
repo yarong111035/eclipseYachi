@@ -25,7 +25,7 @@ public class MailUtil implements Runnable {
 		// 1.建立連線物件javax.mail.Session
 		// 2.建立郵件物件 javax.mail.Message
 		// 3.傳送一封啟用郵件
-		String from = "os24702258car@gmail.com";// 發件人電子信箱
+		String from = "yachijava015@gmail.com";// 發件人電子信箱
 		String host = "smtp.gmail.com"; // 指定傳送email的主機，此為gmail
 		Properties properties = System.getProperties();// 獲取系統屬性
 		properties.setProperty("mail.smtp.host", host);// 設定email伺服器
@@ -38,7 +38,7 @@ public class MailUtil implements Runnable {
 			// 1.獲取預設session物件
 			Session session = Session.getDefaultInstance(properties, new Authenticator() {
 				public PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("os24702258car@gmail.com", (new Garbled()).getStr()); 
+					return new PasswordAuthentication("yachijava015@gmail.com", (new Garbled()).getStr()); 
 				}
 			});
 			// 2.建立郵件物件
