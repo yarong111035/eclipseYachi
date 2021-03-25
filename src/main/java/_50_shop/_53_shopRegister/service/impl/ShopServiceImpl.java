@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import _02_model.entity.NightMarketBean;
 import _02_model.entity.ShopBean;
 import _50_shop._53_shopRegister.dao.ShopCommentDao;
 import _50_shop._53_shopRegister.dao.ShopDao;
@@ -57,6 +58,12 @@ public class ShopServiceImpl implements Serializable, ShopService{
 		ShopBean shop = shopDao.getShop(shopId);
 		shop.setShop_score(scores/n);
 		shopDao.updateShop(shop);
+	}
+
+	@Override
+	public List<ShopBean> getShopsByMarket(NightMarketBean nightMarketBean) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

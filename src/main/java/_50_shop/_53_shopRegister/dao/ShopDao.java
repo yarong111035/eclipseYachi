@@ -3,6 +3,7 @@ package _50_shop._53_shopRegister.dao;
 import java.util.List;
 import java.util.Set;
 
+import _02_model.entity.NightMarketBean;
 import _02_model.entity.ShopBean;
 import _10_member.entity.Member;
 
@@ -17,5 +18,7 @@ public interface ShopDao {
 	ShopBean getShopByShopName(String name);
 	
 	List<ShopBean> getAllShops();
+	
+	List<ShopBean> getShopsByMarket(NightMarketBean nightMarketBean);
 	
 }

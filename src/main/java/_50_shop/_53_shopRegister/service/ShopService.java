@@ -3,6 +3,7 @@ package _50_shop._53_shopRegister.service;
 import java.util.List;
 import java.util.Set;
 
+import _02_model.entity.NightMarketBean;
 import _02_model.entity.ShopBean;
 
 public interface ShopService {
@@ -18,5 +19,7 @@ public interface ShopService {
 	List<ShopBean> getAllShops();
 
 	void setShopScore(int shopId);
+	
+	List<ShopBean> getShopsByMarket(NightMarketBean nightMarketBean);
 	
 }

@@ -10,4 +10,6 @@ public interface NightMarketService {
 
 	List<NightMarketBean> getAllMarkets();
 	
+	NightMarketBean getNightMarketById(int nightMarketId);
+	
 }

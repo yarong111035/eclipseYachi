@@ -45,6 +45,7 @@
 	padding: 5px;
 	overflow: auto;
 }
+
 </style>
 
 </head>
@@ -115,41 +116,52 @@
 					
 				
 
-					<div class="row justify-content-center">
+					<div class="row ml-4">
+					
+					<c:forEach var="shop" varStatus="stat" items="${shops}">
+						<div class="card" style="width: 18rem; margin: 20px">
+							<img style="height:180px;" src="<c:url value='/_50_shop/_53_shopRegister/getPicture/${shop.shop_id}'/>" class="card-img-top"
+								alt="...">
+							<div class="card-body">
+								<p class="card-text">${shop.shop_name}</p>
+							</div>
+						</div>
+					
+					</c:forEach>
 
-						<div class="card" style="width: 18rem; margin: 20px">
-							<img src="http://fakeimg.pl/270x200" class="card-img-top"
-								alt="...">
-							<div class="card-body">
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
+<!-- 						<div class="card" style="width: 18rem; margin: 20px"> -->
+<!-- 							<img src="http://fakeimg.pl/270x200" class="card-img-top" -->
+<!-- 								alt="..."> -->
+<!-- 							<div class="card-body"> -->
+<!-- 								<p class="card-text">Some quick example text to build on the -->
+<!-- 									card title and make up the bulk of the card's content.</p> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 
-						<div class="card" style="width: 18rem; margin: 20px">
-							<img src="http://fakeimg.pl/270x200" class="card-img-top"
-								alt="...">
-							<div class="card-body">
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
-						<div class="card" style="width: 18rem; margin: 20px">
-							<img src="http://fakeimg.pl/270x200" class="card-img-top"
-								alt="...">
-							<div class="card-body">
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
-						<div class="card" style="width: 18rem; margin: 20px">
-							<img src="http://fakeimg.pl/270x200" class="card-img-top"
-								alt="...">
-							<div class="card-body">
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
+<!-- 						<div class="card" style="width: 18rem; margin: 20px"> -->
+<!-- 							<img src="http://fakeimg.pl/270x200" class="card-img-top" -->
+<!-- 								alt="..."> -->
+<!-- 							<div class="card-body"> -->
+<!-- 								<p class="card-text">Some quick example text to build on the -->
+<!-- 									card title and make up the bulk of the card's content.</p> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="card" style="width: 18rem; margin: 20px"> -->
+<!-- 							<img src="http://fakeimg.pl/270x200" class="card-img-top" -->
+<!-- 								alt="..."> -->
+<!-- 							<div class="card-body"> -->
+<!-- 								<p class="card-text">Some quick example text to build on the -->
+<!-- 									card title and make up the bulk of the card's content.</p> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="card" style="width: 18rem; margin: 20px"> -->
+<!-- 							<img src="http://fakeimg.pl/270x200" class="card-img-top" -->
+<!-- 								alt="..."> -->
+<!-- 							<div class="card-body"> -->
+<!-- 								<p class="card-text">Some quick example text to build on the -->
+<!-- 									card title and make up the bulk of the card's content.</p> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 
 					</div>
 
