@@ -269,13 +269,13 @@
 				<div class="right_container container">
 				
 			<!-----------------------------------------商品排列區域------------------------------------------------>
-					<div data-aos="fade-up">
 						<div class="row">
 							<c:forEach var='entry' items='${products_DPP}'>
 							<!-- 判斷商品是否示刪除狀態 -->
 								<c:if test="${entry.product_status == 0 }">
 									<div class="product_contianer col col-md-6 col-lg-3 ">
 										<div class="product_items">
+					<div data-aos="flip-down">
 											<div class="product_image image2">
 		
 												<img src="<c:url value='/getProductPictureB/${entry.product_id}'/>">
@@ -367,11 +367,11 @@
 											</div>
 											<!-- <div class="clearfix"></div> -->
 										</div>
+					</div>
 									</div>
 							 	</c:if>
 							</c:forEach>
 						</div>
-					</div>
 			<!-----------------------------------------商品排列區域------------------------------------------------>	
 					
 					
@@ -417,10 +417,9 @@
 	</div>
 
 
-	<script src="sweetalert2.all.min.js"></script>
+<!-- 	<script src="sweetalert2.all.min.js"></script> -->
 	<script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
-	<script
-	src="<c:url value='/_00_util/allUtil/javascript/enscroll-0.6.2.min.js'/>"></script>
+	<script src="<c:url value='/_00_util/allUtil/javascript/enscroll-0.6.2.min.js'/>"></script>
 	<script>
 		$(document).ready(function() {
 			//把點到的商品名稱放到標題上
