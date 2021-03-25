@@ -207,7 +207,7 @@ public class LoginAndRegisterController {
 			memberService.updateMember(member);
 			model.addAttribute("AdminLoginOK", member);
 
-			return "redirect:/index";
+			return "redirect:/";
 		}
 
 		// --------------------------------------------------------------

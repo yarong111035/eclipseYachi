@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>申請商家</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/shopUtil/css/normalize.css'/>">
 	<link rel="stylesheet"
@@ -90,6 +91,9 @@
 								<form:errors path="shopTypeBean" cssClass="error" />
 					<i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
 				</div>
+				
+				<button type="button" class="btn btn-outline-primary" id="inputAllBtn">一鍵輸入</button>
+<!-- 				<button type="button" class="btn btn-outline-secondary" id="inputAllBtn">一鍵輸入</button> -->
 				<input type="submit" value="Register"
 									class="button-submit">
 									</input>
@@ -120,6 +124,20 @@
 				
          }
      })
+     
+     //一鍵輸入功能
+		  //存取input標籤的值必須使用.val()方法
+		  $('#inputAllBtn').click(function(){
+			  $('#shop_name').val("順順十全排骨");
+			  $('#shop_owner').val("陳阿順");
+			  $('#shop_addr').val("台北市士林區基河路 997號");
+			  $('#shop_phone').val("02-0890-7788");
+			  $('#shop_hours').val("11:00~20:00");
+			  
+		  })
+     
+     
+     
  })
          
 </script>

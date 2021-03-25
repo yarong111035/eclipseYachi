@@ -113,13 +113,13 @@ CREATE TABLE `coupon` (
   CONSTRAINT `FKa3qk3ucb5tedg3w6kkovxo0aw` FOREIGN KEY (`FK_shop_type_id`) REFERENCES `shop_type` (`shop_type_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-/*Data for the table `coupon` */
+/*Data for the table `coupon` 
 
 insert  into `coupon`(`coupon_id`,`coupon_amount`,`coupon_begin`,`coupon_end`,`coupon_info`,`coupon_memo`,`coupon_name`,`coupon_pic`,`coupon_rule`,`file_name`,`FK_shop_id`,`FK_shop_type_id`) values 
 (1,10,'2020-11-11','2020-11-11','你家牛排鐵板麵折價券',NULL,'1111鐵板麵折價卷',NULL,'限定單人使用',NULL,1,2),
 (2,20,'2020-11-11','2020-12-12','你家牛排厚切鐵板麵折價券',NULL,'2222厚切鐵板麵折價卷',NULL,'限定雙人使用',NULL,1,2),
 (3,25,'2020-11-11','2021-12-31','你家牛排厚切菲力牛排折價券',NULL,'33333阿就是折價卷',NULL,'限定老闆使用',NULL,1,2);
-
+*/
 /*Table structure for table `coupon_couponlist` */
 
 DROP TABLE IF EXISTS `coupon_couponlist`;
@@ -610,7 +610,7 @@ insert  into `ship_type`(`ship_type_id`,`type_name`) values
 (2,'超商取貨'),
 (3,'中華郵政i郵箱');
 
-/*Table structure for table `shop` */
+/*Table structure for table `shop` 
 
 DROP TABLE IF EXISTS `shop`;
 
@@ -636,12 +636,12 @@ CREATE TABLE `shop` (
   CONSTRAINT `FK3ucxfej4ev4agj9b5q2rt4w0m` FOREIGN KEY (`FK_shop_type_id`) REFERENCES `shop_type` (`shop_type_id`),
   CONSTRAINT `FKayhr6w5yps12nfh7t4ftywapw` FOREIGN KEY (`FK_nightmarket_id`) REFERENCES `nightmarket` (`market_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-/*Data for the table `shop` */
+*/
+/*Data for the table `shop` 
 
 insert  into `shop`(`shop_id`,`shop_addr`,`shop_file_name`,`shop_hours`,`shop_hyperlink`,`shop_info`,`shop_media`,`shop_memo`,`shop_name`,`shop_owner`,`shop_phone`,`shop_pic`,`shop_score`,`FK_nightmarket_id`,`FK_shop_type_id`) values 
 (1,'taipei',NULL,'11:00~22:00 everyday','www.yoursteak.com','好ㄘ的牛排',NULL,NULL,'你家牛排',NULL,'0912321321',NULL,NULL,1,2),
-(2,'taipei',NULL,'11:00~22:00 everyday','www.test.com','好吃的排骨',NULL,NULL,'藥燉排骨',NULL,'0987878788',NULL,NULL,3,1);
+(2,'taipei',NULL,'11:00~22:00 everyday','www.test.com','好吃的排骨',NULL,NULL,'藥燉排骨',NULL,'0987878788',NULL,NULL,3,1);*/
 
 /*Table structure for table `shop_comment` */
 

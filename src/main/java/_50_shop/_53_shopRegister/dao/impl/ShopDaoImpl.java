@@ -67,7 +67,7 @@ public class ShopDaoImpl implements Serializable, ShopDao{
 		return shops;
 	}
 
-	
+
 	
 	@Override
 	public List<ShopBean> getShopsByNightMarket(int marketId) {
