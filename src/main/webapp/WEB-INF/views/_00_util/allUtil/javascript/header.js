@@ -88,5 +88,14 @@ $(function(){
             $('.tab-list a').eq(index).removeClass('liColor');
     })      
     
+    //跑馬燈
+    // 每三秒執行一次
+			setInterval(function() {
+				$('#news li:first-child').slideUp(function() {
+
+					$('#news li:first-child').appendTo($('#news')).slideDown();
+				});
+
+			}, 3000);
 
 })

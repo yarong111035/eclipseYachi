@@ -97,10 +97,22 @@
 						</button>
 
 					</div>
-					<div class="food-trending">
-						<a href="#">測試中</a> <a href="#">測試中</a> <a href="#">優惠券</a> <a
-							href="#">關鍵字</a> <a href="#">測試</a>
+
+					<!-- 跑馬燈 -->
+					<div id="Marquee">
+						<h3>最新優惠消息:</h3>
+						<ul id="news">
+							<c:forEach var="adminactivityBean" varStatus="stat" items="${adminactivityBeanList}">
+						<li>${adminactivityBean.adminactivity_name }</li>
+							</c:forEach>
+						</ul>
 					</div>
+					<!-- 跑馬燈結束 -->
+
+					<!-- 					<div class="food-trending"> -->
+<!-- 						<a href="#">測試中</a> <a href="#">測試中</a> <a href="#">優惠券</a> <a -->
+<!-- 							href="#">關鍵字</a> <a href="#">測試</a> -->
+<!-- 					</div> -->
 				</form>
 
 				<div class="search-ticket">
