@@ -166,7 +166,7 @@
 			<div class="tab-warp">
 
 				<div class="tab-list">
-					<a href="/">夜市簡介</a> 
+					<a href="<c:url value='/'/>">夜市簡介</a> 
 					<a href="<c:url value='/_50_shop/_54_showShops/ShowShops' />">優質商家</a> 
 					<a href="#">美食推薦</a> 
 					<a href="<c:url value="/DisplayPageProducts" />">購物中心</a> 
