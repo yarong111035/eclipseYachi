@@ -45,6 +45,16 @@
 	padding: 5px;
 	overflow: auto;
 }
+div.card{
+	box-shadow: 1px 1px 3px 1px #ccc;
+}
+
+.shopImage{
+	height: 165px;
+}
+.shopArea{
+    margin-left: 20px;
+}
 </style>
 
 </head>
@@ -111,12 +121,12 @@
 					
 				
 
-					<div class="row justify-content-center">
+						<div class="row shopArea">
 
 						<c:forEach var="shop" varStatus="stat" items="${shops}">
 						<div class="card" style="width: 18rem; margin: 20px">
 						<a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${shop.shop_id}' />">
-							<img src="<c:url value='/_50_shop/_53_shopRegister/getPicture/${shop.shop_id}'/>" class="card-img-top"
+							<img src="<c:url value='/_50_shop/_53_shopRegister/getPicture/${shop.shop_id}'/>" class="card-img-top shopImage"
 								alt="..."></a>
 							<div class="card-body">
 								<p class="card-text">${shop.shop_name}</p>

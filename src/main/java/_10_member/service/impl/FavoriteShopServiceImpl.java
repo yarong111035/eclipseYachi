@@ -59,9 +59,9 @@ public class FavoriteShopServiceImpl implements Serializable, FavoriteShopServic
 	}
 
 	@Override
-	public void saveFavoriteShop2(Member member, Integer shopBean_id) {
+	public void saveFavoriteShop2(Integer memberId, Integer shopBean_id) {
 		
-		favoriteShopDao.saveFavoriteShop2(member, shopBean_id);
+		favoriteShopDao.saveFavoriteShop2(memberId, shopBean_id);
 	}
 
 

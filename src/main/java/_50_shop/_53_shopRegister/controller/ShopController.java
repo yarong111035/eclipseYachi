@@ -115,7 +115,8 @@ public class ShopController {
 	@PostMapping("InsertShop")
 	public String processFormData(@ModelAttribute("shopBean") ShopBean shopBean,  
 			Model model, BindingResult result, 
-			HttpServletRequest request
+			HttpServletRequest request,
+			RedirectAttributes ra
 			) {
 		Member mb = (Member) model.getAttribute("LoginOK");
 		mb.toString();
@@ -139,6 +140,7 @@ public class ShopController {
 //		mb.setShopBean(shopService.getShopByShopName(shopBean.getShop_name()));
 		mb.setShopBean(shopBean);
 		memberService.updateMember(mb);
+		ra.addFlashAttribute("shopregister", mb.getShopBean());
 		
 		
 		return "redirect:/";

@@ -180,11 +180,13 @@
                         <button><span>通知</span></button>
                     </a>
                 </div>
+                 <c:if test="${empty LoginOK.shopBean.shop_id}">	
                 <div class="item">
                     <a href="<c:url value='/_50_shop/_53_shopRegister/InsertShop' />">
                         <button><span>申請商家</span></button>
                     </a>
                 </div>
+                </c:if>
                 <div class="item">
                     <a href="#">
                         <button><span>新增信用卡</span></button>

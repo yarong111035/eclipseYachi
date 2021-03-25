@@ -163,6 +163,14 @@
 					</script>
 				</c:if>
 				
+				<c:if test="${!empty shopregister  }">
+					<script>
+					    $(function () {					
+							alert(" 你已成功申請為商家 !");
+					   	}); 	
+					</script>
+				</c:if>
+				
 				<c:if test="${!empty LoginOK}">
 					<div class="member-headImg">
 						<img src="<c:url value='/_00_init/getMemberImage?memberId=${LoginOK.memberId}'/>">
@@ -245,10 +253,13 @@
 						<a href="<c:url value='/member/update/${LoginOK.memberId}'/>">修改會員資料</a>
 						<a href="<c:url value='/member/keep/coupons'/>">我的優惠券</a>
 						<a href="<c:url value="/queryFavoriteShop"/>">我的喜愛商家</a>
-						<a href="<c:url value='/_23_orderProcess/orderList'/>"><font>查看訂單</font></a><br>						
+						<a href="<c:url value='/_23_orderProcess/orderList'/>"><font>查看訂單</font></a><br>
+						<c:if test="${empty LoginOK.shopBean.shop_id}">						
 						<a href="<c:url value='/_50_shop/_53_shopRegister/InsertShop' />">申請商家</a><br>
+						</c:if>
+						<c:if test="${!empty LoginOK.shopBean.shop_id}">
 						<a href="<c:url value='/_50_shop/_53_shopRegister/modifyShop/${LoginOK.shopBean.shop_id}' />">商家管理頁面</a><br>
-						
+						</c:if>
 						<a href="<c:url value='/doLogout'/>" onclick="return window.confirm('確定登出嗎?');">
 						<font>登 出</font></a>
 						
