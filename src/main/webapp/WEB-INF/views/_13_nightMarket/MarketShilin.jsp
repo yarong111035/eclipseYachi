@@ -45,6 +45,7 @@
 	padding: 5px;
 	overflow: auto;
 }
+
 </style>
 
 </head>
@@ -115,12 +116,12 @@
 					
 				
 
-					<div class="row justify-content-center">
-
-						<c:forEach var="shop" varStatus="stat" items="${shops}">
+					<div class="row ml-4">
+					
+					<c:forEach var="shop" varStatus="stat" items="${shops}">
 						<div class="card" style="width: 18rem; margin: 20px">
-						<a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${shop.shop_id}' />">
-							<img src="<c:url value='/_50_shop/_53_shopRegister/getPicture/${shop.shop_id}'/>" class="card-img-top"
+							<a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${shop.shop_id}' />">
+							<img style="height:180px;" src="<c:url value='/_50_shop/_53_shopRegister/getPicture/${shop.shop_id}'/>" class="card-img-top"
 								alt="..."></a>
 							<div class="card-body">
 								<p class="card-text">${shop.shop_name}</p>

@@ -5,6 +5,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -38,6 +39,7 @@ public class ShopBean implements Serializable{
 	
 	private Blob shop_media;
 	
+	@Column(length = 65535,columnDefinition = "Text")
 	private String shop_info;
 	
 	private String shop_addr;

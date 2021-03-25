@@ -25,6 +25,12 @@ public class NightMarketServiceImpl implements Serializable, NightMarketService{
 		
 		return nightMarketDao.getAllMarkets();
 	}
+
+	@Override
+	public NightMarketBean getNightMarketById(int nightMarketId) {
+		
+		return nightMarketDao.getNightMarketById(nightMarketId);
+	}
 	
 
 }

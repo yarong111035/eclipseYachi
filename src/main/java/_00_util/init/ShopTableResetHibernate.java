@@ -20,8 +20,9 @@ import org.hibernate.Transaction;
 import _00_util.util.HibernateUtils;
 import _00_util.util.SystemUtils2018;
 import _02_model.entity.ProductBean;
+import _02_model.entity.ShopBean;
 
-public class EDMTableResetHibernate {
+public class ShopTableResetHibernate {
 	public static final String UTF8_BOM = "\uFEFF"; // 定義 UTF-8的BOM字元
 
 	public static void main(String args[]) {
@@ -34,9 +35,9 @@ public class EDMTableResetHibernate {
 		Transaction tx = null;
 		try { 
 			tx = session.beginTransaction();
-			File file = new File("data/products.dat");
+			File file = new File("data/shops.dat");
 			
-			// 2. 由"data/book.dat"逐筆讀入Book表格內的初始資料，然後依序新增
+			// 2. 由"data/shops.dat"逐筆讀入shop表格內的初始資料，然後依序新增
 			// 到Book表格中
 			try (
 				FileInputStream fis = new FileInputStream(file);
@@ -50,27 +51,38 @@ public class EDMTableResetHibernate {
 						line = line.substring(1); 
 					}
 					String[] token = line.split("\\|");
-					//依據product_id 取得 productBean
-					Integer product_id = Integer.valueOf(token[0].trim());
-					ProductBean productBean = session.get(ProductBean.class, product_id);
+					ShopBean shopBean = new ShopBean();  //新增用
 					
-					// 讀取圖片檔
-					Blob blobPic = SystemUtils2018.fileToBlob(token[1].trim());
-					Blob blobPicA = SystemUtils2018.fileToBlob(token[2].trim());
+					Integer shop_id = Integer.valueOf(token[0].trim());
+//					ShopBean shopBean = session.get(ShopBean.class, shop_id); 
 					
-					productBean.setProduct_pic(blobPic);
-					productBean.setProduct_picA(blobPicA);
+					String shop_name = token[1].trim();
+					String shop_hours = token[2].trim();
+					Blob shop_pic = SystemUtils2018.fileToBlob(token[3].trim());
+					String shop_info = token[4].trim();
+					String shop_phone = token[5].trim();
+					String shop_addr = token[6].trim();
 					
-					productBean.setFilename(SystemUtils2018.extractFileName(token[1].trim()));
-					productBean.setFilenameA(SystemUtils2018.extractFileName(token[2].trim()));
+					// 店加種類 與 夜市外鍵 沒有id
+					shopBean.setShop_id(shop_id);
+					shopBean.setShop_name(shop_name);
+					shopBean.setShop_hours(shop_hours);
+					shopBean.setShop_pic(shop_pic);//存圖片
+					shopBean.setShop_file_name(SystemUtils2018.extractFileName(token[3].trim()));//圖片路徑
+//					shopBean.setShop_pic(null);//存圖片
+//					shopBean.setShop_file_name(null);//圖片路徑
+					shopBean.setShop_info(shop_info);
+					shopBean.setShop_phone(shop_phone);
+					shopBean.setShop_addr(shop_addr);
 					
 				
-					session.update(productBean);
-					System.out.println("更新一筆ProductBean紀錄成功");
+					session.save(shopBean);
+//					session.update(shopBean);
+					System.out.println("更新一筆shopBean紀錄成功");
 				}
 				// 印出資料新增成功的訊息
 				session.flush();
-				System.out.println("更新ProductBean紀錄成功");
+				System.out.println("更新shopBean紀錄成功");
 			}catch (Exception ex) {
 				ex.printStackTrace();
 			}

@@ -761,6 +761,16 @@ public class DataTest {
 		}
 		
 	}
+	
+	@Test
+	public void getShop() {
+		NightMarketBean nightMarketBean= session.get(NightMarketBean.class, 4);
+		String hql = "FROM ShopBean WHERE nightMarketBean.market_id = :nmb";
+		List<ShopBean> shops = (List<ShopBean>) session.createQuery(hql).setParameter("nmb", 4).getResultList();
+		for(ShopBean s:shops) {
+			System.out.println(s.getShop_name());
+		}
+	}
 
 	
 	

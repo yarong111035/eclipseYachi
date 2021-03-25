@@ -23,12 +23,20 @@ public class NightMarketDaoImpl implements Serializable, NightMarketDao{
 	@Autowired
 	NightMarketDao nightMarketDao;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<NightMarketBean> getAllMarkets() {
 		String hql = "FROM NightMarketBean";
 		Session session = factory.getCurrentSession();
 		List<NightMarketBean> list = session.createQuery(hql).getResultList();
 		return list;
+	}
+
+	@Override
+	public NightMarketBean getNightMarketById(int nightMarketId) {
+		Session session = factory.getCurrentSession();
+		NightMarketBean nightMarketBean = session.get(NightMarketBean.class, nightMarketId);
+		return nightMarketBean;
 	}
 
 }

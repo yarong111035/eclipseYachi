@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import _02_model.entity.NightMarketBean;
 import _02_model.entity.ShopBean;
 import _10_member.entity.Member;
 import _50_shop._53_shopRegister.dao.ShopDao;
@@ -63,6 +64,16 @@ public class ShopDaoImpl implements Serializable, ShopDao{
 		Session session = factory.getCurrentSession();
 		String hql = "FROM ShopBean";
 		List<ShopBean> shops = (List<ShopBean>) session.createQuery(hql).getResultList();
+		return shops;
+	}
+
+	@Override
+	public List<ShopBean> getShopsByMarket(NightMarketBean nightMarketBean) {
+		Session session = factory.getCurrentSession();
+		
+		String hql = "FROM ShopBean WHERE nightMarketBean.market_id = :nmb";
+		List<ShopBean> shops = (List<ShopBean>) session.createQuery(hql).setParameter("nmb", 4).getResultList();
+		
 		return shops;
 	}
 	

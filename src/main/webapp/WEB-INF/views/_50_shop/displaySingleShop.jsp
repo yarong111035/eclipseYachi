@@ -323,7 +323,7 @@
 						<div class="item-left">
 							<i class="fas fa-map-marked-alt"></i>
 						</div>
-						<div class="item-right">${shop.nightMarketBean.market_name}</div>
+						<div class="item-right">${shop.shop_addr}</div>
 					</div>
 					<div class="item">
 						<div class="item-left">
@@ -335,9 +335,7 @@
 						<div class="item-left">
 							<i class="fas fa-clock"></i>
 						</div>
-						<div class="item-right">
-							Mon~Fri : 16~22 <br> Sat~Sun : 16~24
-						</div>
+						<div class="item-right">${shop.shop_hours}</div>
 					</div>
 					<div class="item">
 						<div class="item-left">
