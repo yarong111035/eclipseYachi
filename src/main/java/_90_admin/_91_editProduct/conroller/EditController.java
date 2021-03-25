@@ -56,7 +56,7 @@ import _20_shoppingMall._21_product.service.ProductTypeService;
 import _20_shoppingMall._22_shoppingCart.service.CartBeanService;
 import _90_admin._91_editProduct.validator.ProductValidator;
 // 產品狀態碼 0:上架 1:刪除 2:下架
-
+@SessionAttributes({"sessionCart","sessionCartVoList","memberCartVoList"})
 @Controller
 public class EditController {
 	@Autowired
@@ -364,9 +364,9 @@ public class EditController {
 		System.out.println("===============================111==============================");
 		
 		//找到對應的種類
-		ProductTypeBean ps = productBean.getProductTypeBean();
+//		ProductTypeBean ps = productBean.getProductTypeBean();
 //		productBean.setProduct_type_id(ps.getProduct_type_id());
-		ProductTypeBean productTypeBean = productTypeService.getTypeById(productBean.getProductTypeBean().getProduct_type_id());
+//		ProductTypeBean productTypeBean = productTypeService.getTypeById(productBean.getProductTypeBean().getProduct_type_id());
 //		productBean.setProductTypeBean(productTypeBean);
 		System.out.println("=============" + productBean.toString() + "========================");
 		
@@ -419,6 +419,9 @@ public class EditController {
 		productService.updateProduct(productBean);
 		//更新購物車的total(當產品價格改變須同步更新購物車表格的total)
 		cartBeanService.updateCartTotal();
+		//更新側邊購物車的total(未完成)
+		
+		
 		System.out.println("===============================222============================");
 		return "redirect:/admin/admin_editProduct";
 	}
