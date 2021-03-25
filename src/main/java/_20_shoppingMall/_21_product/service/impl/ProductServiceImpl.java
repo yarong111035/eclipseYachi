@@ -134,9 +134,11 @@ public class ProductServiceImpl implements ProductService {
 	//更新產品
 	@Override
 	public void updateProduct(ProductBean productBean) {
-		ProductTypeBean productTypeBean = productTypeDao.getTypeById(productBean.getProductTypeBean().getProduct_type_id());
-		productBean.setProductTypeBean(productTypeBean);
-		productBean.setProduct_type_id(productTypeBean.getProduct_type_id()); //未set進去
+		//不要新增物件
+//		ProductTypeBean productTypeBean = productTypeDao.getTypeById(productBean.getProductTypeBean().getProduct_type_id());
+		productBean.setProductTypeBean(productBean.getProductTypeBean());
+		productBean.setProduct_type_id(productBean.getProductTypeBean().getProduct_type_id()); //未set進去
+//		productBean.setProduct_name(productBean.getProduct_name());
 		System.out.println(productBean);
 		productDao.updateProduct(productBean);
 	}

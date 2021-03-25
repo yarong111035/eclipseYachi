@@ -226,7 +226,8 @@ public class ProductDaoImpl implements Serializable,ProductDao {
 //			ProductTypeBean ps = productTypeDao.getSortById(productBean.getProductTypeBean().getProduct_type_id());
 //			productBean.setProductTypeBean(ps);
 //			System.out.println("=========" + productBean.getProduct_type_id());
-			session.saveOrUpdate(productBean);
+//			session.evict(productBean);
+			session.update(productBean);
 		}
 	}
 
