@@ -61,6 +61,21 @@ div.card {
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
+	
+	<div>
+		<div > 
+		<button onclick="location.href='${pageContext.request.contextPath}/_50_shop/_54_showShops/ShowShops'">全部</button>
+		<button onclick="location.href='${pageContext.request.contextPath}/_50_shop/_54_showShops/ShowNightMarketShops/1'">饒河夜市</button>
+		<button onclick="location.href='${pageContext.request.contextPath}/_50_shop/_54_showShops/ShowNightMarketShops/3'">寧夏夜市</button>
+		<button onclick="location.href='${pageContext.request.contextPath}/_50_shop/_54_showShops/ShowNightMarketShops/4'">士林夜市</button>
+		<button onclick="location.href='${pageContext.request.contextPath}/_50_shop/_54_showShops/ShowNightMarketShops/6'">延三夜市</button>
+		<button onclick="location.href='${pageContext.request.contextPath}/_50_shop/_54_showShops/ShowNightMarketShops/7'">公館夜市</button>
+		<button onclick="location.href='${pageContext.request.contextPath}/_50_shop/_54_showShops/ShowNightMarketShops/8'">南機場夜市</button>
+		<button onclick="location.href='${pageContext.request.contextPath}/_50_shop/_54_showShops/ShowNightMarketShops/5'">臨江街觀光夜市</button>
+		<button onclick="location.href='${pageContext.request.contextPath}/_50_shop/_54_showShops/ShowNightMarketShops/2'">華西街觀光夜市</button>
+		</div>
+	
+	</div>
 
 
 

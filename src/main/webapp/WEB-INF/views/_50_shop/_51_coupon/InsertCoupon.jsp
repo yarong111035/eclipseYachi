@@ -106,16 +106,8 @@
 	<div class="main-member">
 		<aside>
 			<div class="function">
-				<h3>商家管理頁面</h3>
-				<div class="item">
-					<img src="https://picsum.photos/200/200">
-				</div>
-
-				<label for="file"> <i class="fas fa-image"> 編輯照片 <input
-						type="file"  accept=".jpeg,.png" style="display: none;">
-
-				</i>
-				</label>
+				<h3 >商家管理頁面</h3>
+				
 
 				<div class="item">
 				<a href="<c:url value='/_50_shop/_53_shopRegister/modifyShop/${LoginOK.shopBean.shop_id}' />">
@@ -145,10 +137,16 @@
 						</button>
 					</a>
 				</div>
-				
+				<div class="item">
+					<a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${LoginOK.shopBean.shop_id}' />">
+						<button>
+							<span>商家頁面</span>
+						</button>
+					</a>
+				</div>
 				
 				<div class="item">
-					<a href="#">
+					<a href="<c:url value='/doLogout'/>" onclick="return window.confirm('確定登出嗎?');">
 						<button>
 							<span>登出</span>
 						</button>

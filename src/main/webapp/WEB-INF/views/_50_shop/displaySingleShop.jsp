@@ -381,9 +381,7 @@
 			star1 = document.getElementById("star1");
 
 			star5.addEventListener("click", function() {
-				alert();
 				score.value = star5.value;
-				alert(score.value);
 			})
 
 			star4.addEventListener("click", function() {
