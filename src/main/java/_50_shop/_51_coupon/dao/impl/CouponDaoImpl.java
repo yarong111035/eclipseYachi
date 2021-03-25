@@ -112,6 +112,8 @@ public class CouponDaoImpl implements CouponDao, Serializable{
 		
 		}
 
+	
+
 //@SuppressWarnings("unchecked")
 //	@Override
 //	public List<Map<String,Object>> queryCoupon(String queryCoupon) {

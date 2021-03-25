@@ -59,4 +59,11 @@ public class ShopServiceImpl implements Serializable, ShopService{
 		shopDao.updateShop(shop);
 	}
 
+	@Override
+	public List<ShopBean> getShopsByNightMarket(int marketId) {
+		return shopDao.getShopsByNightMarket(marketId);
+	}
+	
+	
+
 }

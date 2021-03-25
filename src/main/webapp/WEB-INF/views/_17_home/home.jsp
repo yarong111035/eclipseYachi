@@ -408,7 +408,7 @@ fieldset {
 					</div>
 					<div class="col-sm-6 col-lg-3 mt-4">
 						<div class="card">
-						<a href="<c:url value='/MarketMonga' />"> <img class="imgs"
+						<a href="<c:url value='/MarketHuaxi' />"> <img class="imgs"
 								src="<c:url value='/data/images/Night_Market/Huaxi Street.jpg'/>"></a>
 						
 							<div class="card-body">
@@ -789,6 +789,8 @@ fieldset {
 				$(this).hide();
 				$('.tab-list a').eq(index).removeClass('liColor');
 			})
+			
+			
 
 		});
 	</script>

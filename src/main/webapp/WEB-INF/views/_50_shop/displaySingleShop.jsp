@@ -151,8 +151,8 @@
 
 					<div class="addCoupon">
 						<div style="margin-top: 15px;">
-							<a href="<c:url value='/#'/>"><i
-								class="far fa-plus-square fa-3x"></i></a>
+							<a href="<c:url value='/addFavoriteInShop/add/${coupon.coupon_id}'/>" onclick="return window.alert('收藏成功!');"><i
+								class="far fa-plus-square fa-3x" ></i></a>
 						</div>
 						<div>
 							<img

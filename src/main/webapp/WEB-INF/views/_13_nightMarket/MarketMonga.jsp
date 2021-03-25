@@ -21,7 +21,7 @@
 <!-- 		Add the new slick-theme.css if you want the default styling -->
 <!--     <link rel="stylesheet" href="slick/slick-theme.css"/> -->
 <link rel="stylesheet"
-	href="<c:url value='/_00_util/nightShopUtil/css/1_shop.css'/>" />
+	href="<c:url value='/_00_util/nightShopUtil/css/1_shop1.css'/>" />
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 	crossorigin="anonymous"></script>

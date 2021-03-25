@@ -21,7 +21,7 @@
 <!-- 		Add the new slick-theme.css if you want the default styling -->
 <!--     <link rel="stylesheet" href="slick/slick-theme.css"/> -->
 <link rel="stylesheet"
-	href="<c:url value='/_00_util/nightShopUtil/css/1_shop.css'/>" />
+	href="<c:url value='/_00_util/nightShopUtil/css/1_shop1.css'/>" />
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 	crossorigin="anonymous"></script>
@@ -113,39 +113,18 @@
 
 					<div class="row justify-content-center">
 
+						<c:forEach var="shop" varStatus="stat" items="${shops}">
 						<div class="card" style="width: 18rem; margin: 20px">
-							<img src="http://fakeimg.pl/270x200" class="card-img-top"
-								alt="...">
+						<a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${shop.shop_id}' />">
+							<img src="<c:url value='/_50_shop/_53_shopRegister/getPicture/${shop.shop_id}'/>" class="card-img-top"
+								alt="..."></a>
 							<div class="card-body">
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
+								<p class="card-text">${shop.shop_name}</p>
 							</div>
 						</div>
-
-						<div class="card" style="width: 18rem; margin: 20px">
-							<img src="http://fakeimg.pl/270x200" class="card-img-top"
-								alt="...">
-							<div class="card-body">
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
-						<div class="card" style="width: 18rem; margin: 20px">
-							<img src="http://fakeimg.pl/270x200" class="card-img-top"
-								alt="...">
-							<div class="card-body">
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
-						<div class="card" style="width: 18rem; margin: 20px">
-							<img src="http://fakeimg.pl/270x200" class="card-img-top"
-								alt="...">
-							<div class="card-body">
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
+					
+					</c:forEach>
+						
 
 					</div>
 

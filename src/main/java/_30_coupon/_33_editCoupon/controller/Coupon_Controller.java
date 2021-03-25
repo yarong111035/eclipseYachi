@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,7 +48,7 @@ import _10_member.entity.Member;
 import _10_member.service.MemberService;
 import _30_coupon._33_editCoupon.service.FavoriteCouponService;
 import _50_shop._51_coupon.service.CouponService;
-import _80_home.service.SearchService;
+import _50_shop._53_shopRegister.service.ShopService;
 
 
 @Controller
@@ -63,6 +64,9 @@ public class Coupon_Controller {
 
 	@Autowired
 	ServletContext context;
+	
+	@Autowired
+	ShopService shopService;
 
 	@Autowired
 	SessionFactory factory;
@@ -91,13 +95,29 @@ public class Coupon_Controller {
 	@GetMapping("/addfavorite/add/{coupon_Id}")
 	public String addfavorite(Model model, @PathVariable Integer coupon_Id) {
 		Member mb = (Member) model.getAttribute("LoginOK");
+		
 		try {
 			favoriteCouponService.saveFavoriteCoupon(couponService.getCoupon(coupon_Id), mb);
 		} catch (Exception e) {
-			return "redirect:/coupons";
+			return "redirect:/coupon?coupon_id=" + coupon_Id;
 		}
 
-		return "redirect:/coupons";
+		return "redirect:/coupon?coupon_id=" + coupon_Id;
+	}
+	
+	@GetMapping("/addFavoriteInShop/add/{coupon_Id}")
+	public String addFavoriteInShop(Model model, @PathVariable Integer coupon_Id, HttpServletRequest req) {
+		Member mb = (Member) model.getAttribute("LoginOK");
+		CouponBean couponBean =  couponService.getCoupon(coupon_Id);
+		ShopBean shopBean = couponBean.getShopBean();
+		
+		try {
+			favoriteCouponService.saveFavoriteCoupon(couponService.getCoupon(coupon_Id), mb);
+		} catch (Exception e) {
+			return "redirect:/_50_shop/_54_showShops/ShowShops/" + shopBean.getShop_id();
+		}
+
+		return "redirect:/_50_shop/_54_showShops/ShowShops/" + shopBean.getShop_id();
 	}
 	
 //	=============================== 紅豆餅介面 ============================================
@@ -142,6 +162,8 @@ public class Coupon_Controller {
 					couponUsedBean.setMemberBean(mb);
 					couponUsedBean.setShopBean(shopBean);
 					couponUsedBean.setCoupon_used_time(coupon_used_time);
+					couponBean.setCoupon_amount(amount-1);
+					couponService.updateCoupon(couponBean);
 					
 					couponService.saveCouponUsed(couponUsedBean);
 				}else {
@@ -150,23 +172,6 @@ public class Coupon_Controller {
 				
 				return "redirect:/coupons";
 			}
-//		=============================== 查詢優惠劵 ============================================
-			@Autowired
-			SearchService searchService;
-			
-			
-			@RequestMapping("/searchCoupons")
-			public String sCoupons(@RequestParam String coupon_name,Model model) {
-				
-				List<CouponBean> list = searchService.getAllCouponNoExpired(coupon_name);
-				
-				model.addAttribute("coupons", list);
-
-				
-				return "_15_coupon/coupons";
-			}
-			
-			
 	
 ////	=============================== 查詢優惠劵 ============================================
 //	@GetMapping(value = "/queryCoupon", 

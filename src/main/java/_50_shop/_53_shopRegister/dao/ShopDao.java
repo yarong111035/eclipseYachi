@@ -18,4 +18,6 @@ public interface ShopDao {
 	
 	List<ShopBean> getAllShops();
 	
+	List<ShopBean> getShopsByNightMarket(int marketId);
+	
 }

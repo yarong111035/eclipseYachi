@@ -140,7 +140,8 @@ public class ShopController {
 		mb.setShopBean(shopBean);
 		memberService.updateMember(mb);
 		
-		return "redirect:/_50_shop/_53_shopRegister/InsertShop";
+		
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/getPicture/{shop_id}")

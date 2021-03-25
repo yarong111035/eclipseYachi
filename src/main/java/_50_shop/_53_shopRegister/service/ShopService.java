@@ -19,4 +19,6 @@ public interface ShopService {
 
 	void setShopScore(int shopId);
 	
+	List<ShopBean> getShopsByNightMarket(int marketId);
+	
 }

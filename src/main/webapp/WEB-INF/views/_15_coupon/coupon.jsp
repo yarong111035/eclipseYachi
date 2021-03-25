@@ -173,7 +173,7 @@
 				<button >返回</button>
 			</div>
 		</a>	
-		<a href="<spring:url value='/useCoupon/${coupon.coupon_id}'/>">
+<%-- 		<a href="<spring:url value='/useCoupon/${coupon.coupon_id}'/>"> --%>
 		<div class="btn">
 			<button id="using">使用</button>
 		</div>
@@ -218,10 +218,12 @@
                             '',
                             'success'
                         )
+                        sleep(2000);
+                        
+                        document.location.href="http://localhost:8080/yachi/useCoupon/" + ${sessionScope.coupon.coupon_id};
                     }
                 })
             });
-            
             const collect = document.getElementById('collect');
             collect.addEventListener('click', function (e) {
                 Swal.fire({
@@ -229,9 +231,13 @@
                     icon: 'success',
                     title: '成功收藏優惠卷',
                     showConfirmButton: false,
-                    timer: 10000000
+                    timer: 1500
                 })
             });
+            
+            function sleep(ms) {
+            	  return new Promise(resolve => setTimeout(resolve, ms));
+            	}
         });
     </script>
 </body>

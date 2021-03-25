@@ -29,5 +29,7 @@ public interface CouponDao {
 	
 	
 	public void saveCouponUsed(CouponUsedBean couponUsedBean);
+	
+	
 
 }
