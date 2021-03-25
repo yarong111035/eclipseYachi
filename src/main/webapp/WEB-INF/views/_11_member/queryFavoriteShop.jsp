@@ -208,12 +208,9 @@
 											<h5 class="card-title">
 												${fslb.shop_name} <i id="collect"></i>
 											</h5>
-											<p class="card-text">
+<!-- 											<p class="card-text"> -->
 <%-- 												${fslb.shop_name} --%>
-												This is a longer card with supporting text below as a
-												natural lead-in to additional content. This content is a
-												little bit longer.
-											</p>
+<!-- 											</p> -->
 											<a	href="<spring:url value='/deleteFavoriteShop/${fslb.shop_id}' />">
 												<button class="remove-product"
 													onclick="return window.confirm('確定移除嗎?')"	type="submit"><i class="fas fa-window-close"></i>
