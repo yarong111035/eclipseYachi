@@ -101,6 +101,8 @@
 	});
 </script>
 
+
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
@@ -160,11 +162,13 @@
                         <button><span>通知</span></button>
                     </a>
                 </div>
+                <c:if test="${empty LoginOK.shopBean.shop_id}">	
                 <div class="item">
                     <a href="<c:url value='/_50_shop/_53_shopRegister/InsertShop' />">
                         <button><span>申請商家</span></button>
                     </a>
                 </div>
+                </c:if>
                 <div class="item">
                     <a href="#">
                         <button><span>新增信用卡</span></button>
@@ -200,8 +204,10 @@
 								<div class="coupon-shop">
 								
 <%-- 									<a href="<spring:url value='/MyfavoriteShop?memberId=${member_favoriteShops.memberbean}' />"> --%>
+											<a
+							href="<c:url value='/_50_shop/_54_showShops/ShowShops/${fslb.shop_id}' />">
 										<img src="<c:url value='/getShopPicture/${fslb.shop_id}' />"
-											class="card-img-top" alt="..." />			
+											class="card-img-top" alt="..." />	</a>		
 																															
 <!-- 										</a>  -->
 <!-- 										<div class="card-body"> -->
@@ -213,7 +219,7 @@
 <!-- 											</p> -->
 											<a	href="<spring:url value='/deleteFavoriteShop/${fslb.shop_id}' />">
 												<button class="remove-product"
-													onclick="return window.confirm('確定移除嗎?')"	type="submit"><i class="fas fa-window-close"></i>
+													onclick="return window.confirm('確定移除嗎?')"	type="submit"><i class="fas fa-window-close" style="color:#ccc;"></i>
 												</button> 
 												</a> 
 										</div> <%-- 					開始時間${coupon.coupon_days} 期限${coupon.coupon_birth} --%>

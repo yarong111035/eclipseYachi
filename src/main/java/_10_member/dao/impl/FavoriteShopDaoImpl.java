@@ -64,11 +64,13 @@ private static final long serialVersionUID = 1L;
 
 	
 	@Override
-	public void saveFavoriteShop2(Member member, Integer shopBean_id) {
+	public void saveFavoriteShop2(Integer memberId, Integer shopBean_id) {
 		
 		Session session = factory.getCurrentSession();
 
 		ShopBean shopBean = session.get(ShopBean.class, shopBean_id);
+		
+		Member member = session.get(Member.class, memberId);
 		
 		String hql = "FROM FavoriteShopListBean WHERE memberBean.memberId = :mid";
 		
