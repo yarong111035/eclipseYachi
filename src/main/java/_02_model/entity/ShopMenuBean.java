@@ -3,6 +3,7 @@ package _02_model.entity;
 import java.io.Serializable;
 import java.sql.Blob;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
+
+
 
 @Entity
 @Table(name = "Shop_Menu")
@@ -23,6 +29,7 @@ public class ShopMenuBean implements Serializable{
 	@JoinColumn(name = "FK_shop_id")
 	private ShopBean shopBean;
 	
+	@Column(columnDefinition = "mediumblob")
 	private Blob menu_photo;
 	
 	private String menu_name;
@@ -30,6 +37,11 @@ public class ShopMenuBean implements Serializable{
 	private String menu_detail;
 	
 	private Double menu_price;
+	
+	private	String fileName;
+	
+	@Transient
+	MultipartFile productImage;
 
 	public Integer getMenu_id() {
 		return menu_id;
@@ -78,9 +90,23 @@ public class ShopMenuBean implements Serializable{
 	public void setMenu_price(Double menu_price) {
 		this.menu_price = menu_price;
 	}
+	public String getFileName() {
+		return fileName;
+	}
 
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public MultipartFile getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(MultipartFile productImage) {
+		this.productImage = productImage;
+	}
 	public ShopMenuBean(Integer menu_id, ShopBean shopBean, Blob menu_photo, String menu_name, String menu_detail,
-			Double menu_price) {
+			Double menu_price, String fileName, MultipartFile productImage) {
 		super();
 		this.menu_id = menu_id;
 		this.shopBean = shopBean;
@@ -88,19 +114,19 @@ public class ShopMenuBean implements Serializable{
 		this.menu_name = menu_name;
 		this.menu_detail = menu_detail;
 		this.menu_price = menu_price;
+		this.fileName = fileName;
+		this.productImage = productImage;
 	}
 
 	public ShopMenuBean() {
 		super();
 	}
-
+	
 	@Override
 	public String toString() {
 		return "ShopMenuBean [menu_id=" + menu_id + ", shopBean=" + shopBean + ", menu_photo=" + menu_photo
-				+ ", menu_name=" + menu_name + ", menu_detail=" + menu_detail + ", menu_price=" + menu_price + "]";
+				+ ", menu_name=" + menu_name + ", menu_detail=" + menu_detail + ", menu_price=" + menu_price
+				+ ", fileName=" + fileName + ", productImage=" + productImage + "]";
 	}
-	
-	
-	
 	
 }
