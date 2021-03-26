@@ -1,26 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shopping</title>
+<title>SHOP</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
 	crossorigin="anonymous">
-
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
 <link rel="stylesheet"
-	href="<c:url value='/_00_util/shoppingMallUtil/css/4_shopping_cart.css'/>">
+	href="<c:url value='/_00_util/allUtil/css/background.css'/>">
+<!--     <link rel="stylesheet" href="slick/slick.css"/> -->
+<!-- 		Add the new slick-theme.css if you want the default styling -->
+<!--     <link rel="stylesheet" href="slick/slick-theme.css"/> -->
 <link rel="stylesheet"
-	href="<c:url value='/_00_util/shoppingMallUtil/css/2_mix.css'/>">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
+	href="<c:url value='/_00_util/nightShopUtil/css/1_shop.css'/>" />
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 	crossorigin="anonymous"></script>
@@ -32,159 +33,410 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
 	integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
 	crossorigin="anonymous"></script>
-<script
-	src="<c:url value='/_00_util/allUtil/javascript/jquery-3.5.1.js'/>"></script>
-<script src="<c:url value='/_00_util/allUtil/javascript/jquery-ui.js'/>"></script>
-
-<link rel="stylesheet"
-	href="<c:url value='/WEB-INF/views/_00_util/allUtil/css/reset.css'/>">
-<link rel="stylesheet"
-	href="<c:url value='/WEB-INF/views/_00_util/homeUtil/css/home.css'/>">
-<link rel="stylesheet" href="<c:url value='/test/reset.css'/>">
-<link rel="stylesheet" href="<c:url value='/test/header.css'/>">
-
-
-<style>
-* {
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-	box-sizing: border-box;
-}
-
-.carousel-inner{
-}
-
-.carousel-item img {
-     width: 500px; 
-     height: 300px; 
-}
-
-/* -----------start-----------------*/
-/* .image {
-			width: 100%;
-			height: 300px;
-			/* border: 1px solid #ccc; */
-/* } */
-#Board_wrap {
-	/* border: 1px solid rgb(34, 34, 201); */
-	border-radius: 5px;
-	width: 800px;
-	height: 500px;
-	margin: 0px auto;
-	padding: 5px;
-	display: flex;
-	/* justify-content:right;  */
-	/* align-items:center; */
-}
-
-#Board {
-	/* border: 1px solid red; */
-	width: 800px;
-	height: 500px;
-	margin: 0px auto;
-	overflow: hidden;
-	position: relative;
-	/* justify-content:right; 
-            align-items:center; */
-}
-
-#Board img {
-	max-width: 800px;
-}
-
-#foodname_wrap {
-	/* background:grey; */
-	border: 1px solid grey;
-	border-radius: 3px;
-	width: 300px;
-	height: 50px;
-	margin: 20px auto;
-	padding: 5px;
-	display: flex;
-}
-
-#food_name {
-	/* border: 1px solid red; */
-	margin: auto;
-	font-size: 35px;
-}
-
-#addr_wrap {
-	/* background:grey; */
-	border: 1px solid grey;
-	border-radius: 3px;
-	width: 300px;
-	height: 100px;
-	margin: 20px auto;
-	padding: 5px;
-	display: flex;
-}
-
-#addr_name {
-	/* border: 1px solid red; */
-	margin: auto;
-	font-size: 35px;
-}
-
-/* ----------- End -----------------*/
-</style>
+<!--     <script type="text/javascript" src="js/slick_jquery1.11.0.min.js"></script> -->
+<!--     <script type="text/javascript" src="js/slick_jq_migrate1.2.1.min.js"></script> -->
+<!--     <script type="text/javascript" src="slick/slick.js"></script> -->
 </head>
-
-<body style="background-color: #F3F8F2;">
-
+<body>
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
+	<h1>${store }</h1>
+	<!-- slider -->
+	<div id="carouselExampleIndicators" class="carousel slide"
+		data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleIndicators" data-slide-to="0"
+				class="active"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+		</ol>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img
+					src="<c:url value='/data/images/couponPic/RedBean_pies.webp.jpg'/>"
+					class="d-block w-100" alt="...">
+			</div>
+			<div class="carousel-item">
+				<img src="<c:url value='/data/images/Night_Market/士林/士林1.jpeg'/>"
+					class="d-block w-100" alt="...">
+			</div>
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleIndicators"
+			role="button" data-slide="prev"> <span
+			class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+			class="sr-only">Previous</span>
+		</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+			role="button" data-slide="next"> <span
+			class="carousel-control-next-icon" aria-hidden="true"></span> <span
+			class="sr-only">Next</span>
+		</a>
+	</div>
 
 
 
 
-	<div class="slider " style="margin: 0px 550px;">
-		<div id="carouselExampleIndicators" class="carousel slide"
-			data-ride="carousel">
-			<ol class="carousel-indicators">
-				<li data-target="#carouselExampleIndicators" data-slide-to="0"
-					class="active"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-			</ol>
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<img src="<c:url value='/data/images/couponPic/RedBean_pies.webp.jpg'/>" >
+
+	<!--     <div id="sliderContainer"> -->
+	<!--         <div class="slider"> -->
+	<!--             <div class="slick-slider image"><img src="images_2/寧夏方家雞肉飯1.jpg" alt=""></div> -->
+	<!--             <div class="slick-slider image"><img src="images_2/寧夏方家雞肉飯2.jpg" alt=""></div> -->
+	<!--             <div class="slick-slider image"><img src="images_2/寧夏方家雞肉飯3jpg.jpg" alt=""></div> -->
+	<!--             <div class="slick-slider image"><img src="images_2/1_product.jpg" alt=""></div> -->
+	<!--         </div> -->
+	<!--     </div> -->
+	<!-- End:slider -->
+
+	<div id="secondContainer" class="container">
+		<div class="row">
+			<!-- Left -->
+			<div id="sectionLeft" class="col-8">
+				<!-- 商家簡介 -->
+				<div id="shopInfo">
+					<h2 style="color: #f26419;">日式紅豆餅</h2>
+					<div>
+						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i>
+					</div>
+					<p style="color: #78886f;">紅豆餅有人叫它「車輪餅」,是日本人發明的，日文叫做「大判燒」,是許多人共有的甜美記憶,自從日據時代傳入台灣後，漸漸成為大街小巷常見的小甜點。現在的紅豆餅已經不只有包紅豆餡了，各種口味競相出爐，有甜的有鹹的,在台灣大街小巷都看得到賣車輪餅的小攤販,由兩塊餅皮合而為一的車輪餅，外表泛著金黃顏色，餡料飽滿,趁熱吃濃郁的口感令人難忘,不但擄獲無數小朋友的心,連大人都難以抗拒。
+
+
+
+
+					
 				</div>
-				<div class="carousel-item">
-					<img src="<c:url value='/data/images/Night_Market/Raohe2.png'/>">
+				<!-- 商家簡介 -->
+
+				<!-- 商家優惠券 -->
+				<div class="addCoupon">
+					<div>
+						<i class="far fa-plus-square fa-2x"></i>
+					</div>
+					<div>
+						<img src="<c:url value='/data/images/smallPic/coupon2.png'/>"
+							style="width: 50px;">
+					</div>
+					<div class="couponInfo">
+						<h3>優惠券簡介</h3>
+						消費滿150元，即可折價40元喔!!!<br>
+						<h4>使用方式</h4>
+						收藏後至會員中心按下立即使用，並給商家核銷即可使用喔!!!
+					</div>
+				</div>
+				<div class="addCoupon">
+					<div>
+						<i class="far fa-plus-square fa-2x"></i>
+					</div>
+					<div>
+						<img src="<c:url value='/data/images/smallPic/coupon2.png'/>"
+							style="width: 50px;">
+					</div>
+					<div class="couponInfo">
+						<h3>優惠券簡介</h3>
+						消費滿500元，即可折價100元喔!<br>
+						<h4>使用方式</h4>
+						收藏後至會員中心按下立即使用，並給商家核銷即可使用喔!
+					</div>
+				</div>
+				<!-- 商家優惠券 -->
+
+				<!-- 留言區 -->
+				<div id="comment">
+					<div class="mt-5">
+						<h2>
+							<i class="fas fa-comments"></i>立即評價
+						</h2>
+					</div>
+					<div class="container pb-4 my-5 border-bottom">
+						<div class="row" id="flexbox1">
+
+							<div class="col-12">
+								<div>
+									您尚未登入，將以訪客身分留言，亦可<span>登入</span>留言
+								</div>
+								<div class="row py-2">
+									<div class="col-3">給商家們個評價吧~~</div>
+									<div id="score" class="col-3">
+										<i class="far fa-thumbs-up"></i> <i class="far fa-thumbs-up"></i>
+										<i class="far fa-thumbs-up"></i> <i class="far fa-thumbs-up"></i>
+										<i class="far fa-thumbs-up"></i>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-12 flexitem" id="flex-item-1">
+								<input type="text" class="form-control" placeholder="您的暱稱...."
+									aria-label="Username" aria-describedby="basic-addon1">
+							</div>
+
+							<div class="col-12 flexitem" id="flex-item-2">
+								<textarea class="form-control" aria-label="With textarea"
+									placeholder="留個言吧..."></textarea>
+							</div>
+
+							<div class="col-12 flexitem" id="flex-item-3">
+								<button type="button" class="btn btn-secondary btn-sm btn-block">送出留言</button>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+
+				<!-- 留言內容 -->
+				<div class="commentBox">
+
+					<div class="memberInfo">
+						<div class="putLeft">
+							<div class="memberImage">
+
+								<img src="<c:url value='/data/images/mediumPic/noPeople.png'/>">
+							</div>
+							<span class="memberId">Jacky0088</span> <span class="nickname">Jacky</span>
+							<div class="comment_score">
+								<i class="far fa-thumbs-up"></i> <i class="far fa-thumbs-up"></i>
+								<i class="far fa-thumbs-up"></i> <i class="far fa-thumbs-up"></i>
+								<i class="far fa-thumbs-up"></i>
+							</div>
+						</div>
+
+						<!-- 點擊會出現檢舉或編輯的下拉選單 -->
+						<div class="doMore">
+							<i class="fas fa-ellipsis-v"></i>
+							<!-- 分開管理css 與 jq 的 class屬性值 -->
+							<!-- <ul class="dropdownList jq-dropdown">
+                                <li>編輯</li>
+                                <li>檢舉</li>
+                            </ul> -->
+						</div>
+					</div>
+
+					<div class="comment_content">
+						<span>好吃</span>
+					</div>
+
+				</div>
+				<div class="commentBox">
+
+					<div class="memberInfo">
+						<div class="putLeft">
+							<div class="memberImage">
+								<img src="<c:url value='/data/images/mediumPic/noPeople.png'/>">
+							</div>
+							<span class="memberId">KevinLu0088</span> <span class="nickname">Lu</span>
+							<div class="comment_score">
+								<i class="far fa-thumbs-up"></i> <i class="far fa-thumbs-up"></i>
+								<i class="far fa-thumbs-up"></i> <i class="far fa-thumbs-up"></i>
+								<i class="far fa-thumbs-up"></i>
+							</div>
+						</div>
+
+						<!-- 點擊會出現檢舉或編輯的下拉選單 -->
+						<div class="doMore">
+							<i class="fas fa-ellipsis-v"></i>
+							<!-- 分開管理css 與 jq 的 class屬性值 -->
+							<!-- <ul class="dropdownList jq-dropdown">
+                                <li>編輯</li>
+                                <li>檢舉</li>
+                            </ul> -->
+						</div>
+					</div>
+
+					<div class="comment_content">
+						<span>搭配優惠券真的省很多</span>
+					</div>
+
+				</div>
+
+				<!-- 留言區 -->
+
+			</div>
+			<!-- End:Left -->
+			<!-- Right -->
+			<div id="RightBorder" class="col-4">
+				<div id="shopPhone">
+					<div class="item">
+						<div class="item-left">
+							<i class="fas fa-phone-alt"></i>
+						</div>
+						<div class="item-right">09193939938</div>
+					</div>
+					<div class="item">
+						<div class="item-left">
+							<i class="fas fa-map-marked-alt"></i>
+						</div>
+						<div class="item-right">台北市士林夜市</div>
+					</div>
+					<div class="item">
+						<div class="item-left">
+							<i class="fab fa-chrome"></i>
+						</div>
+						<div class="item-right">chickenrice.com.tw</div>
+					</div>
+					<div class="item">
+						<div class="item-left">
+							<i class="fas fa-clock"></i>
+						</div>
+						<div class="item-right">
+							Mon~Fri : 16~22 <br> Sat~Sun : 16~24
+						</div>
+					</div>
+					<div class="item">
+						<div class="item-left">
+							<a class="btn" href="javascript:navbar();"> <i
+								class="fas fa-bars"></i>
+							</a>
+
+						</div>
+						<div class="item-right m-auto ">MENU</div>
+					</div>
+					<div class="item row justify-content-center" id="menu_animate">
+						<div class="col-6">
+							<div class="column-pic">
+								 <img
+									src="<c:url value='/data/images/smallPic/coupon2.png'/>"
+									style="width: 100px;" class="coupon-pic">
+
+								<p>紅豆餅</p>
+							</div>
+							<div class="column-pic">
+								<img
+									src="<c:url value='/data/images/smallPic/coupon2.png'/>"
+									style="width: 100px;" class="coupon-pic">
+
+								<p>紅豆餅</p>
+							</div>
+
+
+
+						</div>
+					</div>
+
+
+
+					<!-- 					<div class="item"> -->
+					<!-- 						<div class="item-left"> -->
+					<!-- 							<a class="btn" href="javascript:navbar();"> <i -->
+					<!-- 								class="fas fa-bars"></i> -->
+					<!-- 							</a> -->
+
+					<!-- 						</div> -->
+					<!-- 						<div class="item-right m-auto ">MENU</div> -->
+					<!-- 					</div> -->
+					<!-- 					<div class="item row justify-content-center" id="menu_animate"> -->
+					<%-- 						<c:forEach var="shopmenu" varStatus="stat" items="${smb}"> --%>
+					<!-- 							<div class="col-6"> -->
+					<!-- 								<div class="column-pic"> -->
+					<%-- 									放置pic --%>
+					<!-- 									<img -->
+					<%-- 										src="<c:url value='/_50_shop/_52_shopmenu/picture/${shopmenu.menu_id}'/>" --%>
+					<!-- 										style="" width="135px" class="coupon-pic"> -->
+
+					<%-- 									<p>${shopmenu.menu_name}</p> --%>
+					<!-- 								</div> -->
+					<!-- 							</div> -->
+					<%-- 						</c:forEach> --%>
+					<!-- 					</div> -->
+
+
+
+
+
 				</div>
 			</div>
-			<a class="carousel-control-prev" href="#carouselExampleIndicators"
-				role="button" data-slide="prev"> <span
-				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="sr-only">Previous</span>
-			</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
-				role="button" data-slide="next"> <span
-				class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="sr-only">Next</span>
-			</a>
+			<!-- End:Right -->
 		</div>
+
 	</div>
 
 
-	<div id="foodname_wrap">
-		<div id="food_name">
-			<h2>日式紅豆餅</h2>
-		</div>
-	</div>
-	<div id="addr_wrap">
-		<div id="addr_name">
-			<h3>地址:台北市松山區饒河街111號對面</h3>
-		</div>
-	</div>
+	<script>
+		function doFirst() {
+			try {
+				score = document.getElementById("star");
+				star5 = document.getElementById("star5");
+				star4 = document.getElementById("star4");
+				star3 = document.getElementById("star3");
+				star2 = document.getElementById("star2");
+				star1 = document.getElementById("star1");
 
-	<div style="width:900px; display:flex; margin:auto">
-		位於饒河街觀光夜市，又稱饒河街夜市、饒河夜市。位於台灣臺北市松山區饒河街，為臺北市著名的觀光夜市之一，也是臺灣繼華西街觀光夜市後第二座觀光夜市。
-		胡椒餅已是饒河夜市的有名小吃也是不少國外旅客來饒河必吃美食</div>
+				star5.addEventListener("click", function() {
+					alert();
+					score.value = star5.value;
+					alert(score.value);
+				})
 
-	
+				star4.addEventListener("click", function() {
+					score.value = star4.value;
+				})
+
+				star3.addEventListener("click", function() {
+					score.value = star3.value;
+				})
+
+				star2.addEventListener("click", function() {
+					score.value = star2.value;
+				})
+
+				star1.addEventListener("click", function() {
+					score.value = star1.value;
+				})
+			} catch (e) {
+
+			}
+
+			for (var n = 1; n < 100; n++) {
+				try {
+					rate = document.getElementById(`score${'${n}'}`).value;
+					feedback = document.getElementById(`feedback${'${n}'}`);
+					if (rate == 5) {
+						feedback.innerHTML = "<span style='color:#c59b08;'>★★★</span><span style='color:#c59b08;'>★★</span>";
+					}
+					if (rate == 4) {
+						feedback.innerHTML = "<span style='color:#c59b08;'>★★★★</span><span style='color:#ccc;'>★</span>";
+					}
+					if (rate == 3) {
+						feedback.innerHTML = "<span style='color:#c59b08;'>★★★</span><span style='color:#ccc;'>★★</span>";
+					}
+					if (rate == 2) {
+						feedback.innerHTML = "<span style='color:#c59b08;'>★★</span><span style='color:#ccc;'>★★★</span>";
+					}
+					if (rate == 1) {
+						feedback.innerHTML = "<span style='color:#c59b08;'>★</span><span style='color:#ccc;'>★★★★</span>";
+					}
+				} catch (e) {
+
+				}
+
+			}
+
+		}
+		window.addEventListener("load", doFirst())
+
+		function navbar() {
+			// 			alert();
+			// 		 	alert(document.getElementById("menu_animate").style.display);
+			var style = document.getElementById("menu_animate").style.display;
+			if (style == "flex") {
+				document.getElementById("menu_animate").style.display = "none";
+			} else {
+				document.getElementById("menu_animate").style.display = "flex";
+			}
+
+		}
+	</script>
 
 
-
+	<!--     <script> -->
+	<!-- //         $(document).ready(function(){ -->
+	<!-- //             $('.slider').slick({ -->
+	<!-- //                 dots: true, -->
+	<!-- //                 infinite: true, -->
+	<!-- //                 speed: 500, -->
+	<!-- //                 fade: true, -->
+	<!-- //                 cssEase: 'linear', -->
+	<!-- //                 autoplay: true, //自動撥放 -->
+	<!-- //                 autoplaySpeed: 5000, //自動撥放的切換速率，單位毫秒 -->
+	<!-- //             }); -->
+	<!-- //         }); -->
+	<!--     </script> -->
 </body>
 </html>
