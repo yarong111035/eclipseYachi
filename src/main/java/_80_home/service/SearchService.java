@@ -65,6 +65,17 @@ public class SearchService {
 		return searchDao.getAllShopBean(shop_type_id);
 	}
 
+	public List<ProductBean> getALLProductsByLow() {
+		return searchDao.getALLProductsByLow();
+	}
+
+	public List<ProductBean> getALLProductsByHigh() {
+		return searchDao.getALLProductsByHigh();
+	}
+	
+	public List<ProductBean> getALLProductsBet(Double lowPrice,Double highPrice) {
+		return searchDao.getALLProductsBet(lowPrice, highPrice);
+	}
 
 
 }
