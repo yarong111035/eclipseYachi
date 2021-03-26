@@ -1,4 +1,4 @@
-package _50_shop._51_coupon.dao.controller;
+package _50_shop._51_coupon.contorller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
