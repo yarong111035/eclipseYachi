@@ -10,6 +10,6 @@ public interface FavoriteShopService {
 	
 	int saveFavoriteShop(ShopBean shopBean , Member member);
 	
-	public void saveFavoriteShop2(Member member, Integer shopBean_id) ;
+	public void saveFavoriteShop2(Integer memberId, Integer shopBean_id) ;
 
 }

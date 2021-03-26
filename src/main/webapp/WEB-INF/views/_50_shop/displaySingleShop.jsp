@@ -382,6 +382,7 @@
 
 	<script>
 		function doFirst() {
+<<<<<<< HEAD
 			try {
 				score = document.getElementById("star");
 				star5 = document.getElementById("star5");
@@ -413,6 +414,37 @@
 				})
 			} catch (e) {
 
+=======
+			try{
+			score = document.getElementById("star");
+			star5 = document.getElementById("star5");
+			star4 = document.getElementById("star4");
+			star3 = document.getElementById("star3");
+			star2 = document.getElementById("star2");
+			star1 = document.getElementById("star1");
+
+			star5.addEventListener("click", function() {
+				score.value = star5.value;
+			})
+
+			star4.addEventListener("click", function() {
+				score.value = star4.value;
+			})
+
+			star3.addEventListener("click", function() {
+				score.value = star3.value;
+			})
+
+			star2.addEventListener("click", function() {
+				score.value = star2.value;
+			})
+
+			star1.addEventListener("click", function() {
+				score.value = star1.value;
+			})
+			}catch(e){
+				
+>>>>>>> dc8cf1d6b69ba50cc0c44135370467ebe8b8b6bc
 			}
 
 			for (var n = 1; n < 100; n++) {

@@ -27,7 +27,7 @@
 
 .main-member aside .function h3 {
   font-size: 24px;
-  padding: 20px 0;
+  margin:50px;
   font-weight: bolder;
 }
 
@@ -119,6 +119,7 @@
 .main-member main .info div h3 {
   width: 100px;
   font-weight: bold;
+   padding: 20px 0;
   padding: 5px 10px;
 }
 
@@ -224,44 +225,3 @@ button i {
   margin-left: 10px;
 }
 
-/* iPhone XS Max Viewport RWD 414*896 */
-@media (max-width: 415px) {
-  header nav .navbar {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-  header nav .navbar .ig-links a {
-    padding: 0 0.2em;
-    font-size: 0.1rem;
-  }
-  header nav .navbar .space {
-    color: white;
-  }
-  header nav .navbar .links li {
-    padding: 0 1em;
-  }
-  header .search {
-    background-color: white;
-  }
-  header .search .search-wrap {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  header .search .search-wrap .search-food .search-input input {
-    width: 15rem;
-  }
-  header .search .search-wrap .search-food .food-trending {
-    padding: 0.5rem 0;
-  }
-}
-/*# sourceMappingURL=基本資料.css.map */

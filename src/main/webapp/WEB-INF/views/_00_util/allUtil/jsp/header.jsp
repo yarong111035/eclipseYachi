@@ -97,10 +97,22 @@
 						</button>
 
 					</div>
-					<div class="food-trending">
-						<a href="#">測試中</a> <a href="#">測試中</a> <a href="#">優惠券</a> <a
-							href="#">關鍵字</a> <a href="#">測試</a>
+
+					<!-- 跑馬燈 -->
+					<div id="Marquee">
+						<h3>最新優惠消息:</h3>
+						<ul id="news">
+							<c:forEach var="adminactivityBean" varStatus="stat" items="${adminactivityBeanList}">
+						<li>${adminactivityBean.adminactivity_name }</li>
+							</c:forEach>
+						</ul>
 					</div>
+					<!-- 跑馬燈結束 -->
+
+					<!-- 					<div class="food-trending"> -->
+<!-- 						<a href="#">測試中</a> <a href="#">測試中</a> <a href="#">優惠券</a> <a -->
+<!-- 							href="#">關鍵字</a> <a href="#">測試</a> -->
+<!-- 					</div> -->
 				</form>
 
 				<div class="search-ticket">
@@ -147,6 +159,14 @@
 					<script>
 					    $(function () {					
 							alert(" 已寄出驗證信 登入前請先去驗證 !");
+					   	}); 	
+					</script>
+				</c:if>
+				
+				<c:if test="${!empty shopregister  }">
+					<script>
+					    $(function () {					
+							alert(" 你已成功申請為商家 !");
 					   	}); 	
 					</script>
 				</c:if>
@@ -233,10 +253,13 @@
 						<a href="<c:url value='/member/update/${LoginOK.memberId}'/>">修改會員資料</a>
 						<a href="<c:url value='/member/keep/coupons'/>">我的優惠券</a>
 						<a href="<c:url value="/queryFavoriteShop"/>">我的喜愛商家</a>
-						<a href="<c:url value='/_23_orderProcess/orderList'/>"><font>查看訂單</font></a><br>						
+						<a href="<c:url value='/_23_orderProcess/orderList'/>"><font>查看訂單</font></a><br>
+						<c:if test="${empty LoginOK.shopBean.shop_id}">						
 						<a href="<c:url value='/_50_shop/_53_shopRegister/InsertShop' />">申請商家</a><br>
+						</c:if>
+						<c:if test="${!empty LoginOK.shopBean.shop_id}">
 						<a href="<c:url value='/_50_shop/_53_shopRegister/modifyShop/${LoginOK.shopBean.shop_id}' />">商家管理頁面</a><br>
-						
+						</c:if>
 						<a href="<c:url value='/doLogout'/>" onclick="return window.confirm('確定登出嗎?');">
 						<font>登 出</font></a>
 						

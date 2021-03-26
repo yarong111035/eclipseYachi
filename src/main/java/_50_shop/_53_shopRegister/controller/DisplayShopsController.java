@@ -65,6 +65,15 @@ public class DisplayShopsController {
 //		return "success";
 	}
 	
+	@GetMapping("ShowNightMarketShops/{nightMarketId}")
+//	@ResponseBody
+	public String sendingShopsByNightMarket(Model model, @PathVariable Integer nightMarketId) {
+		List<ShopBean> list = shopService.getShopsByNightMarket(nightMarketId);
+		model.addAttribute("shopList", list);
+		return "/_50_shop/displayShops";
+//		return "success";
+	}
+	
 	@GetMapping("ShowShops/{shopId}")
 	public String sendingSingleShop(Model model, @PathVariable Integer shopId) {
 		ShopBean sb = shopService.getShop(shopId);

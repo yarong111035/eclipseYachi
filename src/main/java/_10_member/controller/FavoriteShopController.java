@@ -40,9 +40,10 @@ public class FavoriteShopController {
 		try {
 //			favoriteShopService.saveFavoriteShop(shopService.getShop(shopId), member);
 			
-			favoriteShopService.saveFavoriteShop2(member, shopId);
+			favoriteShopService.saveFavoriteShop2(member.getMemberId(), shopId);
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 			return "redirect:/_50_shop/_54_showShops/ShowShops/" + shopId;
 		}
 		

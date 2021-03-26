@@ -127,7 +127,7 @@ public class MemberCenterController {
 		
 		memberService.updateMember(member);
 		
-		return "redirect:/index";
+		return "redirect:/";
 	}
 	
 

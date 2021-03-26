@@ -142,7 +142,7 @@ public class EditActivityController {
 
 	@PostMapping("/InsertAdminActivity")
 	public String processFormData(@ModelAttribute("AdminActivityBean") AdminActivityBean adminactivityBean,
-			BindingResult result, Model model, HttpServletRequest request) {
+			BindingResult result, Model model, HttpServletRequest request, HttpSession session) {
 		System.out.println("===============4444===============");
 		Member ac = (Member) model.getAttribute("LoginOK");
 		MultipartFile picture = adminactivityBean.getAdminactivity_image();
@@ -161,7 +161,6 @@ public class EditActivityController {
 			}
 		}
 
-		editactivityService.saveAdminActivity(adminactivityBean);
 
 		return "redirect:/admin/administrator";
 	}
