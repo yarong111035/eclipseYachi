@@ -96,14 +96,14 @@
 		<div id="main_tabs">
 
 			<div id="tabs-nav">
-<!-- 				<a href="#">依夜市</a> -->
+				<a href="#">依夜市</a>
 				<a href="<c:url value='/search/ALLproducts'/>">全部商城商品</a>
-				<a href="<c:url value='/search/product?product_name=' />" class="change">依商城商品</a>
-				<a href="<c:url value='/search/ProductType'/>">依商品類型</a>
+				<a href="<c:url value='/search/product?product_name=' />" >依商城商品</a>
+				<a href="<c:url value='/search/ProductType'/>" class="change">依商品類型</a>
 				<a href="#">依商家</a>
 				<a href="#">依商家類型</a>
 			</div>
-		
+			
 			<div class="tabs-content">
 
 				<div class="tabs-content">
@@ -111,15 +111,32 @@
                     <!-- 先讓第一個內容顯示出來 display:block -->
                   <div class="tabs-panel" > 
 					
-<!-- 					<div class="keyword"> -->					
-<%-- 						<form action="<c:url value="/search/night"/>" class="keyword-form"> --%>
-<!-- 							<a>搜尋夜市</a> -->
-<!-- 							<input type="text" name="market_name" id=""> -->
-<!-- 							<input type="submit" value="搜尋"> -->
-<!-- 						</form> -->
-					
-<!-- 					</div> -->
+					<div class="keyword">
+						<form action="<c:url value="/search/night"/>" class="keyword-form">
+							<a>搜尋夜市</a>
+							<input type="text" name="market_name" id="">
+							<input type="submit" value="搜尋">
+						</form>
+						
+<%-- 						<c:if test="${keyword != '?' }"> --%>
+								
+<%-- 							<p>你所搜尋的&nbsp;<span style="color: red;">${keyword}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --%>
+<%-- 							總共有&nbsp;<span style="color: red;">${list.size()}</span>&nbsp;筆資料</p> --%>
+						
+<%-- 						</c:if> --%>
+						
+					</div>
 
+<!-- 					<div class="findNight"> -->
+
+<!-- 						<img class="findNight-item" src="https://picsum.photos/500/300"> -->
+
+<!-- 						<h2 class="findNight-item">士林夜市</h2> -->
+<!-- 						<p class="findNight-item">士林夜市，位於臺灣臺北市士林區。範圍以市定古蹟士林公有市場為中心，東至文林路、西至基河路、北至小北街與小西街的三角地帶，是台北市內最大、亦是全台打卡次數最高的夜市地標。曾多次獲選為台灣代表夜市、觀光客來台必去景點首選，揚名國際。</p> -->
+<!-- 						<p class="findNight-item">Google評價分數 3.9</p> -->
+<!-- 						<a href="#" class="findNight-item">更多介紹 ...</a> -->
+
+<!-- 					</div> -->
 
                   </div>
                
@@ -130,8 +147,25 @@
                   <div class="tabs-panel" style="display:block">
 					<div class="product-price">
 					
+						<div class="productType-link">
+							<div class="btn-group">
+							  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    商品類型
+							  </button>
+							  <div class="dropdown-menu">
+							    <a class="dropdown-item" href="<c:url value='/search/product_type/1'/>">環保杯套</a>
+							    <a class="dropdown-item" href="<c:url value='/search/product_type/2'/>">環保餐具</a>
+							    <a class="dropdown-item" href="<c:url value='/search/product_type/3'/>">環保購物袋</a>
+							    <a class="dropdown-item" href="<c:url value='/search/product_type/4'/>">陶瓷碗盤</a>
+							    <a class="dropdown-item" href="<c:url value='/search/product_type/5'/>">攤販用具</a>
+							    <a class="dropdown-item" href="<c:url value='/search/product_type/6'/>">免洗餐具</a>
+							    <a class="dropdown-item" href="<c:url value='/search/product_type/7'/>">紙袋</a>
+							    <a class="dropdown-item" href="<c:url value='/search/product_type/8'/>">餐車</a>
+							  </div>
+							</div>
+						</div>
 					
-						<c:if test="${keyword != '?'}">
+						<c:if test="${keyword != '?' }">
 							<a href="<c:url value='/search/product/low/${keyword}'/>"><input type="button" value="價格低"></a>
 							<a href="<c:url value='/search/product/high/${keyword}'/>"><input type="button" value="價格高"></a>
 	
@@ -142,9 +176,9 @@
 								<input type="number" name="highPrice" id="" placeholder="最高價" min="1">
 								<input type="submit" value="價格確認" class="search-submit" id="search-price">
 							</form>
-							
 						</c:if>
-											
+						
+						<a href="<c:url value="/search/ALLproducts"/>" style="margin-left: -20px;"><input type="button" value="顯示商城全部的商品"></a>
 					</div>
 
 					<div class="keyword">
@@ -183,32 +217,39 @@
 
                   <div class="tabs-panel">
                 
-<!-- 					<div id="product-type"> -->
-<%-- 						<a href="<c:url value='/search/product_type/1'/>" class="change">環保杯套</a> --%>
-<!-- 						<a href="#">環保餐具</a> -->
-<!-- 						<a href="#">環保購物袋</a> -->
-<!-- 						<a href="#">陶瓷碗盤</a> -->
-<!-- 						<a href="#">攤販用具</a> -->
-<!-- 						<a href="#">免洗餐具</a> -->
-<!-- 						<a href="#">紙袋</a> -->
-<!-- 						<a href="#">餐車</a> -->
-<!-- 					</div> -->
+						<div class="productType-link">
+							<div class="btn-group">
+							  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    商品類型
+							  </button>
+							  <div class="dropdown-menu">
+							    <a class="dropdown-item" href="<c:url value='/search/product_type/1'/>">環保杯套</a>
+							    <a class="dropdown-item" href="<c:url value='/search/product_type/2'/>">環保餐具</a>
+							    <a class="dropdown-item" href="<c:url value='/search/product_type/3'/>">環保購物袋</a>
+							    <a class="dropdown-item" href="<c:url value='/search/product_type/4'/>">陶瓷碗盤</a>
+							    <a class="dropdown-item" href="<c:url value='/search/product_type/5'/>">攤販用具</a>
+							    <a class="dropdown-item" href="<c:url value='/search/product_type/6'/>">免洗餐具</a>
+							    <a class="dropdown-item" href="<c:url value='/search/product_type/7'/>">紙袋</a>
+							    <a class="dropdown-item" href="<c:url value='/search/product_type/8'/>">餐車</a>
+							  </div>
+							</div>
+						</div>
 
-<!-- 					<div class="type-content"> -->
+					<div class="type-content">
 						
-<!-- 						<div class="type-panel" style="display:block"> -->
-<!-- 							測試1 -->
-<!-- 						</div> -->
-<!-- 						<div class="type-panel">測試2</div> -->
-<!-- 						<div class="type-panel">測試3</div> -->
-<!-- 						<div class="type-panel">測試4</div> -->
-<!-- 						<div class="type-panel">測試5</div> -->
-<!-- 						<div class="type-panel">測試6</div> -->
-<!-- 						<div class="type-panel">測試7</div> -->
-<!-- 						<div class="type-panel">測試8</div> -->
-<!-- 						<div class="type-panel">測試9</div> -->
+						<div class="type-panel" style="display:block">
+							測試1
+						</div>
+						<div class="type-panel">測試2</div>
+						<div class="type-panel">測試3</div>
+						<div class="type-panel">測試4</div>
+						<div class="type-panel">測試5</div>
+						<div class="type-panel">測試6</div>
+						<div class="type-panel">測試7</div>
+						<div class="type-panel">測試8</div>
+						<div class="type-panel">測試9</div>
 
-<!-- 					</div> -->
+					</div>
 
                   </div>
                

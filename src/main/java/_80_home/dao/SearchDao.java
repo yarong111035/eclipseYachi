@@ -66,8 +66,49 @@ public class SearchDao{
 		return list;
 	}
 	
+	// 查詢所有的商品  --> 顯示商城全部的商品  商品價格由小至大排列
+	@SuppressWarnings("unchecked")
+	public List<ProductBean> getALLProductsByLow() {
+
+		Session session = factory.getCurrentSession();
+
+		String hql = "from ProductBean p ORDER BY p.product_price ASC";
+		List<ProductBean> list = session.createQuery(hql).getResultList();
+		
+		return list;
+	}
 	
-	// 測試查詢所有的商品 --> 依商品名稱
+	// 查詢所有的商品  --> 顯示商城全部的商品  商品價格由大至小排列
+	@SuppressWarnings("unchecked")
+	public List<ProductBean> getALLProductsByHigh() {
+
+		Session session = factory.getCurrentSession();
+
+		String hql = "from ProductBean p ORDER BY p.product_price DESC";
+		List<ProductBean> list = session.createQuery(hql).getResultList();
+		
+		return list;
+	}
+	
+	// 查詢所有的商品  --> 顯示商城全部的商品  依使用者輸入商品價格低 ~ 到商品價格高
+	@SuppressWarnings("unchecked")
+	public List<ProductBean> getALLProductsBet(Double lowPrice,Double highPrice) {
+
+		Session session = factory.getCurrentSession();
+
+		String hql = "from ProductBean p WHERE p.product_price BETWEEN :low AND :high";
+		
+		List<ProductBean> list = session.createQuery(hql)
+										.setParameter("low", lowPrice)
+										.setParameter("high", highPrice)
+										.getResultList();
+		
+		return list;
+	}
+	
+	
+	
+	// 查詢所有的商品 --> 依商品名稱 
 	@SuppressWarnings("unchecked")
 	public List<ProductBean> getAllProductsByName(String product_name) {
 		

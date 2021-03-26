@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import _02_model.entity.CouponBean;
 import _02_model.entity.NightMarketBean;
 import _02_model.entity.ProductBean;
+import _02_model.entity.ProductTypeBean;
 import _02_model.entity.ShopBean;
 import _20_shoppingMall._21_product.service.ProductService;
 import _80_home.service.SearchService;
@@ -116,11 +117,47 @@ public class SearchController {
 		
 		List<ProductBean> list = searchService.getALLProducts();
 		
-		model.addAttribute("keyword","商城的商品");
+		model.addAttribute("keyword","全部商城的商品");
+		model.addAttribute("list",list);	
+		
+		return "/_17_home/searchAllProduct";
+	}
+	
+	// 查詢所有的商品  --> 顯示商城全部的商品 商品價格由小至大排列
+	@RequestMapping("/search/ALLproducts/low")
+	public String searchALLProductsByLow(Model model) {
+		
+		List<ProductBean> list = searchService.getALLProductsByLow();
+		model.addAttribute("keyword","商品價格由低至高");
+		model.addAttribute("list",list);	
+		
+		return "/_17_home/searchAllProduct";
+	}
+	
+	// 查詢所有的商品  --> 顯示商城全部的商品 商品價格由小至大排列
+	@RequestMapping("/search/ALLproducts/high")
+	public String searchALLProductsByHigh(Model model) {
+		
+		List<ProductBean> list = searchService.getALLProductsByHigh();
+		model.addAttribute("keyword","商品價格由高至低");
+		model.addAttribute("list",list);	
+		
+		return "/_17_home/searchAllProduct";
+	}
+	
+	// 查詢所有的商品 --> 顯示商城全部的商品  依使用者輸入商品價格低 ~ 到商品價格高
+	@RequestMapping("/search/ALLproducts/range")
+	public String searchProductsByBetweenPrice(@RequestParam Double lowPrice,
+											   @RequestParam Double highPrice,Model model) {
+		
+		List<ProductBean> list = searchService.getALLProductsBet(lowPrice, highPrice);
+		
+		model.addAttribute("keyword","價格 "+lowPrice+" ~ "+highPrice);
 		model.addAttribute("list",list);
 		
 		return "/_17_home/searchALL";
 	}
+		
 	
 
 	// 查詢所有的商品 --> 依照最新上架的日期
@@ -137,19 +174,30 @@ public class SearchController {
 		return "測試成功";
 	}
 	
+	// 渲染 /_17_home/searchProductType的頁面
+	@RequestMapping("/search/ProductType")
+	public String searchProductType() {
+		
+		return "/_17_home/searchProductType";
+	}
 	
 	// 查詢所有的商品 --> 依照商品的類型
-	@RequestMapping("/test08/{product_type_id}")
-	@ResponseBody
-	public String searchProductTypeBean(@PathVariable Integer product_type_id) {
+	@RequestMapping("/search/product_type/{product_type_id}")
+	public String searchProductTypeBean(@PathVariable Integer product_type_id,Model model) {
 		
 		Set<ProductBean> set = searchService.getProductTypeBean(product_type_id);
-		
-		for (ProductBean pTypeBean : set) {
-			System.out.println(pTypeBean.getProduct_name());
+		String type_name="";
+		for (ProductBean productBean : set) {
+			ProductTypeBean productTypeBean = productBean.getProductTypeBean();
+			type_name = productTypeBean.getProduct_type_name();
+			
 		}
 		
-		return "測試成功";
+		
+		model.addAttribute("keyword",type_name);
+		model.addAttribute("list",set);
+		
+		return "/_17_home/searchProductType";	
 	}
 	
 
