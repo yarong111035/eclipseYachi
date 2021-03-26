@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import _02_model.entity.CouponBean;
 import _02_model.entity.ShopBean;
 import _02_model.entity.ShopCommentBean;
+import _02_model.entity.ShopMenuBean;
 import _10_member.entity.Member;
 import _50_shop._51_coupon.service.CouponService;
+import _50_shop._52_shopmenu.service.ShopMenuService;
 import _50_shop._53_shopRegister.service.NightMarketService;
 import _50_shop._53_shopRegister.service.ShopCommentService;
 import _50_shop._53_shopRegister.service.ShopService;
@@ -50,6 +52,9 @@ public class DisplayShopsController {
 	@Autowired
 	ShopTypeService shopTypeService;
 	
+	@Autowired
+	ShopMenuService shopmenuservice;
+	
 	
 	@GetMapping("ShowShops")
 //	@ResponseBody
@@ -71,11 +76,19 @@ public class DisplayShopsController {
 		Member member = (Member) model.getAttribute("LoginOK");
 		shopCommentBean.setMemberBean(member);
 		List<ShopCommentBean> commentExistBean = null;
+		
+		List<ShopMenuBean> smb = shopmenuservice.getShopMenu(shopId);
+		smb=shopmenuservice.getShopMenu(shopId);
+		
 		try {
 			commentExistBean = shopCommentService.getShopCommentByShopIdAndMemberId(shopId, member.getMemberId());
 		} catch (Exception e) {
 			
 		}
+		
+//		右下顯示菜單
+		model.addAttribute("smb",smb);
+		
 		int count = shopCommentService.getShopCommentCount(shopId);
 		model.addAttribute("shopCommentBean", shopCommentBean);
 		model.addAttribute("shopCommentBeanList", shopCommentBeanList);

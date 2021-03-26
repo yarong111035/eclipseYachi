@@ -37,6 +37,7 @@
 <!--     <script type="text/javascript" src="js/slick_jquery1.11.0.min.js"></script> -->
 <!--     <script type="text/javascript" src="js/slick_jq_migrate1.2.1.min.js"></script> -->
 <!--     <script type="text/javascript" src="slick/slick.js"></script> -->
+
 <style>
 .rate {
 	float: left;
@@ -140,7 +141,9 @@
 					</div>
 
 					<div>
-						${shop.shop_score}&nbsp;<i class="fas fa-star"></i> (${count})
+						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i>
 					</div>
 					<p style="color: #78886f;">${shop.shop_info}</p>
 				</div>
@@ -151,16 +154,13 @@
 
 					<div class="addCoupon">
 						<div style="margin-top: 15px;">
-							<a href="<c:url value='/addFavoriteInShop/add/${coupon.coupon_id}'/>" onclick="return window.alert('收藏成功!');"><i
-								class="far fa-plus-square fa-3x" ></i></a>
+							<a href="<c:url value='/#'/>"><i
+								class="far fa-plus-square fa-3x"></i></a>
 						</div>
 						<div>
-						<a
-						href="<c:url value='/coupon?coupon_id=${coupon.coupon_id}' />">
 							<img
 								src="<c:url value='/_50_shop/_51_coupon/getPicture/${coupon.coupon_id}'/>"
 								style="width: 200px; height: 80px;">
-								</a>
 						</div>
 						<div class="couponInfo">
 							<h3>${coupon.coupon_name}</h3>
@@ -190,9 +190,6 @@
 								</div>
 							</div>
 						</c:if>
-						<c:if test="${!empty commentExistBean}">
-						<div><h3>你已經評論囉～</h3></div>
-					</c:if>
 					</div>
 					<c:if test="${empty commentExistBean}">
 
@@ -242,7 +239,6 @@
 
 
 					</c:if>
-					
 				</div>
 				<c:forEach var="shopCommentBean" varStatus="stat"
 					items="${shopCommentBeanList}">
@@ -255,7 +251,8 @@
 								</div>
 								<span class="memberId">${shopCommentBean.memberBean.username }</span>
 								<span class="nickname">${shopCommentBean.memberBean.fullname }</span>
-								<input type="number" id="score${shopCommentBean.shop_comment_id}"
+								<input type="number"
+									id="score${shopCommentBean.shop_comment_id}"
 									value="${shopCommentBean.shop_score}" style="display: none;">
 								<div class="comment_score"
 									id="feedback${shopCommentBean.shop_comment_id}"></div>
@@ -326,7 +323,7 @@
 						<div class="item-left">
 							<i class="fas fa-map-marked-alt"></i>
 						</div>
-						<div class="item-right">${shop.shop_addr}</div>
+						<div class="item-right">${shop.nightMarketBean.market_name}</div>
 					</div>
 					<div class="item">
 						<div class="item-left">
@@ -338,25 +335,38 @@
 						<div class="item-left">
 							<i class="fas fa-clock"></i>
 						</div>
-						<div class="item-right">${shop.shop_hours}</div>
+						<div class="item-right">
+							Mon~Fri : 16~22 <br> Sat~Sun : 16~24
+						</div>
 					</div>
 					<div class="item">
 						<div class="item-left">
-							<i class="fas fa-bars"></i>
+							<a class="btn" href="javascript:navbar();"> <i
+								class="fas fa-bars"></i>
+							</a>
+
 						</div>
-						<div class="item-right">
-							<a href="#">MENU</a>
-						</div>
+						<div class="item-right m-auto ">MENU</div>
+					</div>
+					<div class="item row justify-content-center" id="menu_animate">
+						<c:forEach var="shopmenu" varStatus="stat" items="${smb}">
+							<div class="col-6">
+								<div class="column-pic">
+									 <img
+										src="<c:url value='/_50_shop/_52_shopmenu/picture/${shopmenu.menu_id}'/>"
+										style="width:140px" class="coupon-pic">
+								
+									<p>${shopmenu.menu_name}</p>
+								</div>
+							</div>
+						</c:forEach>
 					</div>
 				</div>
 			</div>
-			<!-- End:Right -->
 		</div>
-
-
-
-
 	</div>
+	<!-- End:Right -->
+
 
 
 	<!-- 留言內容 -->
@@ -372,66 +382,78 @@
 
 	<script>
 		function doFirst() {
-			try{
-			score = document.getElementById("star");
-			star5 = document.getElementById("star5");
-			star4 = document.getElementById("star4");
-			star3 = document.getElementById("star3");
-			star2 = document.getElementById("star2");
-			star1 = document.getElementById("star1");
+			try {
+				score = document.getElementById("star");
+				star5 = document.getElementById("star5");
+				star4 = document.getElementById("star4");
+				star3 = document.getElementById("star3");
+				star2 = document.getElementById("star2");
+				star1 = document.getElementById("star1");
 
-			star5.addEventListener("click", function() {
-				alert();
-				score.value = star5.value;
-				alert(score.value);
-			})
+				star5.addEventListener("click", function() {
+					alert();
+					score.value = star5.value;
+					alert(score.value);
+				})
 
-			star4.addEventListener("click", function() {
-				score.value = star4.value;
-			})
+				star4.addEventListener("click", function() {
+					score.value = star4.value;
+				})
 
-			star3.addEventListener("click", function() {
-				score.value = star3.value;
-			})
+				star3.addEventListener("click", function() {
+					score.value = star3.value;
+				})
 
-			star2.addEventListener("click", function() {
-				score.value = star2.value;
-			})
+				star2.addEventListener("click", function() {
+					score.value = star2.value;
+				})
 
-			star1.addEventListener("click", function() {
-				score.value = star1.value;
-			})
-			}catch(e){
-				
+				star1.addEventListener("click", function() {
+					score.value = star1.value;
+				})
+			} catch (e) {
+
 			}
 
 			for (var n = 1; n < 100; n++) {
-				try{
-				rate = document.getElementById(`score${'${n}'}`).value;
-				feedback = document.getElementById(`feedback${'${n}'}`);
-				if (rate == 5) {
-					feedback.innerHTML = "<span style='color:#c59b08;'>★★★</span><span style='color:#c59b08;'>★★</span>";
-				}
-				if (rate == 4) {
-					feedback.innerHTML = "<span style='color:#c59b08;'>★★★★</span><span style='color:#ccc;'>★</span>";
-				}
-				if (rate == 3) {
-					feedback.innerHTML = "<span style='color:#c59b08;'>★★★</span><span style='color:#ccc;'>★★</span>";
-				}
-				if (rate == 2) {
-					feedback.innerHTML = "<span style='color:#c59b08;'>★★</span><span style='color:#ccc;'>★★★</span>";
-				}
-				if (rate == 1) {
-					feedback.innerHTML = "<span style='color:#c59b08;'>★</span><span style='color:#ccc;'>★★★★</span>";
-				}
-				}catch(e){
-					
+				try {
+					rate = document.getElementById(`score${'${n}'}`).value;
+					feedback = document.getElementById(`feedback${'${n}'}`);
+					if (rate == 5) {
+						feedback.innerHTML = "<span style='color:#c59b08;'>★★★</span><span style='color:#c59b08;'>★★</span>";
+					}
+					if (rate == 4) {
+						feedback.innerHTML = "<span style='color:#c59b08;'>★★★★</span><span style='color:#ccc;'>★</span>";
+					}
+					if (rate == 3) {
+						feedback.innerHTML = "<span style='color:#c59b08;'>★★★</span><span style='color:#ccc;'>★★</span>";
+					}
+					if (rate == 2) {
+						feedback.innerHTML = "<span style='color:#c59b08;'>★★</span><span style='color:#ccc;'>★★★</span>";
+					}
+					if (rate == 1) {
+						feedback.innerHTML = "<span style='color:#c59b08;'>★</span><span style='color:#ccc;'>★★★★</span>";
+					}
+				} catch (e) {
+
 				}
 
 			}
 
 		}
 		window.addEventListener("load", doFirst())
+
+		function navbar() {
+// 						alert("嗨");
+			// 		 	alert(document.getElementById("menu_animate").style.display);
+			var style = document.getElementById("menu_animate").style.display;
+			if (style == "flex") {
+				document.getElementById("menu_animate").style.display = "none";
+			} else {
+				document.getElementById("menu_animate").style.display = "flex";
+			}
+
+		}
 	</script>
 
 
