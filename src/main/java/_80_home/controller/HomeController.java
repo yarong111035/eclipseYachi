@@ -41,7 +41,13 @@ public class HomeController {
 	
 	@RequestMapping({"/","/home"}) 
 	public String jspHome(Model model, HttpSession session) {
-		List<AdminActivityBean> list = editactivityService.getAllAdminActivities();
+		List<AdminActivityBean> list = null;
+		try {
+			list = editactivityService.getCurrentAdminActivity();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 //		session.setAttribute("adminactivityBeanList", list);
 		model.addAttribute("adminactivityBeanList", list);
 		

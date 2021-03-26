@@ -76,7 +76,7 @@ public class EditActivityController {
 	@RequestMapping("/admin/admin_activity")
 	public String admin_activity(Model model) {  
 		List<AdminActivityBean> activityList = editactivityService.getAllAdminActivities();
-		model.addAttribute("adminactivityList", activityList);
+		model.addAttribute("adminactivityList", activityList);	
 		return "_16_admin/admin_activity"; 
 	}
 	
@@ -137,6 +137,7 @@ public class EditActivityController {
 		System.out.println("===============2222===============");
 		model.addAttribute("adminActivityList",adminactivities);
 		System.out.println("===============3333===============");
+		
 		return "/_16_admin/admin_activity";
 	}
 
@@ -161,7 +162,8 @@ public class EditActivityController {
 			}
 		}
 
-
+		editactivityService.saveAdminActivity(adminactivityBean);
+		
 		return "redirect:/admin/administrator";
 	}
 
