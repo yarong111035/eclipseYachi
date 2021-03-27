@@ -89,6 +89,10 @@
             </main>
         </div>
     </div>
+    <!-- -------------------------------引入共同的頁尾---------------------------------------- -->
+	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
+	<!-- -------------------------------引入共同的頁尾----------------------------------------- -->
+	
 	<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/js/splide.min.js"></script>
     <script>
 
