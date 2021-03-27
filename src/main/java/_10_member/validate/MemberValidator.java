@@ -41,6 +41,10 @@ public class MemberValidator implements Validator{
 			errors.rejectValue("email", "customerBean.email.invalid","email格式錯誤");
 		}
 		
+//		if (! member.getPassword().equals(member.getNewpassword())) {
+//			errors.rejectValue("password","", "密碼欄與確認密碼不一致");
+//		}
+		
 	}
 
 }

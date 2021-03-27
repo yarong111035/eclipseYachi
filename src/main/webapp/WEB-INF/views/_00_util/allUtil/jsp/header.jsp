@@ -161,10 +161,10 @@
 				<c:if test="${!empty LoginOK || !empty AdminLoginOK}">
 					<a href="#"><font>你好 ! </font></a>
 					<script>
-						// 						    $(function () {
-						// 						   		var temp = `${LoginOK.fullname}`;
-						// 								alert(temp+ " 登入成功 ! ");
-						// 						   	});
+// 					    $(function () {
+// 					   		var temp = `${LoginOK.fullname}`;
+// 							alert(temp+ " 歡迎回來 ! ");
+// 					   	});
 					</script>
 					<c:choose>
 
@@ -193,7 +193,9 @@
 			<c:if test="${empty status and !empty code }">
 				<script>
 					$(function() {
-						alert(" 已寄出驗證信 登入前請先去驗證 !");
+						if (window.confirm('已成功寄信至 '+`${confirmMail}`+' 點擊確定前往驗證')) {
+							window.location.href='https://accounts.google.com/signin/v2/identifier?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F%26ogbl%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin';
+						};
 					});
 				</script>
 			</c:if>
@@ -202,6 +204,16 @@
 				<script>
 					$(function() {
 						alert(" 你已成功申請為商家 !");
+					});
+				</script>
+			</c:if>
+			
+			<c:if test="${!empty sendMail}">
+				<script>
+					$(function() {
+						if (window.confirm('已成功寄信至 '+`${sendMail}`+' 點擊確定前往更改')) {
+							window.location.href='https://accounts.google.com/signin/v2/identifier?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F%26ogbl%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin';
+						};
 					});
 				</script>
 			</c:if>
