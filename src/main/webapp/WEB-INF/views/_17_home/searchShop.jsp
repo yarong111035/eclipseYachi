@@ -79,6 +79,41 @@
    		
 
 </script>
+<style>
+.key-h4{
+	padding-top: 5px;
+}
+.search-shop-context{
+	
+}
+.shop-card{
+	margin: 0 0 20px 50px;
+	height: 550px;
+	
+}
+
+/* 撐開卡片容器 */
+.addSpace{
+	width: inherit;
+    height: 50px;
+}
+.gotoshop{
+	position: absolute;
+	left: 100px;
+}
+
+/* CSS 限制字數/行數 */
+.ellipsis {
+overflow:hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 5;
+-webkit-box-orient: vertical;
+white-space: normal;
+}
+
+</style>
 
 <body>
 	<!-- 引入共同的頁首 -->
@@ -98,141 +133,84 @@
 			<div id="tabs-nav">
 <!-- 				<a href="#">依夜市</a> -->
 				<a href="<c:url value='/search/ALLproducts'/>">全部商城商品</a>
-				<a href="<c:url value='/search/product?product_name=' />" class="change">依商城商品</a>
-				<a href="<c:url value='/search/ProductType'/>">依商品類型</a>
-				<a href="<c:url value='/search/shop?shop_name='/>">依商家</a>
+				<a href="<c:url value='/search/product?product_name=' />" >依商城商品</a>
+				<a href="<c:url value='/search/ProductType'/>" >依商品類型</a>
+				<a href="<c:url value='/search/shop?shop_name='/>" class="change">依商家</a>
 				<a href="#">依商家類型</a>
 			</div>
-		
+			
 			<div class="tabs-content">
 
 				<div class="tabs-content">
 
-                    <!-- 先讓第一個內容顯示出來 display:block -->
+                  <!-- 先讓第一個內容顯示出來 display:block tabs-panel -->
                   <div class="tabs-panel" > 
-					
-<!-- 					<div class="keyword"> -->					
-<%-- 						<form action="<c:url value="/search/night"/>" class="keyword-form"> --%>
-<!-- 							<a>搜尋夜市</a> -->
-<!-- 							<input type="text" name="market_name" id=""> -->
-<!-- 							<input type="submit" value="搜尋"> -->
-<!-- 						</form> -->
-					
-<!-- 					</div> -->
-
 
                   </div>
-               
+              
                   <div class="tabs-panel">
 
                   </div>
                
-                  <div class="tabs-panel" style="display:block">
-					<div class="product-price">
-					
-						
-						<c:if test="${keyword != '?'}">
-							<a href="<c:url value='/search/product/low/${keyword}'/>"><input type="button" value="價格低"></a>
-							<a href="<c:url value='/search/product/high/${keyword}'/>"><input type="button" value="價格高"></a>
-	
-							<form action="<c:url value='/search/product/range/${keyword}'/>" >
-								<a>搜尋價格</a>
-								<input type="number" name="lowPrice" id="" placeholder="最低價" min="1">
-								<a>～</a>
-								<input type="number" name="highPrice" id="" placeholder="最高價" min="1">
-								<input type="submit" value="價格確認" class="search-submit" id="search-price">
-							</form>
-							
-						</c:if>
+                  <div class="tabs-panel">
 											
-					</div>
 
-					<div class="keyword">
+                  </div>
+               
+
+                  <div class="tabs-panel" style="display:block">              	
+                	
 					
-						<c:if test="${keyword == '?' }">								
-							<p style="white-space: pre;">你沒有輸入關鍵字哦    !</p>						
-						</c:if>
+					<div class="product-price">
 						
-						<c:if test="${keyword != '?' }">								
-							<p>你所搜尋的&nbsp;&nbsp;&nbsp;<span style="color: red;">${keyword}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							總共有&nbsp;<span style="color: red;">${list.size()}</span>&nbsp;筆資料</p>						
-						</c:if>
-						
-					</div>
-
-					<div class="product-container">
-
-						<c:if test="${keyword != '?' }">
-							<c:forEach var="productBean" items="${list}">
-								<div class="product">
-		
-									<a data-fancybox="gallery" href="<c:url value='/searchProductPicture/${productBean.product_id}'/>">
-								    <img src="<c:url value='/searchProductPicture/${productBean.product_id}'/>"></a>
-		
-									<div class="name">${productBean.product_name}</div>
-									<div class="info">${productBean.product_spec}</div>
-									<div class="price">$&nbsp;${productBean.product_price}</div>
-									<div class="release">發售日&nbsp;&nbsp;${productBean.product_release}</div>
-								</div>
-							</c:forEach>
-						</c:if>
-						
-					</div>
-                  </div>
-               
-
-                  <div class="tabs-panel">
-                
-
-                  </div>
-               
-                  <div class="tabs-panel">
-					<div class="keyword">
-						<form action="" class="keyword-form">
-							<a>搜尋夜市</a>
-							<input type="text" name="" id="">
-							<input type="submit" value="搜尋">
+	                	<form class="form-inline" action="<c:url value='/search/shop'/>">  
+						  <div class="form-group mb-2">
+							 <h4 class="key-h4">搜尋店家</h4>					  
+						  </div>
+						  <div class="form-group mx-sm-3 mb-2">
+						    <input type="text" class="form-control" name="shop_name">
+						  </div>
+						  <button type="submit" class="btn btn-primary mb-2">確認</button>
 						</form>
 						
-						<p>你所搜尋的&nbsp;<span style="color: red;">${keyword}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						總共有&nbsp;<span style="color: red;">${list.size()}</span>&nbsp;筆資料</p>
-						
+<%-- 						<a href="<c:url value='#'/>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">顯示全部商家</a> --%>
+									
 					</div>
-                	依商家
+					
+                	<div class="product-container search-shop-context">
+                		
+                		<c:forEach var="shop" items="${shopList}">
+                		
+	                		<div class="card shop-card" style="width: 18rem;">
+							  <img style="height: 250px;" src="<c:url value='/searchShopPicture/${shop.shop_id}'/>">
+							  <div class="card-body">
+							    <h5 class="card-title">${shop.shop_name}</h5>
+							    <p class="card-text ellipsis">${shop.shop_info}</p>
+    							<div class="addSpace"></div>							    
+							    <a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${shop.shop_id}' />" class="btn btn-primary gotoshop">前往商家</a>
+							  </div>
+    						  
+							  
+							</div>
+							
+                		</c:forEach>
+          	
+                  	</div>
+ 
+               	 </div>
+               
+               
+               
+               
+                  <div class="tabs-panel">
+					
                   </div>
             
                   <div class="tabs-panel">
-
-                    <div id="shop-type">
-						<a href="#" class="change">中式料理</a>
-						<a href="#">西式料理</a>
-						<a href="#">日式料理</a>
-						<a href="#">飲料</a>
-						<a href="#">衣服</a>
-						<a href="#">飾品</a>
-						<a href="#">手機周邊</a>
-						<a href="#">日常生活用品</a>
-						<a href="#">遊戲</a>
-					</div>	
-
-					<div class="shoptype-content">
-						
-						<div class="shoptype-panel" style="display:block">
-							測試1
-						</div>
-						<div class="shoptype-panel">測試2</div>
-						<div class="shoptype-panel">測試3</div>
-						<div class="shoptype-panel">測試4</div>
-						<div class="shoptype-panel">測試5</div>
-						<div class="shoptype-panel">測試6</div>
-						<div class="shoptype-panel">測試7</div>
-						<div class="shoptype-panel">測試8</div>
-						<div class="shoptype-panel">測試9</div>
-
-					</div>
+					
                   </div>
                
-                </div>
+               
 
 
 
@@ -240,6 +218,7 @@
 			</div>
 			
 		</div>
+	  </div>
     </main>
 	
 </body>

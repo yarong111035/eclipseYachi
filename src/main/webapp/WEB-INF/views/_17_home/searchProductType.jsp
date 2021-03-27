@@ -108,7 +108,7 @@
 				<a href="<c:url value='/search/ALLproducts'/>">全部商城商品</a>
 				<a href="<c:url value='/search/product?product_name=' />" >依商城商品</a>
 				<a href="<c:url value='/search/ProductType'/>" class="change">依商品類型</a>
-				<a href="#">依商家</a>
+				<a href="<c:url value='/search/shop?shop_name='/>">依商家</a>
 				<a href="#">依商家類型</a>
 			</div>
 			
