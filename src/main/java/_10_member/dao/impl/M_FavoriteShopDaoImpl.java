@@ -1,6 +1,7 @@
 package _10_member.dao.impl;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -74,6 +75,20 @@ public class M_FavoriteShopDaoImpl implements M_FavoriteShopDao {
 		
 		session.update(favoriteShopListBean);
 
+	}
+	
+	@Override
+	public Set<ShopBean> getMyFavoriteShopByMemberId2(Integer memberId){
+		Session session = factory.getCurrentSession();
+		String hql = "FROM FavoriteShopListBean WHERE memberBean.memberId = :mid";
+		List<FavoriteShopListBean> favoriteShopListBeans = session.createQuery(hql).setParameter("mid", memberId).getResultList();
+		Set<ShopBean> shops = new HashSet<ShopBean>();
+		for (FavoriteShopListBean favoriteShopListBean:favoriteShopListBeans) {
+			shops = favoriteShopListBean.getShops();
+			}
+		//===============設定結果集:設定結果型態List<Map<String,Object>>======================================	
+			
+				return shops;
 	}
 
 }
