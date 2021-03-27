@@ -80,16 +80,24 @@
 
 </script>
 <style>
+
+.bstrap-alink a{
+	padding: 10px;
+	width: 150px;
+	margin: 0 10px;
+	
+}
+
 .key-h4{
 	padding-top: 5px;
 }
 .search-shop-context{
 	
 }
+
 .shop-card{
 	margin: 0 0 20px 50px;
 	height: 550px;
-	
 }
 
 /* 撐開卡片容器 */
@@ -136,7 +144,7 @@ white-space: normal;
 				<a href="<c:url value='/search/product?product_name=' />" >依商城商品</a>
 				<a href="<c:url value='/search/ProductType'/>" >依商品類型</a>
 				<a href="<c:url value='/search/shop?shop_name='/>" class="change">依商家</a>
-				<a href="#">依商家類型</a>
+				<a href="<c:url value='/search/ShopType'/>">依商家類型</a>
 			</div>
 			
 			<div class="tabs-content">
@@ -189,10 +197,8 @@ white-space: normal;
     							<div class="addSpace"></div>							    
 							    <a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${shop.shop_id}' />" class="btn btn-primary gotoshop">前往商家</a>
 							  </div>
-    						  
-							  
-							</div>
-							
+							</div>		
+								
                 		</c:forEach>
           	
                   	</div>

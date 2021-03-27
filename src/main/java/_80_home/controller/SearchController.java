@@ -247,18 +247,23 @@ public class SearchController {
 		return "/_17_home/searchShop";	
 	}
 	
+	// 渲染 /_17_home/searchSho[Type的頁面
+	@RequestMapping("/search/ShopType")
+	public String searchShopType() {
+		
+		return "/_17_home/searchShopType";	
+	}
+	
 	// 依商家的類型找出所有的商家 
-	@RequestMapping("/test10/{shop_type_id}")
-	@ResponseBody
-	public String searchShopByShop_type_id(@PathVariable Integer shop_type_id) {
+	@RequestMapping("/search/shop_type/{shop_type_id}")
+	public String searchShopByShop_type_id(@PathVariable Integer shop_type_id,Model model) {
 		
 		Set<ShopBean> set = searchService.getAllShopBean(shop_type_id);
 		
-		for (ShopBean shopBean : set) {
-			System.out.println(shopBean.getShop_name());
-		}
+		model.addAttribute("shopList",set);
 		
-		return "測試成功";
+		
+		return "/_17_home/searchShopType";	
 	}
 
 	

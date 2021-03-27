@@ -83,9 +83,37 @@
 .bstrap-alink a{
 	padding: 10px;
 	width: 150px;
-	margin: 0 10px;
-	
+	margin: 0 5px;
+	font-weight: bold;
 }
+
+
+.shop-card{
+	margin: 0 0 20px 50px;
+	height: 550px;
+}
+
+/* 撐開卡片容器 */
+.addSpace{
+	width: inherit;
+    height: 50px;
+}
+.gotoshop{
+	position: absolute;
+	left: 100px;
+}
+
+/* CSS 限制字數/行數 */
+.ellipsis {
+overflow:hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 5;
+-webkit-box-orient: vertical;
+white-space: normal;
+}
+
 </style>
 
 <body>
@@ -109,7 +137,7 @@
 				<a href="<c:url value='/search/product?product_name=' />" >依商城商品</a>
 				<a href="<c:url value='/search/ProductType'/>" class="change">依商品類型</a>
 				<a href="<c:url value='/search/shop?shop_name='/>">依商家</a>
-				<a href="#">依商家類型</a>
+				<a href="<c:url value='/search/ShopType'/>">依商家類型</a>
 			</div>
 			
 			<div class="tabs-content">
@@ -167,22 +195,6 @@
                   <div class="tabs-panel">
                 
 
-					<div class="type-content">
-						
-						<div class="type-panel" style="display:block">
-							測試1
-						</div>
-						<div class="type-panel">測試2</div>
-						<div class="type-panel">測試3</div>
-						<div class="type-panel">測試4</div>
-						<div class="type-panel">測試5</div>
-						<div class="type-panel">測試6</div>
-						<div class="type-panel">測試7</div>
-						<div class="type-panel">測試8</div>
-						<div class="type-panel">測試9</div>
-
-					</div>
-
                   </div>
                
                   <div class="tabs-panel">
@@ -191,33 +203,8 @@
             
                   <div class="tabs-panel">
 
-                    <div id="shop-type">
-						<a href="#" class="change">中式料理</a>
-						<a href="#">西式料理</a>
-						<a href="#">日式料理</a>
-						<a href="#">飲料</a>
-						<a href="#">衣服</a>
-						<a href="#">飾品</a>
-						<a href="#">手機周邊</a>
-						<a href="#">日常生活用品</a>
-						<a href="#">遊戲</a>
-					</div>	
+              
 
-					<div class="shoptype-content">
-						
-						<div class="shoptype-panel" style="display:block">
-							測試1
-						</div>
-						<div class="shoptype-panel">測試2</div>
-						<div class="shoptype-panel">測試3</div>
-						<div class="shoptype-panel">測試4</div>
-						<div class="shoptype-panel">測試5</div>
-						<div class="shoptype-panel">測試6</div>
-						<div class="shoptype-panel">測試7</div>
-						<div class="shoptype-panel">測試8</div>
-						<div class="shoptype-panel">測試9</div>
-
-					</div>
                   </div>
                
                 </div>
