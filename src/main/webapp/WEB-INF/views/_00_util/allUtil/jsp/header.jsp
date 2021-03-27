@@ -210,7 +210,7 @@
 						<a href="<c:url value='/MarketGongguan' />">公館夜市</a><br> 
 						<a href="<c:url value='/MarketSouth' />">南機場夜市</a><br> 
 						<a href="<c:url value='/MarketLinjiang' />">臨江街觀光夜市</a><br>
-						<a href="<c:url value='/MarketMonga' />">華西街觀光夜市</a><br>
+						<a href="<c:url value='/MarketHuaxi' />">華西街觀光夜市</a><br>
 					</div>
 
 					<div class="tab-panel">

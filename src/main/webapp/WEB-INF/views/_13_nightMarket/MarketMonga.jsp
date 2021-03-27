@@ -17,9 +17,11 @@
 	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/background.css'/>">
-<!--     <link rel="stylesheet" href="slick/slick.css"/> -->
-<!-- 		Add the new slick-theme.css if you want the default styling -->
-<!--     <link rel="stylesheet" href="slick/slick-theme.css"/> -->
+<!-----------------------------------slick 套件引用--------------------------------- -->
+    <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/slick.css'/>"/>
+<!-- 		sAdd the new slick-theme.css if you want the default styling -->
+    <link rel="stylesheet" href="<c:url value='_00_util/allUtil/css/slick-theme.css'/>"/>
+<!-----------------------------------slick 套件引用--------------------------------- -->
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/nightShopUtil/css/1_shop1.css'/>" />
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -38,7 +40,7 @@
 <!--     <script type="text/javascript" src="slick/slick.js"></script> -->
 <style>
 .box {
-	border: 1px solid #cccccc;
+/* 	border: 1px solid #cccccc; */
 	width: 720px;
 	height: 500px;
 	background-color: #FFFFFF;
@@ -46,11 +48,15 @@
 	overflow: auto;
 }
 div.card{
-	box-shadow: 1px 1px 3px 1px #ccc;
+/* 	box-shadow: 1px 1px 3px 1px #ccc; */
 }
-
+.card-body{
+	padding: 5px;
+    text-align: center;
+}
 .shopImage{
-	height: 165px;
+	height: 130px;
+	width:100%;
 }
 .shopArea{
     margin-left: 20px;
@@ -103,11 +109,15 @@ div.card{
 				<!-- 商家簡介 -->
 				<div id="shopInfo">
 					<h1 style="color: #f26419;">華西街觀光夜市</h1>
+					<!-----------------------------------評分數開始---------------------------------- -->
 					<div>
-						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-							class="fas fa-star"></i>
+						<div class="ratings">
+							<div class="empty-stars"></div>
+
+							<div class="full-stars" style="width: ${nightMarketBean.market_score * 20}%; "></div>
+						</div>
 					</div>
+					<!-----------------------------------評分數結束---------------------------------- -->
 					<p style="color: #78886f;margin-top:10px;">華西街觀光夜市位於龍山寺附近，是我國第一座觀光夜市，以販賣各式山產海鮮野味小吃為大宗，是國內外觀光客最鐘愛的景點之一。</p>
 					<p style="color: #78886f;">夜市入口處為中國傳統牌樓建築，沿途掛滿紅色宮燈，極具特色，兩旁店家皆為老字號，口碑與品質兼顧，連高級餐廳也有據點，像是廣受日本觀光客青睞的臺南擔仔麵一店，就是在這裡發跡，其他小吃類，例如大鼎肉羹或是兩喜號魷魚羹等，更是座無虛席，夏天時清涼刨冰與新鮮果汁供不應求，冬令時節各類進補食品一一上市，更見萬頭攢動。</p>
 				</div>
@@ -120,26 +130,33 @@ div.card{
 						</h2>
 					</div>
 				
-				<div class="box">
-					
-				
+<!-- 				<div class="box"> -->
 
-					<div class="row shopArea">
-						<c:forEach var="shop" varStatus="stat" items="${shops}">
-						<div class="card" style="width: 18rem; margin: 20px">
-						<a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${shop.shop_id}' />">
-							<img src="<c:url value='/_50_shop/_53_shopRegister/getPicture/${shop.shop_id}'/>" class="card-img-top shopImage"
-								alt="..."></a>
-							<div class="card-body">
+
+
+				<div class=" shopArea">
+
+					<c:forEach var="shop" varStatus="stat" items="${shops}">
+						<div class="card shadow p-3 mb-5 bg-white rounded"
+							style="width: 250px; margin: 20px">
+							<a
+								href="<c:url value='/_50_shop/_54_showShops/ShowShops/${shop.shop_id}' />">
+								<img
+								src="<c:url value='/_50_shop/_53_shopRegister/getPicture/${shop.shop_id}'/>"
+								class="card-img-top shopImage" alt="...">
+							</a>
+							<div class="card-body shadow-sm bg-white rounded">
 								<p class="card-text">${shop.shop_name}</p>
 							</div>
 						</div>
-					
+
 					</c:forEach>
-						
-					</div>
+
+
 
 				</div>
+
+				<!-- 				</div> -->
 
 
 
@@ -348,9 +365,28 @@ div.card{
 		</div>
 
 	</div>
-	
+
+	<!--------------------------------slick 套件------------------------------- -->
+	<script type="text/javascript"
+		src="<c:url value='/_00_util/allUtil/javascript/slick_jquery1.11.0.min.js'/>"></script>
+	<script type="text/javascript"
+		src="<c:url value='/_00_util/allUtil/javascript/slick_jq_migrate1.2.1.min.js'/>"></script>
+	<script type="text/javascript"
+		src="<c:url value='/_00_util/allUtil/javascript/slick.min.js'/>"></script>
+	<!--------------------------------slick 套件------------------------------- -->
+
 	<script>
 	function doFirst(){
+		
+
+		//slick
+		  $('.shopArea').slick({
+			  slidesToShow: 3,
+			  slidesToScroll: 1,
+			  autoplay: true,
+			  autoplaySpeed: 2000,
+		});
+		
 	    feedback = document.getElementById('feedback');
 	    wicon = document.getElementById('wicon');
 	    xhr = new XMLHttpRequest();
