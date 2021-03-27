@@ -14,12 +14,15 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/background.css'/>">
+	<!--------------------------aos套件-------------------------------- -->
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<!--------------------------aos套件-------------------------------- -->
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
-<link rel="stylesheet"
-	href="<c:url value='/_00_util/shoppingMallUtil/css/4_shopping_cart.css'/>">
-<link rel="stylesheet"
-	href="<c:url value='/_00_util/shoppingMallUtil/css/2_mix.css'/>">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 	crossorigin="anonymous"></script>
@@ -31,6 +34,9 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
 	integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
 	crossorigin="anonymous"></script>
+<!--------------------------aos套件-------------------------------- -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!--------------------------aos套件-------------------------------- -->
 
 <script src="<c:url value='/_00_util/allUtil/javascript/jquery-ui.js'/>"></script>
 
@@ -168,11 +174,49 @@ fieldset {
 
 .font {
 	font-weight: bold;
+	font-size:1.3rem;
 }
 
 .pos {
 	position: absolute;
 	right: 16px;
+}
+/* 顯示星星評價 */
+/* 評價星星 */
+.ratings {
+    position: relative;
+    bottom: 20%;
+/*     left: 4%; */
+    vertical-align: middle;
+    display: inline-block;
+    color: #b1b1b1;
+    overflow: hidden;
+}
+.full-stars {
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #fde16d;
+}
+.empty-stars:before, .full-stars:before {
+    content:"\2605\2605\2605\2605\2605";
+    font-size: 15pt;
+}
+.empty-stars:before {
+    -webkit-text-stroke: 1px #848484;
+}
+.full-stars:before {
+    -webkit-text-stroke: 1px orange;
+}
+/* Webkit-text-stroke is not supported on firefox or IE */
+
+/* Firefox */
+@-moz-document url-prefix() {
+    .full-stars {
+        color: #ECBE24;
+    }
 }
 </style>
 </head>
@@ -339,110 +383,207 @@ fieldset {
 					<hr>
 				</div>
 				<div class="row" style="margin: 0px -180px">
+					
 					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-								<a href="<c:url value='/MarketShilin' />"> <img class="imgs"
-								src="<c:url value='/data/images/Night_Market/Shilin_Night.jpg'/>"></a>
-							<div class="card-body ">
-								<h5 class="card-title font">
-									士林夜市<i class="fas fa-star pos"> 4.8/5 (13785)</i>
-								</h5>
+						<div data-aos="zoom-out">
+							<div class="card shadow  bg-white rounded">
+									<a href="<c:url value='/MarketShilin' />"> <img class="imgs"
+									src="<c:url value='/data/images/Night_Market/Shilin_Night.jpg'/>"></a>
+								<div class="card-body ">
+								<div class="card-title font d-flex justify-content-between">
+									士林夜市
+									<!-----------------------------------評分數開始---------------------------------- -->
+									<div>
+										<div class="ratings">
+											<div class="empty-stars"></div>
+	
+											<div class="full-stars"
+												style="width: ${night4.market_score * 20}%; "></div>
+										</div>
+									</div>
+									<!-----------------------------------評分數結束---------------------------------- -->
+								</div>
 								<!-- 	<i class="fas fa-star pos"></i>  我是Font Awesome星星圖-->
-
-								<!-- 		<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
-								<!-- 	<a href="#" class="btn btn-primary  ">前進夜市</a> -->
+	
+									<!-- 		<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
+									<!-- 	<a href="#" class="btn btn-primary  ">前進夜市</a> -->
+								</div>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-						<a href="<c:url value='/MarketSouth' />"> <img class="imgs"
-								src="<c:url value='/data/images/Night_Market/South_Airport.jpg'/>"></a>
-							<div class="card-body">
-								<h5 class="card-title font">
-									南機場夜市<i class="fas fa-star pos"> 4.8/5 (1085)</i>
-								</h5>
-								<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
-								<!-- 								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a> -->
+						<div data-aos="zoom-out">
+							<div class="card shadow  bg-white rounded">
+							<a href="<c:url value='/MarketSouth' />"> <img class="imgs"
+									src="<c:url value='/data/images/Night_Market/South_Airport.jpg'/>"></a>
+								<div class="card-body">
+									<div class="card-title font d-flex justify-content-between">
+									南機場夜市
+									<!-----------------------------------評分數開始---------------------------------- -->
+									<div>
+										<div class="ratings">
+											<div class="empty-stars"></div>
+	
+											<div class="full-stars"
+												style="width: ${night8.market_score * 20}%; "></div>
+										</div>
+									</div>
+									<!-----------------------------------評分數結束---------------------------------- -->
+								</div>
+									<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
+									<!-- 								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a> -->
+								</div>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-						<a href="<c:url value='/MarketRaohe' />"> <img class="imgs"
-								src="<c:url value='/data/images/Night_Market/Raohe.jpg'/>"></a>
-							<div class="card-body">
-								<h5 class="card-title font">
-									饒河夜市<i class="fas fa-star pos"> 4.8/5 (11657)</i>
-								</h5>
-								<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
-								<!-- 								<a href="#" class="btn btn-primary justify-content-center">前進夜市</a> -->
+						<div data-aos="zoom-out">
+							<div class="card shadow  bg-white rounded">
+							<a href="<c:url value='/MarketRaohe' />"> <img class="imgs"
+									src="<c:url value='/data/images/Night_Market/Raohe.jpg'/>"></a>
+								<div class="card-body">
+									<div class="card-title font d-flex justify-content-between">
+										饒河夜市
+										<!-----------------------------------評分數開始---------------------------------- -->
+										<div>
+											<div class="ratings">
+												<div class="empty-stars"></div>
+	
+												<div class="full-stars"
+													style="width: ${night4.market_score * 20}%; "></div>
+											</div>
+										</div>
+										<!-----------------------------------評分數結束---------------------------------- -->
+									</div>
+									<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
+									<!-- 								<a href="#" class="btn btn-primary justify-content-center">前進夜市</a> -->
+								</div>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-								<a href="<c:url value='/MarketNingxia' />"> <img class="imgs"
-								src="<c:url value='/data/images/Night_Market/Ningxia.jpg'/>"></a>
-							<div class="card-body">
-								<h5 class="card-title font">
-									寧夏夜市<i class="fas fa-star pos"> 4.8/5 (6665)</i>
-								</h5>
-								<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
-								<!-- 								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a> -->
+						<div data-aos="zoom-out">
+							<div class="card shadow  bg-white rounded">
+									<a href="<c:url value='/MarketNingxia' />"> <img class="imgs"
+									src="<c:url value='/data/images/Night_Market/Ningxia.jpg'/>"></a>
+								<div class="card-body">
+									<div class="card-title font d-flex justify-content-between">
+										寧夏夜市
+										<!-----------------------------------評分數開始---------------------------------- -->
+										<div>
+											<div class="ratings">
+												<div class="empty-stars"></div>
+	
+												<div class="full-stars"
+													style="width: ${night3.market_score * 20}%; "></div>
+											</div>
+										</div>
+										<!-----------------------------------評分數結束---------------------------------- -->
+									</div>
+									<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
+									<!-- 								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a> -->
+								</div>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-						<a href="<c:url value='/MarketGongguan' />"> <img class="imgs"
-								src="<c:url value='/data/images/Night_Market/kou.jpg'/>"></a>
-							<div class="card-body">
-								<h5 class="card-title font">
-									公館夜市<i class="fas fa-star pos"> 4.8/5 (5050)</i>
-								</h5>
-								<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
-								<!-- 								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a> -->
+						<div data-aos="zoom-out">
+							<div class="card shadow  bg-white rounded">
+							<a href="<c:url value='/MarketGongguan' />"> <img class="imgs"
+									src="<c:url value='/data/images/Night_Market/kou.jpg'/>"></a>
+								<div class="card-body">
+									<div class="card-title font d-flex justify-content-between">
+										公館夜市
+										<!-----------------------------------評分數開始---------------------------------- -->
+										<div>
+											<div class="ratings">
+												<div class="empty-stars"></div>
+	
+												<div class="full-stars"
+													style="width: ${night7.market_score * 20}%; "></div>
+											</div>
+										</div>
+										<!-----------------------------------評分數結束---------------------------------- -->
+									</div>
+									<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
+									<!-- 								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a> -->
+								</div>
+							</div>
+						</div>	
+					</div>
+					<div class="col-sm-6 col-lg-3 mt-4">
+						<div data-aos="zoom-out">
+							<div class="card shadow  bg-white rounded">
+							<a href="<c:url value='/MarketHuaxi' />"> <img class="imgs"
+									src="<c:url value='/data/images/Night_Market/Huaxi Street.jpg'/>"></a>
+							
+								<div class="card-body">
+									<div class="card-title font d-flex justify-content-between">
+										華西街夜市
+										<!-----------------------------------評分數開始---------------------------------- -->
+										<div>
+											<div class="ratings">
+												<div class="empty-stars"></div>
+	
+												<div class="full-stars"
+													style="width: ${night2.market_score * 20}%; "></div>
+											</div>
+										</div>
+										<!-----------------------------------評分數結束---------------------------------- -->
+									</div>
+									<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
+									<!-- 								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a> -->
+								</div>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-						<a href="<c:url value='/MarketHuaxi' />"> <img class="imgs"
-								src="<c:url value='/data/images/Night_Market/Huaxi Street.jpg'/>"></a>
-						
-							<div class="card-body">
-								<h5 class="card-title font">
-									華西街夜市<i class="fas fa-star pos"> 4.8/5 (3505)</i>
-								</h5>
-								<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
-								<!-- 								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a> -->
+						<div data-aos="zoom-out">
+							<div class="card shadow  bg-white rounded">
+							<a href="<c:url value='/MarketLinjiang' />"> <img class="imgs"
+									src="<c:url value='/data/images/Night_Market/Xichang.jpg'/>"></a>
+								<div class="card-body">
+									<div class="card-title font d-flex justify-content-between">
+										臨江街夜市
+										<!-----------------------------------評分數開始---------------------------------- -->
+										<div>
+											<div class="ratings">
+												<div class="empty-stars"></div>
+	
+												<div class="full-stars"
+													style="width: ${night5.market_score * 20}%; "></div>
+											</div>
+										</div>
+										<!-----------------------------------評分數結束---------------------------------- -->
+									</div>
+									<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
+									<!-- 								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a> -->
+								</div>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-						<a href="<c:url value='/MarketLinjiang' />"> <img class="imgs"
-								src="<c:url value='/data/images/Night_Market/Xichang.jpg'/>"></a>
-							<div class="card-body">
-								<h5 class="card-title font">
-									臨江夜市<i class="fas fa-star pos"> 4.8/5 (1774)</i>
-								</h5>
-								<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
-								<!-- 								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a> -->
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-						<a href="<c:url value='/MarketYanping' />"> <img class="imgs"
-								src="<c:url value='/data/images/Night_Market/Yanzo.jpg'/>"></a>
-							<div class="card-body">
-								<h5 class="card-title font">
-									延三夜市<i class="fas fa-star pos"> 4.8/5 (1548)</i>
-								</h5>
-								<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
-								<!-- 								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a> -->
+						<div data-aos="zoom-out">
+							<div class="card shadow  bg-white rounded">
+							<a href="<c:url value='/MarketYanping' />"> <img class="imgs"
+									src="<c:url value='/data/images/Night_Market/Yanzo.jpg'/>"></a>
+								<div class="card-body">
+									<div class="card-title font d-flex justify-content-between">
+										延三夜市
+										<!-----------------------------------評分數開始---------------------------------- -->
+										<div>
+											<div class="ratings">
+												<div class="empty-stars"></div>
+	
+												<div class="full-stars"
+													style="width: ${night6.market_score * 20}%; "></div>
+											</div>
+										</div>
+										<!-----------------------------------評分數結束---------------------------------- -->
+									</div>
+									<!-- 								<p class="card-text">營業時間: 周一至周日 晚上6點至凌晨12點</p> -->
+									<!-- 								<a href="#" class="btn btn-primary ml-5 mt-2">前進夜市</a> -->
+								</div>
 							</div>
 						</div>
 					</div>
@@ -454,121 +595,120 @@ fieldset {
 		<!-- Voucher  =================================== -->
 		<!-- <div class="Voucher-bg-first" style="background: url(./Night_Market/bg-4.jpg);">
           <div class="Voucher-bg-second"> -->
-		<div class="jobs ">
-			<div class="container">
-				<div class="focus text-black text-center text-shadow ">
-					<h1>優惠劵推薦</h1>
-					<hr>
-				</div>
-				<div class="row" style="margin: 0px -180px">
-					<div class="col-sm-6 col-lg-3 mt-4 ">
-						<div class="card">
-						<a href="#"> <img class="imgs"
-								src="<c:url value='/data/images/Taiwan_streetFood/Chicken Fillet.jpg'/>"></a>
-							<div class="card-body">
-								<h5 class="card-title font">
-									雞排<i class="fas fa-star pos"> 4.8/5 (1k+)</i>
-								</h5>
-								<p class="card-text"></p>
-								<!-- 								<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-3 mt-4 ">
-						<div class="card">
-							<a href="#"> <img class="imgs"
-								src="<c:url value='/data/images/Taiwan_streetFood/Fried chicken.jpg'/>"></a>
-							<div class="card-body">
-								<h5 class="card-title font">
-									鹹酥雞<i class="fas fa-star pos"> 4.8/5 (588)</i>
-								</h5>
-								<p class="card-text"></p>
-								<!-- 								<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-						<a href="#"> <img class="imgs"
-								src="<c:url value='/data/images/Taiwan_streetFood/Oyster vermicelli.jpg'/>"></a>
-							<div class="card-body">
-								<h5 class="card-title font">
-									大腸蚵仔麵線<i class="fas fa-star pos"> 4.8/5 (167)</i>
-								</h5>
-								<p class="card-text"></p>
-								<!-- 								<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-						<a href="#"> <img class="imgs"
-								src="<c:url value='/data/images/Taiwan_streetFood/Pork.jpg'/>"></a>
-							<div class="card-body">
-								<h5 class="card-title font">
-									藥燉排骨<i class="fas fa-star pos"> 4.8/5 (88)</i>
-								</h5>
-								<p class="card-text"></p>
-								<!-- 								<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-						<a href="#"> <img class="imgs"
-								src="<c:url value='/data/images/Taiwan_streetFood/soybean pudding.jpg'/>"></a>
-							<div class="card-body">
-								<h5 class="card-title font">
-									粉圓豆花<i class="fas fa-star pos"> 4.8/5 (136)</i>
-								</h5>
-								<p class="card-text"></p>
-								<!-- 								<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-							<a href="#"> <img class="imgs"
-								src="<c:url value='/data/images/Taiwan_streetFood/Sweet potato balls.jpg'/>"></a>
-							<div class="card-body">
-								<h5 class="card-title font">
-									地瓜球<i class="fas fa-star pos"> 4.8/5 (286)</i>
-								</h5>
-								<p class="card-text"></p>
-								<!-- 								<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-							<a href="#"> <img class="imgs"
-								src="<c:url value='/data/images/Taiwan_streetFood/Stinky Tofu.jpg'/>"></a>
-							<div class="card-body">
-								<h5 class="card-title font">
-									港式臭豆腐<i class="fas fa-star pos"> 4.8/5 (102)</i>
-								</h5>
-								<p class="card-text"></p>
-								<!-- 								<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-3 mt-4">
-						<div class="card">
-						<a href="#"> <img class="imgs"
-								src="<c:url value='/data/images/Taiwan_streetFood/steak.jpg'/>"></a>
+<!-- 		<div class="jobs "> -->
+<!-- 			<div class="container"> -->
+<!-- 				<div class="focus text-black text-center text-shadow "> -->
+<!-- 					<h1>優惠劵推薦</h1> -->
+<!-- 					<hr> -->
+<!-- 				</div> -->
+<!-- 				<div class="row" style="margin: 0px -180px"> -->
+<!-- 					<div class="col-sm-6 col-lg-3 mt-4 "> -->
+<!-- 						<div class="card"> -->
+<!-- 						<a href="#"> <img class="imgs" -->
+<%-- 								src="<c:url value='/data/images/Taiwan_streetFood/Chicken Fillet.jpg'/>"></a> --%>
+<!-- 							<div class="card-body"> -->
+<!-- 								<h5 class="card-title font"> -->
+<!-- 									雞排 -->
+<!-- 								</h5> -->
+<!-- 								<p class="card-text"></p> -->
+<!-- 																<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-sm-6 col-lg-3 mt-4 "> -->
+<!-- 						<div class="card"> -->
+<!-- 							<a href="#"> <img class="imgs" -->
+<%-- 								src="<c:url value='/data/images/Taiwan_streetFood/Fried chicken.jpg'/>"></a> --%>
+<!-- 							<div class="card-body"> -->
+<!-- 								<h5 class="card-title font"> -->
+<!-- 									鹹酥雞 -->
+<!-- 								<p class="card-text"></p> -->
+<!-- 																<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-sm-6 col-lg-3 mt-4"> -->
+<!-- 						<div class="card"> -->
+<!-- 						<a href="#"> <img class="imgs" -->
+<%-- 								src="<c:url value='/data/images/Taiwan_streetFood/Oyster vermicelli.jpg'/>"></a> --%>
+<!-- 							<div class="card-body"> -->
+<!-- 								<h5 class="card-title font"> -->
+<!-- 									大腸蚵仔麵線 -->
+<!-- 								</h5> -->
+<!-- 								<p class="card-text"></p> -->
+<!-- 																<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-sm-6 col-lg-3 mt-4"> -->
+<!-- 						<div class="card"> -->
+<!-- 						<a href="#"> <img class="imgs" -->
+<%-- 								src="<c:url value='/data/images/Taiwan_streetFood/Pork.jpg'/>"></a> --%>
+<!-- 							<div class="card-body"> -->
+<!-- 								<h5 class="card-title font"> -->
+<!-- 									藥燉排骨 -->
+<!-- 								</h5> -->
+<!-- 								<p class="card-text"></p> -->
+<!-- 																<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-sm-6 col-lg-3 mt-4"> -->
+<!-- 						<div class="card"> -->
+<!-- 						<a href="#"> <img class="imgs" -->
+<%-- 								src="<c:url value='/data/images/Taiwan_streetFood/soybean pudding.jpg'/>"></a> --%>
+<!-- 							<div class="card-body"> -->
+<!-- 								<h5 class="card-title font"> -->
+<!-- 									粉圓豆花 -->
+<!-- 								</h5> -->
+<!-- 								<p class="card-text"></p> -->
+<!-- 																<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-sm-6 col-lg-3 mt-4"> -->
+<!-- 						<div class="card"> -->
+<!-- 							<a href="#"> <img class="imgs" -->
+<%-- 								src="<c:url value='/data/images/Taiwan_streetFood/Sweet potato balls.jpg'/>"></a> --%>
+<!-- 							<div class="card-body"> -->
+<!-- 								<h5 class="card-title font"> -->
+<!-- 									地瓜球 -->
+<!-- 								</h5> -->
+<!-- 								<p class="card-text"></p> -->
+<!-- 																<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-sm-6 col-lg-3 mt-4"> -->
+<!-- 						<div class="card"> -->
+<!-- 							<a href="#"> <img class="imgs" -->
+<%-- 								src="<c:url value='/data/images/Taiwan_streetFood/Stinky Tofu.jpg'/>"></a> --%>
+<!-- 							<div class="card-body"> -->
+<!-- 								<h5 class="card-title font"> -->
+<!-- 									港式臭豆腐 -->
+<!-- 								</h5> -->
+<!-- 								<p class="card-text"></p> -->
+<!-- 																<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-sm-6 col-lg-3 mt-4"> -->
+<!-- 						<div class="card"> -->
+<!-- 						<a href="#"> <img class="imgs" -->
+<%-- 								src="<c:url value='/data/images/Taiwan_streetFood/steak.jpg'/>"></a> --%>
 						
-							<div class="card-body">
-								<h5 class="card-title font ">
-									招牌沙朗<i class="fas fa-star pos"> 4.8/5 (85)</i>
-								</h5>
-								<p class="card-text"></p>
-								<!-- 								<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+<!-- 							<div class="card-body"> -->
+<!-- 								<h5 class="card-title font "> -->
+<!-- 									招牌沙朗 -->
+<!-- 								</h5> -->
+<!-- 								<p class="card-text"></p> -->
+<!-- 																<a href="#" class="btn btn-primary ml-5">今晚想來點</a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 
 		<!-- Copyright ============================== -->
 		<div class="copyright bg-dark text-white text-center p-3">
@@ -793,6 +933,9 @@ fieldset {
 			
 
 		});
+	</script>
+	<script>
+	 AOS.init();
 	</script>
 </body>
 
