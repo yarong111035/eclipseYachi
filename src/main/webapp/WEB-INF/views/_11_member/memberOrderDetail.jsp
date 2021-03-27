@@ -120,7 +120,7 @@
                   <!-- 訂單詳情 -->
                   <div> 
                 		<div id="backToList">
-                  			<a href="<c:url value='/_23_orderProcess/orderList'/>">返回訂單列表</a>
+                  			<a href="<c:url value='/_23_orderProcess/orderList'/>">返回訂單查詢</a>
                   		</div>
                   		<h3>訂單詳情 </h3> 
                   		

@@ -180,12 +180,22 @@
 						<div style="margin-right: 15px;">
 							<h2 style="color: #f26419;">${shop.shop_name}</h2>
 						</div>
+						<c:if test="${!empty favoriteId}">
+							<div>
+							<a
+								href="<c:url value='/deleteFavoriteShop2/${shop.shop_id}' />"
+								style="font-size:20px;border:1px solid #777;padding:6px;border-radius:4px;background-color:#aaa;color:white;box-shadow: 2px 2px 3px 1px #999;"><i
+								class="fas fa-heart "></i> 已收藏</a>
+						</div>
+						</c:if>
+						<c:if test="${empty favoriteId}">
 						<div>
 							<a
 								href="<c:url value='/_50_shop/_54_showShops/addFavoriteShop/${shop.shop_id}' />"
-								onclick="return window.alert('收藏成功!');"><i
-								class="fas fa-heart fa-2x"></i></a>
+								style="font-size:20px;border:1px solid #930000;padding:6px;border-radius:4px;background-color:#ff0000;color:white;box-shadow: 2px 2px 3px 1px #999;"><i
+								class="fas fa-heart"></i> 收藏</a>
 						</div>
+						</c:if>
 					</div>
 
 					<!-----------------------------------評分數開始---------------------------------- -->

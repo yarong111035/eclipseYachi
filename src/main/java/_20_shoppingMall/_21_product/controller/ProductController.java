@@ -50,6 +50,7 @@ import _20_shoppingMall._21_product.exception.ProductNotFoundException;
 import _20_shoppingMall._21_product.service.ProductService;
 import _20_shoppingMall._21_product.service.ProductTypeService;
 import _20_shoppingMall._22_shoppingCart.service.CartBeanService;
+import _20_shoppingMall._22_shoppingCart.vo.MemberCartBeanVo;
 import _20_shoppingMall._23_orderProcess.service.OrderItemService;
  
 
@@ -153,6 +154,13 @@ public class ProductController {
 		System.out.println(productMap.values());
 		List<ProductBean> produtctList = new LinkedList<>(productMap.values());
 		model.addAttribute("products_DPP", produtctList); //將Map 型態轉成 list 放到 Model
+		
+		//重新覆蓋memberVo的側邊購物車，取得最新購物車內容
+		if(memberBean != null) {
+			List<MemberCartBeanVo> memberCartVoList = cartBeanService.getMemberCartVo(memberBean.getMemberId());
+			model.addAttribute("memberCartVoList", memberCartVoList);
+		}
+		
 		return "_12_shoppingmall/2_shopping";	
 	}
 	

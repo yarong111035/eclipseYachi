@@ -63,6 +63,12 @@ public class FavoriteShopServiceImpl implements Serializable, FavoriteShopServic
 		
 		favoriteShopDao.saveFavoriteShop2(memberId, shopBean_id);
 	}
+	
+	@Override
+	public List<Integer> getShopIds(int memberId) {
+		
+		return favoriteShopDao.getShopIds(memberId);
+	}
 
 
 	
