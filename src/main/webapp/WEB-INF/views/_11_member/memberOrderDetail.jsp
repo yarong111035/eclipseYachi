@@ -173,7 +173,23 @@
                     <div class="btCancel">
                         
                         <a href="#"><button><i class="fas fa-cart-arrow-down"></i>再買一次</button></a>
-                        <a href="<c:url value='/cancelOrder/asdf9${orderBean.order_id}8'/>"><button><i class="fas fa-window-close"></i>取消訂單</button></a>
+                        
+                        <c:choose>
+                        	<c:when test="${orderBean.orderStatusBean.status_id == 1}">
+                        		<a id="cancelBtn" href="<c:url value='/cancelOrder/asdf9${orderBean.order_id}8'/>"><button><i class="fas fa-window-close"></i>取消訂單</button></a>
+                        	</c:when>
+                        	<c:otherwise>
+                        			<!--只要不是未付款狀態 -->
+                        		 <a onclick="alert('訂單已付款!  請聯繫客服處理 謝謝！')"><button><i class="fas fa-window-close"></i>取消訂單</button></a>
+                        	</c:otherwise>
+                        </c:choose>
+                        
+                        
+                        
+                        
+
+                       
+                        
                         
                     </div>
                 
@@ -187,8 +203,17 @@
     </div>
     
     <script>
+    
+    let cancelBtn = document.getElementById('cancelBtn');
+    cancelBtn.addEventListener('click',function(e){
+		alert();
+		var yes = confirm("確定送出此訂單?");
+		if(yes == false){					
+			e.preventDefault(); //預防表單預設事件(按取消不要送出去)
+			return;  //須加此行，否則表單還是會送出去，出現空指標例外
+		}
     $(function () {
-
+    	
          // 每三秒執行一次
          setInterval(function(){
             $('#news li:first-child').slideUp(function(){
