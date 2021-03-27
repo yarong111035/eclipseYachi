@@ -19,7 +19,7 @@
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/memberUtil/css/member_order.css'/>">
 
-<title>member order</title>
+<title>會員訂單</title>
 </head>
 <body>
 
@@ -28,14 +28,14 @@
 	<!-- 引入共同的頁首 結束 -->
 
 	<!-- 跑馬燈 -->
-	<div id="Marquee">
-		<h3>最新優惠消息:</h3>
-		<ul id="news">
-			<li>東西很貴不要買 !</li>
-			<li>還沒做完</li>
-			<li>目前網路商店全館免運</li>
-		</ul>
-	</div>
+<!-- 	<div id="Marquee"> -->
+<!-- 		<h3>最新優惠消息:</h3> -->
+<!-- 		<ul id="news"> -->
+<!-- 			<li>東西很貴不要買 !</li> -->
+<!-- 			<li>還沒做完</li> -->
+<!-- 			<li>目前網路商店全館免運</li> -->
+<!-- 		</ul> -->
+<!-- 	</div> -->
 	<!-- 跑馬燈結束 -->
 
 
@@ -98,7 +98,7 @@
 
 
 
-		<main>
+		<main class="shadow p-3 mb-5 bg-white rounded">
 
 			<form action="" method="">
 
@@ -265,7 +265,7 @@
 											<td class="orderDetail"><a
 												href="<c:url value='/_23_orderProcess/orderDetail?orderNo=${order.order_id}'/>">
 													${order.orderNumber} </a></td>
-											<td><a href="google.com">${order.payTypeBean.pay_type_name}</a>
+											<td><a href="javascript:;">${order.payTypeBean.pay_type_name}</a>
 											</td>
 											<td><c:choose>
 													<c:when test="${order.orderStatusBean.status_id == 1}">

@@ -56,9 +56,11 @@ public class M_FavoriteShopController {
 			return "redirect:/LoginAndRegister";// 測試是否可以成功導向登入畫面
 		} else {
 			// ==========================得出會員的MemberId 傳入至dao取對應的所有值出來========
-			List<Map<String,Object>> fslb = m_FavoriteShopService.getMyFavoriteShopByMemberId(mb.getMemberId());
+			Set<ShopBean> fslb = m_FavoriteShopService.getMyFavoriteShopByMemberId2(mb.getMemberId());
 			model.addAttribute("fslbList", fslb);
-
+			for (ShopBean shopBean : fslb) {
+				System.out.println(shopBean.getShop_name());
+			}
 			return "_11_member/queryFavoriteShop";
 		}
 	}

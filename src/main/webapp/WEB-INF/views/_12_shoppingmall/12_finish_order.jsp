@@ -61,7 +61,7 @@
 	
 	
 	
-	<div class="successOrder">
+	<div class="successOrder shadow mb-5 bg-white rounded">
 
         <!-- 標頭 -->
         <div class="successTitle">

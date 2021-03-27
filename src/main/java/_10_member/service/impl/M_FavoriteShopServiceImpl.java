@@ -2,6 +2,7 @@ package _10_member.service.impl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,10 @@ public class M_FavoriteShopServiceImpl implements M_FavoriteShopService {
 	@Override
 	public void deleteSingleFavoriteShopByMemberId(Integer memberId, Integer shop_id ) {
 		m_FavoriteShopDao.deleteSingleFavoriteShopByMemberId(memberId, shop_id);
+	}
+	
+	@Override
+	public Set<ShopBean> getMyFavoriteShopByMemberId2(Integer memberId){
+		return m_FavoriteShopDao.getMyFavoriteShopByMemberId2(memberId);
 	}
 }

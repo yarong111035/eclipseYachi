@@ -17,9 +17,11 @@
 	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/background.css'/>">
-<!--     <link rel="stylesheet" href="slick/slick.css"/> -->
-<!-- 		Add the new slick-theme.css if you want the default styling -->
-<!--     <link rel="stylesheet" href="slick/slick-theme.css"/> -->
+<!-----------------------------------slick 套件引用--------------------------------- -->
+    <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/slick.css'/>"/>
+<!-- 		sAdd the new slick-theme.css if you want the default styling -->
+    <link rel="stylesheet" href="<c:url value='_00_util/allUtil/css/slick-theme.css'/>"/>
+<!-----------------------------------slick 套件引用--------------------------------- -->
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/nightShopUtil/css/1_shop1.css'/>" />
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -33,12 +35,10 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
 	integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
 	crossorigin="anonymous"></script>
-<!--     <script type="text/javascript" src="js/slick_jquery1.11.0.min.js"></script> -->
-<!--     <script type="text/javascript" src="js/slick_jq_migrate1.2.1.min.js"></script> -->
-<!--     <script type="text/javascript" src="slick/slick.js"></script> -->
+   
 <style>
 .box {
-	border: 1px solid #cccccc;
+/* 	border: 1px solid #cccccc; */
 	width: 720px;
 	height: 500px;
 	background-color: #FFFFFF;
@@ -46,13 +46,57 @@
 	overflow: auto;
 }
 div.card{
-	box-shadow: 1px 1px 3px 1px #ccc;
+/* 	box-shadow: 1px 1px 3px 1px #ccc; */
+/* 	width:220px; */
+}
+.card-body{
+	padding: 5px;
+    text-align: center;
 }
 .shopImage{
-	height: 165px;
+	height: 130px;
+	width:100%;
 }
 .shopArea{
     margin-left: 20px;
+}
+
+/* 顯示星星評價 */
+/* 評價星星 */
+.ratings {
+    position: relative;
+    bottom: 20%;
+/*     left: 4%; */
+    vertical-align: middle;
+    display: inline-block;
+    color: #b1b1b1;
+    overflow: hidden;
+}
+.full-stars {
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #fde16d;
+}
+.empty-stars:before, .full-stars:before {
+    content:"\2605\2605\2605\2605\2605";
+    font-size: 15pt;
+}
+.empty-stars:before {
+    -webkit-text-stroke: 1px #848484;
+}
+.full-stars:before {
+    -webkit-text-stroke: 1px orange;
+}
+/* Webkit-text-stroke is not supported on firefox or IE */
+
+/* Firefox */
+@-moz-document url-prefix() {
+    .full-stars {
+        color: #ECBE24;
+    }
 }
 </style>
 
@@ -102,11 +146,15 @@ div.card{
 				<!-- 商家簡介 -->
 				<div id="shopInfo">
 					<h1 style="color: #f26419;">寧夏夜市</h1>
+					<!-----------------------------------評分數開始---------------------------------- -->
 					<div>
-						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-							class="fas fa-star"></i>
+						<div class="ratings">
+							<div class="empty-stars"></div>
+
+							<div class="full-stars" style="width: ${nightMarketBean.market_score * 20}%; "></div>
+						</div>
 					</div>
+					<!-----------------------------------評分數結束---------------------------------- -->
 					<p style="color: #78886f;margin-top:10px;">近期以「千歲宴」打響國際名聲， 且獲得眾多美食雜誌和網路爭相報導的寧夏夜市，包含民生西路、南京西路與重慶北路中間的路段，以臺灣傳統小吃為主，其中以大同區圓環附近令人懷念的古早味，最讓老臺北人津津樂道。夜市首先將人車分道，方便民眾吃飯與購物，貼心的服務，也是吸引大家來這裡消費的原因。</p>
 					<p style="color: #78886f;">寧夏夜市的小吃充滿濃濃的臺灣味，香噴噴的滷肉飯和雞肉飯、清甜鮮美的蚵仔煎和大腸蚵仔麵線、現炒入味的沙茶牛肉、滋補養顏的豬肝湯、來自府城的臺南碗粿、沙拉魚卵、吳郭魚湯等等，都讓人忍不住食指大動。夜市另一邊的攤販，以新奇好玩的雜貨和玩具為主，販售的商品頗具流行感，價格不貴，在飽嚐美食之餘，不妨也來走走逛逛。</p>
 				</div>
@@ -119,26 +167,26 @@ div.card{
 						</h2>
 					</div>
 				
-				<div class="box">
+<!-- 				<div class="box"> -->
 					
 				
 
-					<div class="row shopArea">
+					<div class=" shopArea">
 
 						<c:forEach var="shop" varStatus="stat" items="${shops}">
-						<div class="card" style="width: 18rem; margin: 20px">
+						<div class="card shadow p-3 mb-5 bg-white rounded" style="width: 250px; margin: 20px">
 						<a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${shop.shop_id}' />">
 							<img src="<c:url value='/_50_shop/_53_shopRegister/getPicture/${shop.shop_id}'/>" class="card-img-top shopImage"
 								alt="..."></a>
-							<div class="card-body">
+							<div class="card-body shadow-sm bg-white rounded">
 								<p class="card-text">${shop.shop_name}</p>
 							</div>
 						</div>
 					
-					</c:forEach>
+						</c:forEach>
 						
 
-					</div>
+<!-- 					</div> -->
 
 				</div>
 
@@ -360,8 +408,27 @@ div.card{
 
 	</div>
 	
+	<!--------------------------------slick 套件------------------------------- -->
+	 <script type="text/javascript" src="<c:url value='/_00_util/allUtil/javascript/slick_jquery1.11.0.min.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/_00_util/allUtil/javascript/slick_jq_migrate1.2.1.min.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/_00_util/allUtil/javascript/slick.min.js'/>"></script>
+	<!--------------------------------slick 套件------------------------------- -->
+	
 	<script>
 	function doFirst(){
+		
+		//slick
+		  $('.shopArea').slick({
+			  slidesToShow: 3,
+			  slidesToScroll: 1,
+			  autoplay: true,
+			  autoplaySpeed: 2000,
+		});
+		
+		
+		
+		
+		
 	    feedback = document.getElementById('feedback');
 	    wicon = document.getElementById('wicon');
 	    xhr = new XMLHttpRequest();

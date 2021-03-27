@@ -452,7 +452,7 @@
 		    
 // 			});
 			
-// 		})
+		})
 
 		function cartListHeight() {
 			let box_height = $(window).height();

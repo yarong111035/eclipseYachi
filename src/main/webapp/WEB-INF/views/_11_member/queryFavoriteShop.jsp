@@ -43,67 +43,30 @@
 
 <link rel="stylesheet"
 	href="<c:url value='_00_util/memberUtil/css/member_coupon.css'/>">
-
-<script>
-	// function confirmDelete(n) {
-	// 	if (confirm("確定刪除此項商品 ? ")) {
-	// 		document.forms[0].action = "<c:url value='deleteFavoriteShop/n' />";alert('action');
-	// 		document.forms[0].method = "DELETE";alert('method');
-	// 		document.forms[0].submit();alert('submit');
-	// 	} else {
-
-	// 	}
-	// }
-
-	//  function confirmDelete(id){
-	// 	  var result = confirm("確定刪除此筆記錄(帳號:" + id.trim() + ")?");
-	// 	  if (result) {
-	// 		  document.forms[0].putOrDelete.name = "_method";
-	// 		  document.forms[0].putOrDelete.value = "DELETE";
-	// 	      return true;
-	// 	  }
-	// 	  return false;
-	// }
-
-	$(function() {
-
-		$('#tabs-nav a')
-				.click(
-						function() {
-							// 當點擊tabs-nav的元素a時  替當前(this)的a超連結增加.change類  
-							// 其餘兄弟類 siblings() remove .change類
-							$(this).addClass('change').siblings().removeClass(
-									'change');
-
-							// 點擊的同時 拿到當前 a 超連結的索引號
-							let index = $(this).index(); //  index有6個
-
-							// 讓下面對應的索引號  .tabs-content 的子元素.tabs-panel[index] 渲染出來  
-							// 其他 子元素 兄弟類 siblings() 隱藏起來   
-							// 用addClass 增加動畫
-							$('.tabs-content .tabs-panel').eq(index).addClass(
-									'fadeIn animated-tabs').show().siblings()
-									.hide();
-						});
-		// 跑馬燈每三秒執行一次
-		setInterval(function() {
-			$('#news li:first-child').slideUp(function() {
-				$(this).appendTo($('#news')).slideDown();
-			});
-
-		}, 3000);
-
-		// 點擊移除商品
-		$('.remove-product').click(function() {
-			$(this).closest('.card').remove();
-
-		});
-	});
-</script>
+	
+<style>
+remove-product i{
+	color: #555;
+}
+.cancelBtn{
+	position: absolute;
+    font-size: 1rem;
+    transition:.1s;
+    right: 6px;
+    top: 4px;
+}
+.cancelBtn:hover{
+	font-size: 1.2rem;
+}
+.card{
+	height:220px;
+}
 
 
-
+</style>
 </head>
+
+
 <body>
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
 	<!-- Start:header -->
@@ -116,19 +79,19 @@
 <%-- 				<p>${subtitle}</p><h1>${title}</h1> --%>
 
 	<!-- 跑馬燈 -->
-	<div id="Marquee">
-		<h3>最新優惠消息:</h3>
-		<ul id="news">
-			<li>東西很貴不要買 !</li>
-			<li>還沒做完</li>
-			<li>目前網路商店全館免運</li>
-		</ul>
-	</div>
+<!-- 	<div id="Marquee"> -->
+<!-- 		<h3>最新優惠消息:</h3> -->
+<!-- 		<ul id="news"> -->
+<!-- 			<li>東西很貴不要買 !</li> -->
+<!-- 			<li>還沒做完</li> -->
+<!-- 			<li>目前網路商店全館免運</li> -->
+<!-- 		</ul> -->
+<!-- 	</div> -->
 	<!-- 跑馬燈結束 -->
 
 	<!-- 左側的會員導覽列 -->
 	<div class="main-member">
-		<aside>
+		<aside >
             <div class="function">
                 <h3>會員中心</h3>
 				<div class="item">
@@ -184,7 +147,7 @@
 
 		<!-- 左側的會員導覽列結束 -->
 		<!-- 右側的我的優惠券 -->
-		<main>
+		<main  class="shadow p-3 mb-5 bg-white rounded">
 
 
 			<div id="hcg_tabs">
@@ -197,29 +160,29 @@
 				<!-- 先讓第一個內容顯示出來 display:block -->
 				<!-- 						<div class="tabs-panel" style="display: block"> -->
 				<!-- ========================================================================================================= -->
-				<div class="row row-cols-1 row-cols-md-3" style="padding: 20px">
+				<div class="row pt-5 row-cols-1 row-cols-md-3" style="padding: 20px">
 					<c:forEach var='fslb' items='${fslbList}'>
-						<div class="col mb-4">
-							<div class="card h-150">
+						<div class="col mb-4" style="position: relative;">
+							<div class="card shadow p-4 mb-5 bg-white rounded " >
 								<div class="coupon-shop">
 								
 <%-- 									<a href="<spring:url value='/MyfavoriteShop?memberId=${member_favoriteShops.memberbean}' />"> --%>
 											<a
 							href="<c:url value='/_50_shop/_54_showShops/ShowShops/${fslb.shop_id}' />">
-										<img src="<c:url value='/getShopPicture/${fslb.shop_id}' />"
+										<img style="height: 150px;" src="<c:url value='/getShopPicture/${fslb.shop_id}' />"
 											class="card-img-top" alt="..." />	</a>		
 																															
 <!-- 										</a>  -->
 <!-- 										<div class="card-body"> -->
-											<h5 class="card-title">
+											<h5 class="card-title" style="margin-top:5px;">
 												${fslb.shop_name} <i id="collect"></i>
 											</h5>
 <!-- 											<p class="card-text"> -->
 <%-- 												${fslb.shop_name} --%>
 <!-- 											</p> -->
-											<a	href="<spring:url value='/deleteFavoriteShop/${fslb.shop_id}' />">
+											<a	href="<spring:url value='/deleteFavoriteShop/${fslb.shop_id}' />">   
 												<button class="remove-product"
-													onclick="return window.confirm('確定移除嗎?')"	type="submit"><i class="fas fa-window-close" style="color:#ccc;"></i>
+													onclick="return window.confirm('確定移除嗎?')"	type="submit"><i class="fas fa-times cancelBtn"></i>
 												</button> 
 												</a> 
 										</div> <%-- 					開始時間${coupon.coupon_days} 期限${coupon.coupon_birth} --%>

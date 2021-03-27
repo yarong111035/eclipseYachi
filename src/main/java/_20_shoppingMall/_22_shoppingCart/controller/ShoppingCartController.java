@@ -115,7 +115,7 @@ public class ShoppingCartController {
 		Member member = (Member)model.getAttribute("LoginOK");
 		if(member == null) {
 			//@SessionAttributes需要清除時，使用SessionStatus.setComplete();來清除。!它只清除@SessionAttributes的session，不會清除HttpSession的數據
-			status.setComplete();
+//			status.setComplete();  //登入後還有這行會把session的購物車清掉
 			return "redirect:/LoginAndRegister";
 		}
 		
@@ -204,6 +204,9 @@ public class ShoppingCartController {
 //			System.out.println(456);
 //			return "redirect:/DisplayPageProducts";
 //		}
+		else if(cmd.equalsIgnoreCase("ADD1")){
+			return "redirect:/showCartContent";
+		}
 		
 		return "redirect:/DisplayPageProducts";
 	}
