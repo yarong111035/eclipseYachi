@@ -150,12 +150,13 @@ public class SearchController {
 	public String searchProductsByBetweenPrice(@RequestParam Double lowPrice,
 											   @RequestParam Double highPrice,Model model) {
 		
+		
 		List<ProductBean> list = searchService.getALLProductsBet(lowPrice, highPrice);
 		
 		model.addAttribute("keyword","價格 "+lowPrice+" ~ "+highPrice);
 		model.addAttribute("list",list);
 		
-		return "/_17_home/searchALL";
+		return "/_17_home/searchAllProduct";
 	}
 		
 	

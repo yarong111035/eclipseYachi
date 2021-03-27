@@ -96,7 +96,7 @@ public class SearchDao{
 
 		Session session = factory.getCurrentSession();
 
-		String hql = "from ProductBean p WHERE p.product_price BETWEEN :low AND :high";
+		String hql = "from ProductBean p WHERE p.product_price BETWEEN :low AND :high ORDER BY p.product_price ASC";
 		
 		List<ProductBean> list = session.createQuery(hql)
 										.setParameter("low", lowPrice)
