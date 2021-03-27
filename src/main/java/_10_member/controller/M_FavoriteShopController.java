@@ -126,4 +126,12 @@ public class M_FavoriteShopController {
 		m_FavoriteShopService.deleteSingleFavoriteShopByMemberId(mb.getMemberId(), shop_id);
 		return "redirect:/queryFavoriteShop";
 	}
+	
+	@GetMapping(value = "/deleteFavoriteShop2/{shop_id}")
+	public String deleteFavoriteShop2(@PathVariable Integer shop_id, Model model) {
+		Member mb = (Member) model.getAttribute("LoginOK");
+//		System.out.println("shop_id="+shop_id +"  "+ "mb.getMemberId() =" + mb.getMemberId());
+		m_FavoriteShopService.deleteSingleFavoriteShopByMemberId(mb.getMemberId(), shop_id);
+		return "redirect:/_50_shop/_54_showShops/ShowShops/" + shop_id;
+	}
 }

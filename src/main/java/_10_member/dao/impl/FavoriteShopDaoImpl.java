@@ -113,5 +113,21 @@ private static final long serialVersionUID = 1L;
 		}
 		
 	}
+	
+	@Override
+	public List<Integer> getShopIds(int memberId) {
+		Session session = factory.getCurrentSession();
+		Member member = session.get(Member.class, memberId);
+		List<FavoriteShopListBean> favoriteShopListBeans = getFavoriteShopByMemberId(memberId);
+		List<Integer> shopIds = new LinkedList<Integer>();
+		for (FavoriteShopListBean favoriteShopListBean : favoriteShopListBeans) {
+			Set<ShopBean> shopBeans = favoriteShopListBean.getShops();
+			for (ShopBean shop : shopBeans) {
+				shopIds.add(shop.getShop_id());
+			}
+
+		}
+		return shopIds;
+	}
 
 }

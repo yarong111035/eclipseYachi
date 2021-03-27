@@ -16,4 +16,6 @@ public interface FavoriteShopDao {
 	
 	public void saveFavoriteShop2(Integer memberId,Integer shopBean_id);
 	
+	List<Integer> getShopIds(int memberId);
+	
 }

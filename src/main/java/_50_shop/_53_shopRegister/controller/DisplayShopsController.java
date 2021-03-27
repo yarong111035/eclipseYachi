@@ -22,6 +22,7 @@ import _02_model.entity.ShopBean;
 import _02_model.entity.ShopCommentBean;
 import _02_model.entity.ShopMenuBean;
 import _10_member.entity.Member;
+import _10_member.service.FavoriteShopService;
 import _50_shop._51_coupon.service.CouponService;
 import _50_shop._52_shopmenu.service.ShopMenuService;
 import _50_shop._53_shopRegister.service.NightMarketService;
@@ -33,6 +34,9 @@ import _50_shop._53_shopRegister.service.ShopTypeService;
 @RequestMapping("/_50_shop/_54_showShops")
 @SessionAttributes("LoginOK")
 public class DisplayShopsController {
+	
+	@Autowired
+	FavoriteShopService favoriteShopService;
 
 	@Autowired
 	NightMarketService nightMarketService;
@@ -85,6 +89,25 @@ public class DisplayShopsController {
 		Member member = (Member) model.getAttribute("LoginOK");
 		shopCommentBean.setMemberBean(member);
 		List<ShopCommentBean> commentExistBean = null;
+		List<Integer> favoriteId = null;
+		try {
+			favoriteId = favoriteShopService.getShopIds(member.getMemberId());
+		} catch (Exception e) {
+			
+		}
+
+		Integer favId = null;
+		try {
+			for (Integer integer : favoriteId) {
+				if(shopId == integer) {
+					favId = integer;
+					model.addAttribute("favoriteId", favId);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
 		
 		List<ShopMenuBean> smb = shopmenuservice.getShopMenu(shopId);
 		smb=shopmenuservice.getShopMenu(shopId);
