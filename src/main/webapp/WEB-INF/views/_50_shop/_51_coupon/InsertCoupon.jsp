@@ -104,56 +104,59 @@
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
 	
 	<div class="main-member">
-		<aside>
-			<div class="function">
-				<h3 >商家管理頁面</h3>
+	<!-- 功能選單開始 -->
+	<jsp:include page="/WEB-INF/views/_00_util/shopUtil/jsp/shop_aside.jsp" />
+	<!-- 功能選單結束 -->
+<!-- 		<aside> -->
+<!-- 			<div class="function"> -->
+<!-- 				<h3 >商家管理頁面</h3> -->
 				
 
-				<div class="item">
-				<a href="<c:url value='/_50_shop/_53_shopRegister/modifyShop/${LoginOK.shopBean.shop_id}' />">
-						<button>
-							<span>商家資料</span>
-						</button>
-					</a>
-				</div>
-				<div class="item">
-					<a href="#">
-						<button>
-							<span>商家商品</span>
-						</button>
-					</a>
-				</div>
-				<div class="item">
-					<a href="<c:url value='/_50_shop/_51_coupon/InsertCoupon/${LoginOK.shopBean.shop_id}' />">
-						<button>
-							<span>優惠券管理</span>
-						</button>
-					</a>
-				</div>
-				<div class="item">
-					<a href="#">
-						<button>
-							<span>報表</span>
-						</button>
-					</a>
-				</div>
-				<div class="item">
-					<a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${LoginOK.shopBean.shop_id}' />">
-						<button>
-							<span>商家頁面</span>
-						</button>
-					</a>
-				</div>
+<!-- 				<div class="item"> -->
+<%-- 				<a href="<c:url value='/_50_shop/_53_shopRegister/modifyShop/${LoginOK.shopBean.shop_id}' />"> --%>
+<!-- 						<button> -->
+<!-- 							<span>商家資料</span> -->
+<!-- 						</button> -->
+<!-- 					</a> -->
+<!-- 				</div> -->
+<!-- 				<div class="item"> -->
+<!-- 					<a href="#"> -->
+<!-- 						<button> -->
+<!-- 							<span>商家商品</span> -->
+<!-- 						</button> -->
+<!-- 					</a> -->
+<!-- 				</div> -->
+<!-- 				<div class="item"> -->
+<%-- 					<a href="<c:url value='/_50_shop/_51_coupon/InsertCoupon/${LoginOK.shopBean.shop_id}' />"> --%>
+<!-- 						<button> -->
+<!-- 							<span>優惠券管理</span> -->
+<!-- 						</button> -->
+<!-- 					</a> -->
+<!-- 				</div> -->
+<!-- 				<div class="item"> -->
+<!-- 					<a href="#"> -->
+<!-- 						<button> -->
+<!-- 							<span>報表</span> -->
+<!-- 						</button> -->
+<!-- 					</a> -->
+<!-- 				</div> -->
+<!-- 				<div class="item"> -->
+<%-- 					<a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${LoginOK.shopBean.shop_id}' />"> --%>
+<!-- 						<button> -->
+<!-- 							<span>商家頁面</span> -->
+<!-- 						</button> -->
+<!-- 					</a> -->
+<!-- 				</div> -->
 				
-				<div class="item">
-					<a href="<c:url value='/doLogout'/>" onclick="return window.confirm('確定登出嗎?');">
-						<button>
-							<span>登出</span>
-						</button>
-					</a>
-				</div>
-			</div>
-		</aside>
+<!-- 				<div class="item"> -->
+<%-- 					<a href="<c:url value='/doLogout'/>" onclick="return window.confirm('確定登出嗎?');"> --%>
+<!-- 						<button> -->
+<!-- 							<span>登出</span> -->
+<!-- 						</button> -->
+<!-- 					</a> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</aside> -->
 
 
 
