@@ -99,6 +99,16 @@
             <form:input path="email" type="email" />
 	        <form:errors path="email" cssClass="error"/> 
         </div>
+        
+		<!--------------------------登入的checkbox---------------------------- -->
+		<div class="custom-control custom-checkbox">
+			<input type="checkbox" checked="checked" class="custom-control-input"
+				id="customCheck1"> <label class="custom-control-label"
+				for="customCheck1">同意成為本網站會員，享受各項會員權益</label>
+		</div>
+		<!--------------------------登入的checkbox---------------------------- -->
+		
+
 
         	<form:button type="submit" class="btn" >註冊</form:button>
 <!-- 			onclick="window.confirm('已寄出驗證信 登入前請先去驗證');" -->

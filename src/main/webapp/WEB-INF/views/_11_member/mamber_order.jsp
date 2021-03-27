@@ -344,7 +344,7 @@
 											<td class="orderDetail"><a
 												href="<c:url value='/_23_orderProcess/orderDetail?orderNo=${order.order_id}'/>">
 													${order.orderNumber} </a></td>
-											<td><a href="google.com">${order.payTypeBean.pay_type_name}</a>
+											<td><a href="javascript:;">${order.payTypeBean.pay_type_name}</a>
 											</td>
 											<td><c:choose>
 													<c:when test="${order.orderStatusBean.status_id == 1}">
@@ -409,7 +409,7 @@
 											<td class="orderDetail"><a
 												href="<c:url value='/_23_orderProcess/orderDetail?orderNo=${order.order_id}'/>">
 													${order.orderNumber} </a></td>
-											<td><a href="google.com">${order.payTypeBean.pay_type_name}</a>
+											<td><a href="javascript:;">${order.payTypeBean.pay_type_name}</a>
 											</td>
 											<td><c:choose>
 													<c:when test="${order.orderStatusBean.status_id == 1}">
@@ -474,7 +474,7 @@
 											<td class="orderDetail"><a
 												href="<c:url value='/_23_orderProcess/orderDetail?orderNo=${order.order_id}'/>">
 													${order.orderNumber} </a></td>
-											<td><a href="google.com">${order.payTypeBean.pay_type_name}</a>
+											<td><a href="javascript:;">${order.payTypeBean.pay_type_name}</a>
 											</td>
 											<td><c:choose>
 													<c:when test="${order.orderStatusBean.status_id == 1}">

@@ -30,8 +30,8 @@ public class RemoveSideCartController {
 		cartBeanService.deleteCart(cart_id);
 //		Member member = cartBeanService.getMemberById(cart_id);
 		
-		List<MemberCartBeanVo> memberCartVoList = cartBeanService.getMemberCartVo(member_id);
-		model.addAttribute("memberCartVoList", memberCartVoList);
+//		List<MemberCartBeanVo> memberCartVoList = cartBeanService.getMemberCartVo(member_id);
+//		model.addAttribute("memberCartVoList", memberCartVoList);
 //		status.setComplete();  不能加此行會把list全部刪掉
 		return "redirect:/DisplayPageProducts";
 	}
