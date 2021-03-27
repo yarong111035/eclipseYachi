@@ -12,6 +12,9 @@
 	<link rel="stylesheet" href="<c:url value='/_00_util/adminUtil/css/normalize.css'/>">
 	<link rel="stylesheet" href="<c:url value='/_00_util/memberUtil/css/member_update2.css'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
 	<title>member_update</title>
 	
 	
@@ -275,6 +278,8 @@
         </main>
 
     </div>
-
+<!-- -------------------------------引入共同的頁尾---------------------------------------- -->
+<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
+<!-- -------------------------------引入共同的頁尾----------------------------------------- -->
 </body>
 </html>

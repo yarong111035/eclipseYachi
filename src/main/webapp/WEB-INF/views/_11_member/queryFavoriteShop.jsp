@@ -16,10 +16,8 @@
 
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
-<link rel="stylesheet"
-	href="<c:url value='/_00_util/shoppingMallUtil/css/4_shopping_cart.css'/>">
-<link rel="stylesheet"
-	href="<c:url value='/_00_util/shoppingMallUtil/css/2_mix.css'/>">
+
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 	crossorigin="anonymous"></script>
@@ -247,6 +245,8 @@ remove-product i{
 		</main>
 
 	</div>
-
+	<!-- -------------------------------引入共同的頁尾---------------------------------------- -->
+	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
+	<!-- -------------------------------引入共同的頁尾----------------------------------------- -->
 </body>
 </html>
