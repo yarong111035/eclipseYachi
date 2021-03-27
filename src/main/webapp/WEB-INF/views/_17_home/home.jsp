@@ -571,8 +571,12 @@ fieldset {
 		</div>
 
 		<!-- Copyright ============================== -->
-		<div class="copyright bg-dark text-white text-center p-3">
-			Copyright © 2021 Yachi . All rights reserved.</div>
+<!-- 		<div class="copyright bg-dark text-white text-center p-3"> -->
+<!-- 			Copyright © 2021 Yachi . All rights reserved.</div> -->
+
+	<!-- -------------------------------引入共同的頁尾---------------------------------------- -->
+	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
+	<!-- -------------------------------引入共同的頁尾----------------------------------------- -->
 
 		<!-- Modal -->
 		<!-- 		<div class="modal fade" id="myModal" tabindex="-1" -->
