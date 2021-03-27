@@ -79,6 +79,14 @@
    		
 
 </script>
+<style>
+.bstrap-alink a{
+	padding: 10px;
+	width: 150px;
+	margin: 0 10px;
+	
+}
+</style>
 
 <body>
 	<!-- 引入共同的頁首 -->
@@ -96,7 +104,7 @@
 		<div id="main_tabs">
 
 			<div id="tabs-nav">
-				<a href="#">依夜市</a>
+<!-- 				<a href="#">依夜市</a> -->
 				<a href="<c:url value='/search/ALLproducts'/>">全部商城商品</a>
 				<a href="<c:url value='/search/product?product_name=' />" >依商城商品</a>
 				<a href="<c:url value='/search/ProductType'/>" class="change">依商品類型</a>
@@ -110,33 +118,6 @@
 
                     <!-- 先讓第一個內容顯示出來 display:block -->
                   <div class="tabs-panel" > 
-					
-					<div class="keyword">
-						<form action="<c:url value="/search/night"/>" class="keyword-form">
-							<a>搜尋夜市</a>
-							<input type="text" name="market_name" id="">
-							<input type="submit" value="搜尋">
-						</form>
-						
-<%-- 						<c:if test="${keyword != '?' }"> --%>
-								
-<%-- 							<p>你所搜尋的&nbsp;<span style="color: red;">${keyword}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --%>
-<%-- 							總共有&nbsp;<span style="color: red;">${list.size()}</span>&nbsp;筆資料</p> --%>
-						
-<%-- 						</c:if> --%>
-						
-					</div>
-
-<!-- 					<div class="findNight"> -->
-
-<!-- 						<img class="findNight-item" src="https://picsum.photos/500/300"> -->
-
-<!-- 						<h2 class="findNight-item">士林夜市</h2> -->
-<!-- 						<p class="findNight-item">士林夜市，位於臺灣臺北市士林區。範圍以市定古蹟士林公有市場為中心，東至文林路、西至基河路、北至小北街與小西街的三角地帶，是台北市內最大、亦是全台打卡次數最高的夜市地標。曾多次獲選為台灣代表夜市、觀光客來台必去景點首選，揚名國際。</p> -->
-<!-- 						<p class="findNight-item">Google評價分數 3.9</p> -->
-<!-- 						<a href="#" class="findNight-item">更多介紹 ...</a> -->
-
-<!-- 					</div> -->
 
                   </div>
                
@@ -145,95 +126,46 @@
                   </div>
                
                   <div class="tabs-panel" style="display:block">
-					<div class="product-price">
+					<div class="product-price bstrap-alink">
 					
-						<div class="productType-link">
-							<div class="btn-group">
-							  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    商品類型
-							  </button>
-							  <div class="dropdown-menu">
-							    <a class="dropdown-item" href="<c:url value='/search/product_type/1'/>">環保杯套</a>
-							    <a class="dropdown-item" href="<c:url value='/search/product_type/2'/>">環保餐具</a>
-							    <a class="dropdown-item" href="<c:url value='/search/product_type/3'/>">環保購物袋</a>
-							    <a class="dropdown-item" href="<c:url value='/search/product_type/4'/>">陶瓷碗盤</a>
-							    <a class="dropdown-item" href="<c:url value='/search/product_type/5'/>">攤販用具</a>
-							    <a class="dropdown-item" href="<c:url value='/search/product_type/6'/>">免洗餐具</a>
-							    <a class="dropdown-item" href="<c:url value='/search/product_type/7'/>">紙袋</a>
-							    <a class="dropdown-item" href="<c:url value='/search/product_type/8'/>">餐車</a>
-							  </div>
-							</div>
-						</div>
+						<a href="<c:url value='/search/product_type/1'/>" class="btn btn-success btn-sm active" role="button" aria-pressed="true">環保杯套</a>
+						<a href="<c:url value='/search/product_type/2'/>" class="btn btn-success btn-sm active" role="button" aria-pressed="true">環保餐具</a>
+						<a href="<c:url value='/search/product_type/3'/>" class="btn btn-success btn-sm active" role="button" aria-pressed="true">環保購物袋</a>
+						<a href="<c:url value='/search/product_type/4'/>" class="btn btn-success btn-sm active" role="button" aria-pressed="true">陶瓷碗盤</a>
+						<a href="<c:url value='/search/product_type/5'/>" class="btn btn-success btn-sm active" role="button" aria-pressed="true">攤販用具</a>
+						<a href="<c:url value='/search/product_type/6'/>" class="btn btn-success btn-sm active" role="button" aria-pressed="true">免洗餐具</a>
+						<a href="<c:url value='/search/product_type/7'/>" class="btn btn-success btn-sm active" role="button" aria-pressed="true">紙袋</a>
+						<a href="<c:url value='/search/product_type/8'/>" class="btn btn-success btn-sm active" role="button" aria-pressed="true">餐車</a>
 					
-						<c:if test="${keyword != '?' }">
-							<a href="<c:url value='/search/product/low/${keyword}'/>"><input type="button" value="價格低"></a>
-							<a href="<c:url value='/search/product/high/${keyword}'/>"><input type="button" value="價格高"></a>
-	
-							<form action="<c:url value='/search/product/range/${keyword}'/>" >
-								<a>搜尋價格</a>
-								<input type="number" name="lowPrice" id="" placeholder="最低價" min="1">
-								<a>～</a>
-								<input type="number" name="highPrice" id="" placeholder="最高價" min="1">
-								<input type="submit" value="價格確認" class="search-submit" id="search-price">
-							</form>
-						</c:if>
+					</div>									
 						
-						<a href="<c:url value="/search/ALLproducts"/>" style="margin-left: -20px;"><input type="button" value="顯示商城全部的商品"></a>
-					</div>
-
-					<div class="keyword">
-					
-						<c:if test="${keyword == '?' }">								
-							<p style="white-space: pre;">你沒有輸入關鍵字哦    !</p>						
-						</c:if>
-						
-						<c:if test="${keyword != '?' }">								
-							<p>你所搜尋的&nbsp;<span style="color: red;">${keyword}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							總共有&nbsp;<span style="color: red;">${list.size()}</span>&nbsp;筆資料</p>						
-						</c:if>
-						
-					</div>
-
 					<div class="product-container">
 
-						<c:if test="${keyword != '?' }">
-							<c:forEach var="productBean" items="${list}">
-								<div class="product">
-		
-									<a data-fancybox="gallery" href="<c:url value='/searchProductPicture/${productBean.product_id}'/>">
-								    <img src="<c:url value='/searchProductPicture/${productBean.product_id}'/>"></a>
-		
-									<div class="name">${productBean.product_name}</div>
-									<div class="info">${productBean.product_spec}</div>
-									<div class="price">$&nbsp;${productBean.product_price}</div>
-									<div class="release">發售日&nbsp;&nbsp;${productBean.product_release}</div>
-								</div>
-							</c:forEach>
-						</c:if>
-						
+						<c:forEach var="productBean" items="${list}">
+							<div class="product">
+	
+								<a data-fancybox="gallery" href="<c:url value='/searchProductPicture/${productBean.product_id}'/>">
+							    <img src="<c:url value='/searchProductPicture/${productBean.product_id}'/>"></a>
+	
+								<div class="name">${productBean.product_name}</div>
+								<div class="info">${productBean.product_spec}</div>
+								<div class="price">$&nbsp;${productBean.product_price}</div>
+								
+								<c:if test="${productBean.product_stock == 0}">								
+									<div class="release">商品庫存&nbsp;&nbsp;<em style="color: red;">缺貨中</em></div>
+								</c:if>
+								<c:if test="${productBean.product_stock > 0}">								
+									<div class="release">商品庫存&nbsp;&nbsp;${productBean.product_stock}</div>
+								</c:if>
+							</div>
+						</c:forEach>
 					</div>
+
                   </div>
                
 
                   <div class="tabs-panel">
                 
-						<div class="productType-link">
-							<div class="btn-group">
-							  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    商品類型
-							  </button>
-							  <div class="dropdown-menu">
-							    <a class="dropdown-item" href="<c:url value='/search/product_type/1'/>">環保杯套</a>
-							    <a class="dropdown-item" href="<c:url value='/search/product_type/2'/>">環保餐具</a>
-							    <a class="dropdown-item" href="<c:url value='/search/product_type/3'/>">環保購物袋</a>
-							    <a class="dropdown-item" href="<c:url value='/search/product_type/4'/>">陶瓷碗盤</a>
-							    <a class="dropdown-item" href="<c:url value='/search/product_type/5'/>">攤販用具</a>
-							    <a class="dropdown-item" href="<c:url value='/search/product_type/6'/>">免洗餐具</a>
-							    <a class="dropdown-item" href="<c:url value='/search/product_type/7'/>">紙袋</a>
-							    <a class="dropdown-item" href="<c:url value='/search/product_type/8'/>">餐車</a>
-							  </div>
-							</div>
-						</div>
 
 					<div class="type-content">
 						
@@ -254,18 +186,7 @@
                   </div>
                
                   <div class="tabs-panel">
-					<div class="keyword">
-						<form action="" class="keyword-form">
-							<a>搜尋夜市</a>
-							<input type="text" name="" id="">
-							<input type="submit" value="搜尋">
-						</form>
-						
-						<p>你所搜尋的&nbsp;<span style="color: red;">${keyword}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						總共有&nbsp;<span style="color: red;">${list.size()}</span>&nbsp;筆資料</p>
-						
-					</div>
-                	依商家
+					
                   </div>
             
                   <div class="tabs-panel">
