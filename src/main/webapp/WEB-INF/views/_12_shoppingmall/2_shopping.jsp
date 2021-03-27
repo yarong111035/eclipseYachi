@@ -90,7 +90,7 @@
 			</c:if>
 			<c:if test="${!empty LoginOK}">
 				<div class="title">
-					<c:if test='${empty memberCartVoList}'>
+					<c:if test='${empty memberCartVoList || memberCartVoList.size() == 0}'>
 						購物清單 <span class="shopNum">0</span>
 					</c:if>
 					<c:set value='0' var='sum'/>
@@ -219,15 +219,15 @@
 			
 			<c:choose>
 				<c:when test="${empty LoginOK}">
-					<c:if test="${sessionCartVoList.size() == 0 }">
+					<c:if test="${empty sessionCartVoList}">
 						<div id="count_circle">0</div>
 					</c:if>
 					<div id="count_circle">${sessionCartVoList.size() }</div>
 				</c:when>
 				<c:otherwise>
-					<c:if test="${memberCartVoList.size() == 0 }">
-						<div id="count_circle">0</div>
-					</c:if>
+<%-- 					<c:if test="${empty memberCartVoList}"> --%>
+<!-- 						<div id="count_circle">0</div> -->
+<%-- 					</c:if> --%>
 					<div id="count_circle">${memberCartVoList.size() }</div>
 				</c:otherwise>
 			</c:choose>
@@ -322,7 +322,7 @@
 																<button disabled class="cartBtn" style="cursor: no-drop; color:#444;">缺貨中</button>
 															</c:when>
 															<c:otherwise>
-																<button type='submit' class="cartBtn" onclick="alert('加入購物車成功')">加入購物車</button>
+																<button type='submit' class="cartBtn">加入購物車</button>
 															</c:otherwise>
 														</c:choose>
 													</form>
@@ -351,7 +351,7 @@
 																<button disabled class="cartBtn" style="cursor: no-drop; color:#444;">缺貨中</button>
 															</c:when>
 															<c:otherwise>
-																<button type='submit' class="cartBtn" onclick="alert('加入購物車成功')">加入購物車</button>
+																<button type='submit' class="cartBtn">加入購物車</button>
 															</c:otherwise>
 														</c:choose>
 	<!-- 													<button type='submit' class="cartBtn" onclick="alert('加入購物車成功')">加入購物車</button> -->
