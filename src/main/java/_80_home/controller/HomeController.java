@@ -35,7 +35,8 @@ import _90_admin._94_editActivity.service.editActivityService;
 @SessionAttributes("adminactivityBeanList")
 public class HomeController {
 	
-	// 首頁的映射
+	
+//	=============================== 首頁的映射 ============================================
 	@Autowired
 	editActivityService editactivityService;
 	
@@ -46,6 +47,20 @@ public class HomeController {
 		model.addAttribute("adminactivityBeanList", list);
 		
 		return "_17_home/home";  	
+	}
+	
+//	=============================== 紅豆餅介面 ============================================
+
+	@RequestMapping("/RedBean_pies")
+	public String RedBean_pies(Model model) {
+		return "_15_coupon/RedBean_pies";
+	}
+	
+//	=============================== 吐司介面 ============================================
+
+	@RequestMapping("/bread")
+	public String bread(Model model) {
+		return "_15_coupon/bread";
 	}
 	
 	// 測試首頁的映射

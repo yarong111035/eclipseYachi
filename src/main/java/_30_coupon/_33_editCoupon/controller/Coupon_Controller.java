@@ -84,10 +84,8 @@ public class Coupon_Controller {
 
 	@RequestMapping("/coupon")
 	public String getCouponById(@RequestParam("coupon_id") Integer coupon_id,
-//								@RequestParam("memberId") Integer memberId,
 			Model model) {
 		model.addAttribute("coupon", couponService.getCoupon(coupon_id));
-//		model.addAttribute("member", service.getMemberById(memberId));
 		return "_15_coupon/coupon";
 	}
 	
@@ -120,19 +118,7 @@ public class Coupon_Controller {
 		return "redirect:/_50_shop/_54_showShops/ShowShops/" + shopBean.getShop_id();
 	}
 	
-//	=============================== 紅豆餅介面 ============================================
 
-	@RequestMapping("/RedBean_pies")
-	public String RedBean_pies(Model model) {
-		return "_15_coupon/RedBean_pies";
-	}
-	
-//	=============================== 吐司介面 ============================================
-
-	@RequestMapping("/bread")
-	public String bread(Model model) {
-		return "_15_coupon/bread";
-	}
 	
 //	 =============================== 使用優惠券 ============================================
 			@GetMapping("/useCoupon/{coupon_Id}")
@@ -173,41 +159,8 @@ public class Coupon_Controller {
 				return "redirect:/coupons";
 			}
 	
-////	=============================== 查詢優惠劵 ============================================
-//	@GetMapping(value = "/queryCoupon", 
-//		      produces = { "application/json; charset=UTF-8" })
-//	public @ResponseBody List<CouponBean> queryCoupon(Model model, 
-//			@RequestParam(value = "queryCoupon_name", defaultValue = "輸入查詢優惠劵") String queryCoupon_name) {	
-////		Map<String, CouponBean> map = new HashMap<>();
-////		@SuppressWarnings("unchecked")
-////		Map<String, String> map2 = (Map<String, String>) couponService.queryCoupon(queryCoupon_name);
-//		List<CouponBean> couponDetail = couponService.queryCoupon2(queryCoupon_name);
-//				
-//		//----------------------------------------------
-////		model.addAttribute("couponDetail",couponDetail);
-//		
-////		map.put("couponDetail",list);
-//		//---------------------------------------------
-//		
-////		map.put("couponDetail",couponService.queryCoupon(queryCoupon_name));
-//		return couponDetail;
-////		List<Map<String,Object>> list = couponService.queryCoupon(queryCoupon_name);
-////	 	model.addAttribute("result", couponService.queryCoupon(queryCoupon_name));
-////	 	return "redirect:/coupons";
-//	}
-//	
-//	=============================== 搜尋優惠劵 ============================================
-//	@PostMapping(value = "/queryCoupon")
-//	public String queryCoupon(Model model,
-//			@RequestParam(value = "queryString") String queryString) {
-//		System.out.println("queryString" + queryString);
-//			
-//		List<Map<String,Object>> querylist = couponService.queryCoupon(queryString);
-//			model.addAttribute("querylist", querylist);
-//			System.out.println("=============================last=====================================" );
-//
-//			return "_15_coupon/queryCoupon";
-//		}
+
+
 
 	
 	
