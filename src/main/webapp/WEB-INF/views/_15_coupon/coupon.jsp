@@ -15,11 +15,7 @@
 
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
-<link rel="stylesheet"
-	href="<c:url value='/_00_util/shoppingMallUtil/css/4_shopping_cart.css'/>">
-<link rel="stylesheet"
-	href="<c:url value='/_00_util/shoppingMallUtil/css/2_mix.css'/>">
-	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -239,7 +235,6 @@
             	  return new Promise(resolve => setTimeout(resolve, ms));
             	}
         });
-    </script>
+    </script>  
 </body>
-
 </html>
