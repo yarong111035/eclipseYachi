@@ -154,6 +154,7 @@
   font-size: 1.2rem;
   color: #555
   ;
+  font-weight:900;
 }
 .putLeft .nickname{
   width: 250px;
@@ -166,8 +167,8 @@
 }
 .commentBox .comment_content{
   width: 78%;
-  margin: 10px auto;
-  margin-bottom: 30px;
+  margin: 0px auto;
+/*   margin-bottom: 30px; */
 }
 .memberInfo .fa-ellipsis-v{
   opacity: .7;
@@ -258,3 +259,83 @@
     background:rgba(123,136,111,1);
 
 }
+
+/* 顯示星星評價 */
+/* 評價星星 */
+.ratings {
+    position: relative;
+    bottom: 20%;
+/*     left: 4%; */
+    vertical-align: middle;
+    display: inline-block;
+    color: #b1b1b1;
+    overflow: hidden;
+}
+.full-stars {
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #fde16d;
+}
+.empty-stars:before, .full-stars:before {
+    content:"\2605\2605\2605\2605\2605";
+    font-size: 15pt;
+}
+.empty-stars:before {
+    -webkit-text-stroke: 1px #848484;
+}
+.full-stars:before {
+    -webkit-text-stroke: 1px orange;
+}
+/* Webkit-text-stroke is not supported on firefox or IE */
+
+/* Firefox */
+@-moz-document url-prefix() {
+    .full-stars {
+        color: #ECBE24;
+    }
+}
+
+/* 評分星星樣式 */
+/* .rate { */
+/* 	float: left; */
+/* 	height: 46px; */
+/* 	padding-bottom: 10px; */
+/* } */
+
+/* .rate:not(:checked)>input { */
+/* 	display: none; */
+/* } */
+
+/* .rate:not(:checked)>label { */
+/* 	float: right; */
+/* 	width: 1em; */
+/* 	overflow: hidden; */
+/* 	white-space: nowrap; */
+/* 	cursor: pointer; */
+/* 	font-size: 30px; */
+/* 	color: #ccc; */
+/* } */
+
+/* .rate:not(:checked)>label:before { */
+/* 	content: '★ '; */
+/* } */
+
+/* .rate>input:checked ~ label { */
+/* 	color: #ffc700; */
+/* } */
+
+/* .rate:not(:checked)>label:hover, .rate:not(:checked)>label:hover ~ label */
+/* 	{ */
+/* 	color: #deb217; */
+/* } */
+
+/* .rate>input:checked+label:hover, .rate>input:checked+label:hover ~ label, */
+/* 	.rate>input:checked ~ label:hover, .rate>input:checked ~ label:hover ~ */
+/* 	label, .rate>label:hover ~ input:checked ~ label { */
+/* 	color: #c59b08; */
+/* } */
+
+   

@@ -76,6 +76,54 @@
 	label, .rate>label:hover ~ input:checked ~ label {
 	color: #c59b08;
 }
+
+.commentBox{
+	background:#fff;
+}
+.comment_content{
+	white-space: pre-line;
+}
+.commentBox .shopComment{
+	margin:0 auto;
+}
+/* 顯示星星評價 */
+/* 評價星星 */
+.ratings {
+    position: relative;
+    bottom: 20%;
+/*     left: 4%; */
+    vertical-align: middle;
+    display: inline-block;
+    color: #b1b1b1;
+    overflow: hidden;
+}
+.full-stars {
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #fde16d;
+}
+.empty-stars:before, .full-stars:before {
+    content:"\2605\2605\2605\2605\2605";
+    font-size: 15pt;
+}
+.empty-stars:before {
+    -webkit-text-stroke: 1px #848484;
+}
+.full-stars:before {
+    -webkit-text-stroke: 1px orange;
+}
+/* Webkit-text-stroke is not supported on firefox or IE */
+
+/* Firefox */
+@-moz-document url-prefix() {
+    .full-stars {
+        color: #ECBE24;
+    }
+}
+
 </style>
 
 </head>
@@ -139,9 +187,18 @@
 						</div>
 					</div>
 
+					<!-----------------------------------評分數開始---------------------------------- -->
 					<div>
-						${shop.shop_score}&nbsp;<i class="fas fa-star"></i> (${count})
+						<div class="ratings">
+							<div class="empty-stars"></div>
+							
+							<div class="full-stars" style="width: ${shop.shop_score * 20}%; "></div>
+						</div>
+						<span>(${count}則評論)</span>
+<%-- 						${shop.shop_score}&nbsp;<i class="fas fa-star"></i> (${count}) --%>
 					</div>
+					<!-----------------------------------評分數結束---------------------------------- -->
+					
 					<p style="color: #78886f;">${shop.shop_info}</p>
 				</div>
 				<!-- 商家簡介 -->
@@ -173,13 +230,13 @@
 				<!-- 商家優惠券 -->
 
 				<!-- 留言區 -->
-				<div id="comment">
+				<div id="comment" class="mb-5">
 					<div class="mt-5">
 						<h2>
 							<i class="fas fa-comments"></i>&nbsp;立即評價
 						</h2>
 					</div>
-					<div class="container pb-4 my-5 border-bottom">
+					<div class="container pb-4 border-bottom">
 						<c:if test="${empty LoginOK}">
 							<div class="row" id="flexbox1">
 
@@ -246,7 +303,7 @@
 				</div>
 				<c:forEach var="shopCommentBean" varStatus="stat"
 					items="${shopCommentBeanList}">
-					<div class="commentBox" style="padding: 6px;">
+					<div class="commentBox shadow mb-5 bg-white" style="padding: 6px;">
 						<div class="memberInfo">
 							<div class="putLeft">
 								<div class="memberImage">
@@ -271,7 +328,7 @@
                             </ul> -->
 							</div>
 						</div>
-						<div class="comment_content">
+						<div class="comment_content ">
 							<span>${shopCommentBean.shop_comment_content}</span>
 						</div>
 						<hr>
@@ -283,7 +340,7 @@
 							<span class="memberId">${shopCommentBean.shopBean.shop_name }&nbsp;:</span>
 						</div>
 						<!-- 點擊會出現檢舉或編輯的下拉選單 -->
-						<div class="comment_content">
+						<div class="comment_content shopComment">
 							<span>${shopCommentBean.shop_response}</span>
 						</div>
 
