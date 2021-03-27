@@ -18,12 +18,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import _02_model.entity.AdminActivityBean;
@@ -37,15 +34,11 @@ import _90_admin._94_editActivity.service.editActivityService;
 @SessionAttributes("adminactivityBeanList")
 public class HomeController {
 	
-<<<<<<< HEAD
-	
 //	=============================== 首頁的映射 ============================================
-=======
 	@Autowired
 	NightMarketService nightMarketService;
 	
 	// 首頁的映射
->>>>>>> 432746377c3d0c840e0dfea3f52afe7342a026ce
 	@Autowired
 	editActivityService editactivityService;
 	
