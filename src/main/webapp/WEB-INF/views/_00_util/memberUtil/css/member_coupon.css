@@ -7,7 +7,7 @@
   }
   
   .main-member aside {
-    border: 1px solid #CCC;
+/*     border: 1px solid #CCC; */
     width: 500px;
     /* background-color: #ccc; */
     text-align: center;
@@ -35,6 +35,7 @@
   
   .main-member aside .function .item img {
     vertical-align: bottom;
+
   }
   
   .main-member aside .function .item img:hover {
@@ -94,7 +95,7 @@
   .main-member main {
     width: 100%;
     background-color: white;
-    border: 1px solid #ccc;
+/*     border: 1px solid #ccc; */
   }
   
   .main-member main .info {
@@ -152,7 +153,9 @@ main{
 }
 
 #tabs-nav a{
-
+	color: #333;
+	letter-spacing:2px;
+    font-weight: 600;
     text-decoration: none;
     flex-grow: 1;          /*子元素平均寬度*/
     text-align: center;
@@ -165,9 +168,14 @@ main{
     display: none;
 }
 
-#tabs-nav .change{
-    background-color: orange;
-    color: white;
+/* #tabs-nav .change{ */
+/*     background-color: orange; */
+/*     color: white; */
+/* } */
+div#tabs-nav {
+	border-radius:10px;
+    background-color: rgb(237,217,217);
+
 }
 
 /************ CSS Animation ***********/
@@ -219,7 +227,7 @@ tr,td{
 #Marquee{
   /* border: 1px solid red; */
   display: flex;
-  padding-left: 160px;
+/*   padding-left: 160px; */
   align-items: center;   
 }
 #Marquee h3{
@@ -254,12 +262,15 @@ tr,td{
   
 }
 .coupon-shop{
-  position: relative;
+/*   position: relative; */
+text-align: center;
 }
 
 .coupon-shop img{
   height: 100%;
   width: 100%;
+  border-radius: 5px;
+
 }
 
 .remove-product{
@@ -275,4 +286,18 @@ tr,td{
 }
 .remove-product:focus{
   outline:none;
+}
+
+/* 卡片樣式 */
+.card{
+	height:200px;
+}
+/* 取消收藏優惠券 */
+.remove-coupon i{
+	color: #666;
+    font-size: 1rem;
+    position: absolute;
+    right: -2;
+    right: 6px;
+    top: 5px;
 }

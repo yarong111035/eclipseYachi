@@ -9,14 +9,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>編輯優惠券</title>
-<link rel="stylesheet"
-	href="<c:url value='/_00_util/shopUtil/css/reset.css'/>">
-	<link rel="stylesheet"
-	href="<c:url value='/_00_util/shopUtil/css/新增優惠券2.css'/>">
+<link rel="stylesheet" href="<c:url value='/_00_util/shopUtil/css/reset.css'/>">
+<link rel="stylesheet" href="<c:url value='/_00_util/shopUtil/css/新增優惠券2.css'/>">
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
 
 <script>
 	$(function() {
@@ -89,55 +88,58 @@
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
 
 	<div class="main-member">
-		<aside>
-			<div class="function">
-				<h3>商家管理頁面</h3>
+	<!-- 功能選單開始 -->
+	<jsp:include page="/WEB-INF/views/_00_util/shopUtil/jsp/shop_aside.jsp" />
+	<!-- 功能選單結束 -->
+<!-- 		<aside> -->
+<!-- 			<div class="function"> -->
+<!-- 				<h3>商家管理頁面</h3> -->
 				
 
-				<div class="item">
-					<a href="<c:url value='/_50_shop/_53_shopRegister/modifyShop/${LoginOK.shopBean.shop_id}' />">
-						<button>
-							<span>商家資料</span>
-						</button>
-					</a>
-				</div>
-				<div class="item">
-					<a href="#">
-						<button>
-							<span>商家商品</span>
-						</button>
-					</a>
-				</div>
-				<div class="item">
-					<a href="<c:url value='/_50_shop/_51_coupon/InsertCoupon/${LoginOK.shopBean.shop_id}' />">
-						<button>
-							<span>優惠券管理</span>
-						</button>
-					</a>
-				</div>
-				<div class="item">
-					<a href="#">
-						<button>
-							<span>報表</span>
-						</button>
-					</a>
-				</div>
-				<div class="item">
-					<a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${LoginOK.shopBean.shop_id}' />">
-						<button>
-							<span>商家頁面</span>
-						</button>
-					</a>
-				</div>
-				<div class="item">
-					<a href="<c:url value='/doLogout'/>" onclick="return window.confirm('確定登出嗎?');">
-						<button>
-							<span>登出</span>
-						</button>
-					</a>
-				</div>
-			</div>
-		</aside>
+<!-- 				<div class="item"> -->
+<%-- 					<a href="<c:url value='/_50_shop/_53_shopRegister/modifyShop/${LoginOK.shopBean.shop_id}' />"> --%>
+<!-- 						<button> -->
+<!-- 							<span>商家資料</span> -->
+<!-- 						</button> -->
+<!-- 					</a> -->
+<!-- 				</div> -->
+<!-- 				<div class="item"> -->
+<!-- 					<a href="#"> -->
+<!-- 						<button> -->
+<!-- 							<span>商家商品</span> -->
+<!-- 						</button> -->
+<!-- 					</a> -->
+<!-- 				</div> -->
+<!-- 				<div class="item"> -->
+<%-- 					<a href="<c:url value='/_50_shop/_51_coupon/InsertCoupon/${LoginOK.shopBean.shop_id}' />"> --%>
+<!-- 						<button> -->
+<!-- 							<span>優惠券管理</span> -->
+<!-- 						</button> -->
+<!-- 					</a> -->
+<!-- 				</div> -->
+<!-- 				<div class="item"> -->
+<!-- 					<a href="#"> -->
+<!-- 						<button> -->
+<!-- 							<span>報表</span> -->
+<!-- 						</button> -->
+<!-- 					</a> -->
+<!-- 				</div> -->
+<!-- 				<div class="item"> -->
+<%-- 					<a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${LoginOK.shopBean.shop_id}' />"> --%>
+<!-- 						<button> -->
+<!-- 							<span>商家頁面</span> -->
+<!-- 						</button> -->
+<!-- 					</a> -->
+<!-- 				</div> -->
+<!-- 				<div class="item"> -->
+<%-- 					<a href="<c:url value='/doLogout'/>" onclick="return window.confirm('確定登出嗎?');"> --%>
+<!-- 						<button> -->
+<!-- 							<span>登出</span> -->
+<!-- 						</button> -->
+<!-- 					</a> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</aside> -->
 
 
 
@@ -216,7 +218,9 @@
 
 	</div>
 	
-	
+<!-- -------------------------------引入共同的頁尾---------------------------------------- -->
+<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
+<!-- -------------------------------引入共同的頁尾----------------------------------------- -->	
 
 
 </body>

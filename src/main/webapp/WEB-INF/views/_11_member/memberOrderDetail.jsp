@@ -53,60 +53,63 @@
 
 
 	<div class="main-member">
+	<!-- 功能選單開始 -->
+	<jsp:include page="/WEB-INF/views/_00_util/memberUtil/jsp/member_aside.jsp" />
+	<!-- 功能選單結束 -->
         <!-- 側邊攔開始 -->
-        <aside>
-            <div class="function">
-                <h3>會員中心</h3>
-				<div class="item">
-		              <img src='<c:url value='/_00_init/getMemberImage?memberId=${LoginOK.memberId}' /> '
-		                  id="headImgg" height='200px' width='200px'>					
-	            </div>
+<!--         <aside> -->
+<!--             <div class="function"> -->
+<!--                 <h3>會員中心</h3> -->
+<!-- 				<div class="item"> -->
+<%-- 		              <img src='<c:url value='/_00_init/getMemberImage?memberId=${LoginOK.memberId}' /> ' --%>
+<!-- 		                  id="headImgg" height='200px' width='200px'>					 -->
+<!-- 	            </div> -->
 
 
-                <div class="item">
-                    <a href="<c:url value='/member/update/${LoginOK.memberId}'/>">
-                        <button><span>基本資料</span></button>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<c:url value='/_23_orderProcess/orderList'/>">
-                        <button><span>訂單查詢</span></button>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<c:url value='/member/keep/coupons'/>">
-                        <button><span>我的優惠券</span></button>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<c:url value="/queryFavoriteShop"/>">
-                        <button><span>喜愛商家</span></button>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#">
-                        <button><span>通知</span></button>
-                    </a>
-                </div>
-                <c:if test="${empty LoginOK.shopBean.shop_id}">	
-                <div class="item">
-                    <a href="<c:url value='/_50_shop/_53_shopRegister/InsertShop' />">
-                        <button><span>申請商家</span></button>
-                    </a>
-                </div>
-                </c:if>
-                <div class="item">
-                    <a href="#">
-                        <button><span>新增信用卡</span></button>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<c:url value='/doLogout'/>" onclick="return window.confirm('確定登出嗎?');">
-                        <button><span>登出</span></button>
-                    </a>
-                </div>
-            </div>
-        </aside>
+<!--                 <div class="item"> -->
+<%--                     <a href="<c:url value='/member/update/${LoginOK.memberId}'/>"> --%>
+<!--                         <button><span>基本資料</span></button> -->
+<!--                     </a> -->
+<!--                 </div> -->
+<!--                 <div class="item"> -->
+<%--                     <a href="<c:url value='/_23_orderProcess/orderList'/>"> --%>
+<!--                         <button><span>訂單查詢</span></button> -->
+<!--                     </a> -->
+<!--                 </div> -->
+<!--                 <div class="item"> -->
+<%--                     <a href="<c:url value='/member/keep/coupons'/>"> --%>
+<!--                         <button><span>我的優惠券</span></button> -->
+<!--                     </a> -->
+<!--                 </div> -->
+<!--                 <div class="item"> -->
+<%--                     <a href="<c:url value="/queryFavoriteShop"/>"> --%>
+<!--                         <button><span>喜愛商家</span></button> -->
+<!--                     </a> -->
+<!--                 </div> -->
+<!--                 <div class="item"> -->
+<!--                     <a href="#"> -->
+<!--                         <button><span>通知</span></button> -->
+<!--                     </a> -->
+<!--                 </div> -->
+<%--                 <c:if test="${empty LoginOK.shopBean.shop_id}">	 --%>
+<!--                 <div class="item"> -->
+<%--                     <a href="<c:url value='/_50_shop/_53_shopRegister/InsertShop' />"> --%>
+<!--                         <button><span>申請商家</span></button> -->
+<!--                     </a> -->
+<!--                 </div> -->
+<%--                 </c:if> --%>
+<!--                 <div class="item"> -->
+<!--                     <a href="#"> -->
+<!--                         <button><span>新增信用卡</span></button> -->
+<!--                     </a> -->
+<!--                 </div> -->
+<!--                 <div class="item"> -->
+<%--                     <a href="<c:url value='/doLogout'/>" onclick="return window.confirm('確定登出嗎?');"> --%>
+<!--                         <button><span>登出</span></button> -->
+<!--                     </a> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </aside> -->
         <!-- 側邊攔結束 -->
 
 
@@ -117,7 +120,7 @@
                   <!-- 訂單詳情 -->
                   <div> 
                 		<div id="backToList">
-                  			<a href="<c:url value='/_23_orderProcess/orderList'/>">返回訂單列表</a>
+                  			<a href="<c:url value='/_23_orderProcess/orderList'/>">返回訂單查詢</a>
                   		</div>
                   		<h3>訂單詳情 </h3> 
                   		
@@ -173,7 +176,23 @@
                     <div class="btCancel">
                         
                         <a href="#"><button><i class="fas fa-cart-arrow-down"></i>再買一次</button></a>
-                        <a href="<c:url value='/cancelOrder/asdf9${orderBean.order_id}8'/>"><button><i class="fas fa-window-close"></i>取消訂單</button></a>
+                        
+                        <c:choose>
+                        	<c:when test="${orderBean.orderStatusBean.status_id == 1}">
+                        		<a id="cancelBtn" href="<c:url value='/cancelOrder/asdf9${orderBean.order_id}8'/>"><button><i class="fas fa-window-close"></i>取消訂單</button></a>
+                        	</c:when>
+                        	<c:otherwise>
+                        			<!--只要不是未付款狀態 -->
+                        		 <a onclick="alert('訂單已付款!  請聯繫客服處理 謝謝！')"><button><i class="fas fa-window-close"></i>取消訂單</button></a>
+                        	</c:otherwise>
+                        </c:choose>
+                        
+                        
+                        
+                        
+
+                       
+                        
                         
                     </div>
                 
@@ -185,10 +204,21 @@
         </main>
 
     </div>
-    
+<!-- -------------------------------引入共同的頁尾---------------------------------------- -->
+<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
+<!-- -------------------------------引入共同的頁尾----------------------------------------- -->    
     <script>
+    
+    let cancelBtn = document.getElementById('cancelBtn');
+    cancelBtn.addEventListener('click',function(e){
+		alert();
+		var yes = confirm("確定送出此訂單?");
+		if(yes == false){					
+			e.preventDefault(); //預防表單預設事件(按取消不要送出去)
+			return;  //須加此行，否則表單還是會送出去，出現空指標例外
+		}
     $(function () {
-
+    	
          // 每三秒執行一次
          setInterval(function(){
             $('#news li:first-child').slideUp(function(){

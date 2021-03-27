@@ -15,6 +15,11 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
+<!-----------------------------------slick 套件引用--------------------------------- -->
+    <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/slick.css'/>"/>
+<!-- 		sAdd the new slick-theme.css if you want the default styling -->
+    <link rel="stylesheet" href="<c:url value='_00_util/allUtil/css/slick-theme.css'/>"/>
+<!-----------------------------------slick 套件引用--------------------------------- -->
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/background.css'/>">
 <!--     <link rel="stylesheet" href="slick/slick.css"/> -->
@@ -38,7 +43,7 @@
 <!--     <script type="text/javascript" src="slick/slick.js"></script> -->
 <style>
 .box {
-	border: 1px solid #cccccc;
+/* 	border: 1px solid #cccccc; */
 	width: 720px;
 	height: 500px;
 	background-color: #FFFFFF;
@@ -46,14 +51,54 @@
 	overflow: auto;
 }
 div.card{
-	box-shadow: 1px 1px 3px 1px #ccc;
+/* 	box-shadow: 1px 1px 3px 1px #ccc; */
 }
-
+.card-body{
+	padding: 5px;
+    text-align: center;
+}
 .shopImage{
-	height: 165px;
+	height: 130px;
 }
 .shopArea{
     margin-left: 20px;
+}
+/* 顯示星星評價 */
+/* 評價星星 */
+.ratings {
+    position: relative;
+    bottom: 20%;
+/*     left: 4%; */
+    vertical-align: middle;
+    display: inline-block;
+    color: #b1b1b1;
+    overflow: hidden;
+}
+.full-stars {
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #fde16d;
+}
+.empty-stars:before, .full-stars:before {
+    content:"\2605\2605\2605\2605\2605";
+    font-size: 15pt;
+}
+.empty-stars:before {
+    -webkit-text-stroke: 1px #848484;
+}
+.full-stars:before {
+    -webkit-text-stroke: 1px orange;
+}
+/* Webkit-text-stroke is not supported on firefox or IE */
+
+/* Firefox */
+@-moz-document url-prefix() {
+    .full-stars {
+        color: #ECBE24;
+    }
 }
 </style>
 
@@ -104,11 +149,15 @@ div.card{
 				<!-- 商家簡介 -->
 				<div id="shopInfo">
 					<h1 style="color: #f26419;">臨江街觀光夜市</h1>
+					<!-----------------------------------評分數開始---------------------------------- -->
 					<div>
-						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-							class="fas fa-star"></i>
+						<div class="ratings">
+							<div class="empty-stars"></div>
+
+							<div class="full-stars" style="width: ${nightMarketBean.market_score * 20}%; "></div>
+						</div>
 					</div>
+					<!-----------------------------------評分數結束---------------------------------- -->
 					<p style="color: #78886f;margin-top:10px;">具有客家文化的臨江街夜市，在大安區的住宅區裡，是臺北市少數合法掛牌設立的夜市，約有8年的歷史，近200個攤位的各種美食小吃，讓許多臺北人流連忘返，附近上班族幾乎天天在這裡吃晚飯，既省錢又美味。</p>
 					<p style="color: #78886f;">有名的小吃多到數不清，古早味的乾伴麵加肉羹湯、香滑順口的蚵仔麵線、好吃的臺式蚵仔煎、香噴噴的烤香腸、入味不油的狀元滷味、灑了滿滿花生粉的豬血糕、石家刈包香香軟軟的魯肉、清香好喝的米粉湯、小朋友最愛的雞蛋糕等等，各式美食應有盡有 ，就這麼邊逛邊吃，真是太滿足了！沿著文昌街走下去，還有流行時尚的中、西式家具店，各式新穎獨特的造型，也是快活。</p>
 				</div>
@@ -121,28 +170,33 @@ div.card{
 						</h2>
 					</div>
 				
-				<div class="box">
-					
-				
+<!-- 				<div class="box"> -->
 
-					<div class="row shopArea">
 
-						<c:forEach var="shop" varStatus="stat" items="${shops}">
-						<div class="card" style="width: 18rem; margin: 20px">
-						<a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${shop.shop_id}' />">
-							<img src="<c:url value='/_50_shop/_53_shopRegister/getPicture/${shop.shop_id}'/>" class="card-img-top shopImage"
-								alt="..."></a>
-							<div class="card-body">
+
+				<div class=" shopArea">
+
+					<c:forEach var="shop" varStatus="stat" items="${shops}">
+						<div class="card shadow p-3 mb-5 bg-white rounded"
+							style="width: 250px; margin: 20px">
+							<a
+								href="<c:url value='/_50_shop/_54_showShops/ShowShops/${shop.shop_id}' />">
+								<img
+								src="<c:url value='/_50_shop/_53_shopRegister/getPicture/${shop.shop_id}'/>"
+								class="card-img-top shopImage" alt="...">
+							</a>
+							<div class="card-body shadow-sm bg-white rounded">
 								<p class="card-text">${shop.shop_name}</p>
 							</div>
 						</div>
-					
-					</c:forEach>
-						
 
-					</div>
+					</c:forEach>
+
+
 
 				</div>
+
+				<!-- 				</div> -->
 
 
 
@@ -357,9 +411,28 @@ div.card{
 		</div>
 
 	</div>
-	
+
+	<!--------------------------------slick 套件------------------------------- -->
+	<script type="text/javascript"
+		src="<c:url value='/_00_util/allUtil/javascript/slick_jquery1.11.0.min.js'/>"></script>
+	<script type="text/javascript"
+		src="<c:url value='/_00_util/allUtil/javascript/slick_jq_migrate1.2.1.min.js'/>"></script>
+	<script type="text/javascript"
+		src="<c:url value='/_00_util/allUtil/javascript/slick.min.js'/>"></script>
+	<!--------------------------------slick 套件------------------------------- -->
+
 	<script>
 	function doFirst(){
+		
+		//slick
+		  $('.shopArea').slick({
+			  slidesToShow: 3,
+			  slidesToScroll: 1,
+			  autoplay: true,
+			  autoplaySpeed: 2000,
+		});
+		
+		
 	    feedback = document.getElementById('feedback');
 	    wicon = document.getElementById('wicon');
 	    xhr = new XMLHttpRequest();
@@ -404,6 +477,8 @@ div.card{
 	</script>
 
 
-
+<!-- -------------------------------引入共同的頁尾---------------------------------------- -->
+<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
+<!-- -------------------------------引入共同的頁尾----------------------------------------- -->
 </body>
 </html>

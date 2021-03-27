@@ -134,6 +134,7 @@
 		                                <span>NT$ ${cart.productBean.product_price }</span>
 		                            </div>
 		                            <div class="td count">
+		                            	
 		                                <select name="qty" id="selectAmount" onchange='updateAmount(${cart.cart_id}, this.options[this.options.selectedIndex].value,${cart.productBean.product_price})'>
 		                                	<c:forEach var="num" begin="1" end="10" >
 		                                		<option value="${num}" <c:if test="${cart.cart_amount == num}">selected</c:if>>${num}</option> 
@@ -177,15 +178,30 @@
             <div class="btn">
                 <a href="<c:url value='/DisplayPageProducts' />">繼續購物</a>
             </div>
-            <div class="confirmBtn">
-                <a href="<c:url value='/checkout' />">填寫資料</a>
-            </div>
+            
+            <c:choose>
+            	<c:when test="${!empty cartList}">
+            		<div class="confirmBtn">
+		                <a href="<c:url value='/checkout' />">填寫資料</a>
+		            </div>
+            	</c:when>
+            	<c:otherwise>
+            		<div class="confirmBtn">
+		                <a style="cursor: no-drop; href="javascript:;">填寫資料</a>
+		            </div>
+            	</c:otherwise>
+            </c:choose>
+            
+            
+            
         </div>
         
         
         
     </div>
-    
+<!-- -------------------------------引入共同的頁尾---------------------------------------- -->
+<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
+<!-- -------------------------------引入共同的頁尾----------------------------------------- -->    
     <script>
     
 //     	let newCount = 0;

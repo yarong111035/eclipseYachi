@@ -56,9 +56,11 @@ public class M_FavoriteShopController {
 			return "redirect:/LoginAndRegister";// 測試是否可以成功導向登入畫面
 		} else {
 			// ==========================得出會員的MemberId 傳入至dao取對應的所有值出來========
-			List<Map<String,Object>> fslb = m_FavoriteShopService.getMyFavoriteShopByMemberId(mb.getMemberId());
+			Set<ShopBean> fslb = m_FavoriteShopService.getMyFavoriteShopByMemberId2(mb.getMemberId());
 			model.addAttribute("fslbList", fslb);
-
+			for (ShopBean shopBean : fslb) {
+				System.out.println(shopBean.getShop_name());
+			}
 			return "_11_member/queryFavoriteShop";
 		}
 	}
@@ -123,5 +125,13 @@ public class M_FavoriteShopController {
 //		System.out.println("shop_id="+shop_id +"  "+ "mb.getMemberId() =" + mb.getMemberId());
 		m_FavoriteShopService.deleteSingleFavoriteShopByMemberId(mb.getMemberId(), shop_id);
 		return "redirect:/queryFavoriteShop";
+	}
+	
+	@GetMapping(value = "/deleteFavoriteShop2/{shop_id}")
+	public String deleteFavoriteShop2(@PathVariable Integer shop_id, Model model) {
+		Member mb = (Member) model.getAttribute("LoginOK");
+//		System.out.println("shop_id="+shop_id +"  "+ "mb.getMemberId() =" + mb.getMemberId());
+		m_FavoriteShopService.deleteSingleFavoriteShopByMemberId(mb.getMemberId(), shop_id);
+		return "redirect:/_50_shop/_54_showShops/ShowShops/" + shop_id;
 	}
 }

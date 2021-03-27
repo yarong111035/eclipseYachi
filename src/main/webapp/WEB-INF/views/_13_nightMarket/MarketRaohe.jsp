@@ -17,9 +17,11 @@
 	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/background.css'/>">
-<!--     <link rel="stylesheet" href="slick/slick.css"/> -->
-<!-- 		Add the new slick-theme.css if you want the default styling -->
-<!--     <link rel="stylesheet" href="slick/slick-theme.css"/> -->
+<!-----------------------------------slick 套件引用--------------------------------- -->
+    <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/slick.css'/>"/>
+<!-- 		sAdd the new slick-theme.css if you want the default styling -->
+    <link rel="stylesheet" href="<c:url value='_00_util/allUtil/css/slick-theme.css'/>"/>
+<!-----------------------------------slick 套件引用--------------------------------- -->
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/nightShopUtil/css/1_shop1.css'/>" />
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -33,12 +35,9 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
 	integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
 	crossorigin="anonymous"></script>
-<!--     <script type="text/javascript" src="js/slick_jquery1.11.0.min.js"></script> -->
-<!--     <script type="text/javascript" src="js/slick_jq_migrate1.2.1.min.js"></script> -->
-<!--     <script type="text/javascript" src="slick/slick.js"></script> -->
 <style>
 .box {
-	border: 1px solid #cccccc;
+/* 	border: 1px solid #cccccc; */
 	width: 720px;
 	height: 500px;
 	background-color: #FFFFFF;
@@ -46,12 +45,17 @@
 	overflow: auto;
 }
 div.card{
-	box-shadow: 1px 1px 3px 1px #ccc;
+/* 	box-shadow: 1px 1px 3px 1px #ccc; */
+}
+.card-body{
+	padding: 5px;
+    text-align: center;
+}
+.shopImage{
+	height: 130px;
+	width:100%;
 }
 
-.shopImage{
-	height: 165px;
-}
 .shopArea{
     margin-left: 20px;
 }
@@ -103,11 +107,15 @@ div.card{
 				<!-- 商家簡介 -->
 				<div id="shopInfo">
 					<h1 style="color: #f26419;">饒河夜市</h1>
+					<!-----------------------------------評分數開始---------------------------------- -->
 					<div>
-						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-							class="fas fa-star"></i>
+						<div class="ratings">
+							<div class="empty-stars"></div>
+
+							<div class="full-stars" style="width: ${nightMarketBean.market_score * 20}%; "></div>
+						</div>
 					</div>
+					<!-----------------------------------評分數結束---------------------------------- -->
 					<p style="color: #78886f;margin-top:10px;">饒河街夜市位於松山區八德路四段及撫遠街間的饒河街，全長600公尺，是臺北市區的大型觀光夜市之一。饒河街與松山車站一帶舊稱錫口，因基隆河水深，使本區得舟楫之便，而成為基隆、宜蘭貨物運至臺北城之轉運站，當時商賈雲集、舟船輻輳，極一時之盛，故使本區有「小蘇州」之稱。後因港岸河水淤積，停泊船隻漸少，再加上八德路拓寬後，饒河街成為次要道路，商業活動大減。政府為了改善當地商家生計，遂於民國76年（西元1987年）將南松山橋下有照攤販集中至饒河街，規劃為五百公尺長，為臺北市第二條觀光夜市。攤位整齊，內容琳琅滿目，蚵仔麵線、牛雜麵、冰品攤等應有盡有。除了小吃外，各種日用百貨如服飾、皮鞋亦物美價廉，此外還有民俗技藝表演及土產展售等。</p>
 					<p style="color: #78886f;">饒河街夜市全長約六百公尺，位於撫遠街與松山火車站前的入口處，各設有一座燈火璀璨的牌樓，由牌樓處開始進入夜市區。饒河街夜市之一大特色，以定期舉辦傳統技藝表演而聞名。兩側商店及騎樓下的攤販不計其數，因此來到此地的人，無論採買服飾、生活用品或吃喝玩樂，絕對能盡其所欲。</p>
 				</div>
@@ -120,29 +128,34 @@ div.card{
 						</h2>
 					</div>
 				
-				<div class="box">
-					
-				
+<!-- 				<div class="box"> -->
 
-					<div class="row shopArea">
 
-						<c:forEach var="shop" varStatus="stat" items="${shops}">
-						<div class="card" style="width: 18rem; margin: 20px">
-						<a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${shop.shop_id}' />">
-							<img src="<c:url value='/_50_shop/_53_shopRegister/getPicture/${shop.shop_id}'/>" class="card-img-top shopImage"
-								alt="..."></a>
-							<div class="card-body">
+
+				<div class=" shopArea">
+
+					<c:forEach var="shop" varStatus="stat" items="${shops}">
+						<div class="card shadow p-3 mb-5 bg-white rounded"
+							style="width: 250px; margin: 20px">
+							<a
+								href="<c:url value='/_50_shop/_54_showShops/ShowShops/${shop.shop_id}' />">
+								<img
+								src="<c:url value='/_50_shop/_53_shopRegister/getPicture/${shop.shop_id}'/>"
+								class="card-img-top shopImage" alt="...">
+							</a>
+							<div class="card-body shadow-sm bg-white rounded">
 								<p class="card-text">${shop.shop_name}</p>
 							</div>
 						</div>
-					
-					</c:forEach>
-						
 
-					</div>
+					</c:forEach>
+
 
 
 				</div>
+
+
+				<!-- 				</div> -->
 
 
 
@@ -351,8 +364,24 @@ div.card{
 
 	</div>
 	
+	<!--------------------------------slick 套件------------------------------- -->
+	 <script type="text/javascript" src="<c:url value='/_00_util/allUtil/javascript/slick_jquery1.11.0.min.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/_00_util/allUtil/javascript/slick_jq_migrate1.2.1.min.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/_00_util/allUtil/javascript/slick.min.js'/>"></script>
+	<!--------------------------------slick 套件------------------------------- -->
+	
 	<script>
 	function doFirst(){
+		
+
+		//slick
+		  $('.shopArea').slick({
+			  slidesToShow: 3,
+			  slidesToScroll: 1,
+			  autoplay: true,
+			  autoplaySpeed: 2000,
+		});
+		
 	    feedback = document.getElementById('feedback');
 	    wicon = document.getElementById('wicon');
 	    xhr = new XMLHttpRequest();
@@ -397,6 +426,8 @@ div.card{
 	</script>
 
 
-
+<!-- -------------------------------引入共同的頁尾---------------------------------------- -->
+<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
+<!-- -------------------------------引入共同的頁尾----------------------------------------- -->
 </body>
 </html>

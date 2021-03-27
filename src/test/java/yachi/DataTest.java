@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -15,9 +16,11 @@ import org.hibernate.query.Query;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.security.crypto.encrypt.BouncyCastleAesCbcBytesEncryptor;
 
 import _00_util.util.HibernateUtils;
 import _02_model.entity.CouponBean;
+import _02_model.entity.CouponUsedBean;
 import _02_model.entity.FavoriteCouponListBean;
 import _02_model.entity.FavoriteShopListBean;
 import _02_model.entity.NightMarketBean;
@@ -32,6 +35,7 @@ import _02_model.entity.ShopMenuBean;
 import _02_model.entity.ShopTypeBean;
 import _10_member.entity.Member;
 import _10_member.entity.Role;
+
 
 public class DataTest {
 	
@@ -136,14 +140,14 @@ public class DataTest {
 		mb1.setShopBean(sp);  
 		session.persist(sp);
 		ShopBean sp1 = session.get(ShopBean.class, mb1.getShopBean().getShop_id());
-		ShopMenuBean sm = new ShopMenuBean(null, sp1, null, "鐵板麵", "好吃的鐵板麵", 80.0, null, null);
-		ShopMenuBean sm1 = new ShopMenuBean(null, sp1, null, "厚切沙朗牛排", "好吃的沙朗牛排", 150.0, null, null);
-		ShopMenuBean sm2 = new ShopMenuBean(null, sp1, null, "厚切菲力牛排", "好吃的菲力牛排", 180.0, null, null);
-		ShopMenuBean sm3 = new ShopMenuBean(null, sp1, null, "厚切魷魚排", "好吃的魷魚", 150.0, null, null);
-		session.persist(sm);
-		session.persist(sm1);
-		session.persist(sm2);
-		session.persist(sm3);
+//		ShopMenuBean sm = new ShopMenuBean(null, sp1, null, "鐵板麵", "好吃的鐵板麵", 80.0);
+//		ShopMenuBean sm1 = new ShopMenuBean(null, sp1, null, "厚切沙朗牛排", "好吃的沙朗牛排", 150.0);
+//		ShopMenuBean sm2 = new ShopMenuBean(null, sp1, null, "厚切菲力牛排", "好吃的菲力牛排", 180.0);
+//		ShopMenuBean sm3 = new ShopMenuBean(null, sp1, null, "厚切魷魚排", "好吃的魷魚", 150.0);
+//		session.persist(sm);
+//		session.persist(sm1);
+//		session.persist(sm2);
+//		session.persist(sm3);
 		
 	}
 	@Test
@@ -159,14 +163,14 @@ public class DataTest {
 		mb1.setShopBean(sp);  
 		session.persist(sp);
 		ShopBean sp1 = session.get(ShopBean.class, mb1.getShopBean().getShop_id());
-		ShopMenuBean sm = new ShopMenuBean(null, sp1, null, "小碗的藥燉排骨", "好吃的排骨", 80.0, null, null);
-		ShopMenuBean sm1 = new ShopMenuBean(null, sp1, null, "大碗的藥燉排骨", "選用台灣豬", 150.0, null, null);
-		ShopMenuBean sm2 = new ShopMenuBean(null, sp1, null, "麵線", "好吃的麵線", 20.0, null, null);
-		ShopMenuBean sm3 = new ShopMenuBean(null, sp1, null, "荷包蛋", "好吃的荷包蛋", 10.0, null, null);
-		session.persist(sm);
-		session.persist(sm1);
-		session.persist(sm2);
-		session.persist(sm3);
+//		ShopMenuBean sm = new ShopMenuBean(null, sp1, null, "小碗的藥燉排骨", "好吃的排骨", 80.0);
+//		ShopMenuBean sm1 = new ShopMenuBean(null, sp1, null, "大碗的藥燉排骨", "選用台灣豬", 150.0);
+//		ShopMenuBean sm2 = new ShopMenuBean(null, sp1, null, "麵線", "好吃的麵線", 20.0);
+//		ShopMenuBean sm3 = new ShopMenuBean(null, sp1, null, "荷包蛋", "好吃的荷包蛋", 10.0);
+//		session.persist(sm);
+//		session.persist(sm1);
+//		session.persist(sm2);
+//		session.persist(sm3);
 		
 	}
 	
@@ -770,6 +774,65 @@ public class DataTest {
 		for(ShopBean s:shops) {
 			System.out.println(s.getShop_name());
 		}
+	}
+	
+	@Test
+	public void makedata() {
+//		CouponUsedBean cub = new CouponUsedBean();
+//		java.sql.Date[] dates = {java.sql.Date.valueOf("2000-11-11"), java.sql.Date.valueOf("1993-11-11"), java.sql.Date.valueOf("1985-11-11"), java.sql.Date.valueOf("1973-11-11"), java.sql.Date.valueOf("2001-11-11"), java.sql.Date.valueOf("1997-11-11"), java.sql.Date.valueOf("1989-11-11"), java.sql.Date.valueOf("1973-11-11"), java.sql.Date.valueOf("1985-11-11"), java.sql.Date.valueOf("1970-11-11")};
+//		
+//		for (int i = 0; i < dates.length; i++) {
+//			Member member = new Member();
+//			member.setBirthday(dates[i]);
+//			member.setSex("female");
+//			session.persist(member);
+//		}
+		ShopBean sb = session.get(ShopBean.class, 1);
+		java.sql.Timestamp[] timestamps = {java.sql.Timestamp.valueOf("2021-01-24 23:59:59.000"),java.sql.Timestamp.valueOf("2021-01-01 23:59:59.000"),java.sql.Timestamp.valueOf("2021-02-11 23:59:59.000"),java.sql.Timestamp.valueOf("2021-02-17 23:59:59.000"),java.sql.Timestamp.valueOf("2021-03-10 23:59:59.000")};
+		for (int i = 0; i < timestamps.length; i++) {
+			CouponUsedBean cub = new CouponUsedBean();
+			cub.setCoupon_used_time(timestamps[i]);
+			cub.setShopBean(sb);
+			Member member = session.get(Member.class, 17+i);
+			cub.setMemberBean(member);
+			CouponBean cb = session.get(CouponBean.class, 4);
+			cub.setCouponBean(cb);
+			session.persist(cub);
+			
+			
+		}
+		
+	}
+	
+	@Test
+	public void analysisMember() {
+		//店家所有顧客男女比
+//		String hql = "SELECT COUNT(*) FROM CouponUsedBean c WHERE c.memberBean.sex = :sid AND c.shopBean.shop_id = :mid";	
+//		Number a = (Number) session.createQuery(hql).setParameter("sid", "female").setParameter("mid", 1).uniqueResult();
+		
+		//店家的單筆優惠券使用數量
+//		String hql = "SELECT COUNT(*) FROM CouponUsedBean c WHERE c.couponBean.coupon_id = :sid AND c.shopBean.shop_id = :mid";	
+//		Number a = (Number) session.createQuery(hql).setParameter("sid", 4).setParameter("mid", 1).uniqueResult();
+		
+		//二月優惠券使用數量
+//		String hql = "SELECT COUNT(*) FROM CouponUsedBean c WHERE c.coupon_used_time > :sid AND c.coupon_used_time < :mid";	
+//		Number a = (Number) session.createQuery(hql).setParameter("sid", java.sql.Timestamp.valueOf("2021-02-01 00:00:00.000")).setParameter("mid", java.sql.Timestamp.valueOf("2021-03-01 00:00:00.000")).uniqueResult();
+		
+		//店家所有顧客年齡分佈
+		List<Number> temp = new LinkedList<Number>();
+		String hql = "SELECT COUNT(*) FROM CouponUsedBean c WHERE c.memberBean.birthday > :bid AND c.memberBean.birthday < :eid AND c.shopBean.shop_id = :sid";	
+		Number a = (Number) session.createQuery(hql).setParameter("bid", java.sql.Date.valueOf("2001-03-26"))
+													.setParameter("eid", java.sql.Date.valueOf("2021-03-26"))
+													.setParameter("sid", 1)
+													.uniqueResult();
+		String hql1 = "SELECT COUNT(*) FROM CouponUsedBean c WHERE c.memberBean.birthday > :bid AND c.memberBean.birthday < :eid AND c.shopBean.shop_id = :sid";	
+		Number b = (Number) session.createQuery(hql).setParameter("bid", java.sql.Date.valueOf("1981-03-26"))
+													.setParameter("eid", java.sql.Date.valueOf("2001-03-26"))
+													.setParameter("sid", 1)
+													.uniqueResult();
+		temp.add(a);
+		temp.add(b);
+		System.out.println(temp);
 	}
 
 	

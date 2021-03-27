@@ -17,9 +17,11 @@
 	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/background.css'/>">
-<!--     <link rel="stylesheet" href="slick/slick.css"/> -->
-<!-- 		Add the new slick-theme.css if you want the default styling -->
-<!--     <link rel="stylesheet" href="slick/slick-theme.css"/> -->
+<!-----------------------------------slick 套件引用--------------------------------- -->
+    <link rel="stylesheet" href="<c:url value='/_00_util/allUtil/css/slick.css'/>"/>
+<!-- 		sAdd the new slick-theme.css if you want the default styling -->
+    <link rel="stylesheet" href="<c:url value='_00_util/allUtil/css/slick-theme.css'/>"/>
+<!-----------------------------------slick 套件引用--------------------------------- -->
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/nightShopUtil/css/1_shop1.css'/>" />
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -38,7 +40,7 @@
 <!--     <script type="text/javascript" src="slick/slick.js"></script> -->
 <style>
 .box {
-	border: 1px solid #cccccc;
+/* 	border: 1px solid #cccccc; */
 	width: 720px;
 	height: 500px;
 	background-color: #FFFFFF;
@@ -46,12 +48,17 @@
 	overflow: auto;
 }
 div.card{
-	box-shadow: 1px 1px 3px 1px #ccc;
+/* 	box-shadow: 1px 1px 3px 1px #ccc; */
+}
+.card-body{
+	padding: 5px;
+    text-align: center;
+}
+.shopImage{
+	height: 130px;
+	width:100%;
 }
 
-.shopImage{
-	height: 165px;
-}
 .shopArea{
     margin-left: 20px;
 }
@@ -104,11 +111,15 @@ div.card{
 				<!-- 商家簡介 -->
 				<div id="shopInfo">
 					<h1 style="color: #f26419;">士林夜市</h1>
+					<!-----------------------------------評分數開始---------------------------------- -->
 					<div>
-						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-							class="fas fa-star"></i>
+						<div class="ratings">
+							<div class="empty-stars"></div>
+
+							<div class="full-stars" style="width: ${nightMarketBean.market_score * 20}%; "></div>
+						</div>
 					</div>
+					<!-----------------------------------評分數結束---------------------------------- -->
 					<p style="color: #78886f;margin-top:10px;">士林夜市為臺北市最具規模的夜市之一，以陽明戲院及慈誠宮為中心，包含了文林路、大東路、大南路等熱鬧街市集結而成，其中士林市場早在西元1910年即已興建，以各種傳統小吃聞名國內外，許多觀光客皆慕名而來，像是大餅包小餅、石頭火鍋或是士林大香腸等，更是已經成為美食地標，無人不曉。</p>
 					<p style="color: #78886f;">由於夜市鄰近許多學區，故以學生為主要的消費族群，價格也比一般商店便宜許多，例如家具、衣飾、相片沖印店或寵物用品等，都有其集散的區域，『情人巷』中的精品店與冰店，更是吸引了不少當地學子以外的顧客前往。</p>
 					<p style="color: #78886f;">士林夜市所含範圍極廣，在曲折巷弄內行走，常有柳暗花明又一村的驚喜，週末假日時前往，更是人山人海，擠得水洩不通，常見一家大小提著大包小包剛採買的日用品，嘴裡還塞著美味小吃，滿足之情溢於言表。</p>
@@ -122,28 +133,33 @@ div.card{
 						</h2>
 					</div>
 				
-				<div class="box">
+<!-- 				<div class="box"> -->
 					
 				
 
-					<div class="row shopArea">
+					<div class=" shopArea">
 
-						<c:forEach var="shop" varStatus="stat" items="${shops}">
-						<div class="card" style="width: 18rem; margin: 20px">
-						<a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${shop.shop_id}' />">
-							<img src="<c:url value='/_50_shop/_53_shopRegister/getPicture/${shop.shop_id}'/>" class="card-img-top shopImage"
-								alt="..."></a>
-							<div class="card-body">
+					<c:forEach var="shop" varStatus="stat" items="${shops}">
+						<div class="card shadow p-3 mb-5 bg-white rounded"
+							style="width: 250px; margin: 20px">
+							<a
+								href="<c:url value='/_50_shop/_54_showShops/ShowShops/${shop.shop_id}' />">
+								<img
+								src="<c:url value='/_50_shop/_53_shopRegister/getPicture/${shop.shop_id}'/>"
+								class="card-img-top shopImage" alt="...">
+							</a>
+							<div class="card-body shadow-sm bg-white rounded">
 								<p class="card-text">${shop.shop_name}</p>
 							</div>
 						</div>
-					
-					</c:forEach>
-						
 
-					</div>
+					</c:forEach>
+
+
 
 				</div>
+
+<!-- 				</div> -->
 
 
 
@@ -355,8 +371,24 @@ div.card{
 
 	</div>
 	
+	<!--------------------------------slick 套件------------------------------- -->
+	 <script type="text/javascript" src="<c:url value='/_00_util/allUtil/javascript/slick_jquery1.11.0.min.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/_00_util/allUtil/javascript/slick_jq_migrate1.2.1.min.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/_00_util/allUtil/javascript/slick.min.js'/>"></script>
+	<!--------------------------------slick 套件------------------------------- -->
+	
 	<script>
 	function doFirst(){
+		
+		//slick
+		  $('.shopArea').slick({
+			  slidesToShow: 3,
+			  slidesToScroll: 1,
+			  autoplay: true,
+			  autoplaySpeed: 2000,
+		});
+		
+		
 	    feedback = document.getElementById('feedback');
 	    wicon = document.getElementById('wicon');
 	    xhr = new XMLHttpRequest();
@@ -401,6 +433,8 @@ div.card{
 	</script>
 
 
-
+<!-- -------------------------------引入共同的頁尾---------------------------------------- -->
+<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
+<!-- -------------------------------引入共同的頁尾----------------------------------------- -->
 </body>
 </html>

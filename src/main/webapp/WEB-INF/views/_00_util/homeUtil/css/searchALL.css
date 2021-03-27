@@ -378,10 +378,13 @@ header .tab .tab-warp .tab-content .tab-panel a:hover{
 }
 .nav-first h5{
   padding-left: 15px;
+  padding-top: 3px;
 }
 
 .nav-first h4{
-  padding: 0 5px;
+  font-weight: bolder;
+  padding:  5px;
+  padding-top: 4px;
 }
 
 
@@ -431,8 +434,9 @@ header .tab .tab-warp .tab-content .tab-panel a:hover{
 
 /*   font-weight:lighter; */
   font-weight: bolder;
-
 }
+
+
 .keyword-form input{
   border: 1px solid #ccc; 
   background-color: #fff;
@@ -517,6 +521,10 @@ header .tab .tab-warp .tab-content .tab-panel a:hover{
   margin: 10px auto;
 }
 
+.productType-link{
+  
+}
+
 .product-price input{
   border: 1px solid #ccc; 
   background-color: #fff;
@@ -533,6 +541,7 @@ header .tab .tab-warp .tab-content .tab-panel a:hover{
 .search-submit{
   margin-left: -5px;
   vertical-align: bottom;
+  padding-right: 5px;
 }
 
 

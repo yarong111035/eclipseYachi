@@ -214,16 +214,17 @@ body{
 /*數量提示*/
 #count_circle{
 	display:inline-block;
-	width:20px;
-	height:20px;
+/* 	width:20px; */
+/* 	height:20px; */
 	border-radius:50%;
-	z-index: 9999;
+	z-index: 999;
     position: absolute;
     left: -40px;
     top: 29%;
-    background:#EDD9D9;
+/*     background:#EDD9D9; */
+    background: #dc5757;
     text-align: center;
     line-height: 23px;
-    color:#555;
+    color:#fff;
     transition: .2s;
 }

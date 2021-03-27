@@ -77,6 +77,54 @@
 	label, .rate>label:hover ~ input:checked ~ label {
 	color: #c59b08;
 }
+
+.commentBox{
+	background:#fff;
+}
+.comment_content{
+	white-space: pre-line;
+}
+.commentBox .shopComment{
+	margin:0 auto;
+}
+/* 顯示星星評價 */
+/* 評價星星 */
+.ratings {
+    position: relative;
+    bottom: 20%;
+/*     left: 4%; */
+    vertical-align: middle;
+    display: inline-block;
+    color: #b1b1b1;
+    overflow: hidden;
+}
+.full-stars {
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #fde16d;
+}
+.empty-stars:before, .full-stars:before {
+    content:"\2605\2605\2605\2605\2605";
+    font-size: 15pt;
+}
+.empty-stars:before {
+    -webkit-text-stroke: 1px #848484;
+}
+.full-stars:before {
+    -webkit-text-stroke: 1px orange;
+}
+/* Webkit-text-stroke is not supported on firefox or IE */
+
+/* Firefox */
+@-moz-document url-prefix() {
+    .full-stars {
+        color: #ECBE24;
+    }
+}
+
 </style>
 
 </head>
@@ -132,19 +180,36 @@
 						<div style="margin-right: 15px;">
 							<h2 style="color: #f26419;">${shop.shop_name}</h2>
 						</div>
+						<c:if test="${!empty favoriteId}">
+							<div>
+							<a
+								href="<c:url value='/deleteFavoriteShop2/${shop.shop_id}' />"
+								style="font-size:20px;border:1px solid #777;padding:6px;border-radius:4px;background-color:#aaa;color:white;box-shadow: 2px 2px 3px 1px #999;"><i
+								class="fas fa-heart "></i> 已收藏</a>
+						</div>
+						</c:if>
+						<c:if test="${empty favoriteId}">
 						<div>
 							<a
 								href="<c:url value='/_50_shop/_54_showShops/addFavoriteShop/${shop.shop_id}' />"
-								onclick="return window.alert('收藏成功!');"><i
-								class="fas fa-heart fa-2x"></i></a>
+								style="font-size:20px;border:1px solid #930000;padding:6px;border-radius:4px;background-color:#ff0000;color:white;box-shadow: 2px 2px 3px 1px #999;"><i
+								class="fas fa-heart"></i> 收藏</a>
 						</div>
+						</c:if>
 					</div>
 
+					<!-----------------------------------評分數開始---------------------------------- -->
 					<div>
-						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-							class="fas fa-star"></i>
+						<div class="ratings">
+							<div class="empty-stars"></div>
+							
+							<div class="full-stars" style="width: ${shop.shop_score * 20}%; "></div>
+						</div>
+						<span>(${count}則評論)</span>
+<%-- 						${shop.shop_score}&nbsp;<i class="fas fa-star"></i> (${count}) --%>
 					</div>
+					<!-----------------------------------評分數結束---------------------------------- -->
+					
 					<p style="color: #78886f;">${shop.shop_info}</p>
 				</div>
 				<!-- 商家簡介 -->
@@ -154,13 +219,16 @@
 
 					<div class="addCoupon">
 						<div style="margin-top: 15px;">
-							<a href="<c:url value='/#'/>"><i
-								class="far fa-plus-square fa-3x"></i></a>
+							<a href="<c:url value='/addFavoriteInShop/add/${coupon.coupon_id}'/>" onclick="return window.alert('收藏成功!');"><i
+								class="far fa-plus-square fa-3x" ></i></a>
 						</div>
 						<div>
+						<a
+						href="<c:url value='/coupon?coupon_id=${coupon.coupon_id}' />">
 							<img
 								src="<c:url value='/_50_shop/_51_coupon/getPicture/${coupon.coupon_id}'/>"
 								style="width: 200px; height: 80px;">
+								</a>
 						</div>
 						<div class="couponInfo">
 							<h3>${coupon.coupon_name}</h3>
@@ -173,13 +241,13 @@
 				<!-- 商家優惠券 -->
 
 				<!-- 留言區 -->
-				<div id="comment">
+				<div id="comment" class="mb-5">
 					<div class="mt-5">
 						<h2>
 							<i class="fas fa-comments"></i>&nbsp;立即評價
 						</h2>
 					</div>
-					<div class="container pb-4 my-5 border-bottom">
+					<div class="container pb-4 border-bottom">
 						<c:if test="${empty LoginOK}">
 							<div class="row" id="flexbox1">
 
@@ -190,6 +258,9 @@
 								</div>
 							</div>
 						</c:if>
+						<c:if test="${!empty commentExistBean}">
+						<div><h3>你已經評論囉～</h3></div>
+					</c:if>
 					</div>
 					<c:if test="${empty commentExistBean}">
 
@@ -239,10 +310,11 @@
 
 
 					</c:if>
+					
 				</div>
 				<c:forEach var="shopCommentBean" varStatus="stat"
 					items="${shopCommentBeanList}">
-					<div class="commentBox" style="padding: 6px;">
+					<div class="commentBox shadow mb-5 bg-white" style="padding: 6px;">
 						<div class="memberInfo">
 							<div class="putLeft">
 								<div class="memberImage">
@@ -251,8 +323,7 @@
 								</div>
 								<span class="memberId">${shopCommentBean.memberBean.username }</span>
 								<span class="nickname">${shopCommentBean.memberBean.fullname }</span>
-								<input type="number"
-									id="score${shopCommentBean.shop_comment_id}"
+								<input type="number" id="score${shopCommentBean.shop_comment_id}"
 									value="${shopCommentBean.shop_score}" style="display: none;">
 								<div class="comment_score"
 									id="feedback${shopCommentBean.shop_comment_id}"></div>
@@ -268,7 +339,7 @@
                             </ul> -->
 							</div>
 						</div>
-						<div class="comment_content">
+						<div class="comment_content ">
 							<span>${shopCommentBean.shop_comment_content}</span>
 						</div>
 						<hr>
@@ -280,7 +351,7 @@
 							<span class="memberId">${shopCommentBean.shopBean.shop_name }&nbsp;:</span>
 						</div>
 						<!-- 點擊會出現檢舉或編輯的下拉選單 -->
-						<div class="comment_content">
+						<div class="comment_content shopComment">
 							<span>${shopCommentBean.shop_response}</span>
 						</div>
 
@@ -323,7 +394,7 @@
 						<div class="item-left">
 							<i class="fas fa-map-marked-alt"></i>
 						</div>
-						<div class="item-right">${shop.nightMarketBean.market_name}</div>
+						<div class="item-right">${shop.shop_addr}</div>
 					</div>
 					<div class="item">
 						<div class="item-left">
@@ -335,9 +406,7 @@
 						<div class="item-left">
 							<i class="fas fa-clock"></i>
 						</div>
-						<div class="item-right">
-							Mon~Fri : 16~22 <br> Sat~Sun : 16~24
-						</div>
+						<div class="item-right">${shop.shop_hours}</div>
 					</div>
 					<div class="item">
 						<div class="item-left">
@@ -461,6 +530,8 @@
 
 
 
-
+<!-- -------------------------------引入共同的頁尾---------------------------------------- -->
+<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
+<!-- -------------------------------引入共同的頁尾----------------------------------------- -->
 </body>
 </html>

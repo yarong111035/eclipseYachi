@@ -61,7 +61,7 @@
 	
 	
 	
-	<div class="successOrder">
+	<div class="successOrder shadow mb-5 bg-white rounded">
 
         <!-- 標頭 -->
         <div class="successTitle">
@@ -92,6 +92,9 @@
         <!-- 回商城首頁 -->
         
     </div>
+    <!-- -------------------------------引入共同的頁尾---------------------------------------- -->
+	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
+	<!-- -------------------------------引入共同的頁尾----------------------------------------- -->
     <script>
         $(function () {
           

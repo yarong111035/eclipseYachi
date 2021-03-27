@@ -15,12 +15,28 @@
 
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
+<<<<<<< HEAD
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/shoppingMallUtil/css/4_shopping_cart.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/shoppingMallUtil/css/2_mix.css'/>">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+=======
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+	integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+	integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+	crossorigin="anonymous"></script>
+>>>>>>> 432746377c3d0c840e0dfea3f52afe7342a026ce
 <script
 	src="<c:url value='/_00_util/allUtil/javascript/jquery-3.5.1.js'/>"></script>
 <script src="<c:url value='/_00_util/allUtil/javascript/jquery-ui.js'/>"></script>
@@ -365,10 +381,13 @@ button, .button {
             	  return new Promise(resolve => setTimeout(resolve, ms));
             	}
         });
+<<<<<<< HEAD
     </script>
 		
+=======
+    </script>  
+>>>>>>> 432746377c3d0c840e0dfea3f52afe7342a026ce
 </body>
-
 </html>
 
 <!-- 僅供學術研究使用 如有侵權煩請告知 E-mail: a830425tw@gmail.com -->

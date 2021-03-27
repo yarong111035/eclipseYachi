@@ -18,5 +18,6 @@ public interface editActivityService {
 	int updateAdminActivity(AdminActivityBean bean);
 	
 	int deleteAdminActivity(int adminactivity_id);
-
+	
+	List<AdminActivityBean> getCurrentAdminActivity();
 }
