@@ -16,6 +16,8 @@
 
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
+	<link rel="stylesheet"
+	href="<c:url value='/_00_util/allUtil/css/background.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/shoppingMallUtil/css/4_shopping_cart.css'/>">
 <link rel="stylesheet"
