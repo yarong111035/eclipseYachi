@@ -41,57 +41,7 @@
 	href="<c:url value='/WEB-INF/views/_00_util/allUtil/css/reset.css'/>">
 
 
-<script type="text/JavaScript">
-// window.onload = function(){ 
-// 	var btn = document.getElementById("btn");
-// 	var result = document.getElementById("Result")
-// 	btn.onclick = function(){
-// 	    var queryString = document.getElementById("queryString").value;
-// 	   	var xhr = new XMLHttpRequest();
-	   	
-// // 	   	xhr.open("POST", "<c:url value='/_30_coupon/_33_editCoupon/controller/Coupon_Controller/queryCoupon' />", true);
-	   	
-// 	   	xhr.open("POST", "<c:url value='/queryCoupon' />", true);
-	   	
-//  	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-//  	   	xhr.send("queryString=" + queryString);
-	  //XMLHttpRequest物件的屬性
-	  //Ch03
-	  //屬性名稱 說明
-	  //readyState 記錄XMLHttpRequest的狀態
-	  //onreadystatechange 存放一個方法(或方法名稱)，當readyState屬性值改變
-	  //時此方法就會被呼叫
-	  //status 儲存伺服器回傳的Http狀態碼(如200、404、500等)
-	  //statusText 儲存伺服器回傳的Http文字簡訊(如OK、Not Found等)
-	  //responseText 伺服器的回應內容，為一個字串
-	  //responseXML 伺服器的回應內容，為XML文件
-// 	   	xhr.onreadystatechange = function() {
-// // 		// 向伺服器提出的請求已經收到回應
-// 	        if (xhr.readyState === 4) {
-// // 	        // status: HTTP通訊協定的狀態碼伺服器，
-// // 	        // 200表示Server成功的處理請求
-// 	            if (xhr.status === 200) {
-// // 	          	// getResponseHeader: 取得回應內容的MIME Type
-// 	                 var type = xhr.getResponseHeader("Content-Type");   
-// 	                // 判斷回應類型，這裡使用 JSON
-// 	                 if (type.indexOf("application/json") === 0) {               
-// 	                        var obj = JSON.parse(xhr.responseText);
-// 	                        alert(xhr.responseText);
-// 	                        if (obj != null ) {
-// // 	                        		result.innerHTML =
-// // 	                                '您的查詢的優惠劵：' + obj.querylist + "<br>" ; //查詢的優惠劵結果應該在這顯示
-// 	                        } else {
-// 	                        	result.innerHTML = "搜尋錯誤";
-// 	                        }
-// 	                    }
-// 	                } else {
-// 	                    alert("搜尋錯誤1: " + xhr.status + ", " + xhr.responseText);
-// 	                }
-// 	            } 
-// 	    	}
-	    }
-};
- </script>
+
 <style type="text/css">
 .pos {
 	position: absolute;
@@ -112,30 +62,14 @@
 <body>
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
 
-	<!-- <table> -->
-	<!--    <tr height='36'>  -->
-	<!--      <td width='120' align='right'>查詢優惠劵：</td> -->
-	<!--      <td><input id='queryString' type="text" name="queryString" size = "20"></td> -->
-	<!--    </tr> -->
 
-	<!--    <tr height='48'>  -->
-	<!--      <td colspan='2' align='center'><input id='btn' type="button" value="確定"></td>   -->
-	<!--    </tr> -->
-	<!-- </table> -->
-	<!-- <hr> -->
-	<!-- <div id='Result'  style='height:70px; line-height: 30px;'> -->
-	<%-- <c:forEach var='result' items='${result}'> --%>
-	<%-- 				搜尋結果${result} --%>
-	<%-- </c:forEach> --%>
+			<form style="margin:50px auto;width:400px; height:50px;" action="<c:url value="/searchCoupons"/>">
+				<a  style="font-size:25px; font-weight: bold;">搜尋優惠券</a> 
+				<input  style="border-radius:5px;width:200px; height:32px;"type="text" name="coupon_Name" id="coupon_Name"> 
+					<input class="btn btn-primary" type="submit" value="搜尋">
+			</form>
+	
 
-	<!-- </div> -->
-	
-	<form action="<c:url value="/searchCoupons"/>">
-		<a>搜尋優惠券</a>
-		<input type="text" name="coupon_name" id="">
-		<input type="submit" value="搜尋">
-	</form>
-	
 	<div class="row row-cols-1 row-cols-md-3 "
 		style="padding: 0px 130px 130px 130px">
 		<c:forEach var='coupon' items='${coupons}'>
@@ -155,7 +89,7 @@
 						<div class="card-text">
 							${coupon.coupon_info}
 							<div id="collect " class="pos  amount">剩餘${coupon.coupon_amount}份
-								</div>
+							</div>
 							<%-- 							<div id="collect " class="pos">開始時間${coupon.coupon_begin} --%>
 							<%-- 								結束時間${coupon.coupon_end} --%>
 							<!-- 							</div> -->
