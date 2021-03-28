@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shopping</title>
+<title>${coupon.shopBean.shop_name}の優惠券</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
@@ -16,10 +17,7 @@
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
 <link rel="stylesheet"
-	href="<c:url value='/_00_util/shoppingMallUtil/css/4_shopping_cart.css'/>">
-<link rel="stylesheet"
-	href="<c:url value='/_00_util/shoppingMallUtil/css/2_mix.css'/>">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	href="<c:url value='/_00_util/allUtil/css/background.css'/>">
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	 
@@ -38,12 +36,6 @@
 	src="<c:url value='/_00_util/allUtil/javascript/jquery-3.5.1.js'/>"></script>
 <script src="<c:url value='/_00_util/allUtil/javascript/jquery-ui.js'/>"></script>
 
-<link rel="stylesheet"
-	href="<c:url value='/WEB-INF/views/_00_util/allUtil/css/reset.css'/>">
-<link rel="stylesheet"
-	href="<c:url value='/WEB-INF/views/_00_util/homeUtil/css/home.css'/>">
-<link rel="stylesheet" href="<c:url value='/test/reset.css'/>">
-<link rel="stylesheet" href="<c:url value='/test/header.css'/>">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
@@ -75,12 +67,15 @@ button, .button {
 .button-org {
     background-color: #FF8800;
     color: #FFFFFF !important;
+    transition:.1s;
 }
 
 .button-org:hover {
     background-color: #F4880C;
     color: #FFFFFF;
     cursor: pointer;
+/*      transform: scale(1.1); */
+     font-size:1.2rem;
 }
 
 .i-newuser {
@@ -141,7 +136,7 @@ button, .button {
 <!-- 			<i class="fa fa-chevron-up t-white" aria-hidden="true"></i> <span>TOP</span> -->
 <!-- 		</button> -->
 		<div class="row">
-			<div class="col-md-8 my-3">
+			<div class="col-md-8 shadow p-3 mb-5 bg-light rounded my-3">
 				<div class="prodInfo">
 					<h1>${coupon.coupon_name}</h1>
 					<h2 class="t-namered t-11">
@@ -154,7 +149,7 @@ button, .button {
 						<div class="d-flex tagBox product-tag">
 
 							<div class="tag-square"
-								style="color: #FF5D00; border: 1px solid #FF5D00;">破千銷售</div>
+								style="color: #FF5D00; border: 1px solid #FF5D00;">好評不斷</div>
 
 
 
@@ -164,8 +159,8 @@ button, .button {
 						<div
 							class="fas fa-star label-smile prod-smile-icon i-smile-4-1 font-weight-bold mt-1 ml-1">
 							<span class="t-10 number">4</span> <span class="t-085">.5</span>
-							<span class="t-085" style="margin-left: -0.4rem;">
-								&nbsp;(1389) </span>
+<!-- 							<span class="t-085" style="margin-left: -0.4rem;"> -->
+<!-- 								&nbsp;(1389) </span> -->
 						</div>
 
 					</div>
@@ -246,10 +241,12 @@ button, .button {
 							<div class="correctContent">
 								<div class="dropdown_intro">
 									<ul class="fine_print_area">
-										<li>優惠期間為自 2021 年 02 月 11 日 起兌換至 2021 年 12 月 31 日，平假日皆可使用</li>
+										<li>優惠期間為自 <span style="font:1.2rem bold;color:#FF8800;"><fmt:formatDate value="${ coupon.coupon_begin}"
+													pattern=" yyyy年 MM月 dd日 " /></span> 起兌換至 <span style="font:1.2rem bold;color:#FF8800;"><fmt:formatDate value="${ coupon.coupon_end}"
+													pattern=" yyyy年 MM月 dd日 " /></span>，平假日皆可使用</li>
 										<li>其他<br>1.不得跨店使用 <br>2.本優惠僅供內用<br>
 										</li>
-										<li>公司名稱：Yachi(股)有限公司<br>負責人：Jason<br>客服電話：0800-123-123<br>E-mail：Yachi123456789@gmail.com<br>營業網址：http://www.yachi.com.tw/
+										<li>公司名稱：Yachi(股)有限公司<br>負責人：Jason<br>客服電話：0800-123-123<br>E-mail：yachijava015@gmail.com<br>營業網址：yachi.com.tw
 										</li>
 										
 										
@@ -271,10 +268,10 @@ button, .button {
 				</div>
 				<!-- End:left -->
 				<div class="col-md-4 my-3 relative">
-					<div id="purchasePanel-sticky-wrapper" class="sticky-wrapper"
+					<div id="purchasePanel-sticky-wrapper" class="sticky-wrapper shadow p-3 mb-5 bg-light rounded"
 						style="height: 373px;">
 						<div class="purchase" id="purchasePanel">
-							<div class="purchaseBox border">
+							<div class="purchaseBox">
 								<h3 class="t-11">${coupon.coupon_name}</h3>
 								<hr>
 <!-- 								<h3 class="t-095 t-namered">A.精選酥嫩腰內豬排特餐 / B.名古屋味噌雞排特餐 / -->
@@ -300,22 +297,32 @@ button, .button {
 								
 <!-- 	=====================================沒登入就會隱藏按鈕======================================= -->
 <%-- 								<c:if test="${!empty LoginOK}"> --%>
-									<a id="collect" class="button button-org mb-2" href="<spring:url value='/addfavorite/add/${coupon.coupon_id}'/>" data-fancybox=""
-										data-src="#purchaseBox" rel="buy"> 收藏 </a>
+									<a id="collect" class="button button-org mb-2" onclick='addFavoriteCoupon(${coupon.coupon_id})' data-fancybox=""
+										data-src="#purchaseBox" rel="buy"> 收藏優惠券 </a>
+											
+											<c:choose>
+												<c:when test="${coupon.coupon_amount == 0}">
+													<a id="using" style="cursor:no-drop;" class="button button-org mb-2" href="javascript:;" data-fancybox=""
+														data-src="#purchaseBox" rel="buy"> 使用優惠劵 </a>
+												</c:when>
+												<c:otherwise>
+													<a id="using" class="button button-org mb-2" onclick='useCoupon(${coupon.coupon_id})' data-fancybox=""
+														data-src="#purchaseBox" rel="buy"> 使用優惠劵 </a>
+												</c:otherwise>
+											</c:choose>
+											
 										
-											<a id="using" class="button button-org mb-2" href="<spring:url value='/useCoupon/${coupon.coupon_id}'/>" data-fancybox=""
-										data-src="#purchaseBox" rel="buy"> 使用優惠劵 </a>
 <%-- 										</c:if> --%>
 										
 
 
 									<div class="d-flex justify-content-center">
-										<p class="t-red t-10">1345份已販售</p>
+										<p class="t-red t-10">剩餘&nbsp;${coupon.coupon_amount}&nbsp;份</p>
 									</div>
 
 								</div>
 							</div>
-							<div class="newuser-coupon border mt-3 p-2">
+							<div class="newuser-coupon mt-3 p-2">
 								<div class="d-flex mt-2">
 									<i class="i-newuser ml-2"></i>
 									<div>
@@ -323,7 +330,7 @@ button, .button {
 											立刻下載APP，輸入邀請碼 <br> <span class="t-red">" Yachi"</span>即可獲得$100點！
 										</p>
 										<a class="t-085 d-inline-block mb-1 t-orange"
-											href="<c:url value='#' />">下載APP</a>
+											href="<c:url value='javascript:;' />">下載APP</a>
 											
 									</div>
 								</div>
@@ -336,51 +343,102 @@ button, .button {
 		</div>
 		
 		<script>
+		
+		//使用優惠券
+		   function useCoupon(coupon_id){
+		   		Swal.fire({
+		    		  title: '確定使用此優惠券?',
+		    		  icon: 'warning',
+		    		  showCancelButton: true,
+		    		  confirmButtonColor: 'rgb(255,136,0)',
+		    		  cancelButtonColor: '#d33',
+		    		  confirmButtonText: 'Yes!'
+		    		}).then((result) => {
+		    		  if(result.isConfirmed) {
+		    			 
+		    		    $.ajax({
+				            url:"<c:url value='/useCoupon/" + coupon_id + "'/>",
+				            type:"get",
+				            data:{},
+			       		 })
+			       		  Swal.fire(
+		    		      '兌換成功！',
+		    		      '2秒後頁面即將自動重整',
+		    		      'success'
+		    		    )
+			       		setTimeout(() => {
+			       			window.location.reload();
+						}, 1200); 
+			       		 
+		    		  }  
+		    		 return false;
+		    		})
+			}	
+		        
+		//收藏優惠券
+		  function addFavoriteCoupon(coupon_id){
+    		    $.ajax({
+		            url:"<c:url value='/addfavorite/add/" + coupon_id + "'/>",
+		            type:"get",
+		            data:{},
+	       		 })
+	       		  Swal.fire(
+    		      '收藏成功！',
+    		      '2秒後頁面即將自動重整',
+    		      'success'
+    		    )
+	       		setTimeout(() => {
+	       			window.location.reload();
+				}, 1200); 
+			}	
+		
+		
+		
+		
 
-        $(function () {
+//         $(function () {
 
-            const using = document.getElementById('using');
-            using.addEventListener('click', function (e) {
-                Swal.fire({
-                    title: '確定要使用優惠劵嗎?',
-                    text: "",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: '確定兌換',
-                    cancelButtonText: '取消'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire(
-                            '兌換成功!',
-                            '',
-                            'success'
-                        )
-                        sleep(3000);
+//             const using = document.getElementById('using');
+//             using.addEventListener('click', function (e) {
+//                 Swal.fire({
+//                     title: '確定要使用優惠劵嗎?',
+//                     text: "",
+//                     icon: 'warning',
+//                     showCancelButton: true,
+//                     confirmButtonColor: '#3085d6',
+//                     cancelButtonColor: '#d33',
+//                     confirmButtonText: '確定兌換',
+//                     cancelButtonText: '取消'
+//                 }).then((result) => {
+//                     if (result.isConfirmed) {
+//                         Swal.fire(
+//                             '兌換成功!',
+//                             '',
+//                             'success'
+//                         )
+//                         sleep(3000);
                         
-                        document.location.href="http://localhost:8080/yachi/useCoupon/" + ${sessionScope.coupon.coupon_id};
-                    }
-                })
-            });
-            const collect = document.getElementById('collect');
-            collect.addEventListener('click', function (e) {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: '成功收藏優惠卷',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            });
+//                         document.location.href="http://localhost:8080/yachi/useCoupon/" + ${sessionScope.coupon.coupon_id};
+//                     }
+//                 })
+//             });
+//             const collect = document.getElementById('collect');
+//             collect.addEventListener('click', function (e) {
+//                 Swal.fire({
+//                     position: 'center',
+//                     icon: 'success',
+//                     title: '成功收藏優惠卷',
+//                     showConfirmButton: false,
+//                     timer: 1500
+//                 })
+//             });
             
-            function sleep(ms) {
-            	  return new Promise(resolve => setTimeout(resolve, ms));
-            	}
-        });
+//             function sleep(ms) {
+//             	  return new Promise(resolve => setTimeout(resolve, ms));
+//             	}
+//         });
     </script>
 		
-    </script>  
 </body>
 </html>
 
