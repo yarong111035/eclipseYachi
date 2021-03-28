@@ -45,7 +45,7 @@
 		
 			<!-- 表單區域開始 -->
 			<main class="col-8">
-				<div class="formBox pt-3 pb-2 px-5">
+				<div class="formBox pt-3 pb-2 px-5 shadow bg-white rounded">
 					<div class="title">更新產品資料</div>
 						<!-- 須加上此屬性form-data'，表單才具有檔案上傳能力 -->
 															

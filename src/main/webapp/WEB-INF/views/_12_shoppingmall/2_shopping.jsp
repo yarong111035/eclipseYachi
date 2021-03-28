@@ -504,7 +504,7 @@
 		
 // 		if($('#count_circle').change(){
 			$('#count_circle').css({
-				"display":"inline-block",
+// 				"display":"inline-block",
 				"width":"25px",
 				"height":"25px",
 			

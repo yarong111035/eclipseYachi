@@ -443,6 +443,8 @@ public class EditController {
 				productService.deleteProduct(product_id);
 			}else if(cmd.equalsIgnoreCase("down")){
 				productService.downProduct(product_id);
+			}else if(cmd.equalsIgnoreCase("up")) {
+				productService.updateProduct(product_id);
 			}
 		}
 		return "redirect:/admin/admin_editProduct";

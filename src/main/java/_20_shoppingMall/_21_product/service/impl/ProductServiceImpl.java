@@ -149,4 +149,10 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 
+
+	@Override
+	public void updateProduct(Integer product_id) {
+		productDao.upProduct(product_id);
+	}
+
 }

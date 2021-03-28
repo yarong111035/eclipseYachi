@@ -16,10 +16,16 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
+<!----------------aos ----------------->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<!----------------aos ----------------->
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/background.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/adminUtil/css/9_editProduct.css'/>">
+<!----------------aos ----------------->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!----------------aos ----------------->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 	crossorigin="anonymous"></script>
@@ -60,20 +66,23 @@
 			<main class="col-8">
 				<div class="editBtn">
 					<a href="<c:url value='/products/add'/>" id="insertProduct">新增商品</a>
-					<a href="#" id="downProduct">下架商品</a> <a href="#"
-						id="deleteProduct">刪除商品</a>
+					<a href="#" id="upProduct">上架商品</a>
+					<a href="#" id="downProduct">下架商品</a> 
+					<a href="#" id="deleteProduct">刪除商品</a>
 
+						
 				</div>
 
 				<div id="productTab">
 					<div id="tab_nav">
-						<a href="javascript:;" class="tab_selected onsale">商品上架中</a> <a
-							href="javascript:;">商品已下架</a> <a href="javascript:;">商品缺貨中</a>
+						<a href="javascript:;" class="tab_selected onsale">上架中商品</a> 
+						<a href="javascript:;">已下架商品</a> 
+						<a href="javascript:;">缺貨中商品</a>
 					</div>
 					<div class="tabs_content content_selected">
 
 						<div class="tabs_panel product_info" style="display: block;">
-							<div class="itemsList">
+							<div class="itemsList shadow mb-5 bg-white rounded">
 
 								<c:choose>
 									<c:when test="${empty editProducts}">
@@ -84,11 +93,13 @@
 									<c:otherwise>
 										<div class="table">
 											<div class="thead">
-												<div class="tr">
+												<div class="tr ">
+													<!-- ---------------checkBox------------- -->
 													<div class="th checkBox">
 														<input type="checkbox" id="selectAll"> 
 														<label for="selectAll"></label><br>
 													</div>
+													<!-- ----------------checkBox------------ -->
 													<div class="th pic">圖片</div>
 													<div class="th name">商品名稱</div>
 													<div class="th price">價格</div>
@@ -103,10 +114,12 @@
 												<c:forEach var='product' items='${editProducts}'>
 													<c:if test="${product.product_status == 0}">
 														<div class="tr">
+															<!---------------------------------------checkBox------------------------------- -->
 															<div class="td checkBox">
 																<input type="checkbox" id="product_id${product.product_id}" name="product_id"
 																	value="${product.product_id}"> <label for="product_id"></label>
 															</div>
+															<!---------------------------------------checkBox------------------------------- -->
 															<div class="td pic">
 																<img
 																	src="<c:url value='/getProductPictureA/${product.product_id}'/>">
@@ -151,11 +164,16 @@
 
 
 						<div class="tabs_panel noSale">
-							<div class="itemsList">
-								<div class="table">
+							<div class="itemsList shadow mb-5 bg-white rounded">
+								<div class="table ">
 									<div class="thead">
 										<div class="tr">
-
+											<!-- ---------------checkBox------------- -->
+											<div class="th checkBox">
+												<input type="checkbox" id="noSaleSelectAll"> <label
+													for="noSaleSelectAll"></label><br>
+											</div>
+											<!-- ----------------checkBox------------ -->
 											<div class="th pic">圖片</div>
 											<div class="th name">商品名稱</div>
 											<div class="th price">價格</div>
@@ -170,6 +188,15 @@
 										<c:forEach var='product' items='${editProducts}'>
 											<c:if test="${product.product_status == 2}">
 												<div class="tr">
+													<!---------------------------------------checkBox------------------------------- -->
+													<div class="td checkBox">
+														<input type="checkbox"
+															id="product_id${product.product_id}" name="product_id"
+															value="${product.product_id}"> <label
+															for="product_id"></label>
+													</div>
+													<!---------------------------------------checkBox------------------------------- -->
+												
 													<div class="td pic">
 														<img src="<c:url value='/getProductPictureA/${product.product_id}'/>">
 													</div>
@@ -208,9 +235,9 @@
 
 						<div class="tabs_panel noStock">
 							<div class="title">
-								<span>商品缺貨囉! 趕緊補貨去<i class="fas fa-arrow-down"></i><i class="fas fa-arrow-down"></i><i class="fas fa-arrow-down"></i></span>
+								<span>此專區為缺貨商品! 請點選修改編輯數量<i class="fas fa-arrow-down"></i><i class="fas fa-arrow-down"></i><i class="fas fa-arrow-down"></i></span>
 							</div>
-							<div class="itemsList">
+							<div class="itemsList shadow mb-5 bg-white rounded">
 
 								<div class="table">
 									<div class="thead">
@@ -280,12 +307,26 @@
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 	<script>
+	//當網頁一載入不出現上架商品按鈕功能，點到下架才出現
+  	$('#upProduct').css('display','none');
+  	$('#downProduct').css('display','inline-block');
     $(function () {
 	    $('#tab_nav a').click(function(){ 
 	        // 當點擊tabs-nav的元素a時  替當前(this)的a超連結增加.tab_selected類  
 	        // 其餘兄弟類 siblings() remove .change類
 	        $(this).addClass('tab_selected').siblings().removeClass('tab_selected');
-	
+	        
+	        $('#upProduct').css('display','none');//上架消失
+	        $('#downProduct').css('display','inline-block'); //下架出現
+	        
+// 	        console.log( $('#tab_nav a:nth-child(2)').hasClass('tab_selected'));
+	        //如果下架狀態被點選
+	        if($('#tab_nav a:nth-child(2)').hasClass('tab_selected')){
+	        	$('#upProduct').css('display','inline-block'); //上架出現
+	        	$('#downProduct').css('display','none'); //上架出現
+	        }
+	        
+	        
 	        // 點擊的同時 拿到當前 a 超連結的索引號
 	        let index = $(this).index();     //  index從0開始
 	        // console.log(index);
@@ -335,7 +376,7 @@
   //checkbox 
   $('#selectAll').click(function(){
 	if($(this).is(":checked")) {
-		$(":checkbox").prop("checked", true);//所有选择框都选中
+		$(":checkbox").prop("checked", true);//所有框都選中
 		let checkPid = new Array();	
 		$('input:checkbox:checked[name="product_id"]').each(function(i) {
 			 checkPid[i] = this.value; 
@@ -347,8 +388,24 @@
 	}
   });
   
+  //未上架商品的checkbox
+	$('#noSaleSelectAll').click(function(){
+		if($(this).is(":checked")) {
+			$(":checkbox").prop("checked", true);//所有框都選中
+			let checkPid = new Array();	
+			$('input:checkbox:checked[name="product_id"]').each(function(i) {
+				 checkPid[i] = this.value; 
+				//  console.log(checkPid[i]);
+			})
+			// console.log($('input:checkbox:checked[name="product_id"]').each(function(i) { checkPid[i] = this.value; }));
+		} else {
+			$(":checkbox").prop("checked", false);
+		}
+	  });
+  
+  
   function selectedCheck(){
-	let checkedNum = $("input[name='product_id']:checked").length;
+	checkedNum = $("input[name='product_id']:checked").length;
 	//判斷至少需勾選一項
 	if (checkedNum == 0) {
 		alert("請至少選擇一項");
@@ -365,26 +422,50 @@
 
   //刪除按鈕
   $('#deleteProduct').on("click",function(){
-	
-	selectedCheck();
-
-	let yes = confirm("確定刪除勾選的項目")
-	if(yes){
-		let href = "<c:url value='/productManage/" + checkId + "/del'/>";
-		$('#deleteProduct').attr('href', href).submit();
+		selectedCheck();
+		if(checkedNum != 0){
+			let yes = confirm("確定刪除勾選的項目")
+			if(yes){
+				let href = "<c:url value='/productManage/" + checkId + "/del'/>";
+				$('#deleteProduct').attr('href', href).submit();
+			}
 		}
-  })
+  });
 
   //下架按鈕
   	$('#downProduct').on("click",function(){
 		selectedCheck();
-		let yes = confirm("確定下架勾選的項目")
-		if(yes){
+		if(checkedNum != 0){
+			let yes = confirm("確定下架勾選的項目")
+			if(yes){
 			let href = "<c:url value='/productManage/" + checkId + "/down'/>";
 			$('#downProduct').attr('href', href).submit();
+			}
 		}
-	  })
-</script>
+	})
+	  
+  //上架按鈕
+  	$('#upProduct').on("click",function(){
+  		selectedCheck();
+  		if(checkedNum != 0){
+	  		let yes = confirm("確定上架勾選的項目")
+	  		if(yes){
+				let href = "<c:url value='/productManage/" + checkId + "/up'/>";
+				$('#upProduct').attr('href', href).submit();
+			}
+  		}
+  	})
+  	
 
+
+  	
+  	
+  		
+
+  	
+</script>
+<script>
+  AOS.init();
+</script>
 </body>
 </html>

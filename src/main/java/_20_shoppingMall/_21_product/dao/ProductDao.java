@@ -46,4 +46,6 @@ public interface ProductDao {
 //	int getPageNo();
 
 	public void downProduct(Integer product_id);
+
+	public void upProduct(Integer product_id);
 }

@@ -44,4 +44,6 @@ public interface ProductService {
 //	int getPageNo();
 
 	public void downProduct(Integer product_id);
+
+	void updateProduct(Integer product_id);
 }

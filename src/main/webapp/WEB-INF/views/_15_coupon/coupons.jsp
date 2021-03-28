@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shopping</title>
+<title>優惠券專區</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
@@ -85,8 +85,8 @@
 // 	                }
 // 	            } 
 // 	    	}
-	    }
-};
+// 	    }
+// };
  </script>
 <style type="text/css">
 .pos {
@@ -137,7 +137,11 @@
 <!-- 		<input type="text" name="coupon_name" id=""> -->
 <!-- 		<input type="submit" value="搜尋"> -->
 <!-- 	</form> -->
-	
+        <form style="margin:50px auto;width:400px; height:50px;" action="<c:url value="/searchCoupons"/>">
+            <a  style="font-size:25px; font-weight: bold;">搜尋優惠券</a> 
+            <input  style="border-radius:5px;width:200px; height:32px;"type="text" name="coupon_Name" id="coupon_Name"> 
+                <input class="btn btn-primary" type="submit" value="搜尋">
+        </form>
 	<div class="row row-cols-1 row-cols-md-3 "
 		style="padding: 0px 130px 130px 130px">
 		<c:forEach var='coupon' items='${coupons}'>

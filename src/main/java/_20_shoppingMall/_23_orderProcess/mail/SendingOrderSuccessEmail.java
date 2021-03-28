@@ -688,7 +688,7 @@ public class SendingOrderSuccessEmail {
 					+ "                            <span style=\"font-size:22px\">親愛的 " + orderBean.getMemberBean().getFullname() +  " 會員您好：</span><br>\r\n"
 					+ "此訊息為通知您此次在 Yachi 商城的訂購已完成！<br>\r\n"
 					+ "感謝您對 Yachi 的支持，<br>\r\n"
-					+ "若有任何問題可至 Yachi <a href=\"http://localhost:8080/yachi/\" target=\"_blank\">會員中心-訂單查詢</a>&nbsp;查詢相關明細，謝謝您！<br>\r\n"
+					+ "若有任何問題可至 Yachi <a href=\"http://localhost:8080/yachi/_23_orderProcess/orderList\" target=\"_blank\">會員中心-訂單查詢</a>&nbsp;查詢相關明細，謝謝您！<br>\r\n"
 					+ "&nbsp;\r\n"
 					+ "                        </td>\r\n"
 					+ "                    </tr>\r\n"
