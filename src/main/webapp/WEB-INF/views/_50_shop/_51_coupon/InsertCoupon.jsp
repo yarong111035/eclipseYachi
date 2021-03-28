@@ -9,8 +9,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>新增優惠券</title>
-<link rel="stylesheet"
-	href="<c:url value='/_00_util/shopUtil/css/normalize.css'/>">
+
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/background.css'/>">
 <link rel="stylesheet" href="<c:url value='/_00_util/shopUtil/css/新增優惠券2.css'/>">
@@ -130,7 +129,7 @@
 
 
 			<c:forEach var="coupon" varStatus="stat" items="${coupons}">
-				<div class="column">
+				<div class="column shadow  mb-3 bg-body rounded">
 					<div class="column-pic">
 						<img src="<c:url value='/_50_shop/_51_coupon/getPicture/${coupon.coupon_id}'/>" class="coupon-pic" style="width:100px;height:60px;">
 					</div>
@@ -194,7 +193,7 @@
 							<div>
 
 								<form:input type="number" path="coupon_amount"
-									style="margin-top: 13px;" />
+									style="margin-top: 42px;" />
 							</div>
 
 						</div>
@@ -205,7 +204,7 @@
 								至
 								<form:input type="date" path="coupon_end" />
 							</div>
-							<div style="margin-top: 24px;">
+							<div style="margin-top: 34px;">
 								<form:select path='shopTypeBean.shop_type_id'>
 									<form:option value="-1" label="請挑選" />
 									<form:options items="${shopTypeBeanList}" itemLabel='shop_type_name' itemValue='shop_type_id' />
@@ -221,10 +220,10 @@
 					</form:form>
 				</div>
 			</div>
-			<div class="middle-bottom"
-				style="width: 95%; height: 40px; margin: 20px; border: 2px dashed #333; display: flex;">
-				<button style="margin: 3px;" id="insertbtn">＋ 新增優惠券</button>
-				<button type="button" id="inputAllBtn">一鍵輸入</button>
+			<div class="middle-bottom shadow-sm mb-3 bg-body rounded"
+				style="width: 95%; height: 40px; margin: 20px; border: 1px solid #eee; display: flex;">
+				<button  class="btn btn-primary" style="margin: 3px;" id="insertbtn">＋ 新增優惠券</button>
+				<button  class="btn btn-primary" style="margin: 3px;" type="button" id="inputAllBtn">一鍵輸入</button>
 			</div>
 
 		</main>
