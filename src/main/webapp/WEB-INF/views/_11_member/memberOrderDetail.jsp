@@ -32,7 +32,7 @@
 <script
 	src="<c:url value='/_00_util/allUtil/javascript/jquery-3.5.1.js'/>"></script>
 <script src="<c:url value='/_00_util/allUtil/javascript/jquery-ui.js'/>"></script>
-<title>member order</title>
+<title>會員訂單詳情</title>
 </head>
 <body>
 	
@@ -40,16 +40,6 @@
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
 	<!-- 引入共同的頁首 結束 -->
 	
-    <!-- 跑馬燈 -->
-	<div id="Marquee">
-        <h3>最新優惠消息:</h3>
-        <ul id="news">
-            <li>東西很貴不要買 !</li>
-            <li>還沒做完</li>
-            <li>目前網路商店全館免運</li>
-        </ul>
-    </div>
-    <!-- 跑馬燈結束 -->
 
 
 	<div class="main-member">
@@ -126,7 +116,7 @@
                   		
            
                   	<div class="descArea">
-                  		
+	                  	<span class = "descTitle">訂單狀態: </span><span class="descContent" style="color:red;font-size:1.1rem;"> ${orderBean.orderStatusBean.status_name}</span><br>
 	                  	<span class = "descTitle">明細數量: </span><span class="descContent"> 共 ${orderBean.items.size() } 樣商品</span><br>
 	                  	<span class = "descTitle">訂單總計: </span><span class="total"> ${orderBean.order_total } 元整</span><br>
 	                  	<span class = "descTitle">訂購日期: </span><span class="descContent"> <fmt:formatDate value="${ orderBean.order_datetime}" pattern="yyyy年MM月dd日 HH點mm分ss秒"/></span><br>
@@ -179,7 +169,10 @@
                         
                         <c:choose>
                         	<c:when test="${orderBean.orderStatusBean.status_id == 1}">
-                        		<a id="cancelBtn" href="<c:url value='/cancelOrder/asdf9${orderBean.order_id}8'/>"><button><i class="fas fa-window-close"></i>取消訂單</button></a>
+                        		<a id="cancelBtn"  onclick='cancelHandler(${orderBean.order_id})'><button><i class="fas fa-window-close"></i>取消訂單</button></a>
+                        	</c:when>
+                        	<c:when  test="${orderBean.orderStatusBean.status_id == 5}">
+                        		<a id="cancelBtn" href="javascript:;" ><button disabled style="cursor: no-drop;"><i class="fas fa-window-close"></i>訂單已取消</button></a>
                         	</c:when>
                         	<c:otherwise>
                         			<!--只要不是未付款狀態 -->
@@ -209,16 +202,39 @@
 <!-- -------------------------------引入共同的頁尾----------------------------------------- -->    
     <script>
     
-    let cancelBtn = document.getElementById('cancelBtn');
-    cancelBtn.addEventListener('click',function(e){
-		alert();
-		var yes = confirm("確定送出此訂單?");
-		if(yes == false){					
-			e.preventDefault(); //預防表單預設事件(按取消不要送出去)
-			return;  //須加此行，否則表單還是會送出去，出現空指標例外
-		}
+    function cancelHandler(order_id){
+   		Swal.fire({
+    		  title: '確定取消此筆訂單?',
+    		  icon: 'warning',
+    		  showCancelButton: true,
+    		  confirmButtonColor: '#3085d6',
+    		  cancelButtonColor: '#d33',
+    		  confirmButtonText: 'Yes!'
+    		}).then((result) => {
+    		  if(result.isConfirmed) {
+    		   
+    		    $.ajax({
+		            url:"<c:url value='/cancelOrder/asdf9" + order_id + "8'/>",
+		            type:"get",
+		            data:{},
+	       		 })
+	       		  Swal.fire(
+    		      '此筆訂單已取消！',
+    		      '2秒後頁面即將自動重整',
+    		      'success'
+    		    )
+	       		setTimeout(() => {
+	       			window.location.reload();
+				}, 1800); 
+	       		 
+    		  }  
+    		 return false;
+    		})
+	}	
+        
+		
+		
     $(function () {
-    	
          // 每三秒執行一次
          setInterval(function(){
             $('#news li:first-child').slideUp(function(){
@@ -235,6 +251,9 @@
         });
 
     });    
+
+    
+    
     </script>
 </body>
 </html>

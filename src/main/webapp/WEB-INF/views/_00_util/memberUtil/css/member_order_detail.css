@@ -237,11 +237,21 @@ tr,td{
     text-align: right;
 }
 .btCancel button{
+	margin-left:15px;
+	letter-spacing: 2px;
     border: none;
     padding: 10px;
     font-size: 20px;
-    font-weight: bold;
-    
+    font-weight: bold;  
+    transition:.1s;
+    border-radius: 9px;
+}
+.btCancel button:hover{
+    transform: scale(1.07);
+    background: #4b3030;
+    border-radius: 9px;
+    letter-spacing: 2px;
+    color: #fff;
 }
 
 /* 跑馬燈開始 */
