@@ -78,14 +78,14 @@ public class HomeController {
 
 	@RequestMapping("/RedBean_pies")
 	public String RedBean_pies(Model model) {
-		return "_15_coupon/RedBean_pies";
+		return "_17_home/RedBean_pies";
 	}
 	
 //	=============================== 吐司介面 ============================================
 
 	@RequestMapping("/bread")
 	public String bread(Model model) {
-		return "_15_coupon/bread";
+		return "_17_home/Taiwanese_hamburger";
 	}
 	
 	// 測試首頁的映射
