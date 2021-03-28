@@ -78,11 +78,23 @@
 	color: #c59b08;
 }
 
+.addCoupon i{
+	color: #333;
+    font-size: 1.6rem;
+    transition:.1s;
+}
+.addCoupon i:hover{
+	color:#e61d1d;
+	padding:0;
+    font-size: 1.8rem;
+    border-radius:2px;
+}
+
 .commentBox{
 	background:#fff;
 }
 .comment_content{
-	white-space: pre-line;
+/* 	white-space: pre-line; */
 }
 .commentBox .shopComment{
 	margin:0 auto;
@@ -451,6 +463,16 @@
 
 	<script>
 		function doFirst() {
+			//處理評論文字換行問題
+			$('.comment_content').each(function(e){
+				let reg = /\n/g;
+				let comment = $(this).text();
+				comment = comment.replace(reg,'<br/>');
+				$(this).html(comment);
+				
+			});
+			
+			
 			try {
 				score = document.getElementById("star");
 				star5 = document.getElementById("star5");
@@ -460,9 +482,9 @@
 				star1 = document.getElementById("star1");
 
 				star5.addEventListener("click", function() {
-					alert();
+// 					alert();
 					score.value = star5.value;
-					alert(score.value);
+// 					alert(score.value);
 				})
 
 				star4.addEventListener("click", function() {

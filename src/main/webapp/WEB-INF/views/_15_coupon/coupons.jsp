@@ -15,6 +15,7 @@
 
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/allUtil/css/normalize.css'/>">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 	crossorigin="anonymous"></script>
@@ -29,12 +30,11 @@
 <script
 	src="<c:url value='/_00_util/allUtil/javascript/jquery-3.5.1.js'/>"></script>
 <script src="<c:url value='/_00_util/allUtil/javascript/jquery-ui.js'/>"></script>
-
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<link rel="stylesheet"
-	href="<c:url value='/WEB-INF/views/_00_util/allUtil/css/reset.css'/>">
+
 
 
 <script type="text/JavaScript">
@@ -101,6 +101,12 @@
 .amount {
 	color: orange;
 }
+.cardBox{
+	transition:.3s;
+}
+.cardBox:hover{
+	transform: scale(1.08);
+}
 </style>
 
 
@@ -126,48 +132,49 @@
 
 	<!-- </div> -->
 	
-	<form action="<c:url value="/searchCoupons"/>">
-		<a>搜尋優惠券</a>
-		<input type="text" name="coupon_name" id="">
-		<input type="submit" value="搜尋">
-	</form>
+<%-- 	<form action="<c:url value="/searchCoupons"/>"> --%>
+<!-- 		<a>搜尋優惠券</a> -->
+<!-- 		<input type="text" name="coupon_name" id=""> -->
+<!-- 		<input type="submit" value="搜尋"> -->
+<!-- 	</form> -->
 	
 	<div class="row row-cols-1 row-cols-md-3 "
 		style="padding: 0px 130px 130px 130px">
 		<c:forEach var='coupon' items='${coupons}'>
 			<div class="col mb-4">
-				<div class="card h-100">
-					<a
-						href="<spring:url value='/coupon?coupon_id=${coupon.coupon_id}' />">
-						<img src="<c:url value='/getCouponPicture/${coupon.coupon_id}' />"
-						class="card-img-top" alt="..." />
-					</a>
-					<div class="card-body">
-						<h5 class="card-title">
-							${coupon.coupon_name}
-							<div id="collect " class="pos rule">${coupon.coupon_rule}</div>
-							<%-- 							${coupon.coupon_name} <i class="far fa-star" id="collect"></i> --%>
-						</h5>
-						<div class="card-text">
-							${coupon.coupon_info}
-							<div id="collect " class="pos  amount">剩餘${coupon.coupon_amount}份
+				<div class="shadow p-3  bg-white rounded card h-100 cardBox">
+					<div data-aos="flip-left">
+						<a
+							href="<spring:url value='/coupon?coupon_id=${coupon.coupon_id}' />">
+							<img
+							src="<c:url value='/getCouponPicture/${coupon.coupon_id}' />"
+							class="card-img-top" alt="..." />
+						</a>
+						<div class="card-body">
+							<h5 class="card-title">
+								${coupon.coupon_name}
+								<div id="collect " class="pos rule">${coupon.coupon_rule}</div>
+								<%-- 							${coupon.coupon_name} <i class="far fa-star" id="collect"></i> --%>
+							</h5>
+							<div class="card-text">
+								${coupon.coupon_info}
+								<div id="collect " class="pos  amount">剩餘${coupon.coupon_amount}份
 								</div>
-							<%-- 							<div id="collect " class="pos">開始時間${coupon.coupon_begin} --%>
-							<%-- 								結束時間${coupon.coupon_end} --%>
-							<!-- 							</div> -->
+								<%-- 							<div id="collect " class="pos">開始時間${coupon.coupon_begin} --%>
+								<%-- 								結束時間${coupon.coupon_end} --%>
+								<!-- 							</div> -->
+							</div>
 						</div>
 					</div>
-
-
-					<%-- 					<a href="<spring:url value='/coupon?id=${coupon.coupon_id}' />" class="btn btn-primary">> --%>
-					<!-- 						 <span -->
-					<!-- 						class="glyphicon-info-sigh glyphicon"></span>詳細資料 -->
-					<!-- 					</a> -->
 
 				</div>
 			</div>
 		</c:forEach>
 	</div>
+
+<script>
+  AOS.init();
+</script>
 
 <!-- -------------------------------引入共同的頁尾---------------------------------------- -->
 <jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
