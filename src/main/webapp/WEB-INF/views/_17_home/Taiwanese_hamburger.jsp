@@ -33,7 +33,7 @@
 		  </ol>
 		  <div class="carousel-inner">
 		    <div class="carousel-item active">
-		      <img src="<c:url value='/data/images/couponPic/bread.webp.jpg'/>" class="d-block w-100" alt="...">
+		      <img src="<c:url value='/data/images/couponPic/Taiwanese_hamburger.jpg'/>" class="d-block w-100" alt="...">
 		    </div>
 		    <div class="carousel-item">
 		      <img src="<c:url value='/data/images/Night_Market/饒河/饒河1.jpeg'/>" class="d-block w-100" alt="...">
@@ -69,7 +69,7 @@
             <div id="sectionLeft" class="col-8">
                 <!-- 商家簡介 -->
                 <div id="shopInfo">
-                    <h2 style="color: #f26419;">創意吐司</h2>
+                    <h2 style="color: #f26419;">刈包</h2>
                     <div>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -77,7 +77,10 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <p style="color: #78886f;">新鮮食材搭配獨家烤土司，擁有超過四十種搭配組合，受到當地人熱烈的歡迎。
+                    <p style="color: #78886f;">刈包類似饅頭。兩者差別是饅頭為立體半球形，但刈包是長橢圓扁形，再對摺起來包餡料。
+
+傳統餡料通有：片狀五花滷肉、酸菜、花生粉及香菜等。花生粉一般與糖混合，有甜味。另外，也有健康導向，以瘦肉代替五花肉的做法。因為其形狀及內餡似老虎的嘴咬住一塊豬肉，所以在臺灣亦被稱作虎咬豬，其吃法如同漢堡般，故有「臺式漢堡」、「臺灣漢堡」之名。
+                    </p>
                 </div>
                 <!-- 商家簡介 -->
 
@@ -270,14 +273,14 @@
 									src="<c:url value='/data/images/smallPic/coupon2.png'/>"
 									style="width: 100px;" class="coupon-pic">
 
-								<p>紅豆餅</p>
+								<p>刈包</p>
 							</div>
 							<div class="column-pic">
 								 <img
 									src="<c:url value='/data/images/smallPic/coupon2.png'/>"
 									style="width: 100px;" class="coupon-pic">
 
-								<p>紅豆餅</p>
+								<p>刈包</p>
 							</div>
 
 
