@@ -2,23 +2,28 @@
 /* 新增產品按鈕 */
 .editBtn{
     position: absolute;
-    right: 15px;
+/*     right: 15px; */
+    top: 50px;
 
 }
 .editBtn a{
     display: inline-block;
-    width: 100px;
+    width: 90px;
     text-align: center;
+    background: rgb(195,156,156);
+    color: #fff;
     padding: 5px 0;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 2px #ccc;
     border-radius: 3px;
-    color: #444;
-    transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    transition:.1s;
 }
 .editBtn a:hover{
-    background-color: rgba(170,192,207,.5);
-    width: 105px;
+    transform: scale(1.1);
+    color:#333;
+    background:rgb(237,217,217);
+    border: none;
+    box-shadow: 1px 1px 2px #fff;
 }
 /* 表格 */
 .table{
@@ -38,6 +43,7 @@
   /* 讓div模擬tr格式排列 */
   .tr{
     display: table-row;
+    
   }
   .th{
     padding: 0 20px 10px;
@@ -51,12 +57,14 @@
     border-bottom: 1px solid #ccc;
   }
   .table .td{
-    padding: 2rem 1.5rem;
+    padding: 2.9rem 1rem;
     /* position: relative; */
   }
  
   .table .tbody .tr .td{
-    border-bottom: 5px solid #ddd;
+    border-bottom: 1px solid #ddd;
+/*     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15); */
+    
     margin-bottom: 10px;
 }
   /* .table .pic{
@@ -67,6 +75,15 @@
   }
   .tbody{
     display: table-row-group;
+  }
+  .tbody .tr{
+    box-shadow: 0 .5rem 1.2rem rgba(0,0,0,.1);
+    transition:.1s;
+  }
+  .tbody .tr:hover{
+  	transform: scale(1.1);
+  	background-color: #fff;
+  	box-shadow: 0 .5rem 1.2rem rgba(0,0,0,.1);
   }
  
   .tbody .pic{
@@ -111,7 +128,7 @@
     display: none;
   }
   #tab_nav{
-    margin-bottom: 50px;
+    margin-bottom: 70px;
   }
   #tab_nav a{
     text-align: center;
@@ -123,10 +140,15 @@
     border: 1px solid #ccc;
     box-shadow:1px 1px 2px #ccc; 
     border-radius: 3px;
+    transition:.1s;
   }
   #tab_nav a:hover{
-  background-color: rgba(170,192,207,.5);
-  width: 105px;
+  background-color: rgba(170,192,207,0.3);
+  box-shadow:1px 1px 2px #fff; 
+  border: 1px solid black;
+  color:black;
+  transform: scale(1.1);
+  
   }
   #tab_nav .tab_selected{
     border-radius: 3px;
@@ -134,7 +156,7 @@
     color: #444;
   }
   .content_selected{
-      background-color: rgb(239,239,239);;
+/*       background-color: rgb(239,239,239); */
   }
   /* 必須讓第一個頁面先出現，其他的tab_panel點到才會出現 */
   
@@ -172,7 +194,7 @@
   /* 頁籤第二頁 (缺貨中) */
   .title{
     text-align: left;
-    padding: 10px 0 5px 47px;
+    padding: 10px 0 5px 0px;
     font-size: 1.2rem;
     letter-spacing: 2px;
     color: rgb(40 112 161);
