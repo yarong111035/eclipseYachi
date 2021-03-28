@@ -79,6 +79,41 @@
    		
 
 </script>
+<style>
+
+.bstrap-alink a{
+	padding: 10px;
+	width: 150px;
+	margin: 0 5px;
+	font-weight: bold;
+}
+
+.shop-card{
+	margin: 0 0 20px 50px;
+	height: 550px;
+}
+
+/* 撐開卡片容器 */
+.addSpace{
+	width: inherit;
+    height: 50px;
+}
+.gotoshop{
+	position: absolute;
+	left: 100px;
+}
+
+/* CSS 限制字數/行數 */
+.ellipsis {
+overflow:hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 5;
+-webkit-box-orient: vertical;
+white-space: normal;
+}
+</style>
 
 <body>
 	<!-- 引入共同的頁首 -->
@@ -96,92 +131,74 @@
 		<div id="main_tabs">
 
 			<div id="tabs-nav">
-<!-- 				<a href="#">依夜市</a> -->
-				<a href="<c:url value='/search/ALLproducts'/>" class="change">全部商城商品</a>
-				<a href="<c:url value='/search/product?product_name=' />">依商城商品</a>
+<!-- 				<a href="#">依夜市</a> --> 
+				<a href="<c:url value='/search/ALLproducts'/>">全部商城商品</a>
+				<a href="<c:url value='/search/product?product_name=' />" >依商城商品</a>
 				<a href="<c:url value='/search/ProductType'/>">依商品類型</a>
 				<a href="<c:url value='/search/shop?shop_name='/>">依商家</a>
-				<a href="<c:url value='/search/ShopType'/>">依商家類型</a>
+				<a href="<c:url value='/search/ShopType'/>" class="change" >依商家類型</a>
 			</div>
-		
+			
 			<div class="tabs-content">
 
 				<div class="tabs-content">
 
+                  <!-- 先讓第一個內容顯示出來 display:block -->
                   <div class="tabs-panel" > 
-						
+
                   </div>
                
-                  <div class="tabs-panel" style="display:block">
-                  
-						<div class="product-price">
-						
-							
-							<a href="<c:url value='/search/ALLproducts/low'/>"><input type="button" value="價格低"></a>
-							<a href="<c:url value='/search/ALLproducts/high'/>"><input type="button" value="價格高"></a>
-	
-							<form action="<c:url value='/search/ALLproducts/range'/>" >
-								<a>搜尋價格</a>
-								<input type="number" name="lowPrice" id="" placeholder="最低價" min="1">
-								<a>～</a>
-								<input type="number" name="highPrice" id="" placeholder="最高價" min="1">
-								<input type="submit" value="價格確認" class="search-submit" id="search-price">
-							</form>
-										
-						</div>
+                  <div class="tabs-panel">
 
-					<div class="keyword">
-										
-						<p>你所搜尋的&nbsp;&nbsp;&nbsp;<span style="color: red;">${keyword}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						總共有&nbsp;&nbsp;<span style="color: red;">${list.size()}</span>&nbsp;筆資料</p>						
-						
-					</div>
+                  </div>
+               
+                  <div class="tabs-panel">
 
-					<div class="product-container">
+                  </div>
+               
 
-						<c:forEach var="productBean" items="${list}">
-							<div class="product">
-	
-								<a data-fancybox="gallery" href="<c:url value='/searchProductPicture/${productBean.product_id}'/>">
-							    <img src="<c:url value='/searchProductPicture/${productBean.product_id}'/>"></a>
-	
-								<div class="name">${productBean.product_name}</div>
-								<div class="info">${productBean.product_spec}</div>
-								<div class="price">$&nbsp;${productBean.product_price}</div>
-								
-								<c:if test="${productBean.product_stock == 0}">								
-									<div class="release">商品庫存&nbsp;&nbsp;<em style="color: red;">缺貨中</em></div>
-								</c:if>
-								<c:if test="${productBean.product_stock > 0}">								
-									<div class="release">商品庫存&nbsp;&nbsp;${productBean.product_stock}</div>
-								</c:if>
-							</div>
-						</c:forEach>
-						
-					</div>
+                  <div class="tabs-panel">
+                
+                  </div>
+               
+                  <div class="tabs-panel">
 					
                   </div>
-               
-	                  <div class="tabs-panel">
-	       
-						
-	                  </div>
-               
-
-	                  <div class="tabs-panel">
-	                
-	
-	                  </div>
-               
-	                  <div class="tabs-panel">
-						
-	     
-	                  </div>
             
-	                  <div class="tabs-panel">
-	
+                  <div class="tabs-panel" style="display:block">
 						
-	                  </div>
+						<div class="product-price bstrap-alink">
+					
+							<a href="<c:url value='/search/shop_type/1'/>" class="btn btn-light btn-sm active" role="button" aria-pressed="true">中式料理</a>
+							<a href="<c:url value='/search/shop_type/2'/>" class="btn btn-light btn-sm active" role="button" aria-pressed="true">西式料理</a>
+							<a href="<c:url value='/search/shop_type/3'/>" class="btn btn-light btn-sm active" role="button" aria-pressed="true">日式料理</a>
+							<a href="<c:url value='/search/shop_type/4'/>" class="btn btn-light btn-sm active" role="button" aria-pressed="true">飲料</a>
+							<a href="<c:url value='/search/shop_type/5'/>" class="btn btn-light btn-sm active" role="button" aria-pressed="true">衣服</a>
+							<a href="<c:url value='/search/shop_type/6'/>" class="btn btn-light btn-sm active" role="button" aria-pressed="true">飾品</a>
+							<a href="<c:url value='/search/shop_type/7'/>" class="btn btn-light btn-sm active" role="button" aria-pressed="true">手機周邊</a>
+							<a href="<c:url value='/search/shop_type/8'/>" class="btn btn-light btn-sm active" role="button" aria-pressed="true">日常生活用品</a>
+							<a href="<c:url value='/search/shop_type/8'/>" class="btn btn-light btn-sm active" role="button" aria-pressed="true">遊戲</a>
+
+						</div>
+						
+						<div class="product-container search-shop-context">
+                		
+                		<c:forEach var="shop" items="${shopList}">
+                		
+	                		<div class="card shop-card" style="width: 18rem;">
+							  <img style="height: 250px;" src="<c:url value='/searchShopPicture/${shop.shop_id}'/>">
+							  <div class="card-body">
+							    <h5 class="card-title">${shop.shop_name}</h5>
+							    <p class="card-text ellipsis">${shop.shop_info}</p>
+    							<div class="addSpace"></div>							    
+							    <a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${shop.shop_id}' />" class="btn btn-primary gotoshop">前往商家</a>
+							  </div>
+							</div>			
+                		</c:forEach>
+          	
+                  	</div>
+		
+                  </div>
                
                 </div>
 

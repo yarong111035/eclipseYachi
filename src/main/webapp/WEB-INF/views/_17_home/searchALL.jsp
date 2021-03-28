@@ -100,8 +100,8 @@
 				<a href="<c:url value='/search/ALLproducts'/>">全部商城商品</a>
 				<a href="<c:url value='/search/product?product_name=' />" class="change">依商城商品</a>
 				<a href="<c:url value='/search/ProductType'/>">依商品類型</a>
-				<a href="#">依商家</a>
-				<a href="#">依商家類型</a>
+				<a href="<c:url value='/search/shop?shop_name='/>">依商家</a>
+				<a href="<c:url value='/search/ShopType'/>">依商家類型</a>
 			</div>
 		
 			<div class="tabs-content">
@@ -130,7 +130,7 @@
                   <div class="tabs-panel" style="display:block">
 					<div class="product-price">
 					
-					
+						
 						<c:if test="${keyword != '?'}">
 							<a href="<c:url value='/search/product/low/${keyword}'/>"><input type="button" value="價格低"></a>
 							<a href="<c:url value='/search/product/high/${keyword}'/>"><input type="button" value="價格高"></a>
@@ -154,7 +154,7 @@
 						</c:if>
 						
 						<c:if test="${keyword != '?' }">								
-							<p>你所搜尋的&nbsp;<span style="color: red;">${keyword}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<p>你所搜尋的&nbsp;&nbsp;&nbsp;<span style="color: red;">${keyword}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							總共有&nbsp;<span style="color: red;">${list.size()}</span>&nbsp;筆資料</p>						
 						</c:if>
 						
@@ -183,32 +183,6 @@
 
                   <div class="tabs-panel">
                 
-<!-- 					<div id="product-type"> -->
-<%-- 						<a href="<c:url value='/search/product_type/1'/>" class="change">環保杯套</a> --%>
-<!-- 						<a href="#">環保餐具</a> -->
-<!-- 						<a href="#">環保購物袋</a> -->
-<!-- 						<a href="#">陶瓷碗盤</a> -->
-<!-- 						<a href="#">攤販用具</a> -->
-<!-- 						<a href="#">免洗餐具</a> -->
-<!-- 						<a href="#">紙袋</a> -->
-<!-- 						<a href="#">餐車</a> -->
-<!-- 					</div> -->
-
-<!-- 					<div class="type-content"> -->
-						
-<!-- 						<div class="type-panel" style="display:block"> -->
-<!-- 							測試1 -->
-<!-- 						</div> -->
-<!-- 						<div class="type-panel">測試2</div> -->
-<!-- 						<div class="type-panel">測試3</div> -->
-<!-- 						<div class="type-panel">測試4</div> -->
-<!-- 						<div class="type-panel">測試5</div> -->
-<!-- 						<div class="type-panel">測試6</div> -->
-<!-- 						<div class="type-panel">測試7</div> -->
-<!-- 						<div class="type-panel">測試8</div> -->
-<!-- 						<div class="type-panel">測試9</div> -->
-
-<!-- 					</div> -->
 
                   </div>
                

@@ -66,14 +66,14 @@ public class DataTest {
 	@Test
 	public void addAdminRole() {
 
-		Member mb = session.get(Member.class, 1);
+		Member mb = session.get(Member.class, 2);
 		Set<Role> set = mb.getRoles();	
 		Role roleA = new Role();
-		roleA.setRole_name("管理員");
-		roleA.setRole_code("ADMIN");
+//		roleA.setRole_name("管理員");
+//		roleA.setRole_code("ADMIN");
 		
-//		roleA.setRole_name("會員");
-//		roleA.setRole_code("USER");
+		roleA.setRole_name("會員");
+		roleA.setRole_code("USER");
 		
 		set.add(roleA);			
 		mb.setRoles(set);	

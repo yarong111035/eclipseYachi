@@ -36,6 +36,7 @@ import _10_member.entity.Member;
 import _10_member.entity.Role;
 import _10_member.mail.Garbled;
 import _10_member.mail.MailUtil;
+import _10_member.mail.PwdMail;
 import _10_member.service.MemberService;
 import _10_member.validate.MemberValidator;
 import _20_shoppingMall._22_shoppingCart.service.CartBeanService;
@@ -108,6 +109,7 @@ public class LoginAndRegisterController {
 //			model.addAttribute("code", member.getCode());
 			ra.addFlashAttribute("status", member.getStatus());
 			ra.addFlashAttribute("code", member.getCode());
+			ra.addFlashAttribute("confirmMail",member.getEmail());
 
 			// ------------------------------------------------------
 			// 加入會員角色
@@ -147,13 +149,7 @@ public class LoginAndRegisterController {
 
 		return "/_11_member/MailVerification";
 	}
-
-	// 會員忘記密碼
-	@RequestMapping("/forgetPassword")
-	public String resetPassword() {
-
-		return "/_11_member/findMemberPwd";
-	}
+	
 
 	// 會員登出
 	@RequestMapping("/doLogout")
@@ -282,5 +278,107 @@ public class LoginAndRegisterController {
 		CustomDateEditor ce2 = new CustomDateEditor(dateFormat2, true);
 		binder.registerCustomEditor(java.sql.Date.class, ce2);
 	}
+	
+	
+	
+	//---------------------會員忘記密碼寄信處理流程
+	// 會員忘記密碼
+	@RequestMapping("/forgetPassword")
+	public String resetPassword(Model model) {
+
+		// 先送出空白表單
+		model.addAttribute("member", new Member());
+		
+		return "/_11_member/findMemberPwd";
+	}
+	
+	// 會員輸入email寄信找回密碼  //表單輸入盡量不要加 /反斜線
+	@PostMapping("findPwd")
+	public String findPwd(Member member,BindingResult bindingResult,Model model
+			,RedirectAttributes ra) {
+		
+		// 獲取來自輸入表單的帳號密碼
+		String username = member.getUsername();
+		String email = member.getEmail();
+		
+		// 依輸入表單的帳號獲取來自資料庫會員的全部資料
+		member = memberService.findByUsername(username);
+
+		if (member == null) {
+			model.addAttribute("accountError", "查無帳號，請先去註冊");
+			return "/_11_member/findMemberPwd";
+		}
+		boolean equals = email.equals(member.getEmail());
+		if(equals == false) {
+			model.addAttribute("emailError", "信箱錯誤，麻煩再輸入一次");
+			return "/_11_member/findMemberPwd";
+		}
+		
+		// ---------寄送信箱更改密碼
+//		Garbled garbled = new Garbled();
+//		String code = garbled.getGalbled(8);
+//		member.setCode(code);
+		new Thread(new PwdMail(member.getEmail(), member.getCode())).start();
+		
+		
+		ra.addFlashAttribute("sendMail",member.getEmail());
+		
+		
+		return "redirect:/home";
+	}
+	
+	// 會員更改密碼信箱控制器
+	@RequestMapping("/emailConfirm/editMember={code}")
+	public String ConfirmEditEmail(@PathVariable String code) {
+
+		return "redirect:/editMemberPwd";
+	}
+	
+	// 會員更改密碼頁面的渲染
+	@RequestMapping("/editMemberPwd")
+	public String editPassword(Model model) {	
+		
+		// 先送出空白表單
+		model.addAttribute("member", new Member());	
+		
+		return "/_11_member/editMemberPwd";
+	}
+	
+	// 提交會員更改密碼表單
+	@PostMapping("editPwd")
+	public String lastEditpwd(Member member,Model model) {
+		
+		// 獲取來自輸入表單的帳號密碼
+		String username = member.getUsername();
+		String password = member.getPassword();
+		String newpassword = member.getNewpassword();
+		
+		// 依輸入表單的帳號獲取來自資料庫會員的全部資料
+		member = memberService.findByUsername(username);
+		
+		if (member == null) {
+			
+			model.addAttribute("accountError", "查無帳號，請先去註冊");
+			
+			return "/_11_member/editMemberPwd";
+		}
+		
+		if(!newpassword.equals(password) || newpassword == "") {
+			
+			model.addAttribute("pwdError", "密碼欄與確認密碼不一致");
+			
+			return "/_11_member/editMemberPwd";
+
+		}
+		
+		// 密碼加密處理
+		member.setPassword(pEncoder.encode(newpassword));
+
+ 		memberService.updateMember(member);
+	
+		
+ 		return "/_11_member/LoginAndRegister";
+	}
+	
 
 }

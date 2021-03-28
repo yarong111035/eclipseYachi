@@ -31,6 +31,7 @@ import _02_model.entity.ProductBean;
 import _02_model.entity.ProductTypeBean;
 import _02_model.entity.ShopBean;
 import _20_shoppingMall._21_product.service.ProductService;
+import _50_shop._53_shopRegister.service.ShopService;
 import _80_home.service.SearchService;
 import _90_admin._91_editProduct.conroller.EditController;
 
@@ -42,6 +43,9 @@ public class SearchController {
 	
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	ShopService shopService;
 	
 	@Autowired
 	ServletContext context;
@@ -105,7 +109,7 @@ public class SearchController {
 		List<ProductBean> list = searchService.getAllProductsByBetweenPrice(product_name,lowPrice, highPrice);
 		
 		
-		model.addAttribute("keyword",product_name);
+		model.addAttribute("keyword",product_name+"  的價格 "+lowPrice+" ~ "+highPrice);
 		model.addAttribute("list",list);
 		
 		return "/_17_home/searchALL";
@@ -232,36 +236,34 @@ public class SearchController {
 //	}
 	
 	
-	
-	
-	
 	// 查詢所有的商家 --> 依商家名稱
-	@RequestMapping("/test09")
-	@ResponseBody
-	public String searchShopByName(@RequestParam String shop_name) {
+	@RequestMapping("/search/shop")
+	public String searchShopByName(@RequestParam String shop_name,Model model) {
 		
-		List<ShopBean> list = searchService.getAllShopByName(shop_name);
+		List<ShopBean> shopList = searchService.getAllShopByName(shop_name);
 		
-		for (ShopBean shopBean : list) {
-			System.out.println(shopBean.getShop_name());
-		}
+		model.addAttribute("shopList",shopList);	
 		
-		return "測試成功";
-
+		return "/_17_home/searchShop";	
+	}
+	
+	// 渲染 /_17_home/searchSho[Type的頁面
+	@RequestMapping("/search/ShopType")
+	public String searchShopType() {
+		
+		return "/_17_home/searchShopType";	
 	}
 	
 	// 依商家的類型找出所有的商家 
-	@RequestMapping("/test10/{shop_type_id}")
-	@ResponseBody
-	public String searchShopByShop_type_id(@PathVariable Integer shop_type_id) {
+	@RequestMapping("/search/shop_type/{shop_type_id}")
+	public String searchShopByShop_type_id(@PathVariable Integer shop_type_id,Model model) {
 		
 		Set<ShopBean> set = searchService.getAllShopBean(shop_type_id);
 		
-		for (ShopBean shopBean : set) {
-			System.out.println(shopBean.getShop_name());
-		}
+		model.addAttribute("shopList",set);
 		
-		return "測試成功";
+		
+		return "/_17_home/searchShopType";	
 	}
 
 	
@@ -304,6 +306,44 @@ public class SearchController {
 		ResponseEntity<byte[]> responoEntity = new ResponseEntity<>(pic, headers, HttpStatus.OK); 
 		return responoEntity;
 	}
+	
+	@RequestMapping(value = "/searchShopPicture/{shop_id}")
+	public ResponseEntity<byte[]> getShopPicture(
+			HttpServletResponse resp, 
+			@PathVariable Integer shop_id){
+		String filePath = "/data/images/mediumPic/noImage1.PNG"; //預設圖片路徑
+		byte[] pic = null;
+		String filename = "";
+		int len = 0;
+		HttpHeaders headers = new HttpHeaders();
+		ShopBean shop = shopService.getShop(shop_id);
+		if(shop != null) {
+			Blob blob = shop.getShop_pic();
+			filename = shop.getShop_file_name();
+			if(blob != null) {
+				try {
+					len = (int) blob.length();  //取得照片大小
+					pic = blob.getBytes(1, len); //???   jdbc相關類別都是1開頭
+				} catch (SQLException e) {
+					throw new RuntimeException("shopController的getPicture()發生SQLException: " + e.getMessage());
+				}
+			}else { //如果沒有照片
+				pic = toByteArray(filePath);
+				filename = filePath;
+			}
+		}else {
+			pic = toByteArray(filePath);
+			filename = filePath;
+		}
+		headers.setCacheControl(CacheControl.noCache().getHeaderValue()); //請瀏覽器不要快取圖片內容
+		String mimeType = context.getMimeType(filename);
+		MediaType mediaType = MediaType.valueOf(mimeType); //把字串轉成 mediaType 型別的物件
+		System.out.println("mediatype = " + mediaType);
+		headers.setContentType(mediaType);
+		ResponseEntity<byte[]> responoEntity = new ResponseEntity<>(pic, headers, HttpStatus.OK); 
+		return responoEntity;
+	}
+	
 //	將照片以位元組陣列方式讀入
 	private byte[] toByteArray(String filepath) {
 		byte[] b = null;
@@ -322,8 +362,7 @@ public class SearchController {
 		return b;
 	}
 	
-	
-	
+
 	
 	
 }

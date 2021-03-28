@@ -66,9 +66,9 @@
 
       <div class="form-container login-container">
 
-        <form:form action="findPwd" method="POST" modelAttribute="member">
+        <form:form action="editPwd" method="POST" modelAttribute="member">
           
-          <h2>會員找回密碼</h2>
+          <h2>會員更改密碼</h2>
 
           <div class="social-container">
             <a href="<c:url value='/home'/>" class="social homeicon"><i class="fas fa-home"></i></a>
@@ -83,12 +83,18 @@
           </div>
 
           <div class="input-div">
-            <form:label path="email">email</form:label>
-            <form:input path="email" name="email" type="email"/>
-            <span Class="error">${emailError}</span>
+            <form:label path="password">更改新密碼</form:label>
+            <form:input path="password" type="password"/>
+<%--             <form:errors path="password" cssClass="error"/> --%>
+         </div>
+         <div class="input-div">
+            <form:label path="Newpassword">再次確認新密碼</form:label>
+            <form:input path="Newpassword" type="password"/>
+<%--             <form:errors path="Newpassword" cssClass="error"/> --%>
+            <span Class="error">${pwdError}</span>
          </div>
                       
-          <form:button type="submit" class="btn">寄出驗證信</form:button>
+          <form:button type="submit" class="btn">確認更改密碼</form:button>
 
         </form:form>
         

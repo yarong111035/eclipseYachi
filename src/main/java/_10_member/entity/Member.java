@@ -52,6 +52,9 @@ public class Member implements Serializable{
 	private Timestamp registerTime;
 	private Integer status;
 	private String code;
+	
+	@Transient
+	private String Newpassword;
  
 	@JsonIgnore
 	@Column(columnDefinition = "mediumblob")
@@ -228,9 +231,13 @@ public class Member implements Serializable{
 				+ ", image=" + image + ", fileName=" + fileName + ", roles=" + roles + "]";
 	}
 
-	
+	public String getNewpassword() {
+		return Newpassword;
+	}
 
-	 
-	 
-	 
+	public void setNewpassword(String newpassword) {
+		Newpassword = newpassword;
+	}
+
+
 }
