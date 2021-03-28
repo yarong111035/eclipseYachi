@@ -129,6 +129,22 @@
 
 /*         } */
         /* 跑馬燈結束 */
+        
+        .sex-css{
+        	display: flex;
+        	justify-content: center;
+        	align-items: center;
+        	margin-left:10px;
+        	padding: 0 20px;
+        }
+        
+        .sex-css label{
+        	font-weight: bold;
+        	margin: 0 5px;
+        }
+      
+      
+        
     </style>
 	
 </head>
@@ -238,9 +254,10 @@
                 </div>
                 <div>
                     <h3> 性別 : </h3>
-                    <form:label path="sex">
+                    <form:label path="sex" class="sex-css">
                     <form:radiobutton path="sex" value="Male" label="Male" />
             		<form:radiobutton path="sex" value="Female" label="Female" />
+            		<form:radiobutton path="sex" value="Others" label="Others" />
                     </form:label>
                 </div>
                 <div>
