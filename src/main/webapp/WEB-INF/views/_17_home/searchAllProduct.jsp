@@ -132,7 +132,7 @@
 
 					<div class="keyword">
 										
-						<p>你所搜尋的&nbsp;&nbsp;&nbsp;<span style="color: red;">${keyword}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<p>&nbsp;&nbsp;&nbsp;<span style="color: red;">${keyword}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						總共有&nbsp;&nbsp;<span style="color: red;">${list.size()}</span>&nbsp;筆資料</p>						
 						
 					</div>

@@ -130,6 +130,7 @@
 /*         } */
         /* 跑馬燈結束 */
         
+        /* sex 選項*/
         .sex-css{
         	display: flex;
         	justify-content: center;
@@ -234,7 +235,7 @@
 	            </div>
             	<div>
             		<label for="file" class="editPhoto">
-	                    <i class="fas fa-image">編輯照片
+	                    <i class="fas fa-image">編輯會員照片
 	                    <form:input type="file" id="file" path="memberMultipartFile" accept=".jpeg,.png" 
 	                    style="display: none;"/></i>
 	                </label>
