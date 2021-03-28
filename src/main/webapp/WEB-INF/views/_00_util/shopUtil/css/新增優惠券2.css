@@ -10,7 +10,7 @@
 }
 
 .main-member aside {
-  border: 1px solid #CCC;
+/*   border: 1px solid #CCC; */
   width: 400px;
   /* background-color: #ccc; */
   text-align: center;
@@ -103,7 +103,7 @@
 .main-member main {
   width: 100%;
   background-color: white;
-  border: 1px solid #ccc;
+/*   border: 1px solid #ccc; */
 }
 
 .main-member main .info {
