@@ -50,6 +50,14 @@
     </style>
 <body>
 
+	<c:if test="${ !empty editsuccess}">
+		<script>
+			$(function() {
+				alert(`${editsuccess}`+" 更改密碼成功 ! 可以進行登入了");
+			});
+		</script>
+	</c:if>
+
     <div class="container" id="container">
 
       <div class="form-container register-container">
@@ -70,11 +78,11 @@
             <form:errors path="password" cssClass="error"/>
          </div>
 
-<!--          <div class="input-div"> -->
-<%--           <form:label path="password-again">確認密碼</form:label> --%>
-<%--           <form:input path="password-again" type="password"/> --%>
-<%--           <form:errors path="password-again" cssClass="error"/> --%>
-<!--          </div> -->
+		<div class="input-div">
+            <form:label path="Newpassword">確認密碼</form:label>
+            <form:input path="Newpassword" type="password"/>
+            <form:errors path="Newpassword" cssClass="error"/>
+         </div>
 
          <div class="input-div">
 	         <form:label path="fullname">姓名</form:label>

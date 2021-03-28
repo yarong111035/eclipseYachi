@@ -193,7 +193,7 @@
 			<c:if test="${empty status and !empty code }">
 				<script>
 					$(function() {
-						if (window.confirm('已成功寄信至 '+`${confirmMail}`+' 點擊確定前往驗證')) {
+						if (window.confirm('已成功寄信至 '+`${confirmMail}`+' 點擊確定前往驗證帳號')) {
 							window.location.href='https://accounts.google.com/signin/v2/identifier?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F%26ogbl%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin';
 						};
 					});

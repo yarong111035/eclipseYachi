@@ -39,6 +39,7 @@ import _10_member.mail.MailUtil;
 import _10_member.mail.PwdMail;
 import _10_member.service.MemberService;
 import _10_member.validate.MemberValidator;
+import _10_member.validate.PasswordValidator;
 import _20_shoppingMall._22_shoppingCart.service.CartBeanService;
 import _20_shoppingMall._22_shoppingCart.vo.MemberCartBeanVo;
 import _20_shoppingMall._22_shoppingCart.vo.SessionCartVo;
@@ -52,7 +53,10 @@ public class LoginAndRegisterController {
 
 	@Autowired
 	MemberValidator mValidator;
-
+	
+	@Autowired
+	PasswordValidator pwdValidator;
+	
 	@Autowired
 	PasswordEncoder pEncoder;
 
@@ -157,7 +161,7 @@ public class LoginAndRegisterController {
 
 		session.invalidate();
 
-		// 去除@SessionAttributes("LoginOK")
+		// 去除@SessionAttributes("LoginOK")以及其他屬性物件
 		status.setComplete();
 
 		return "redirect:/home";
@@ -292,7 +296,7 @@ public class LoginAndRegisterController {
 		return "/_11_member/findMemberPwd";
 	}
 	
-	// 會員輸入email寄信找回密碼  //表單輸入盡量不要加 /反斜線
+	// 會員輸入email寄信找回密碼  //表單輸入盡量不要加action /反斜線
 	@PostMapping("findPwd")
 	public String findPwd(Member member,BindingResult bindingResult,Model model
 			,RedirectAttributes ra) {
@@ -310,7 +314,7 @@ public class LoginAndRegisterController {
 		}
 		boolean equals = email.equals(member.getEmail());
 		if(equals == false) {
-			model.addAttribute("emailError", "信箱錯誤，麻煩再輸入一次");
+			model.addAttribute("emailError", "查無信箱，麻煩再輸入一次");
 			return "/_11_member/findMemberPwd";
 		}
 		
@@ -346,7 +350,16 @@ public class LoginAndRegisterController {
 	
 	// 提交會員更改密碼表單
 	@PostMapping("editPwd")
-	public String lastEditpwd(Member member,Model model) {
+	public String lastEditpwd(Member member,Model model,BindingResult bindingResult
+			,RedirectAttributes ra) {
+		
+		
+		pwdValidator.validate(member, bindingResult);
+		
+		if(bindingResult.hasErrors()) {
+			
+			return "/_11_member/editMemberPwd";
+		}
 		
 		// 獲取來自輸入表單的帳號密碼
 		String username = member.getUsername();
@@ -363,13 +376,7 @@ public class LoginAndRegisterController {
 			return "/_11_member/editMemberPwd";
 		}
 		
-		if(!newpassword.equals(password) || newpassword == "") {
-			
-			model.addAttribute("pwdError", "密碼欄與確認密碼不一致");
-			
-			return "/_11_member/editMemberPwd";
-
-		}
+		ra.addFlashAttribute("editsuccess",member.getFullname());
 		
 		// 密碼加密處理
 		member.setPassword(pEncoder.encode(newpassword));
@@ -377,8 +384,9 @@ public class LoginAndRegisterController {
  		memberService.updateMember(member);
 	
 		
- 		return "/_11_member/LoginAndRegister";
+ 		return "redirect:/LoginAndRegister";
 	}
 	
+	//---------------------會員忘記密碼寄信處理流程結束
 
 }

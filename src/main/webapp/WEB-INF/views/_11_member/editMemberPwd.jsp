@@ -85,13 +85,12 @@
           <div class="input-div">
             <form:label path="password">更改新密碼</form:label>
             <form:input path="password" type="password"/>
-<%--             <form:errors path="password" cssClass="error"/> --%>
+            <form:errors path="password" cssClass="error"/>
          </div>
          <div class="input-div">
             <form:label path="Newpassword">再次確認新密碼</form:label>
             <form:input path="Newpassword" type="password"/>
-<%--             <form:errors path="Newpassword" cssClass="error"/> --%>
-            <span Class="error">${pwdError}</span>
+            <form:errors path="Newpassword" cssClass="error"/>
          </div>
                       
           <form:button type="submit" class="btn">確認更改密碼</form:button>
