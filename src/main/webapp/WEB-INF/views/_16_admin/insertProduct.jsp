@@ -45,7 +45,7 @@
 		
 			<!-- 表單區域開始 -->
 			<main class="col-8">
-				<div class="formBox pt-3 pb-2 px-5">
+				<div class="formBox pt-3 pb-2 px-5 shadow bg-white rounded">
 					<div class="title">新增產品資料</div>
 						<!-- 須加上此屬性form-data'，表單才具有檔案上傳能力 -->
 															
@@ -54,9 +54,10 @@
 							<label for="product_name" class="col-sm-2 col-form-label">商品名稱</label>
 							<div class="col-sm-10">
 <!-- 						path="product_name" => 呼叫ProductBean 的 getProduct_name()-->
-								<form:input type="text" path="product_name" class="form-control" id="product_name"/>
+								<form:input maxlength="9" type="text" path="product_name" class="form-control" id="product_name"/>
 								<form:errors path="product_name" cssClass="error"/>
 							</div>
+							<div id="nameFeedback"></div>
 						</div>
 						<div class="form-group row">
 							<label for="product_info" class="col-sm-2 col-form-label">商品資訊</label>
@@ -181,19 +182,29 @@
 			  }
 		  }
 		  
+		  textMax = 9;
+		  $('#nameFeedback').html(`可輸入字數：<span style="white-space:pre-line;letter-spacing:2px;">  ${'${textMax}'}</span>`);
+
+		  
 		  //一鍵輸入功能
 		  //存取input標籤的值必須使用.val()方法
 		  $('#inputAllBtn').click(function(){
 			  $('#product_name').val("超輕量真空隨行杯");
-			  $('#product_info').val("內噴陶瓷表層0毛孔處理，真實呈現飲品原味 抗酸鹼、異味不殘留 環保矽膠吸管設計，上山下海隨手即飲 保冰、續冰高達8小時 一體成形的陶瓷易潔層，簡單好清洗 尺寸：口直徑-9cm，底直徑-7cm，含蓋高度-17.5cm 容量：500ML 重量：330G±5% 材質：杯身內層304不鏽鋼、陶瓷塗層，吸管tritan 產地：台灣監製、中國製造");
+			  $('#product_info').val("內噴陶瓷表層0毛孔處理，真實呈現飲品原味抗酸鹼、異味不殘留\n環保矽膠吸管設計，上山下海隨手即飲\n保冰、續冰高達8小時 一體成形的陶瓷易潔層，簡單好清洗\n*尺寸：口直徑-9cm，底直徑-7cm，含蓋高度-17.5cm \n*容量：500ML \n*重量：330G±5% \n*材質：杯身內層304不鏽鋼、陶瓷塗層，吸管tritan \n*產地：台灣監製、中國製造");
 			  $('#product_price').val("300.0");
 			  $('#product_stock').val("5")
 			  $('#product_spec').val("聯名款")
+			  textChange();
 		  })
 		});
 		
-
-
+		//字數限制
+		$('#product_name').on('input propertychange',textChange);
+		
+		function textChange(){
+			let textLength = $('#product_name').val().length;
+			$('#nameFeedback').html(`可輸入字數：<span style="white-space:pre-line;letter-spacing: 2px;">  ${'${textMax - textLength}'}</span>`);
+		}
 	</script>
 </body>
 </html>
