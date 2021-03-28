@@ -48,14 +48,14 @@ public class PwdMail implements Runnable {
 			// 2.2設定接收人
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
 			// 2.3設定郵件主題
-			message.setSubject("會員資料修改");
+			message.setSubject("YACHI會員資料修改");
 			// 2.4設定郵件內容
-			String content = "<html><head></head><body><h1>這是一封更改會員資料的郵件,請點選以下進行更改</h1><h3><a "
+			String content = "<html><head></head><body><h1>這是一封YACHI更改會員資料的郵件,請點選以下進行更改</h1><h3><a "
 					+ "href='http://localhost:8080/yachi/emailConfirm/editMember=" + code + "'>請點這裡</a></h3></body></html>";
 			message.setContent(content, "text/html;charset=UTF-8");
 			// 3.傳送郵件
 			Transport.send(message);
-			System.out.println("郵件成功傳送!");
+			System.out.println("YACHI會員資料修改郵件成功傳送!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -41,13 +41,13 @@
         display: flex;
         width:100px;
         flex-wrap:wrap;
-        justify-content: center;
+        justify-content:flex-start;
         align-items: center;
         position: absolute;
         top: 5px;
         right: -110.5px;
         margin-bottom: 5px;
-
+        
       }
       
     </style>

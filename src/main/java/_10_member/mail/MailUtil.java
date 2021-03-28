@@ -48,14 +48,14 @@ public class MailUtil implements Runnable {
 			// 2.2設定接收人
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
 			// 2.3設定郵件主題
-			message.setSubject("帳號啟用");
+			message.setSubject("YACHI帳號啟用");
 			// 2.4設定郵件內容
-			String content = "<html><head></head><body><h1>這是一封啟用郵件,啟用請點選以下連結</h1><h3><a "
+			String content = "<html><head></head><body><h1>這是一封YACHI啟用郵件,啟用請點選以下連結</h1><h3><a "
 					+ "href='http://localhost:8080/yachi/emailConfirm/code=" + code + "'>請點這裡</a></h3></body></html>";
 			message.setContent(content, "text/html;charset=UTF-8");
 			// 3.傳送郵件
 			Transport.send(message);
-			System.out.println("郵件成功傳送!");
+			System.out.println("YACHI帳號啟用郵件成功傳送!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
