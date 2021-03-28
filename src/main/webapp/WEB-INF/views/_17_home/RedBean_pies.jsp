@@ -290,20 +290,20 @@
 					</div>
 					<div class="item row justify-content-center" id="menu_animate">
 						<div class="col-6">
-							<div class="column-pic">
-								 <img
-									src="<c:url value='/data/images/smallPic/coupon2.png'/>"
-									style="width: 100px;" class="coupon-pic">
+<!-- 							<div class="column-pic"> -->
+<!-- 								 <img -->
+<%-- 									src="<c:url value='/data/images/smallPic/coupon2.png'/>" --%>
+<!-- 									style="width: 100px;" class="coupon-pic"> -->
 
-								<p>紅豆餅</p>
-							</div>
-							<div class="column-pic">
-								<img
-									src="<c:url value='/data/images/smallPic/coupon2.png'/>"
-									style="width: 100px;" class="coupon-pic">
+<!-- 								<p>紅豆餅</p> -->
+<!-- 							</div> -->
+<!-- 							<div class="column-pic"> -->
+<!-- 								<img -->
+<%-- 									src="<c:url value='/data/images/smallPic/coupon2.png'/>" --%>
+<!-- 									style="width: 100px;" class="coupon-pic"> -->
 
-								<p>紅豆餅</p>
-							</div>
+<!-- 								<p>紅豆餅</p> -->
+<!-- 							</div> -->
 
 
 
