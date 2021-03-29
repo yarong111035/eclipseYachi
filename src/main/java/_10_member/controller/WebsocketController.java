@@ -16,7 +16,7 @@ import _10_member.entity.Member;
 
 
 @Controller
-@SessionAttributes("LoginOK")
+@SessionAttributes({"LoginOK", "AdminLoginOK"})
 public class WebsocketController {
 
 	@Bean
@@ -37,5 +37,20 @@ public class WebsocketController {
 		mv.setViewName("ws");
 
 		return "/_11_member/chatroom";
+	}
+	
+	@RequestMapping("/websocket/loginAdmin")
+	public String login2(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+
+		Member memberBean = (Member) model.getAttribute("AdminLoginOK");
+//		String userName = request.getParameter("userName");
+		String userName = memberBean.getUsername();
+		System.out.println(userName + "登錄");
+		HttpSession session = request.getSession(false);
+		session.setAttribute("123", userName);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("ws");
+
+		return "/_11_member/chatroomAdmin";
 	}
 }
