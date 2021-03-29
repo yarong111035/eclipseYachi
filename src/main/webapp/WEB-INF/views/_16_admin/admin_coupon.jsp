@@ -33,7 +33,7 @@
                 <div class="coupon">
                 	<form:form method="POST" modelAttribute="AdminCouponBean" enctype="multipart/form-data" name="myForm">
                     <div class="coupon-mid">
-                        <label for="admincoupon_name">優惠券名稱 :</label>
+                        <label id="name_label" for="admincoupon_name">優惠券名稱 :</label>
                         <form:input type="text" path="admincoupon_name" id="admincoupon_name" placeholder="輸入優惠券名稱" maxlength="30" style="margin-left: 2.8rem"/>
                     </div>
                     <div class="coupon-mid">
@@ -92,6 +92,21 @@
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/footer.jsp" />
 	<!-- -------------------------------引入共同的頁尾----------------------------------------- -->
     <script>
+    
+    //一鍵輸入功能
+    //存取input標籤的值必須使用.val()方法
+    $('#name_label').click(function(){
+  	  $('#admincoupon_name').val("文創商品類達指定金額折一百元");
+  	  $('#admincoupon_rule').val("購買指定文創類商品指定金額折100元");
+  	  $('#admincoupon_consumption').val("1000");
+  	$('#admincoupon_amount').val("50");
+  	  $('#admincoupon_discount').val("100");
+    })
+    
+    
+    
+    
+    
 	$(document).ready(function(){
 	  $('#admincoupon_image').change(function(){
 		  readURL(this);

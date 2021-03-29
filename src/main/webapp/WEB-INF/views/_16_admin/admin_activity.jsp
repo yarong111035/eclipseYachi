@@ -53,7 +53,7 @@
 <!--                     </div> -->
                     <div style="border: 2px solid black; border-radius: 20px; padding: 2rem;">
 	                    <div class="active-mid">
-	                        <label for="">優惠活動名稱 :</label>
+	                        <label id="activity_name" for="">優惠活動名稱 :</label>
 	                        <form:input type="text" path="adminactivity_name" id="adminactivity_name" placeholder="輸入活動名稱" maxlength="30" size="75px"/>
 	                    </div>
 	                    <div class="active-mid">
@@ -107,6 +107,17 @@
 	<!-- -------------------------------引入共同的頁尾----------------------------------------- -->
 	
     <script>
+  //一鍵輸入功能
+    //存取input標籤的值必須使用.val()方法
+    $('#activity_name').click(function(){
+  	  $('#adminactivity_name').val("周年慶全站滿千送百");
+  	  $('#adminactivity_content').val("歡慶Yachi商城新開幕\n周年慶全站滿千送百");
+    })
+    
+    
+    
+    
+    
 	$(document).ready(function(){
 	  $('#adminactivity_image').change(function(){
 		  readURL(this);
