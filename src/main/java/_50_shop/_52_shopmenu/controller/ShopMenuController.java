@@ -172,7 +172,7 @@ public class ShopMenuController  {
 			}
 		}
 		shopmenuservice.saveMenu(bean);
-		return "redirect:/_50_shop/_52_shopmenu/InsertShopItem";
+		return "redirect:/_50_shop/_52_shopmenu/InsertShopItem/"+ mb.getShopBean().getShop_id();
 	}
 //	讀取縮圖使用
 	@GetMapping("/picture/{menu_id}")
