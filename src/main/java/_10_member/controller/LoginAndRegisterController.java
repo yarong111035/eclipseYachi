@@ -285,6 +285,7 @@ public class LoginAndRegisterController {
 	
 	
 	
+	
 	//---------------------會員忘記密碼寄信處理流程
 	// 會員忘記密碼
 	@RequestMapping("/forgetPassword")
@@ -332,24 +333,51 @@ public class LoginAndRegisterController {
 	}
 	
 	// 會員更改密碼信箱控制器
+//	@RequestMapping("/emailConfirm/editMember={code}")
+//	public String ConfirmEditEmail(@PathVariable String code) {
+//
+//		return "redirect:/editMemberPwd";
+//	}
+//	
+//	// 會員更改密碼頁面的渲染
+//	@RequestMapping("/editMemberPwd")
+//	public String editPassword(Model model) {	
+//		
+////		// 先送出空白表單
+//		model.addAttribute("member", new Member());	
+//		
+//		
+//		
+//		return "/_11_member/editMemberPwd";
+//	}
+	
+	//---------------------------3/29 - 1233
 	@RequestMapping("/emailConfirm/editMember={code}")
 	public String ConfirmEditEmail(@PathVariable String code) {
 
-		return "redirect:/editMemberPwd";
+		return "redirect:/editMemberPwd/"+code;
 	}
 	
 	// 會員更改密碼頁面的渲染
-	@RequestMapping("/editMemberPwd")
-	public String editPassword(Model model) {	
+	@RequestMapping("/editMemberPwd/{code}")
+	public String editPassword(Model model,@PathVariable String code) {	
+			
+		 Member member = memberService.findByCode(code);
 		
 		// 先送出空白表單
-		model.addAttribute("member", new Member());	
+		 Member member1 = new Member();
+		 member1.setUsername(member.getUsername());
+		 model.addAttribute("member", member1);	
+		
+		
 		
 		return "/_11_member/editMemberPwd";
 	}
 	
+	//---------------------------3/29 - 1233
+	
 	// 提交會員更改密碼表單
-	@PostMapping("editPwd")
+	@PostMapping("/editMemberPwd/{code}")
 	public String lastEditpwd(Member member,Model model,BindingResult bindingResult
 			,RedirectAttributes ra) {
 		
