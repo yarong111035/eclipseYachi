@@ -66,7 +66,7 @@
 
       <div class="form-container login-container">
 
-        <form:form action="editPwd" method="POST" modelAttribute="member">
+        <form:form  method="POST" modelAttribute="member">
           
           <h2>會員更改密碼</h2>
 

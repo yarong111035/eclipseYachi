@@ -86,9 +86,9 @@
 		//一鍵輸入功能
 		  //存取input標籤的值必須使用.val()方法
 		  $('#inputAllBtn').click(function(){
-			  $('#coupon_name').val("順順十全排骨");
-			  $('#coupon_info').val("排骨飯優惠5元")
-			  $('#coupon_amount').val("10")
+			  $('#coupon_name').val("蒜味涼麵");
+			  $('#coupon_info').val("蒜味涼麵折10元")
+			  $('#coupon_amount').val("20")
 		  })
 		
 		
@@ -153,8 +153,8 @@
 
 
 
-			<div
-				style="display: none; justify-content: center; border: 2px dashed #333; padding: 10px; margin: 20px;"
+			<div class="shadow p-3 mb-5 bg-body rounded"
+				style="display: none; justify-content: center; border: 1px solid #eee; padding: 10px; margin: 20px;"
 				id="insert">
 
 

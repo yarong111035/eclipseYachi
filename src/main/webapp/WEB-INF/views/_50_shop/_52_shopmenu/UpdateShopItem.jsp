@@ -8,11 +8,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>èœå–®</title>
+<title>µæ³æ</title>
 <link rel="stylesheet" 
 	href="<c:url value='/_00_util/shopUtil/css/reset.css'/>">
     <link rel="stylesheet" 
-    href="<c:url value='/_00_util/shopUtil/css/æ–°å¢èœå–®.css'/>">
+    href="<c:url value='/_00_util/shopUtil/css/·s¼Wµæ³æ.css'/>">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
@@ -21,27 +21,27 @@
         var token = true;
         $(function() {
     
-            /* hoveräº‹ä»¶åˆ‡æ› å¦‚æœåªå¯«ä¸€å€‹æ–¹æ³•  
-               é‚£é¼ æ¨™ç¶“éå’Œé›¢é–‹éƒ½æœƒè§¸ç™¼é€™å€‹æ–¹æ³• slideToggle
+            /* hover¨Æ¥ó¤Á´« ¦pªG¥u¼g¤@­Ó¤èªk  
+               ¨º¹«¼Ğ¸g¹L©MÂ÷¶}³£·|Ä²µo³o­Ó¤èªk slideToggle
              */
             // $('.menu-box').hover(function(){
             //     $(this).children('ul').slideToggle();
             // })
             $('.tab-list a').hover(
                     function() {
-                        /* ç‚ºåŒ¹é…çš„ç•¶å‰å…ƒç´ åˆ‡æ› class cssé¡åˆ¥ */
+                        /* ¬°¤Ç°tªº·í«e¤¸¯À¤Á´« class cssÃş§O */
                         $(this).toggleClass('liColor');
     
-                        /* æ‹¿åˆ°ç•¶å‰(this) a çš„ç´¢å¼•è™Ÿ */
+                        /* ®³¨ì·í«e(this) a ªº¯Á¤Ş¸¹ */
                         index = $(this).index();
     
-                        /* è®“ä¸Šé¢å’Œä¸‹é¢ç›¸æ‡‰çš„ç´¢å¼•è™Ÿ eq() é¡¯ç¤ºå…§å®¹ 
-                            å…¶é¤˜siblings() éš±è—èµ·ä¾† */
+                        /* Åı¤W­±©M¤U­±¬ÛÀ³ªº¯Á¤Ş¸¹ eq() Åã¥Ü¤º®e 
+                            ¨ä¾lsiblings() ÁôÂÃ°_¨Ó */
                         $('.tab-panel').eq(index).stop().fadeIn('slow').show()
                                 .siblings().hide();
     
                     }, function() {
-                        /* ç¬¬äºŒå€‹æ–¹æ³•è™•ç†æ»‘é¼ ç§»é–‹äº‹ä»¶ */
+                        /* ²Ä¤G­Ó¤èªk³B²z·Æ¹«²¾¶}¨Æ¥ó */
                         $(this).removeClass('liColor');
                         $('.tab-panel').hide();
                     })
@@ -58,11 +58,11 @@
             $('#insertbtn').click(function() {
                 if (token == true) {
                     $('#insert').css("display", "flex");
-                    $('#insertbtn').text("å–æ¶ˆ");
+                    $('#insertbtn').text("¨ú®ø");
                     token = false;
                 } else {
                     $('#insert').css("display", "none");
-                    $('#insertbtn').text("ï¼‹ æ–°å¢å•†å“");
+                    $('#insertbtn').text("¡Ï ·s¼W°Ó«~");
                     token = true;
                 }
             });
@@ -75,20 +75,20 @@
 <body>
     
 
-	<!-- å¼•å…¥å…±åŒçš„é é¦– -->
+	<!-- ¤Ş¤J¦@¦Pªº­¶­º -->
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
 	
 
 
 
-    <!-- <div class="advertisement">    /*å»£å‘Šçš„ä½å­*/
+    <!-- <div class="advertisement">    /*¼s§iªº¦ì¤l*/
         <img src="https://picsum.photos/1200/300">
     </div> -->
 
     <div class="main-member">
-      	<!-- åŠŸèƒ½é¸å–®é–‹å§‹ -->
+      	<!-- ¥\¯à¿ï³æ¶}©l -->
 		<jsp:include page="/WEB-INF/views/_00_util/shopUtil/jsp/shop_aside.jsp" />
-		<!-- åŠŸèƒ½é¸å–®çµæŸ -->
+		<!-- ¥\¯à¿ï³æµ²§ô -->
       
 
 
@@ -99,13 +99,13 @@
             border: 2px dashed #333; padding: 10px; margin: 20px;"
             id="insert">
                 <div style="width: 35%; text-align: right;">
-                    <div class="text">å•†å“åç¨±ï¼š</div>
-                    <div class="text" style="margin-top: 30px;">å•†å“å…§å®¹ï¼š</div>
-                    <div class="text" style="margin-top: 70px;">å•†å“åƒ¹æ ¼ï¼š</div>
-                    <div class="text" style="margin-top: 150px;">å•†å“ç…§ç‰‡ï¼š</div>
+                    <div class="text">°Ó«~¦WºÙ¡G</div>
+                    <div class="text" style="margin-top: 30px;">°Ó«~¤º®e¡G</div>
+                    <div class="text" style="margin-top: 70px;">°Ó«~»ù®æ¡G</div>
+                    <div class="text" style="margin-top: 150px;">°Ó«~·Ó¤ù¡G</div>
                 </div>
                 <div style="width: 65%; text-align: left;">
-                    <!--form:form æ’å…¥é» -->
+                    <!--form:form ´¡¤JÂI -->
                     <form:form method="POST" modelAttribute="shopmenubean" 
                     enctype='multipart/form-data' >
                         <div>
@@ -128,15 +128,15 @@
                             	</div>
                                 <form:input type="file" id="imgInp" path="productImage" accept=".jpeg,.png" style="margin-left: 5px;margin-top: 130px;"  />
                                 <div style="width: 100%;text-align: right;height: 60px;">
-                                	<input type="button" onclick="location.href='${pageContext.request.contextPath}/_50_shop/_52_shopmenu/InsertShopItem/${shopmenubean.shopBean.shop_id}'" value="å–æ¶ˆ" style="margin-top: 28px;width: 120px;height: 30px;"></input>
-                                	<!--  <input type="button" onclick="getUrlParameter('modify')" value="æ¸¬è©¦" style="margin-top: 28px;width: 120px;height: 30px;"></input>
+                                	<input type="button" onclick="location.href='${pageContext.request.contextPath}/_50_shop/_52_shopmenu/InsertShopItem/${shopmenubean.shopBean.shop_id}'" value="¨ú®ø" style="margin-top: 28px;width: 120px;height: 30px;"></input>
+                                	<!--  <input type="button" onclick="getUrlParameter('modify')" value="´ú¸Õ" style="margin-top: 28px;width: 120px;height: 30px;"></input>
                                 	-->
-                                    <input type="submit" value="å„²å­˜" style="margin-top: 28px;width: 120px;height: 30px;"></input>
+                                    <input type="submit" value="Àx¦s" style="margin-top: 28px;width: 120px;height: 30px;"></input>
                                 </div>
                             </div>
                         </div>
                     </form:form>
-                    <!--form:form çµæŸ -->
+                    <!--form:form µ²§ô -->
                 </div>
             </div>
  

@@ -156,7 +156,7 @@
 						</a>
 						<div class="card-body">
 							<h5 class="card-title">
-								${coupon.coupon_name}
+								${coupon.coupon_name}(${coupon.shopBean.shop_name})
 								<div id="collect " class="pos rule">${coupon.coupon_rule}</div>
 								<%-- 							${coupon.coupon_name} <i class="far fa-star" id="collect"></i> --%>
 							</h5>

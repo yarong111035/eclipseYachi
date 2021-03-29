@@ -123,7 +123,7 @@
 					</div>
 					
 					<div class="form-wrapper">
-						<form:input type="textarea" path="shop_info" class="form-control" placeholder="商家簡介"/>
+						<form:input id="shop_info" type="textarea" path="shop_info" class="form-control" placeholder="商家簡介"/>
 						<i class="fas fa-store"></i>
 					</div>
 	
@@ -153,7 +153,11 @@
 
 	</div>
 
-	
+	<script>
+	 $('#shop_info').click(function(){
+		  $('#shop_info').val("士林夜市『好好吃涼麵』入選2020必比登推薦夜市街頭小吃類");
+	  })
+	</script>
 	
 </body>
 </html>

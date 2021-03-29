@@ -8,62 +8,59 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>èœå–®</title>
+<title>µæ³æ</title>
 <link rel="stylesheet" 
 	href="<c:url value='/_00_util/shopUtil/css/reset.css'/>">
     <link rel="stylesheet" 
-    href="<c:url value='/_00_util/shopUtil/css/æ–°å¢èœå–®.css'/>">
+    href="<c:url value='/_00_util/shopUtil/css/·s¼Wµæ³æ.css'/>">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    
     <script>
+    
+
+	
+	
+    
+    
+    
+    
         var token = true;
         $(function() {
     
-            /* hoveräº‹ä»¶åˆ‡æ› å¦‚æœåªå¯«ä¸€å€‹æ–¹æ³•  
-               é‚£é¼ æ¨™ç¶“éå’Œé›¢é–‹éƒ½æœƒè§¸ç™¼é€™å€‹æ–¹æ³• slideToggle
-             */
-            // $('.menu-box').hover(function(){
-            //     $(this).children('ul').slideToggle();
-            // })
-            $('.tab-list a').hover(
-                    function() {
-                        /* ç‚ºåŒ¹é…çš„ç•¶å‰å…ƒç´ åˆ‡æ› class cssé¡åˆ¥ */
-                        $(this).toggleClass('liColor');
-    
-                        /* æ‹¿åˆ°ç•¶å‰(this) a çš„ç´¢å¼•è™Ÿ */
-                        index = $(this).index();
-    
-                        /* è®“ä¸Šé¢å’Œä¸‹é¢ç›¸æ‡‰çš„ç´¢å¼•è™Ÿ eq() é¡¯ç¤ºå…§å®¹ 
-                            å…¶é¤˜siblings() éš±è—èµ·ä¾† */
-                        $('.tab-panel').eq(index).stop().fadeIn('slow').show()
-                                .siblings().hide();
-    
-                    }, function() {
-                        /* ç¬¬äºŒå€‹æ–¹æ³•è™•ç†æ»‘é¼ ç§»é–‹äº‹ä»¶ */
-                        $(this).removeClass('liColor');
-                        $('.tab-panel').hide();
-                    })
-    
-            $('.tab-panel').hover(function() {
-                index = $(this).index();
-                $(this).css('background-color', 'white').show();
-                $('.tab-list a').eq(index).addClass('liColor');
-            }, function() {
-                $(this).hide();
-                $('.tab-list a').eq(index).removeClass('liColor');
-            })
+        	$('#file').change(function() { 
+   	         // this¥Nªí<input id="file">  
+   	         // files.length == 1 ¬Oªø«×¬°¤@ªº°}¦C
+   	         let file = this.files[0]; 
+   	         let reader = new FileReader();
+   	         
+   	         reader.readAsDataURL(file); 
+
+   	         reader.onload = function(){     //¦¨¥\Åª¨ú¤å¥ó
+   	             $('#headImg').attr({
+   	                 
+   	                 // src = this.result 
+   	                 // ©ÎªÌ¬O src = e.target () 
+   	                 // ¥u¬Ofunction(e) ¥[¤We ¨Æ¥óª«¥ó³B²z¨ç¼Æ
+   	                 src:this.result , 
+   	                 width:`250px`,
+   	                 height:`150px`
+   	             });
+   					
+   	         }
+   	     });
+
     
             $('#insertbtn').click(function() {
                 if (token == true) {
                     $('#insert').css("display", "flex");
-                    $('#insertbtn').text("å–æ¶ˆ");
+                    $('#insertbtn').text("¨ú®ø");
                     token = false;
                 } else {
                     $('#insert').css("display", "none");
-                    $('#insertbtn').text("ï¼‹ æ–°å¢å•†å“");
+                    $('#insertbtn').text("¡Ï ·s¼W°Ó«~");
                     token = true;
                 }
             });
@@ -72,53 +69,53 @@
     </script>
 </head>
 <body>
-    	<!-- å¼•å…¥å…±åŒçš„é é¦– -->
+    
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
 	
 
-    <!-- <div class="advertisement">    /*å»£å‘Šçš„ä½å­*/
+    <!-- <div class="advertisement">    /*¼s§iªº¦ì¤l*/
         <img src="https://picsum.photos/1200/300">
     </div> -->
 
     <div class="main-member">
-		<!-- åŠŸèƒ½é¸å–®é–‹å§‹ -->
+		<!-- ¥\¯à¿ï³æ¶}©l -->
 		<jsp:include page="/WEB-INF/views/_00_util/shopUtil/jsp/shop_aside.jsp" />
-		<!-- åŠŸèƒ½é¸å–®çµæŸ -->
+		<!-- ¥\¯à¿ï³æµ²§ô -->
 
 
 
         <main>
             <div class="column">
                 <div class="column-pic">
-                    <p class="column-picname">å•†å“ç…§ç‰‡</p>
+                    <p class="column-picname" id="menu_pic">°Ó«~·Ó¤ù</p>
                 </div>
-                <div class="column-name">å•†å“åç¨±</div>
-                <div class="column-content">å•†å“ä»‹ç´¹</div>
-                <div class="column-amount">åƒ¹éŒ¢</div>
+                <div class="column-name">°Ó«~¦WºÙ</div>
+                <div class="column-content">°Ó«~¤¶²Ğ</div>
+                <div class="column-amount">»ù¿ú</div>
                 <div class="column-edit">
-                    <p style="margin-right: 70px;">ç·¨è¼¯</p>
+                    <p style="margin-right: 70px;">½s¿è</p>
                 </div>
                 
             </div>
-            <%-- æ’å…¥ beanç‰©ä»¶ c:foreach --%>
-            <%-- æ­¤è™•æŠ•å…¥æ‰€æœ‰æŠ•å…¥shopmenu-tableèƒ½æ’ˆåˆ°çš„æ‰€æœ‰è³‡æ–™ --%>
+            <%-- ´¡¤J beanª«¥ó c:foreach --%>
+            <%-- ¦¹³B§ë¤J©Ò¦³§ë¤Jshopmenu-table¯à¼´¨ìªº©Ò¦³¸ê®Æ --%>
         <c:forEach var="list" varStatus="stat" items="${shopmenu}">
             <div class="column">
                 <div class="column-pic">
-                <%-- æ”¾ç½®pic --%>
+                <%-- ©ñ¸mpic --%>
                 <img src="<c:url value='/_50_shop/_52_shopmenu/picture/${list.menu_id}'/>" style="margin-left: 5px;" height="62px" class="coupon-pic">
                     
                 </div>
-                <%-- å“åname --%>
+                <%-- «~¦Wname --%>
                 <div class="column-name">${list.menu_name}</div>
-                <%-- ç´°é …detail --%>
+                <%-- ²Ó¶µdetail --%>
                 <div class="column-content">${list.menu_detail}</div>
-                <%-- åƒ¹éŒ¢price --%>
+                <%-- »ù¿úprice --%>
                 <div class="column-amount">${list.menu_price}</div>
                 <div class="coupon-edit">
-                    <input type="button" value="ç·¨è¼¯" onclick="location.href='${pageContext.request.contextPath}/_50_shop/_52_shopmenu/modify/${list.menu_id}'">
+                    <input type="button" value="½s¿è" onclick="location.href='${pageContext.request.contextPath}/_50_shop/_52_shopmenu/modify/${list.menu_id}'">
                     /
-                    <input type="button" value="åˆªé™¤" onclick="location.href='${pageContext.request.contextPath}/_50_shop/_52_shopmenu/delete/${list.menu_id}'">
+                    <input type="button" value="§R°£" onclick="location.href='${pageContext.request.contextPath}/_50_shop/_52_shopmenu/delete/${list.menu_id}'">
 
                 </div>
             </div>
@@ -128,67 +125,59 @@
             border: 2px dashed #333; padding: 10px; margin: 20px;"
             id="insert">
                 <div style="width: 35%; text-align: right;">
-                    <div class="text">å•†å“åç¨±ï¼š</div>
-                    <div class="text" style="margin-top: 30px;">å•†å“å…§å®¹ï¼š</div>
-                    <div class="text" style="margin-top: 70px;">å•†å“åƒ¹æ ¼ï¼š</div>
-                    <div class="text" style="margin-top: 150px;">å•†å“ç…§ç‰‡ï¼š</div>
+                    <div class="text">°Ó«~¦WºÙ¡G</div>
+                    <div class="text" style="margin-top: 30px;">°Ó«~¤º®e¡G</div>
+                    <div class="text" style="margin-top: 70px;">°Ó«~»ù®æ¡G</div>
+                    <div class="text" style="margin-top: 150px;">°Ó«~·Ó¤ù¡G</div>
 
                 </div>
                 <div style="width: 65%; text-align: left;">
-                    <!--form:form æ’å…¥é» -->
+                    <!--form:form ´¡¤JÂI -->
                     <form:form method="POST" modelAttribute="shopmenubean" 
                     enctype='multipart/form-data'>
                         <div>
-                            <form:input type="text" path="menu_name" class="form" />
+                            <form:input id="menu_name" type="text" path="menu_name" class="form" />
                         </div>
                         <div>
-                            <form:textarea path="menu_detail" cols="40" rows="5" 
+                            <form:textarea id="menu_info" path="menu_detail" cols="40" rows="5" 
                             style="margin-top: 25px;" />
                         </div>
                         <div>
-                        	<form:input type="text" path="menu_price" class="form" />
+                        	<form:input id="menu_price" type="text" path="menu_price" class="form" />
                         </div>
                         <div style="display: flex;">
                             <div
-                                style="width: 250px; height: 150px; margine-top:10px;">
-                                <img style="width:200px;height:150px;"  id="blah" />
+                                style="width: 250px; height: 150px; margin-top: 5px;" >
+                                <img src="${pageContext.request.contextPath}/data/images/smallPic/yachiLogo50.png" alt="" id="headImg" style="width: 250px; height: 150px;margin-top: 10px">		
                             </div>
                             <div>
-                                <form:input type="file" id="imgInp" path="productImage" style="margin-left: 5px;margin-top: 130px;"/>
+                                <form:input type="file" path="productImage" style="margin-left: 5px;margin-top: 130px;" id="file"/>
                                 <div style="width: 100%;text-align: right;height: 60px;">
-                                    <input type="submit" value="å„²å­˜" style="margin-top: 28px;width: 120px;height: 30px;"/>
+                                    <input type="submit" value="Àx¦s" style="margin-top: 28px;width: 120px;height: 30px;"/>
                                 </div>
                             </div>
                         </div>
                     </form:form>
-                    <!--form:form çµæŸ -->
+                    <!--form:form µ²§ô -->
                 </div>
             </div>
             <div class="middle-bottom" 
                 style="width: 95%; height: 40px; margin: 20px; border: 2px dashed #333; display: flex;">
-                <button style="margin: 3px;" id="insertbtn">ï¼‹ æ–°å¢å•†å“</button>
+                <button style="margin: 3px;" id="insertbtn">¡Ï ·s¼W°Ó«~</button>
             </div>
             
         </main>
 
     </div>
-    <script type="text/javascript"> 
-  function readURL(input) {
-	  if (input.files && input.files[0]) {
-	    var reader = new FileReader();
-	    
-	    reader.onload = function(e) {
-	      $('#blah').attr('src', e.target.result);
-	    }
-	    
-	    reader.readAsDataURL(input.files[0]); // convert to base64 string
-	  }
-	}
-
-	$("#imgInp").change(function() {
-	  readURL(this);
-	});
-   </script>
+  <script>
+//¤@Áä¿é¤J¥\¯à
+  //¦s¨úinput¼ĞÅÒªº­È¥²¶·¨Ï¥Î.val()¤èªk
+  $('#menu_pic').click(function(){
+	  $('#menu_name').val("»[¨ı²DÄÑ");
+	  $('#menu_info').val("¤hªL©]¥«¥²¦Y²DÄÑ");
+	  $('#menu_price').val("45");
+  })
+  </script>
     
 </body>
 </html>

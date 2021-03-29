@@ -435,9 +435,10 @@
 								<div class="column-pic">
 									 <img
 										src="<c:url value='/_50_shop/_52_shopmenu/picture/${shopmenu.menu_id}'/>"
-										style="width:140px" class="coupon-pic">
+										style="width:140px;height:90px;" class="coupon-pic">
 
-									<p>${shopmenu.menu_name}</p>
+									<p style="margin-top:8px;">${shopmenu.menu_name}</p>
+									<p>價格:&nbsp;${shopmenu.menu_price}</p>
 								</div>
 							</div>
 						</c:forEach>

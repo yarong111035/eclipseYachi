@@ -784,23 +784,55 @@ public class DataTest {
 //		for (int i = 0; i < dates.length; i++) {
 //			Member member = new Member();
 //			member.setBirthday(dates[i]);
-//			member.setSex("female");
+//			member.setSex("male");
 //			session.persist(member);
 //		}
+//		String[] name = {"鮪魚飯糰優惠券", "肉鬆飯糰優惠券", "燒肉飯糰優惠券", "紅茶拿鐵優惠券"};
 		ShopBean sb = session.get(ShopBean.class, 1);
+//		for (int i = 0; i < 4; i++) {
+//			CouponBean couponBean = new CouponBean();
+//			couponBean.setShopBean(sb);
+//			couponBean.setCoupon_name(name[i]);
+//			session.persist(couponBean);
+//			
+//		}
+		
 		java.sql.Timestamp[] timestamps = {java.sql.Timestamp.valueOf("2021-01-24 23:59:59.000"),java.sql.Timestamp.valueOf("2021-01-01 23:59:59.000"),java.sql.Timestamp.valueOf("2021-02-11 23:59:59.000"),java.sql.Timestamp.valueOf("2021-02-17 23:59:59.000"),java.sql.Timestamp.valueOf("2021-03-10 23:59:59.000")};
+		java.sql.Timestamp[] timestamps1 = {java.sql.Timestamp.valueOf("2021-02-24 23:59:59.000"),java.sql.Timestamp.valueOf("2021-02-01 23:59:59.000"),java.sql.Timestamp.valueOf("2021-03-11 23:59:59.000"),java.sql.Timestamp.valueOf("2021-02-17 23:59:59.000"),java.sql.Timestamp.valueOf("2021-03-10 23:59:59.000")};
+		java.sql.Timestamp[] timestamps2 = {java.sql.Timestamp.valueOf("2021-01-24 23:59:59.000"),java.sql.Timestamp.valueOf("2021-01-01 23:59:59.000"),java.sql.Timestamp.valueOf("2021-01-11 23:59:59.000"),java.sql.Timestamp.valueOf("2021-02-17 23:59:59.000"),java.sql.Timestamp.valueOf("2021-03-10 23:59:59.000")};
+		int[] id = {4,5,8,11,12};
 		for (int i = 0; i < timestamps.length; i++) {
 			CouponUsedBean cub = new CouponUsedBean();
 			cub.setCoupon_used_time(timestamps[i]);
 			cub.setShopBean(sb);
-			Member member = session.get(Member.class, 17+i);
+			Member member = session.get(Member.class, 14+i);
 			cub.setMemberBean(member);
 			CouponBean cb = session.get(CouponBean.class, 4);
 			cub.setCouponBean(cb);
 			session.persist(cub);
-			
-			
 		}
+		
+//		for (int i = 0; i < timestamps1.length; i++) {
+//			CouponUsedBean cub = new CouponUsedBean();
+//			cub.setCoupon_used_time(timestamps1[i]);
+//			cub.setShopBean(sb);
+//			Member member = session.get(Member.class, 8+i);
+//			cub.setMemberBean(member);
+//			CouponBean cb = session.get(CouponBean.class, id[i]);
+//			cub.setCouponBean(cb);
+//			session.persist(cub);
+//		}
+		
+//		for (int i = 0; i < timestamps2.length; i++) {
+//			CouponUsedBean cub = new CouponUsedBean();
+//			cub.setCoupon_used_time(timestamps2[i]);
+//			cub.setShopBean(sb);
+//			Member member = session.get(Member.class, 12+i);
+//			cub.setMemberBean(member);
+//			CouponBean cb = session.get(CouponBean.class, id[i]);
+//			cub.setCouponBean(cb);
+//			session.persist(cub);
+//		}
 		
 	}
 	

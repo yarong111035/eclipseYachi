@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @charset "UTF-8";
 /* 全域border box  使padding內縮  */
 /* 含偽元素*/
@@ -297,6 +298,9 @@ header .tab .tab-warp .tab-content .tab-panel {
   padding: 0 1rem;
   display: none;
 }
+=======
+
+>>>>>>> 0329修改
 
 .main-member {
   max-width: 100%;
@@ -486,6 +490,7 @@ header .tab .tab-warp .tab-content .tab-panel {
   text-align: right;
 }
 
+<<<<<<< HEAD
 /*** addClass 類別使用 ****/
 .liColor {
   background-color: rgba(206, 16, 16, 0.5);
@@ -532,3 +537,5 @@ header .tab .tab-warp .tab-content .tab-panel {
   }
 }
 /*# sourceMappingURL=header.css.map */
+=======
+>>>>>>> 0329修改
