@@ -134,7 +134,7 @@ public class ShopMenuController  {
 		List<ShopMenuBean> shopmenu = shopmenuservice.getShopMenu(shopId);
 		
 		model.addAttribute("shopmenu", shopmenu);
-		return "/_50_shop/_52_shopmenu/InsertShopItem/";
+		return "/_50_shop/_52_shopmenu/InsertShopItem";
 	}
 	
 //	jsp回傳bean給controller存入資料庫
