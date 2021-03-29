@@ -46,31 +46,31 @@
 		<div class="item">
 			<a href="<c:url value='/admin/InsertAdminActivity' />">
 				<button>
-					<span>平台優惠活動</span>
+					<span>新增優惠活動</span>
 				</button>
 			</a>
 		</div>
 		<div class="item">
 			<a href="<c:url value='/admin/InsertAdminCoupon' />">
 				<button>
-					<span>平台優惠券</span>
+					<span>新增平台優惠券</span>
 				</button>
 			</a>
 		</div>
-		<div class="item">
-			<a href="<c:url value='/admin/admin_adinfo' />">
-				<button>
-					<span>廣告資訊</span>
-				</button>
-			</a>
-		</div>
-		<div class="item">
-			<a href="<c:url value='/admin/admin_chatroom' />">
-				<button>
-					<span>客服回應</span>
-				</button>
-			</a>
-		</div>
+<!-- 		<div class="item"> -->
+<%-- 			<a href="<c:url value='/admin/admin_adinfo' />"> --%>
+<!-- 				<button> -->
+<!-- 					<span>廣告資訊</span> -->
+<!-- 				</button> -->
+<!-- 			</a> -->
+<!-- 		</div> -->
+<!-- 		<div class="item"> -->
+<%-- 			<a href="<c:url value='/admin/admin_chatroom' />"> --%>
+<!-- 				<button> -->
+<!-- 					<span>客服回應</span> -->
+<!-- 				</button> -->
+<!-- 			</a> -->
+<!-- 		</div> -->
 		<div class="item">
 			<a href="<c:url value='/admin/admin_checkShop' />">
 				<button>
@@ -78,24 +78,31 @@
 				</button>
 			</a>
 		</div>
+<!-- 		<div class="item"> -->
+<%-- 			<a href="<c:url value='/admin/admin_announcement' />"> --%>
+<!-- 				<button> -->
+<!-- 					<span>公告</span> -->
+<!-- 				</button> -->
+<!-- 			</a> -->
+<!-- 		</div> -->
+<!-- 		<div class="item"> -->
+<!-- 			<a href="#"> -->
+<!-- 				<button> -->
+<!-- 					<span>申訴單</span> -->
+<!-- 				</button> -->
+<!-- 			</a> -->
+<!-- 		</div> -->
+<!-- 		<div class="item"> -->
+<!-- 			<a href="#"> -->
+<!-- 				<button> -->
+<!-- 					<span>基本資料</span> -->
+<!-- 				</button> -->
+<!-- 			</a> -->
+<!-- 		</div> -->
 		<div class="item">
-			<a href="<c:url value='/admin/admin_announcement' />">
+			<a href="<c:url value='/websocket/login'/>">
 				<button>
-					<span>公告</span>
-				</button>
-			</a>
-		</div>
-		<div class="item">
-			<a href="#">
-				<button>
-					<span>申訴單</span>
-				</button>
-			</a>
-		</div>
-		<div class="item">
-			<a href="#">
-				<button>
-					<span>基本資料</span>
+					<span>線上客服</span>
 				</button>
 			</a>
 		</div>

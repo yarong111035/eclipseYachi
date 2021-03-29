@@ -72,75 +72,75 @@
 					</c:forEach>
 					</div>
 				</div>
-				<div class="status">
-					<div class="status-nav">
-						<h3>廣告資訊</h3>
-						<div class="space"></div>
-						<a class="readmore" href="#">readmore...</a>
-					</div>
-					<hr>
-					<div>
-						<a href="#">2020/08/09-2020/09/01 鎮瀾宮媽祖廟 水餃買十送十</a><br> <a
-							href="#">2020/08/09-2020/09/01 鎮瀾宮媽祖廟 消波塊買十送十</a><br> <a
-							href="#">2020/11/11-2020/12/12 鄭太吉有限公司 慶記買十送十</a><br> <a
-							href="#">2020/12/25 蕭家班有限公司 慶記買十送十</a><br>
-					</div>
-				</div>
-				<div class="status">
-					<div class="status-nav">
-						<h3>客服回應</h3>
-						<div class="space"></div>
-						<a class="readmore" href="#">readmore...</a>
-					</div>
-					<hr>
-					<div>
-						<a href="#">2020/08/09 23:59 sjw說:請問中元節活動什麼意思？消費亡者？好笑嗎？低級當有趣</a><br>
-						<a href="#">2020/09/15 23:59
-							sjw說:請問中秋節活動什麼意思？消費嫦娥？你把吳剛放在哪裡？低級當有趣</a><br> <a href="#">2020/11/11
-							08:59 菜雞說:請問台積電可以買嗎？</a><br> <a href="#">2021/03/31 10:00
-							總監說:看得出來有準備拉</a><br>
-					</div>
-				</div>
-				<div class="status">
-					<div class="status-nav">
-						<h3>審核商家</h3>
-						<div class="space"></div>
-						<a class="readmore" href="#">readmore...</a>
-					</div>
-					<hr>
-					<div>
-						<a href="#">2020/07/05 頤宮中餐廳Le Palais 申請店家</a><br> <a
-							href="#">2020/09/13 教父牛排 申請店家</a><br> <a href="#">2020/10/10
-							鮨野村 申請店家</a><br> <a href="#">2020/10/25 大腕燒肉專門店 申請店家</a><br>
-					</div>
-				</div>
-				<div class="status">
-					<div class="status-nav">
-						<h3>公告</h3>
-						<div class="space"></div>
-						<a class="readmore" href="#">readmore...</a>
-					</div>
-					<hr>
-					<div>
-						<a href="#">2020/07/05 饒河夜市 胡椒餅 成為Yachi店家</a><br> <a href="#">2020/08/09
-							中原活動開始</a><br> <a href="#">2020/08/29 遼寧夜市 客家湯圓 成為Yachi店家</a><br>
-						<a href="#">2020/10/01 師大夜市 我家牛排 已下架</a><br>
-					</div>
-				</div>
-				<div class="status">
-					<div class="status-nav">
-						<h3>申訴單</h3>
-						<div class="space"></div>
-						<a class="readmore" href="#">readmore...</a>
-					</div>
-					<hr>
-					<div>
-						<a href="#">2020/07/05 06:00 sjw用戶檢舉 yachi 性別欄無LGBTQ+可選擇</a><br>
-						<a href="#">2020/07/07 8:00 karen用戶檢舉 岡山羊肉爐教壞我家小孩</a><br> <a
-							href="#">2020/07/08 06:00 sjw用戶檢舉 川普 BLM</a><br> <a href="#">2020/07/08
-							06:00 sjw用戶檢舉 拜登 老人失智</a><br>
-					</div>
-				</div>
+<!-- 				<div class="status"> -->
+<!-- 					<div class="status-nav"> -->
+<!-- 						<h3>廣告資訊</h3> -->
+<!-- 						<div class="space"></div> -->
+<!-- 						<a class="readmore" href="#">readmore...</a> -->
+<!-- 					</div> -->
+<!-- 					<hr> -->
+<!-- 					<div> -->
+<!-- 						<a href="#">2020/08/09-2020/09/01 鎮瀾宮媽祖廟 水餃買十送十</a><br> <a -->
+<!-- 							href="#">2020/08/09-2020/09/01 鎮瀾宮媽祖廟 消波塊買十送十</a><br> <a -->
+<!-- 							href="#">2020/11/11-2020/12/12 鄭太吉有限公司 慶記買十送十</a><br> <a -->
+<!-- 							href="#">2020/12/25 蕭家班有限公司 慶記買十送十</a><br> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="status"> -->
+<!-- 					<div class="status-nav"> -->
+<!-- 						<h3>客服回應</h3> -->
+<!-- 						<div class="space"></div> -->
+<!-- 						<a class="readmore" href="#">readmore...</a> -->
+<!-- 					</div> -->
+<!-- 					<hr> -->
+<!-- 					<div> -->
+<!-- 						<a href="#">2020/08/09 23:59 sjw說:請問中元節活動什麼意思？消費亡者？好笑嗎？低級當有趣</a><br> -->
+<!-- 						<a href="#">2020/09/15 23:59 -->
+<!-- 							sjw說:請問中秋節活動什麼意思？消費嫦娥？你把吳剛放在哪裡？低級當有趣</a><br> <a href="#">2020/11/11 -->
+<!-- 							08:59 菜雞說:請問台積電可以買嗎？</a><br> <a href="#">2021/03/31 10:00 -->
+<!-- 							總監說:看得出來有準備拉</a><br> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="status"> -->
+<!-- 					<div class="status-nav"> -->
+<!-- 						<h3>審核商家</h3> -->
+<!-- 						<div class="space"></div> -->
+<!-- 						<a class="readmore" href="#">readmore...</a> -->
+<!-- 					</div> -->
+<!-- 					<hr> -->
+<!-- 					<div> -->
+<!-- 						<a href="#">2020/07/05 頤宮中餐廳Le Palais 申請店家</a><br> <a -->
+<!-- 							href="#">2020/09/13 教父牛排 申請店家</a><br> <a href="#">2020/10/10 -->
+<!-- 							鮨野村 申請店家</a><br> <a href="#">2020/10/25 大腕燒肉專門店 申請店家</a><br> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="status"> -->
+<!-- 					<div class="status-nav"> -->
+<!-- 						<h3>公告</h3> -->
+<!-- 						<div class="space"></div> -->
+<!-- 						<a class="readmore" href="#">readmore...</a> -->
+<!-- 					</div> -->
+<!-- 					<hr> -->
+<!-- 					<div> -->
+<!-- 						<a href="#">2020/07/05 饒河夜市 胡椒餅 成為Yachi店家</a><br> <a href="#">2020/08/09 -->
+<!-- 							中原活動開始</a><br> <a href="#">2020/08/29 遼寧夜市 客家湯圓 成為Yachi店家</a><br> -->
+<!-- 						<a href="#">2020/10/01 師大夜市 我家牛排 已下架</a><br> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="status"> -->
+<!-- 					<div class="status-nav"> -->
+<!-- 						<h3>申訴單</h3> -->
+<!-- 						<div class="space"></div> -->
+<!-- 						<a class="readmore" href="#">readmore...</a> -->
+<!-- 					</div> -->
+<!-- 					<hr> -->
+<!-- 					<div> -->
+<!-- 						<a href="#">2020/07/05 06:00 sjw用戶檢舉 yachi 性別欄無LGBTQ+可選擇</a><br> -->
+<!-- 						<a href="#">2020/07/07 8:00 karen用戶檢舉 岡山羊肉爐教壞我家小孩</a><br> <a -->
+<!-- 							href="#">2020/07/08 06:00 sjw用戶檢舉 川普 BLM</a><br> <a href="#">2020/07/08 -->
+<!-- 							06:00 sjw用戶檢舉 拜登 老人失智</a><br> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 			</main>
 		</div>
 	</div>

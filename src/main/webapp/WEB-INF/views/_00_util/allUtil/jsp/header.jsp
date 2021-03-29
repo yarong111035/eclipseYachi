@@ -291,14 +291,14 @@
 						<br>
 						<a href="<c:url value='/admin/InsertAdminCoupon' />">新增平台優惠券</a>
 						<br>
-						<a href="<c:url value='/admin/admin_adinfo' />">廣告資訊</a>
-						<br>
-						<a href="<c:url value='/admin/admin_chatroom' />">客服回應</a>
-						<br>
+<%-- 						<a href="<c:url value='/admin/admin_adinfo' />">廣告資訊</a> --%>
+<!-- 						<br> -->
+<%-- 						<a href="<c:url value='/admin/admin_chatroom' />">客服回應</a> --%>
+<!-- 						<br> -->
 						<a href="<c:url value='/admin/admin_checkShop' />">審核商家</a>
 						<br>
-						<a href="<c:url value='/admin/admin_announcement' />">公告</a>
-						<br>
+<%-- 						<a href="<c:url value='/admin/admin_announcement' />">公告</a> --%>
+<!-- 						<br> -->
 						<a href="<c:url value='/websocket/login'/>"><font>線上客服</font></a><br>
 						<a href="<c:url value='/doLogout'/>"
 							onclick="return window.confirm('確定登出嗎?');"> <font>登 出</font></a>
