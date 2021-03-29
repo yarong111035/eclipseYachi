@@ -142,7 +142,8 @@ public class ShopMenuController  {
 	public String processFormData(
 			@ModelAttribute("shopmenubean") ShopMenuBean bean,
 			BindingResult result, Model model,
-			HttpServletRequest request
+			HttpServletRequest request,
+			@PathVariable Integer shopId
 			) {
 		Member mb = (Member) model.getAttribute("LoginOK");
 		bean.setShopBean(mb.getShopBean());
@@ -172,7 +173,7 @@ public class ShopMenuController  {
 			}
 		}
 		shopmenuservice.saveMenu(bean);
-		return "redirect:/_50_shop/_52_shopmenu/InsertShopItem";
+		return "redirect:/_50_shop/_52_shopmenu/InsertShopItem/" + shopId;
 	}
 //	讀取縮圖使用
 	@GetMapping("/picture/{menu_id}")
