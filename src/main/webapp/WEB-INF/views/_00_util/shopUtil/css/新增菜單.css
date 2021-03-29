@@ -1,0 +1,534 @@
+@charset "UTF-8";
+/* 全域border box  使padding內縮  */
+/* 含偽元素*/
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  height: 1500px;
+  margin-top: 13rem;
+  font-family: "微軟正黑體";
+}
+
+/* 回到上方的按鈕 */
+.toTop {
+  position: fixed;
+  font-size: 3rem;
+  right: 1rem;
+  bottom: 1rem;
+}
+
+header {
+  background: #F3F8F2;
+  width: 100%;
+  /* 使頁首定在body上方 */
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+ 
+}
+
+header nav {
+  background-color: black;
+  
+}
+
+header nav .navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.25rem 0.5rem;
+  margin: 0 1rem;
+}
+
+header nav .navbar .ig-links {
+  font-size: 0.875rem;
+}
+
+header nav .navbar .ig-links a {
+  padding: 0 0.15rem;
+  color: white;
+}
+
+header nav .navbar .ig-links a:first-child {
+  border-right: 1px solid #ccc;
+  padding-right: 0.5rem;
+}
+
+header nav .navbar .ig-links a img {
+  vertical-align: text-bottom;
+}
+
+header nav .navbar .ig-links a:hover {
+  color: orange;
+}
+
+header nav .navbar .space {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+}
+
+header nav .navbar .links {
+  font-size: 0.875rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header nav .navbar .links a {
+  color: white;
+  margin: 0 0.3rem;
+}
+
+header nav .navbar .links a i {
+  margin-right: 0.25rem;
+}
+
+header nav .navbar .links a:hover {
+  color: orange;
+}
+
+header .search {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+header .search .search-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header .search .search-wrap .logo-wrap {
+  max-width: 200px;
+}
+
+header .search .search-wrap .logo-wrap img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+header .search .search-wrap .search-food {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .search .search-wrap .search-food .search-input {
+  border: 2px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header .search .search-wrap .search-food .search-input input, header .search .search-wrap .search-food .search-input button {
+  background-color: white;
+  border: none;
+  height: 2rem;
+}
+
+header .search .search-wrap .search-food .search-input input {
+  width: 40rem;
+}
+
+header .search .search-wrap .search-food .search-input input:focus {
+  outline: none;
+}
+
+header .search .search-wrap .search-food .search-input button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+header .search .search-wrap .search-food .food-trending a {
+  color: black;
+  font-size: 0.875rem;
+  padding: 0 1rem;
+}
+
+header .search .search-wrap .search-food .food-trending a:hover {
+  color: orange;
+}
+
+header .search .search-wrap .search-ticket {
+  max-width: 200px;
+  position: relative;
+  margin-left: 0.5rem;
+  /* 父層被hover 子層做事情*/
+}
+
+header .search .search-wrap .search-ticket img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+header .search .search-wrap .search-ticket .txt {
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 1rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  /* 使文字垂直居中 */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /* x軸居中對齊 */
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  /* y軸居中對齊 */
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .search .search-wrap .search-ticket .txt h2 {
+  color: white;
+}
+
+header .search .search-wrap .search-ticket:hover .txt {
+  background-color: #ccc;
+  opacity: 0.7;
+}
+
+header .search .search-wrap .search-ticket:hover .txt h2 {
+  color: black;
+}
+
+header .search .search-wrap .member {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .search .search-wrap .member a {
+  padding: 0 1rem;
+  color: black;
+}
+
+header .search .search-wrap .member a:first-child {
+  border-right: 1px solid black;
+}
+
+header .search .search-wrap .member a:last-child {
+  display: block;
+}
+
+header .search .search-wrap .member a:last-child i {
+  font-size: 4rem;
+}
+
+header .search .search-wrap .member a:hover {
+  color: orange;
+}
+
+header .tab {
+  background-color: black;
+}
+
+header .tab .tab-warp {
+  position: relative;
+}
+
+header .tab .tab-warp .tab-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .tab .tab-warp .tab-list a {
+  font-size: 1rem;
+  text-align: center;
+  color: white;
+  width: 11rem;
+  padding: 1rem 0rem;
+}
+
+header .tab .tab-warp .tab-content {
+  background-color: white;
+  position: absolute;
+  /* 調整左邊 border線 與導覽列同X軸 */
+  left: 21%;
+  /* 控制右邊 border線 */
+  width: 55rem;
+}
+
+header .tab .tab-warp .tab-content .tab-panel {
+  border: 2px solid #ccc;
+  padding: 0 1rem;
+  display: none;
+}
+
+.main-member {
+  max-width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 10rem;
+}
+
+.main-member aside {
+  border: 1px solid #CCC;
+  width: 400px;
+  /* background-color: #ccc; */
+  text-align: center;
+}
+
+.main-member aside .function {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.main-member aside .function h3 {
+  font-size: 24px;
+  padding: 20px 0;
+  font-weight: bolder;
+}
+
+.main-member aside .function .item:last-child {
+  margin-top: 125px;
+}
+
+.main-member aside .function .item img {
+  vertical-align: bottom;
+}
+
+.main-member aside .function .item img:hover {
+  opacity: 0.5;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.main-member aside .function .item a button {
+  border: 1px solid #ccc;
+  width: 200px;
+  margin: 5px auto;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bolder;
+}
+
+.main-member aside .function .item a button:focus {
+  outline: none;
+}
+
+.main-member aside .function .item a button:hover {
+  background-color: #aac0cf;
+}
+
+.main-member aside .function .item a button:hover span {
+  padding-right: 25px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.main-member aside .function .item a button:hover span:after {
+  opacity: 1;
+}
+
+.main-member aside .function .item a button span {
+  position: relative;
+}
+
+.main-member aside .function .item a button span::after {
+  content: '➜';
+  opacity: 0;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  position: absolute;
+  right: -10px;
+  font-weight: bold;
+}
+
+.main-member aside .function label {
+  padding: 10px 0;
+  font-size: 13px;
+  font-weight: bolder;
+}
+
+.main-member main {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
+.main-member main .info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 50px;
+}
+
+.main-member main .info div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 20px auto;
+}
+
+.main-member main .info div h3 {
+  width: 100px;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+.main-member main .info div label {
+  width: 200px;
+}
+
+.main-member main .info div button {
+  background-color: #ccc;
+  font-size: 50px;
+  border: none;
+}
+
+/*** addClass 類別使用 ****/
+.liColor {
+  background-color: rgba(206, 16, 16, 0.5);
+}
+
+.column{
+  width: 95%;
+  height: 70px;
+  margin: 20px;
+  border: 2px dashed #333;
+  display: flex;
+  
+}
+
+.column-pic{
+  width: 16%;
+  height: 60px;
+  margin-top: 3px;
+}
+.column-picname{
+  line-height: 63px;
+  margin-left: 22px;
+
+}
+.column-name{
+  width: 17%;
+  line-height: 65px;
+}
+.column-content{
+  width: 41%;
+  line-height: 65px;
+ 
+}
+.column-amount{
+  width: 8%;
+  line-height: 65px;
+}
+.column-edit{
+  width: 15%;
+  line-height: 65px;
+  margin-right: 5px;
+  text-align: right;
+}
+.column-editname{
+  margin-left: 45px;
+}
+.coupon-pic{
+  margin-left: 5px;
+}
+.coupon-edit{
+  width: 15%;
+  line-height: 65px;
+  margin-right: 5px;
+  text-align: right;
+}
+
+/*** addClass 類別使用 ****/
+.liColor {
+  background-color: rgba(206, 16, 16, 0.5);
+}
+
+/* iPhone XS Max Viewport RWD 414*896 */
+@media (max-width: 415px) {
+  header nav .navbar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  header nav .navbar .ig-links a {
+    padding: 0 0.2em;
+    font-size: 0.1rem;
+  }
+  header nav .navbar .space {
+    color: white;
+  }
+  header nav .navbar .links li {
+    padding: 0 1em;
+  }
+  header .search {
+    background-color: white;
+  }
+  header .search .search-wrap {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  header .search .search-wrap .search-food .search-input input {
+    width: 15rem;
+  }
+  header .search .search-wrap .search-food .food-trending {
+    padding: 0.5rem 0;
+  }
+}
+/*# sourceMappingURL=header.css.map */
