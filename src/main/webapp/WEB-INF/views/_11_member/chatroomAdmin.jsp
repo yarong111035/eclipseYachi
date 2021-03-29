@@ -9,9 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
    	<link rel="stylesheet" href="<c:url value='/_00_util/memberUtil/css/reset.css'/>">
-	
-   	<link rel="stylesheet"
-	href="<c:url value='/_00_util/allUtil/css/background.css'/>">
 	<link rel="stylesheet" href="<c:url value='/_00_util/memberUtil/css/member_update2.css'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<title>chatroom</title>
@@ -22,7 +19,7 @@
         
       //先取得網址字串，假設此頁網址為「index.aspx?id=U001&name=GQSM」
         var url = location.href;
-        var id = `${sessionScope.LoginOK.username}`;
+        var id = `${sessionScope.AdminLoginOK.username}`;
         
         //再來用去尋找網址列中是否有資料傳遞(QueryString)
         if(url.indexOf('?')!=-1)
@@ -164,7 +161,7 @@
              
              
              let img = document.createElement('img');
-             img.src = "http://localhost:8080/yachi/_00_init/getMemberImage?memberId=" + ${sessionScope.LoginOK.memberId};
+             img.src = "http://localhost:8080/yachi/_00_init/getMemberImage?memberId=" + ${sessionScope.AdminLoginOK.memberId};
              
              let name = document.createElement('div');
              name.className = 'name';
@@ -417,7 +414,7 @@ a:visited {
 .container {
 	box-shadow: 0 0 10px #3e92cc;
 	height: 700px;
-	width: 529px;
+	width: 600px;
 }
 
 .memberBox .avatar {
@@ -426,10 +423,6 @@ a:visited {
 
 .name{
 	font-size:8px;
-}
-
-main{
-box-shadow: 0 0 10px #aaa;
 }
 </style>
 
@@ -442,12 +435,12 @@ box-shadow: 0 0 10px #aaa;
 	
 	
 
-	<div class="main-member">
-       <jsp:include page="/WEB-INF/views/_00_util/memberUtil/jsp/member_aside.jsp" />
+	<div>
+       
 
-        <main class="shadow  mb-5 bg-body rounded">
+        <main>
 		<div class="container" style="margin:30px auto;">
-		
+		<div class="memberBox" id="memberBox"></div>
 		<div class="main">
 			<div class="dialogue">
 				<div id="messageBox" class="messageBox"></div>

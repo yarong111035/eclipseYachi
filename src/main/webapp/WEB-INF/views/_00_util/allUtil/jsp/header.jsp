@@ -299,7 +299,7 @@
 						<br>
 						<a href="<c:url value='/admin/admin_announcement' />">公告</a>
 						<br>
-						<a href="<c:url value='/websocket/login'/>"><font>線上客服</font></a><br>
+						<a href="<c:url value='/websocket/loginAdmin'/>"><font>線上客服</font></a><br>
 						<a href="<c:url value='/doLogout'/>"
 							onclick="return window.confirm('確定登出嗎?');"> <font>登 出</font></a>
 

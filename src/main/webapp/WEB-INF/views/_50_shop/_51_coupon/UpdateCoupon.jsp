@@ -98,8 +98,8 @@
 		<main class="shadow p-3 mt-5 mb-5 bg-body rounded">
 			
 
-			<div
-				style="display: flex; justify-content: center; border: 2px dashed #333; padding: 10px; margin: 20px;"
+			<div class="shadow p-3 mb-5 bg-body rounded"
+				style="display: flex; justify-content: center; border: 1px solid #eee; padding: 10px; margin: 20px;"
 				id="insert">
 
 

@@ -9,6 +9,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shopping</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+	crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 <link rel="stylesheet"
 	href="<c:url value='/_00_util/shopUtil/css/normalize.css'/>">
@@ -20,7 +24,13 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <!-- MATERIAL DESIGN ICONIC FONT
 <link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css"> -->
+<style>
+.marketBtn{
+	margin-right:10px;
+}
 
+
+</style>
 
 </head>
 <body>
@@ -88,11 +98,11 @@
 	<!-- 商家註冊頁面開始 -->
 	<div  >
 		<div style="margin:20px;">
-		<button onclick="location.href='${pageContext.request.contextPath}/_50_shop/_55_shopData/DataFromSex'">顧客男女比</button>
-		<button onclick="location.href='${pageContext.request.contextPath}/_50_shop/_55_shopData/DataFromCoupon'">優惠券使用數量</button>
-		<button onclick="location.href='${pageContext.request.contextPath}/_50_shop/_55_shopData/DataFromTime'">期間優惠券使用數量</button>
-		<button onclick="location.href='${pageContext.request.contextPath}/_50_shop/_55_shopData/DataFromAge'">顧客年齡分佈</button>
-		<button onclick="location.href='${pageContext.request.contextPath}/_50_shop/_55_shopData/DataFromAll'">全部資料</button>
+		<button class="btn btn-outline-primary marketBtn" onclick="location.href='${pageContext.request.contextPath}/_50_shop/_55_shopData/DataFromSex'">顧客男女比</button>
+		<button class="btn btn-outline-primary marketBtn" onclick="location.href='${pageContext.request.contextPath}/_50_shop/_55_shopData/DataFromCoupon'">優惠券使用數量</button>
+		<button class="btn btn-outline-primary marketBtn" onclick="location.href='${pageContext.request.contextPath}/_50_shop/_55_shopData/DataFromTime'">期間優惠券使用數量</button>
+		<button class="btn btn-outline-primary marketBtn" onclick="location.href='${pageContext.request.contextPath}/_50_shop/_55_shopData/DataFromAge'">顧客年齡分佈</button>
+		<button class="btn btn-outline-primary marketBtn" onclick="location.href='${pageContext.request.contextPath}/_50_shop/_55_shopData/DataFromAll'">全部資料</button>
 		</div>
 		
 		

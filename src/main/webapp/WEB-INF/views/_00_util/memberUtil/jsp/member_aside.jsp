@@ -52,9 +52,9 @@
 				</a>
 			</div>
 			<div class="item">
-				<a href="#">
+				<a href="<c:url value='/websocket/login'/>">
 					<button>
-						<span>通知</span>
+						<span>線上客服</span>
 					</button>
 				</a>
 			</div>

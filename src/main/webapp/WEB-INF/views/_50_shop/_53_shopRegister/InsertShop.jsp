@@ -138,12 +138,11 @@
      //一鍵輸入功能
 		  //存取input標籤的值必須使用.val()方法
 		  $('#inputAllBtn').click(function(){
-			  $('#shop_name').val("順順十全排骨");
-			  $('#shop_owner').val("陳阿順");
-			  $('#shop_addr').val("台北市士林區基河路 997號");
-			  $('#shop_phone').val("02-0890-7788");
-			  $('#shop_hours').val("11:00~20:00");
-			  
+			  $('#shop_name').val("好好吃涼麵");
+			  $('#shop_owner').val("陳老闆");
+			  $('#shop_addr').val("台北市士林區大東路與大南路口");
+			  $('#shop_phone').val("0988-990-999");
+			  $('#shop_hours').val("17:00~21:00");
 		  })
      
      

@@ -156,12 +156,6 @@ button, .button {
 
 						</div>
 
-						<div
-							class="fas fa-star label-smile prod-smile-icon i-smile-4-1 font-weight-bold mt-1 ml-1">
-							<span class="t-10 number">4</span> <span class="t-085">.5</span>
-<!-- 							<span class="t-085" style="margin-left: -0.4rem;"> -->
-<!-- 								&nbsp;(1389) </span> -->
-						</div>
 
 					</div>
 					<div id="carouselIndicators1"
@@ -312,8 +306,8 @@ button, .button {
 											</c:choose>
 											
 										
-<%-- 										</c:if> --%>
-										
+<%-- 								</c:if> --%>
+								
 
 
 									<div class="d-flex justify-content-center">
