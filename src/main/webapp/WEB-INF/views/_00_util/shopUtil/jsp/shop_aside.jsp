@@ -27,7 +27,7 @@
 				<div class="item">
 					<a href="<c:url value='/_50_shop/_52_shopmenu/InsertShopItem/${LoginOK.shopBean.shop_id}' />">
 						<button>
-							<span>商家商品</span>
+							<span>商家菜單</span>
 						</button>
 					</a>
 				</div>

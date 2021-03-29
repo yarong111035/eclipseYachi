@@ -8,11 +8,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>µæ³æ</title>
+<title>èœå–®</title>
 <link rel="stylesheet" 
 	href="<c:url value='/_00_util/shopUtil/css/reset.css'/>">
     <link rel="stylesheet" 
-    href="<c:url value='/_00_util/shopUtil/css/·s¼Wµæ³æ.css'/>">
+    href="<c:url value='/_00_util/shopUtil/css/æ–°å¢èœå–®.css'/>">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script
@@ -31,19 +31,19 @@
         $(function() {
     
         	$('#file').change(function() { 
-   	         // this¥Nªí<input id="file">  
-   	         // files.length == 1 ¬Oªø«×¬°¤@ªº°}¦C
+   	         // thisä»£è¡¨<input id="file">  
+   	         // files.length == 1 æ˜¯é•·åº¦ç‚ºä¸€çš„é™£åˆ—
    	         let file = this.files[0]; 
    	         let reader = new FileReader();
    	         
    	         reader.readAsDataURL(file); 
 
-   	         reader.onload = function(){     //¦¨¥\Åª¨ú¤å¥ó
+   	         reader.onload = function(){     //æˆåŠŸè®€å–æ–‡ä»¶
    	             $('#headImg').attr({
    	                 
    	                 // src = this.result 
-   	                 // ©ÎªÌ¬O src = e.target () 
-   	                 // ¥u¬Ofunction(e) ¥[¤We ¨Æ¥óª«¥ó³B²z¨ç¼Æ
+   	                 // æˆ–è€…æ˜¯ src = e.target () 
+   	                 // åªæ˜¯function(e) åŠ ä¸Še äº‹ä»¶ç‰©ä»¶è™•ç†å‡½æ•¸
    	                 src:this.result , 
    	                 width:`250px`,
    	                 height:`150px`
@@ -56,11 +56,11 @@
             $('#insertbtn').click(function() {
                 if (token == true) {
                     $('#insert').css("display", "flex");
-                    $('#insertbtn').text("¨ú®ø");
+                    $('#insertbtn').text("å–æ¶ˆ");
                     token = false;
                 } else {
                     $('#insert').css("display", "none");
-                    $('#insertbtn').text("¡Ï ·s¼W°Ó«~");
+                    $('#insertbtn').text("ï¼‹ æ–°å¢å•†å“");
                     token = true;
                 }
             });
@@ -73,49 +73,85 @@
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
 	
 
-    <!-- <div class="advertisement">    /*¼s§iªº¦ì¤l*/
+    <!-- <div class="advertisement">    /*å»£å‘Šçš„ä½å­*/
         <img src="https://picsum.photos/1200/300">
     </div> -->
 
     <div class="main-member">
-		<!-- ¥\¯à¿ï³æ¶}©l -->
-		<jsp:include page="/WEB-INF/views/_00_util/shopUtil/jsp/shop_aside.jsp" />
-		<!-- ¥\¯à¿ï³æµ²§ô -->
+        <aside>
+            <div class="function">
+                <h3>å•†å®¶ç®¡ç†é é¢</h3>
+               
+
+                <div class="item">
+                    <a href="<c:url value='/_50_shop/_53_shopRegister/modifyShop/${LoginOK.shopBean.shop_id}' />">
+                        <button><span>èœå–®è³‡æ–™</span></button>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<c:url value='/_50_shop/_52_shopmenu/InsertShopItem/${LoginOK.shopBean.shop_id}' />">
+                        <button><span>å•†å®¶èœå–®</span></button>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<c:url value='/_50_shop/_51_coupon/InsertCoupon/${LoginOK.shopBean.shop_id}' />">
+                        <button><span>å„ªæƒ åˆ¸ç®¡ç†</span></button>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<c:url value='/_50_shop/_55_shopData/DataFromAll' />">
+                        <button><span>å ±è¡¨</span></button>
+                    </a>
+                </div>
+                <div class="item">
+					<a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${LoginOK.shopBean.shop_id}' />">
+						<button>
+							<span>å•†å®¶é é¢</span>
+						</button>
+					</a>
+				</div>
+                <div class="item">
+                    <a href="<c:url value='/doLogout'/>" onclick="return window.confirm('ç¢ºå®šç™»å‡ºå—?');">
+                        <button><span>ç™»å‡º</span></button>
+                    </a>
+                </div>
+            </div>
+        </aside>
 
 
 
         <main>
             <div class="column">
                 <div class="column-pic">
-                    <p class="column-picname" id="menu_pic">°Ó«~·Ó¤ù</p>
+                    <p class="column-picname" id="menu_pic">èœå–®ç…§ç‰‡</p>
                 </div>
-                <div class="column-name">°Ó«~¦WºÙ</div>
-                <div class="column-content">°Ó«~¤¶²Ğ</div>
-                <div class="column-amount">»ù¿ú</div>
+                <div class="column-name">èœå–®åç¨±</div>
+                <div class="column-content">èœå–®ä»‹ç´¹</div>
+                <div class="column-amount">åƒ¹éŒ¢</div>
                 <div class="column-edit">
-                    <p style="margin-right: 70px;">½s¿è</p>
+                    <p style="margin-right: 70px;">ç·¨è¼¯</p>
                 </div>
                 
             </div>
-            <%-- ´¡¤J beanª«¥ó c:foreach --%>
-            <%-- ¦¹³B§ë¤J©Ò¦³§ë¤Jshopmenu-table¯à¼´¨ìªº©Ò¦³¸ê®Æ --%>
+            <%-- æ’å…¥ beanç‰©ä»¶ c:foreach --%>
+            <%-- æ­¤è™•æŠ•å…¥æ‰€æœ‰æŠ•å…¥shopmenu-tableèƒ½æ’ˆåˆ°çš„æ‰€æœ‰è³‡æ–™ --%>
         <c:forEach var="list" varStatus="stat" items="${shopmenu}">
             <div class="column">
                 <div class="column-pic">
-                <%-- ©ñ¸mpic --%>
+                <%-- æ”¾ç½®pic --%>
                 <img src="<c:url value='/_50_shop/_52_shopmenu/picture/${list.menu_id}'/>" style="margin-left: 5px;" height="62px" class="coupon-pic">
                     
                 </div>
-                <%-- «~¦Wname --%>
+                <%-- å“åname --%>
                 <div class="column-name">${list.menu_name}</div>
-                <%-- ²Ó¶µdetail --%>
+                <%-- ç´°é …detail --%>
                 <div class="column-content">${list.menu_detail}</div>
-                <%-- »ù¿úprice --%>
+                <%-- åƒ¹éŒ¢price --%>
                 <div class="column-amount">${list.menu_price}</div>
                 <div class="coupon-edit">
-                    <input type="button" value="½s¿è" onclick="location.href='${pageContext.request.contextPath}/_50_shop/_52_shopmenu/modify/${list.menu_id}'">
+                    <input type="button" value="ç·¨è¼¯" onclick="location.href='${pageContext.request.contextPath}/_50_shop/_52_shopmenu/modify/${list.menu_id}'">
                     /
-                    <input type="button" value="§R°£" onclick="location.href='${pageContext.request.contextPath}/_50_shop/_52_shopmenu/delete/${list.menu_id}'">
+                    <input type="button" value="åˆªé™¤" onclick="location.href='${pageContext.request.contextPath}/_50_shop/_52_shopmenu/delete/${list.menu_id}'">
 
                 </div>
             </div>
@@ -125,14 +161,14 @@
             border: 2px dashed #333; padding: 10px; margin: 20px;"
             id="insert">
                 <div style="width: 35%; text-align: right;">
-                    <div class="text">°Ó«~¦WºÙ¡G</div>
-                    <div class="text" style="margin-top: 30px;">°Ó«~¤º®e¡G</div>
-                    <div class="text" style="margin-top: 70px;">°Ó«~»ù®æ¡G</div>
-                    <div class="text" style="margin-top: 150px;">°Ó«~·Ó¤ù¡G</div>
+                    <div class="text">èœå–®åç¨±ï¼š</div>
+                    <div class="text" style="margin-top: 30px;">èœå–®å…§å®¹ï¼š</div>
+                    <div class="text" style="margin-top: 70px;">èœå–®åƒ¹æ ¼ï¼š</div>
+                    <div class="text" style="margin-top: 150px;">èœå–®ç…§ç‰‡ï¼š</div>
 
                 </div>
                 <div style="width: 65%; text-align: left;">
-                    <!--form:form ´¡¤JÂI -->
+                    <!--form:form æ’å…¥é» -->
                     <form:form method="POST" modelAttribute="shopmenubean" 
                     enctype='multipart/form-data'>
                         <div>
@@ -153,28 +189,29 @@
                             <div>
                                 <form:input type="file" path="productImage" style="margin-left: 5px;margin-top: 130px;" id="file"/>
                                 <div style="width: 100%;text-align: right;height: 60px;">
-                                    <input type="submit" value="Àx¦s" style="margin-top: 28px;width: 120px;height: 30px;"/>
+                                    <input type="submit" value="å„²å­˜" style="margin-top: 28px;width: 120px;height: 30px;    margin-right: 40px;"/>
                                 </div>
                             </div>
                         </div>
                     </form:form>
-                    <!--form:form µ²§ô -->
+                    <!--form:form çµæŸ -->
                 </div>
             </div>
             <div class="middle-bottom" 
                 style="width: 95%; height: 40px; margin: 20px; border: 2px dashed #333; display: flex;">
-                <button style="margin: 3px;" id="insertbtn">¡Ï ·s¼W°Ó«~</button>
+                <button style="margin: 3px;" id="insertbtn">ï¼‹ æ–°å¢èœå–®</button>
+                <button style="margin: 3px;" id="inputBtn">ä¸€éµè¼¸å…¥</button>
             </div>
             
         </main>
 
     </div>
   <script>
-//¤@Áä¿é¤J¥\¯à
-  //¦s¨úinput¼ĞÅÒªº­È¥²¶·¨Ï¥Î.val()¤èªk
-  $('#menu_pic').click(function(){
-	  $('#menu_name').val("»[¨ı²DÄÑ");
-	  $('#menu_info').val("¤hªL©]¥«¥²¦Y²DÄÑ");
+//ä¸€éµè¼¸å…¥åŠŸèƒ½
+  //å­˜å–inputæ¨™ç±¤çš„å€¼å¿…é ˆä½¿ç”¨.val()æ–¹æ³•
+  $('#inputBtn').click(function(){
+	  $('#menu_name').val("è’œå‘³æ¶¼éºµ");
+	  $('#menu_info').val("å£«æ—å¤œå¸‚å¿…åƒæ¶¼éºµ");
 	  $('#menu_price').val("45");
   })
   </script>

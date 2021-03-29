@@ -74,28 +74,61 @@
 </head>
 <body>
     
-
-	<!-- 引入共同的頁首 -->
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
-    <!-- <div class="advertisement">    /*廣告的位子*/
-        <img src="https://picsum.photos/1200/300">
-    </div> -->
+
+  
 
     <div class="main-member">
-      	<!-- 功能選單開始 -->
-		<jsp:include page="/WEB-INF/views/_00_util/shopUtil/jsp/shop_aside.jsp" />
-		<!-- 功能選單結束 -->
+        <aside>
+            <div class="function">
+                <h3>商家管理頁面</h3>
+                
+
+                <div class="item">
+                    <a href="<c:url value='/_50_shop/_53_shopRegister/modifyShop/${LoginOK.shopBean.shop_id}' />">
+                        <button><span>商家資料</span></button>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<c:url value='/_50_shop/_52_shopmenu/InsertShopItem/${LoginOK.shopBean.shop_id}' />">
+                        <button><span>菜單商品</span></button>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<c:url value='/_50_shop/_51_coupon/InsertCoupon/${LoginOK.shopBean.shop_id}' />">
+                        <button><span>優惠券管理</span></button>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<c:url value='/_50_shop/_55_shopData/DataFromAll' />">
+                        <button><span>報表</span></button>
+                    </a>
+                </div>
+                <div class="item">
+					<a href="<c:url value='/_50_shop/_54_showShops/ShowShops/${LoginOK.shopBean.shop_id}' />">
+						<button>
+							<span>商家頁面</span>
+						</button>
+					</a>
+				</div>
+                <div class="item">
+                    <a href="<c:url value='/doLogout'/>" onclick="return window.confirm('確定登出嗎?');">
+                        <button><span>登出</span></button>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+
 
         <main>
           
-            <div style="display: flex; justify-content: center;
-            border: 2px dashed #333; padding: 10px; margin: 20px;"
-            id="insert">
+            <div id="insertmenu">
                 <div style="width: 35%; text-align: right;">
-                    <div class="text">商品名稱：</div>
-                    <div class="text" style="margin-top: 30px;">商品內容：</div>
-                    <div class="text" style="margin-top: 70px;">商品價格：</div>
-                    <div class="text" style="margin-top: 150px;">商品照片：</div>
+                    <div class="text">菜單名稱：</div>
+                    <div class="text" style="margin-top: 51px;">菜單內容：</div>
+                    <div class="text" style="margin-top: 70px;">菜單價格：</div>
+                    <div class="text" style="margin-top: 150px;">菜單照片：</div>
                 </div>
                 <div style="width: 65%; text-align: left;">
                     <!--form:form 插入點 -->
@@ -105,22 +138,22 @@
                             <form:input type="text" path="menu_name" class="form" />
                         </div>
                         <div>
-                            <form:textarea path="menu_detail" cols="40" rows="5" 
+                            <form:textarea path="menu_detail" cols="30" rows="4" 
                             style="margin-top: 25px;" />
                         </div>
                         <div>
                         	<form:input type="text" path="menu_price" class="form" />
                         </div>
-                        <div style="display: flex;">
+                        <div style="display: flex;justify-content: center;align-items: left;flex-direction: column;">
                             <div style="width:250px;height:150px;background:#eee;margin-top:5px;">
                                 <img src="<c:url value='/_50_shop/_52_shopmenu/picture/${shopmenubean.menu_id}'/>" style="width:250px;height:150px;margin-left: 5px;" class="coupon-pic">
-	                             	<img style="width:250px;height:150px;margin-top:4px;margin-left:5px;"  id="blah"/>
                             </div>
-                            <div>
-                            	<div style="width:250px;height:150px;">
-                            	</div>
-                                <form:input type="file" id="imgInp" path="productImage" accept=".jpeg,.png" style="margin-left: 15px;margin-top: 15px;"  />
-                                <div style="width: 80%;text-align: right;height: 60px;margin-top: 115px;">
+                            <div style="">
+<!--                             	<div style="width:250px;height:150px;"> -->
+<!-- 	                             	<img style="width:250px;height:150px;margin-top:4px;margin-left:5px;"  id="blah"/> -->
+<!--                             	</div> -->
+                                <form:input type="file" id="imgInp" path="productImage" accept=".jpeg,.png" style="margin-left: 5px;margin-top: 10px;"  />
+                                <div style="width: 100%;text-align: left;height: 60px;">
                                 	<input type="button" onclick="location.href='${pageContext.request.contextPath}/_50_shop/_52_shopmenu/InsertShopItem/${shopmenubean.shopBean.shop_id}'" value="取消" style="margin-top: 28px;width: 120px;height: 30px;"></input>
                                 	<!--  <input type="button" onclick="getUrlParameter('modify')" value="測試" style="margin-top: 28px;width: 120px;height: 30px;"></input>
                                 	-->
