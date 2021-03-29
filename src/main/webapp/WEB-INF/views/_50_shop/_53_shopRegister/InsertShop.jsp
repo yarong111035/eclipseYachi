@@ -48,8 +48,8 @@
 
 			<form:form method="POST" modelAttribute="shopBean"
 						enctype='multipart/form-data' style="text-align:center;">
-				<h3>申請成為商家</h3>
-
+				<h3 id="shopRig">申請成為商家</h3>
+<!-- 				<button type="button" class="btn btn-outline-primary" id="inputAllBtn">一鍵輸入</button> -->
 				<div class="image-holder">
 					<img src="${pageContext.request.contextPath}/data/images/smallPic/yachiLogo50.png" alt="" id="headImg">				
 					<label for="file">
@@ -102,7 +102,7 @@
 					<i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
 				</div>
 				
-				<button type="button" class="btn btn-outline-primary" id="inputAllBtn">一鍵輸入</button>
+				
 <!-- 				<button type="button" class="btn btn-outline-secondary" id="inputAllBtn">一鍵輸入</button> -->
 				<input type="submit" value="Register"
 									class="button-submit">
@@ -137,7 +137,7 @@
      
      //一鍵輸入功能
 		  //存取input標籤的值必須使用.val()方法
-		  $('#inputAllBtn').click(function(){
+		  $('#shopRig').click(function(){
 			  $('#shop_name').val("好好吃涼麵");
 			  $('#shop_owner').val("陳老闆");
 			  $('#shop_addr').val("台北市士林區大東路與大南路口");
