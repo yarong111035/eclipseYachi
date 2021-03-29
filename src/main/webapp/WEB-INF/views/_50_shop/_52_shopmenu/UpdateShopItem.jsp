@@ -77,10 +77,6 @@
 
 	<!-- 引入共同的頁首 -->
 	<jsp:include page="/WEB-INF/views/_00_util/allUtil/jsp/header.jsp" />
-	
-
-
-
     <!-- <div class="advertisement">    /*廣告的位子*/
         <img src="https://picsum.photos/1200/300">
     </div> -->
@@ -89,9 +85,6 @@
       	<!-- 功能選單開始 -->
 		<jsp:include page="/WEB-INF/views/_00_util/shopUtil/jsp/shop_aside.jsp" />
 		<!-- 功能選單結束 -->
-      
-
-
 
         <main>
           
@@ -121,13 +114,13 @@
                         <div style="display: flex;">
                             <div style="width:250px;height:150px;background:#eee;margin-top:5px;">
                                 <img src="<c:url value='/_50_shop/_52_shopmenu/picture/${shopmenubean.menu_id}'/>" style="width:250px;height:150px;margin-left: 5px;" class="coupon-pic">
+	                             	<img style="width:250px;height:150px;margin-top:4px;margin-left:5px;"  id="blah"/>
                             </div>
                             <div>
                             	<div style="width:250px;height:150px;">
-	                             	<img style="width:250px;height:150px;margin-top:4px;margin-left:5px;"  id="blah"/>
                             	</div>
-                                <form:input type="file" id="imgInp" path="productImage" accept=".jpeg,.png" style="margin-left: 5px;margin-top: 130px;"  />
-                                <div style="width: 100%;text-align: right;height: 60px;">
+                                <form:input type="file" id="imgInp" path="productImage" accept=".jpeg,.png" style="margin-left: 15px;margin-top: 15px;"  />
+                                <div style="width: 80%;text-align: right;height: 60px;margin-top: 115px;">
                                 	<input type="button" onclick="location.href='${pageContext.request.contextPath}/_50_shop/_52_shopmenu/InsertShopItem/${shopmenubean.shopBean.shop_id}'" value="取消" style="margin-top: 28px;width: 120px;height: 30px;"></input>
                                 	<!--  <input type="button" onclick="getUrlParameter('modify')" value="測試" style="margin-top: 28px;width: 120px;height: 30px;"></input>
                                 	-->
