@@ -8,7 +8,8 @@
  網站首頁
 ![image](https://github.com/yarong111035/eclipseYachi/blob/main/%E9%A6%96%E9%A0%81.PNG)
 
-
+商家報表 ： 取得商家優惠券被使用的數據，依此數據生成報表，讓商家可以依照此數據投放精準行銷
+![image](https://github.com/yarong111035/eclipseYachi/blob/main/%E5%95%86%E5%AE%B6%E5%A0%B1%E8%A1%A8.PNG)
 
 優惠券專區 ： 使用者可以在此搜尋到喜愛的優惠券
 ![image](https://github.com/yarong111035/eclipseYachi/blob/main/%E5%84%AA%E6%83%A0%E5%88%B8%E5%B0%88%E5%8D%80.PNG)
