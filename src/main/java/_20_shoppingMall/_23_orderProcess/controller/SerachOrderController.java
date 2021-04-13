@@ -33,7 +33,7 @@ public class SerachOrderController {
 		OrderBean queryOrder = new OrderBean();
 //		for(OrderBean order : ordersByMember) {
 //			if(orderNumber == order.getOrderNumber())
-			queryOrder = orderService.queryOrder(orderNumber);
+				queryOrder = orderService.queryOrder(orderNumber);
 //		}
 		return queryOrder;
 	}

@@ -219,9 +219,9 @@
 			
 			<c:choose>
 				<c:when test="${empty LoginOK}">
-					<c:if test="${empty sessionCartVoList}">
-						<div id="count_circle">0</div>
-					</c:if>
+<%-- 					<c:if test="${empty sessionCartVoList}"> --%>
+<!-- 						<div id="count_circle">0</div> -->
+<%-- 					</c:if> --%>
 					<div id="count_circle">${sessionCartVoList.size() }</div>
 				</c:when>
 				<c:otherwise>

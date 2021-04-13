@@ -173,7 +173,7 @@ public class ShoppingCartController {
 			@RequestParam(value = "pageNo",required = false) String pageNo,
 			@RequestParam("qty") Integer qty) {
 		
-		//獲取session內的購物清單
+		//獲取session內的購物清單(透過map容器 存放 前端傳來的 產品id 與 選擇數量)
 		Map<Integer, Integer> sessionCart = (Map<Integer, Integer>) model.getAttribute("sessionCart");
 		//如果session內的購物清單不為空
 		if(sessionCart == null) {

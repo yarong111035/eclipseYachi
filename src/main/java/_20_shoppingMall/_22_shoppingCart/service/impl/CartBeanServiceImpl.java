@@ -111,7 +111,7 @@ public class CartBeanServiceImpl implements CartBeanService {
 		Integer key = null;
 		List<SessionCartVo> sessionCartVoList = new LinkedList<>();
 		
-		Iterator<Integer> iterator = sessionCart.keySet().iterator();
+		Iterator<Integer> iterator = sessionCart.keySet().iterator(); //迭代產品id
 		while(iterator.hasNext()){
 			key = iterator.next(); //product_id
 			Integer value = sessionCart.get(key); //qty
@@ -119,9 +119,10 @@ public class CartBeanServiceImpl implements CartBeanService {
 		
 		
 			SessionCartVo sessionCartVo = new SessionCartVo();
-			ProductBean  productBean = productDao.getProductById(key);
+			ProductBean  productBean = productDao.getProductById(key); //取得產品訊息
 
 			System.out.println("productBean=========" + productBean);
+			
 			sessionCartVo.setProduct_id(productBean.getProduct_id());
 			sessionCartVo.setProduct_spec(productBean.getProduct_spec());
 			sessionCartVo.setProduct_name(productBean.getProduct_name()); //產品名稱
@@ -129,7 +130,7 @@ public class CartBeanServiceImpl implements CartBeanService {
 			sessionCartVo.setFilename(productBean.getFilename());
 			sessionCartVo.setProduct_stock(productBean.getProduct_stock());
 			sessionCartVo.setProduct_pic(productBean.getProduct_pic()); //產品照片
-			sessionCartVo.setScQty(value);
+			sessionCartVo.setScQty(value); // 使用者選擇的數量
 
 			//把封裝好的sessionCartVo 加進 list裡面
 			sessionCartVoList.add(sessionCartVo);
